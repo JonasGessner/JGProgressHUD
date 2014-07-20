@@ -360,6 +360,7 @@
 				6BC018FB197BF28100DA4C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
