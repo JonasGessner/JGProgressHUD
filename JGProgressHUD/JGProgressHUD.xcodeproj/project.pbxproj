@@ -1,0 +1,329 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6BC01877197B2AA500DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC01876197B2AA500DA4C49 /* Foundation.framework */; };
+		6BC018AC197B2ABF00DA4C49 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC0189D197B2ABF00DA4C49 /* JGProgressHUD.m */; };
+		6BC018AD197B2ABF00DA4C49 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC0189F197B2ABF00DA4C49 /* JGProgressHUDAnimation.m */; };
+		6BC018AE197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018A1197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.m */; };
+		6BC018AF197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018A3197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m */; };
+		6BC018B0197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018A5197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		6BC018B1197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018A7197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m */; };
+		6BC018B2197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018A9197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m */; };
+		6BC018B3197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018AB197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m */; };
+		6BC018B7197B2BC700DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B6197B2BC700DA4C49 /* UIKit.framework */; };
+		6BC018B9197B2BCB00DA4C49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6BC01871197B2AA500DA4C49 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6BC01873197B2AA500DA4C49 /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC01876197B2AA500DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6BC0187A197B2AA500DA4C49 /* JGProgressHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		6BC0189C197B2ABF00DA4C49 /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUD.h; sourceTree = "<group>"; };
+		6BC0189D197B2ABF00DA4C49 /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUD.m; sourceTree = "<group>"; };
+		6BC0189E197B2ABF00DA4C49 /* JGProgressHUDAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDAnimation.h; sourceTree = "<group>"; };
+		6BC0189F197B2ABF00DA4C49 /* JGProgressHUDAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDAnimation.m; sourceTree = "<group>"; };
+		6BC018A0197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeAnimation.h; sourceTree = "<group>"; };
+		6BC018A1197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeAnimation.m; sourceTree = "<group>"; };
+		6BC018A2197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDFadeZoomAnimation.h; sourceTree = "<group>"; };
+		6BC018A3197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDFadeZoomAnimation.m; sourceTree = "<group>"; };
+		6BC018A4197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndeterminateIndicatorView.h; sourceTree = "<group>"; };
+		6BC018A5197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndeterminateIndicatorView.m; sourceTree = "<group>"; };
+		6BC018A6197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDIndicatorView.h; sourceTree = "<group>"; };
+		6BC018A7197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDIndicatorView.m; sourceTree = "<group>"; };
+		6BC018A8197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDPieIndicatorView.h; sourceTree = "<group>"; };
+		6BC018A9197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDPieIndicatorView.m; sourceTree = "<group>"; };
+		6BC018AA197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDRingIndicatorView.h; sourceTree = "<group>"; };
+		6BC018AB197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
+		6BC018B6197B2BC700DA4C49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BC01870197B2AA500DA4C49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC018B9197B2BCB00DA4C49 /* QuartzCore.framework in Frameworks */,
+				6BC018B7197B2BC700DA4C49 /* UIKit.framework in Frameworks */,
+				6BC01877197B2AA500DA4C49 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6BC0186A197B2AA500DA4C49 = {
+			isa = PBXGroup;
+			children = (
+				6BC01878197B2AA500DA4C49 /* JGProgressHUD */,
+				6BC01879197B2AA500DA4C49 /* Supporting Files */,
+				6BC01875197B2AA500DA4C49 /* Frameworks */,
+				6BC01874197B2AA500DA4C49 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6BC01874197B2AA500DA4C49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BC01873197B2AA500DA4C49 /* libJGProgressHUD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BC01875197B2AA500DA4C49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */,
+				6BC018B6197B2BC700DA4C49 /* UIKit.framework */,
+				6BC01876197B2AA500DA4C49 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BC01878197B2AA500DA4C49 /* JGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0189C197B2ABF00DA4C49 /* JGProgressHUD.h */,
+				6BC0189D197B2ABF00DA4C49 /* JGProgressHUD.m */,
+				6BC018B4197B2AC300DA4C49 /* Animations */,
+				6BC018B5197B2ACB00DA4C49 /* Progress Indicators */,
+			);
+			path = JGProgressHUD;
+			sourceTree = "<group>";
+		};
+		6BC01879197B2AA500DA4C49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0187A197B2AA500DA4C49 /* JGProgressHUD-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = JGProgressHUD;
+			sourceTree = "<group>";
+		};
+		6BC018B4197B2AC300DA4C49 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				6BC0189E197B2ABF00DA4C49 /* JGProgressHUDAnimation.h */,
+				6BC0189F197B2ABF00DA4C49 /* JGProgressHUDAnimation.m */,
+				6BC018A0197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.h */,
+				6BC018A1197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.m */,
+				6BC018A2197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.h */,
+				6BC018A3197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m */,
+			);
+			name = Animations;
+			sourceTree = "<group>";
+		};
+		6BC018B5197B2ACB00DA4C49 /* Progress Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				6BC018A6197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.h */,
+				6BC018A7197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m */,
+				6BC018A4197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				6BC018A5197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				6BC018A8197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.h */,
+				6BC018A9197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m */,
+				6BC018AA197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.h */,
+				6BC018AB197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m */,
+			);
+			name = "Progress Indicators";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6BC01872197B2AA500DA4C49 /* JGProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BC01896197B2AA600DA4C49 /* Build configuration list for PBXNativeTarget "JGProgressHUD" */;
+			buildPhases = (
+				6BC0186F197B2AA500DA4C49 /* Sources */,
+				6BC01870197B2AA500DA4C49 /* Frameworks */,
+				6BC01871197B2AA500DA4C49 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JGProgressHUD;
+			productName = JGProgressHUD;
+			productReference = 6BC01873197B2AA500DA4C49 /* libJGProgressHUD.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6BC0186B197B2AA500DA4C49 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Jonas Gessner";
+			};
+			buildConfigurationList = 6BC0186E197B2AA500DA4C49 /* Build configuration list for PBXProject "JGProgressHUD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6BC0186A197B2AA500DA4C49;
+			productRefGroup = 6BC01874197B2AA500DA4C49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6BC01872197B2AA500DA4C49 /* JGProgressHUD */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6BC0186F197B2AA500DA4C49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC018AD197B2ABF00DA4C49 /* JGProgressHUDAnimation.m in Sources */,
+				6BC018AC197B2ABF00DA4C49 /* JGProgressHUD.m in Sources */,
+				6BC018B2197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m in Sources */,
+				6BC018AF197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
+				6BC018B3197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m in Sources */,
+				6BC018B0197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
+				6BC018B1197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m in Sources */,
+				6BC018AE197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6BC01894197B2AA600DA4C49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6BC01895197B2AA600DA4C49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6BC01897197B2AA600DA4C49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JGProgressHUD.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGProgressHUD/JGProgressHUD-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6BC01898197B2AA600DA4C49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/JGProgressHUD.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JGProgressHUD/JGProgressHUD-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BC0186E197B2AA500DA4C49 /* Build configuration list for PBXProject "JGProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BC01894197B2AA600DA4C49 /* Debug */,
+				6BC01895197B2AA600DA4C49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BC01896197B2AA600DA4C49 /* Build configuration list for PBXNativeTarget "JGProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BC01897197B2AA600DA4C49 /* Debug */,
+				6BC01898197B2AA600DA4C49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6BC0186B197B2AA500DA4C49 /* Project object */;
+}
