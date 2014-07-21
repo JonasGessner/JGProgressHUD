@@ -26,7 +26,7 @@
 			remoteGlobalIDString = 6BC01873197B2AA500DA4C49;
 			remoteInfo = JGProgressHUD;
 		};
-		6BC01905197BF34E00DA4C49 /* PBXContainerItemProxy */ = {
+		6BF5DAD7197C8DC6002D7C43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */;
 			proxyType = 1;
@@ -143,7 +143,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6BC01906197BF34E00DA4C49 /* PBXTargetDependency */,
+				6BF5DAD8197C8DC6002D7C43 /* PBXTargetDependency */,
 			);
 			name = "JGProgressHUD Tests";
 			productName = "JGProgressHUD Tests";
@@ -220,10 +220,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6BC01906197BF34E00DA4C49 /* PBXTargetDependency */ = {
+		6BF5DAD8197C8DC6002D7C43 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
-			targetProxy = 6BC01905197BF34E00DA4C49 /* PBXContainerItemProxy */;
+			targetProxy = 6BF5DAD7197C8DC6002D7C43 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
