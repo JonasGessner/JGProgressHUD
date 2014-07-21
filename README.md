@@ -15,7 +15,7 @@ Why use JGProgressHUD?
 
 While other progress HUD components are nice they all have their problems. MBProgressHUD is outdated and buggy, MMProgressHUD is totally over engineered and requires a long time to implement, SVProgressHUD and HTProgressHUD are not implemented in the right way and they all don't offer the extensibility of JGProgressHUD. JGProgressHUD was inspired by all of these components to create the ideal progress indicator.
 
-<b>Here comes JGProgressHUD</b><br>
+<b>Here comes JGProgressHUD:</b><br>
 • Super simple to implement<br>
 • Feature rich<br>
 • Easy extensibility and costomization (custom animations and progress indicators)<br>
@@ -67,10 +67,10 @@ Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart
 
 License
 ==========
-MIT License.
+MIT License.<br>
 ©2014 Jonas Gessner.
 
 Credits
 ==========
-Created by Jonas Gessner © 2014.
+Created by Jonas Gessner © 2014.<br>
 Inspired by HTProgressHUD and other open source progress HUD components.
