@@ -12,6 +12,7 @@
 
 /**
  Duration of the animation.
+ @b Default: 0.4.
  */
 @property (nonatomic) NSTimeInterval duration;
 

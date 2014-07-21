@@ -15,7 +15,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.duration = 0.3;
+        self.duration = 0.4;
         self.animationOptions = UIViewAnimationOptionCurveEaseInOut;
     }
     return self;

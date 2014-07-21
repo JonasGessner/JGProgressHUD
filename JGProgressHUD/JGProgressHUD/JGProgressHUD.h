@@ -107,7 +107,7 @@ typedef enum {
 /**
  The progress indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property (if you do so, you should assign it before showing the HUD).
  
- @b Default: JGProgressHUDIndeterminateIndicatorView
+ @b Default: JGProgressHUDIndeterminateIndicatorView.
  */
 @property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView;
 
@@ -126,11 +126,13 @@ typedef enum {
 
 /**
  Insets the contents of the HUD.
+ @b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets contentInsets;
 
 /**
  Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
+ @b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets marginInsets;
 

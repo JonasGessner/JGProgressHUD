@@ -15,6 +15,12 @@
 #define __IPHONE_8_0 80000
 #endif
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
+#define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
+#endif
+
+#define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
+
 #define CHECK_TRANSITIONING NSAssert(!_transitioning, @"HUD is currently transitioning")
 
 @interface JGProgressHUD () {
@@ -58,10 +64,9 @@
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
         
-        //Layout
         self.contentInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
+        self.marginInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
         
-        //Animation
         self.layoutChangeAnimationDuration = 0.3;
     }
     
@@ -137,9 +142,25 @@
         CGRect indicatorFrame = self.progressIndicatorView.frame;
         indicatorFrame.origin.y = self.contentInsets.top;
         
+        CGFloat maxContentWidth = self.frame.size.width-self.marginInsets.left-self.marginInsets.right-self.contentInsets.left-self.contentInsets.right;
+        CGFloat maxContentHeight = self.frame.size.height-self.marginInsets.top-self.marginInsets.bottom-self.contentInsets.top-self.contentInsets.bottom;
+        
+        CGSize maxContentSize = (CGSize){maxContentWidth, maxContentHeight};
+        
         //Label size
-        [self.textLabel sizeToFit];
-        CGRect labelFrame = self.textLabel.frame;
+        CGRect labelFrame = CGRectZero;
+        
+        if (iOS7) {
+            NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
+            labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        }
+        else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
+#pragma clang diagnostic pop
+        }
+        
         labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
         
         if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
@@ -148,7 +169,7 @@
         
         //HUD size
         CGSize size = CGSizeZero;
-        size.width = self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right;
+        size.width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
         size.height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
         
         [self setHUDViewFrameCenterWithSize:size];
@@ -352,7 +373,7 @@
         _textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-        _textLabel.numberOfLines = 1;
+        _textLabel.numberOfLines = 0;
         [_textLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
         

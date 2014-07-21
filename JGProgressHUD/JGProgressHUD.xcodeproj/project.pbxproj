@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B334B37197DB7400010087F /* JGProgressHUDAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC0189E197B2ABF00DA4C49 /* JGProgressHUDAnimation.h */; };
+		6B334B38197DB7400010087F /* JGProgressHUDFadeAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018A0197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.h */; };
+		6B334B39197DB7400010087F /* JGProgressHUDFadeZoomAnimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018A2197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.h */; };
+		6B334B3A197DB7400010087F /* JGProgressHUDIndicatorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018A6197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.h */; };
+		6B334B3D197DB7400010087F /* JGProgressHUDIndeterminateIndicatorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018A4197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.h */; };
+		6B334B3E197DB7400010087F /* JGProgressHUDPieIndicatorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018A8197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.h */; };
+		6B334B3F197DB7400010087F /* JGProgressHUDRingIndicatorView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC018AA197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.h */; };
+		6B334B40197DB7400010087F /* JGProgressHUD.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6BC0189C197B2ABF00DA4C49 /* JGProgressHUD.h */; };
 		6BC01877197B2AA500DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC01876197B2AA500DA4C49 /* Foundation.framework */; };
 		6BC018AC197B2ABF00DA4C49 /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC0189D197B2ABF00DA4C49 /* JGProgressHUD.m */; };
 		6BC018AD197B2ABF00DA4C49 /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC0189F197B2ABF00DA4C49 /* JGProgressHUDAnimation.m */; };
@@ -24,15 +32,24 @@
 		6BC01871197B2AA500DA4C49 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
+			dstPath = include;
 			dstSubfolderSpec = 16;
 			files = (
+				6B334B37197DB7400010087F /* JGProgressHUDAnimation.h in CopyFiles */,
+				6B334B38197DB7400010087F /* JGProgressHUDFadeAnimation.h in CopyFiles */,
+				6B334B39197DB7400010087F /* JGProgressHUDFadeZoomAnimation.h in CopyFiles */,
+				6B334B3A197DB7400010087F /* JGProgressHUDIndicatorView.h in CopyFiles */,
+				6B334B3D197DB7400010087F /* JGProgressHUDIndeterminateIndicatorView.h in CopyFiles */,
+				6B334B3E197DB7400010087F /* JGProgressHUDPieIndicatorView.h in CopyFiles */,
+				6B334B3F197DB7400010087F /* JGProgressHUDRingIndicatorView.h in CopyFiles */,
+				6B334B40197DB7400010087F /* JGProgressHUD.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6B334B46197DB7940010087F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6BC01873197B2AA500DA4C49 /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC01876197B2AA500DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC0187A197B2AA500DA4C49 /* JGProgressHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
@@ -94,6 +111,7 @@
 				6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */,
 				6BC018B6197B2BC700DA4C49 /* UIKit.framework */,
 				6BC01876197B2AA500DA4C49 /* Foundation.framework */,
+				6B334B46197DB7940010087F /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -322,6 +340,7 @@
 				6BC01898197B2AA600DA4C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
