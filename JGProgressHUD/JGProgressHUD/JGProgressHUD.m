@@ -84,9 +84,9 @@
     
     frame.size = size;
     
-    CGRect viewBounds = [self bounds];
+    CGRect viewBounds = self.bounds;
     
-    CGPoint center = CGPointMake(viewBounds.origin.x + floorf(viewBounds.size.width / 2.0f), viewBounds.origin.y + floorf(viewBounds.size.height / 2.0f));
+    CGPoint center = CGPointMake(viewBounds.origin.x+viewBounds.size.width/2.0f, viewBounds.origin.y+viewBounds.size.height/2.0f);
     
     switch (self.position) {
         case JGProgressHUDPositionTopLeft:
@@ -94,38 +94,38 @@
             frame.origin.y = self.marginInsets.top;
             break;
         case JGProgressHUDPositionTopCenter:
-            frame.origin.x = center.x - floorf(frame.size.width / 2.0f);
+            frame.origin.x = center.x-frame.size.width/2.0f;
             frame.origin.y = self.marginInsets.top;
             break;
         case JGProgressHUDPositionTopRight:
-            frame.origin.x = viewBounds.size.width - self.marginInsets.right - frame.size.width;
+            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
             frame.origin.y = self.marginInsets.top;
             break;
             
         case JGProgressHUDPositionCenterLeft:
             frame.origin.x = self.marginInsets.left;
-            frame.origin.y = center.y - floorf(frame.size.height / 2.0f);
+            frame.origin.y = center.y-frame.size.height/2.0f;
             break;
         case JGProgressHUDPositionCenter:
-            frame.origin.x = center.x - floorf(frame.size.width / 2.0f);
-            frame.origin.y = center.y - floorf(frame.size.height / 2.0f);
+            frame.origin.x = center.x-frame.size.width/2.0f;
+            frame.origin.y = center.y-frame.size.height/2.0f;
             break;
         case JGProgressHUDPositionCenterRight:
-            frame.origin.x = viewBounds.size.width - self.marginInsets.right - frame.size.width;
-            frame.origin.y = center.y - floorf(frame.size.height / 2.0f);
+            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
+            frame.origin.y = center.y-frame.size.height/2.0f;
             break;
             
         case JGProgressHUDPositionBottomLeft:
             frame.origin.x = self.marginInsets.left;
-            frame.origin.y = viewBounds.size.height - self.marginInsets.bottom - frame.size.height;
+            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
             break;
         case JGProgressHUDPositionBottomCenter:
-            frame.origin.x = center.x - floorf(frame.size.width / 2.0f);
-            frame.origin.y = viewBounds.size.height - self.marginInsets.bottom - frame.size.height;
+            frame.origin.x = center.x-frame.size.width/2.0f;
+            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
             break;
         case JGProgressHUDPositionBottomRight:
-            frame.origin.x = viewBounds.size.width - self.marginInsets.right - frame.size.width;
-            frame.origin.y = viewBounds.size.height - self.marginInsets.bottom - frame.size.height;
+            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
+            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
             break;
     }
     
@@ -169,14 +169,34 @@
         
         //HUD size
         CGSize size = CGSizeZero;
-        size.width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
-        size.height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
+        
+        CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+        
+        CGFloat height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
+        
+        if (self.square) {
+            CGFloat uniSize = MAX(width, height);
+            
+            size.width = uniSize;
+            size.height = uniSize;
+            
+            CGFloat heightDelta = uniSize-height;
+            
+            labelFrame.origin.y += heightDelta/2.0f;
+            indicatorFrame.origin.y += heightDelta/2.0f;
+        }
+        else {
+            size.width = width;
+            size.height = height;
+        }
+        
+        CGPoint center = CGPointMake(size.width/2.0f, size.height/2.0f);
+        
+        indicatorFrame.origin.x = center.x-indicatorFrame.size.width/2.0f;
+        labelFrame.origin.x = center.x-labelFrame.size.width/2.0f;
+        
         
         [self setHUDViewFrameCenterWithSize:size];
-        
-        CGPoint center = CGPointMake(floorf(size.width / 2.0f), floorf(size.height / 2.0f));
-        indicatorFrame.origin.x = center.x - floorf(indicatorFrame.size.width / 2.0f);
-        labelFrame.origin.x = center.x - floorf(labelFrame.size.width / 2.0f);
         
         self.progressIndicatorView.frame = indicatorFrame;
         self.textLabel.frame = labelFrame;
@@ -383,23 +403,6 @@
     return _textLabel;
 }
 
-- (void)setUseProgressIndicatorView:(BOOL)useProgressIndicatorView {
-    if (useProgressIndicatorView == self.useProgressIndicatorView) {
-        return;
-    }
-    
-    _useProgressIndicatorView = useProgressIndicatorView;
-    
-    if (!_useProgressIndicatorView) {
-        [_progressIndicatorView removeFromSuperview];
-        _progressIndicatorView = nil;
-    }
-    
-    if (self.superview) {
-        [self updateHUD:NO];
-    }
-}
-
 - (JGProgressHUDIndicatorView *)progressIndicatorView {
     if (!_useProgressIndicatorView) {
         return nil;
@@ -421,7 +424,28 @@
     return _animation;
 }
 
+- (void)setUseProgressIndicatorView:(BOOL)useProgressIndicatorView {
+    if (useProgressIndicatorView == self.useProgressIndicatorView) {
+        return;
+    }
+    
+    _useProgressIndicatorView = useProgressIndicatorView;
+    
+    if (!_useProgressIndicatorView) {
+        [_progressIndicatorView removeFromSuperview];
+        _progressIndicatorView = nil;
+    }
+    
+    if (self.superview) {
+        [self updateHUD:NO];
+    }
+}
+
 - (void)setAnimation:(JGProgressHUDAnimation *)animation {
+    if (_animation == animation) {
+        return;
+    }
+    
     _animation.progressHUD = nil;
     
     _animation = animation;
@@ -430,29 +454,64 @@
 }
 
 - (void)setPosition:(JGProgressHUDPosition)position {
+    if (self.position == position) {
+        return;
+    }
+    
     _position = position;
     [self updateHUD:NO];
 }
 
+- (void)setSquare:(BOOL)square {
+    if (self.square == square) {
+        return;
+    }
+    
+    _square = square;
+    
+    [self updateHUD:NO];
+}
+
 - (void)setProgressIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
+    if (self.progressIndicatorView == indicatorView) {
+        return;
+    }
+    
     [_progressIndicatorView removeFromSuperview];
     _progressIndicatorView = indicatorView;
+    
     [self.HUDView addSubview:indicatorView];
+    
     [self updateHUD:NO];
 }
 
 - (void)setMarginInsets:(UIEdgeInsets)marginInsets {
+    if (UIEdgeInsetsEqualToEdgeInsets(self.marginInsets, marginInsets)) {
+        return;
+    }
+    
     _marginInsets = marginInsets;
+    
     [self updateHUD:NO];
 }
 
-- (void)setContentInsets:(UIEdgeInsets)paddingInsets {
-    _contentInsets = paddingInsets;
+- (void)setContentInsets:(UIEdgeInsets)contentInsets {
+    if (UIEdgeInsetsEqualToEdgeInsets(self.contentInsets, contentInsets)) {
+        return;
+    }
+    
+    _contentInsets = contentInsets;
+    
     [self updateHUD:NO];
 }
 
 - (void)setProgress:(float)progress {
+    if (self.progress == progress) {
+        return;
+    }
+    
     _progress = progress;
+    
     self.progressIndicatorView.progress = progress;
 }
 
@@ -469,6 +528,7 @@
 
 - (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
     [super setUserInteractionEnabled:userInteractionEnabled];
+    
     if (self.targetView) {
         self.targetView.userInteractionEnabled = !self.userInteractionEnabled;
     }

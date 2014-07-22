@@ -69,6 +69,10 @@ typedef enum {
 
 @end
 
+/**
+ A HUD view to indicate progress, success, error, warnings or other notifications to the user.
+ @Note Remember to call every method from the main thread! UIKit = always main thread!
+ */
 @interface JGProgressHUD : UIView
 
 /**
@@ -123,6 +127,13 @@ typedef enum {
  @b Default: JGProgressHUDStyleExtraLight.
  */
 @property (nonatomic, assign, readonly) JGProgressHUDStyle style;
+
+
+/**
+ If the HUD should always have the same width and height.
+ @b Default: NO.
+ */
+@property (nonatomic, assign) BOOL square;
 
 /**
  Insets the contents of the HUD.

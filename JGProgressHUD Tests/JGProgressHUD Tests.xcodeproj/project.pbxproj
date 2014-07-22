@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B334B67197E78780010087F /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B63197E78780010087F /* jg_hud_error.png */; };
+		6B334B68197E78780010087F /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B64197E78780010087F /* jg_hud_error@2x.png */; };
+		6B334B69197E78780010087F /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B65197E78780010087F /* jg_hud_success.png */; };
+		6B334B6A197E78780010087F /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B66197E78780010087F /* jg_hud_success@2x.png */; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
 		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
 		6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018CB197BF28100DA4C49 /* UIKit.framework */; };
@@ -36,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B334B63197E78780010087F /* jg_hud_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_error.png; sourceTree = "<group>"; };
+		6B334B64197E78780010087F /* jg_hud_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_error@2x.png"; sourceTree = "<group>"; };
+		6B334B65197E78780010087F /* jg_hud_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_success.png; sourceTree = "<group>"; };
+		6B334B66197E78780010087F /* jg_hud_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@2x.png"; sourceTree = "<group>"; };
 		6BC018C4197BF28100DA4C49 /* JGProgressHUD Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC018C7197BF28100DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,6 +111,10 @@
 				6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */,
 				6BC018DF197BF28100DA4C49 /* JGViewController.h */,
 				6BC018E0197BF28100DA4C49 /* JGViewController.m */,
+				6B334B63197E78780010087F /* jg_hud_error.png */,
+				6B334B64197E78780010087F /* jg_hud_error@2x.png */,
+				6B334B65197E78780010087F /* jg_hud_success.png */,
+				6B334B66197E78780010087F /* jg_hud_success@2x.png */,
 				6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */,
 				6BC018E2197BF28100DA4C49 /* Images.xcassets */,
 				6BC018CE197BF28100DA4C49 /* Supporting Files */,
@@ -200,7 +212,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BC018E3197BF28100DA4C49 /* Images.xcassets in Resources */,
+				6B334B6A197E78780010087F /* jg_hud_success@2x.png in Resources */,
 				6BC018D2197BF28100DA4C49 /* InfoPlist.strings in Resources */,
+				6B334B68197E78780010087F /* jg_hud_error@2x.png in Resources */,
+				6B334B69197E78780010087F /* jg_hud_success.png in Resources */,
+				6B334B67197E78780010087F /* jg_hud_error.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

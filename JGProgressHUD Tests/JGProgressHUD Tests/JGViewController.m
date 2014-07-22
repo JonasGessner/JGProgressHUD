@@ -41,15 +41,49 @@
 
 #pragma mark -
 
+
+- (void)success:(NSUInteger)section {
+    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+    HUD.userInteractionEnabled = _blockUserInteraction;
+    HUD.delegate = self;
+    
+    UIImageView *errorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jg_hud_success.png"]];
+    HUD.textLabel.text = @"Success!";
+    JGProgressHUDIndicatorView *ind = [[JGProgressHUDIndicatorView alloc] initWithContentView:errorImageView];
+    HUD.progressIndicatorView = ind;
+    
+    HUD.square = YES;
+    
+    [HUD showInView:self.navigationController.view];
+    
+    [HUD dismissAfterDelay:3.0];
+}
+
+- (void)error:(NSUInteger)section {
+    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+    HUD.userInteractionEnabled = _blockUserInteraction;
+    HUD.delegate = self;
+    
+    UIImageView *errorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jg_hud_error.png"]];
+    HUD.textLabel.text = @"Error!";
+    JGProgressHUDIndicatorView *ind = [[JGProgressHUDIndicatorView alloc] initWithContentView:errorImageView];
+    HUD.progressIndicatorView = ind;
+    
+    HUD.square = YES;
+    
+    [HUD showInView:self.navigationController.view];
+    
+    [HUD dismissAfterDelay:3.0];
+}
+
 - (void)simple:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.userInteractionEnabled = _blockUserInteraction;
     HUD.delegate = self;
+    
     [HUD showInView:self.navigationController.view];
     
-    HUD.position = JGProgressHUDPositionCenter;
-    
-    [HUD dismissAfterDelay:5];
+    [HUD dismissAfterDelay:3.0];
 }
 
 - (void)withText:(NSUInteger)section {
@@ -62,14 +96,14 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         HUD.useProgressIndicatorView = NO;
         
-        HUD.textLabel.font = [UIFont systemFontOfSize:30];
+        HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
         
         HUD.textLabel.text = @"Done";
         
         HUD.position = JGProgressHUDPositionBottomCenter;
     });
     
-    HUD.marginInsets = UIEdgeInsetsMake(0, 0, 10, 0);
+    HUD.marginInsets = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
     
     [HUD dismissAfterDelay:3];
 }
@@ -88,7 +122,9 @@
             HUD.progress = i * r;
             [NSThread sleepForTimeInterval:r];
             if (i*r >= 1.0f) {
-                [HUD dismissAfterDelay:0];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [HUD dismiss];
+                });
             }
         }
     });
@@ -110,7 +146,9 @@
             HUD.progress = i * r;
             [NSThread sleepForTimeInterval:r];
             if (i*r >= 1.0f) {
-                [HUD dismissAfterDelay:0];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [HUD dismiss];
+                });
             }
         }
     });
@@ -124,15 +162,15 @@
     HUD.delegate = self;
     HUD.position = JGProgressHUDPositionBottomCenter;
     HUD.marginInsets = (UIEdgeInsets) {
-        .top = 0,
-        .bottom = 20,
-        .left = 0,
-        .right = 0,
+        .top = 0.0f,
+        .bottom = 20.0f,
+        .left = 0.0f,
+        .right = 0.0f,
     };
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:2];
+    [HUD dismissAfterDelay:2.0f];
 }
 
 - (void)switched:(UISwitch *)s {
@@ -167,7 +205,7 @@
         return 1;
     }
     else {
-        return 5;
+        return 7;
     }
 }
 
@@ -203,6 +241,13 @@
                 break;
             case 4:
                 cell.textLabel.text = @"Fade, Text Only, Bottom Position";
+                break;
+            case 5:
+                cell.textLabel.text = @"Fade, Success, Square Shape";
+                break;
+            case 6:
+                cell.textLabel.text = @"Fade, Error, Square Shape";
+                break;
         }
     }
     
@@ -228,6 +273,12 @@
             break;
         case 4:
             [self textOnly:indexPath.section-1];
+            break;
+        case 5:
+            [self success:indexPath.section-1];
+            break;
+        case 6:
+            [self error:indexPath.section-1];
             break;
     }
 }
