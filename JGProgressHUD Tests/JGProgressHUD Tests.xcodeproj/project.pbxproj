@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B20E7D7197FC22E00488D60 /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */; };
 		6B334B67197E78780010087F /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B63197E78780010087F /* jg_hud_error.png */; };
 		6B334B68197E78780010087F /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B64197E78780010087F /* jg_hud_error@2x.png */; };
 		6B334B69197E78780010087F /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B65197E78780010087F /* jg_hud_success.png */; };
@@ -19,20 +20,19 @@
 		6BC018D8197BF28100DA4C49 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */; };
 		6BC018E1197BF28100DA4C49 /* JGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGViewController.m */; };
 		6BC018E3197BF28100DA4C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018E2197BF28100DA4C49 /* Images.xcassets */; };
-		6BC01907197BF35300DA4C49 /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC01904197BF34800DA4C49 /* libJGProgressHUD.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6BC01903197BF34800DA4C49 /* PBXContainerItemProxy */ = {
+		6B20E7D3197FC22000488D60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 6BC01873197B2AA500DA4C49;
 			remoteInfo = JGProgressHUD;
 		};
-		6BF5DAD7197C8DC6002D7C43 /* PBXContainerItemProxy */ = {
+		6B20E7D5197FC22A00488D60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 6BC01872197B2AA500DA4C49;
 			remoteInfo = JGProgressHUD;
@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../../JGProgressHUD/JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6B334B63197E78780010087F /* jg_hud_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_error.png; sourceTree = "<group>"; };
 		6B334B64197E78780010087F /* jg_hud_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_error@2x.png"; sourceTree = "<group>"; };
 		6B334B65197E78780010087F /* jg_hud_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_success.png; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		6BC018E0197BF28100DA4C49 /* JGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGViewController.m; sourceTree = "<group>"; };
 		6BC018E2197BF28100DA4C49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6BC018E9197BF28100DA4C49 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../../JGProgressHUD/JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6BC01909197C1D0F00DA4C49 /* JGProgressHUD Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JGProgressHUD Tests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC01907197BF35300DA4C49 /* libJGProgressHUD.a in Frameworks */,
+				6B20E7D7197FC22E00488D60 /* libJGProgressHUD.a in Frameworks */,
 				6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */,
 				6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */,
 				6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */,
@@ -76,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B20E7D0197FC22000488D60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6BC018BB197BF28100DA4C49 = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +123,7 @@
 				6B334B64197E78780010087F /* jg_hud_error@2x.png */,
 				6B334B65197E78780010087F /* jg_hud_success.png */,
 				6B334B66197E78780010087F /* jg_hud_success@2x.png */,
-				6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */,
+				6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */,
 				6BC018E2197BF28100DA4C49 /* Images.xcassets */,
 				6BC018CE197BF28100DA4C49 /* Supporting Files */,
 			);
@@ -133,14 +141,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6BC01900197BF34700DA4C49 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6BC01904197BF34800DA4C49 /* libJGProgressHUD.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,7 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				6BF5DAD8197C8DC6002D7C43 /* PBXTargetDependency */,
+				6B20E7D6197FC22A00488D60 /* PBXTargetDependency */,
 			);
 			name = "JGProgressHUD Tests";
 			productName = "JGProgressHUD Tests";
@@ -185,8 +185,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 6BC01900197BF34700DA4C49 /* Products */;
-					ProjectRef = 6BC018FF197BF34700DA4C49 /* JGProgressHUD.xcodeproj */;
+					ProductGroup = 6B20E7D0197FC22000488D60 /* Products */;
+					ProjectRef = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -197,11 +197,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6BC01904197BF34800DA4C49 /* libJGProgressHUD.a */ = {
+		6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libJGProgressHUD.a;
-			remoteRef = 6BC01903197BF34800DA4C49 /* PBXContainerItemProxy */;
+			remoteRef = 6B20E7D3197FC22000488D60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -236,10 +236,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6BF5DAD8197C8DC6002D7C43 /* PBXTargetDependency */ = {
+		6B20E7D6197FC22A00488D60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
-			targetProxy = 6BF5DAD7197C8DC6002D7C43 /* PBXContainerItemProxy */;
+			targetProxy = 6B20E7D5197FC22A00488D60 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -337,7 +337,7 @@
 				GCC_PREFIX_HEADER = "JGProgressHUD Tests/JGProgressHUD Tests-Prefix.pch";
 				INFOPLIST_FILE = "JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../JGProgressHUD/JGProgressHUD\"";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -352,7 +352,7 @@
 				GCC_PREFIX_HEADER = "JGProgressHUD Tests/JGProgressHUD Tests-Prefix.pch";
 				INFOPLIST_FILE = "JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../JGProgressHUD/JGProgressHUD\"";
+				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
