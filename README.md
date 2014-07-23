@@ -14,7 +14,6 @@ Simple but powerful and modern progress HUD for iOS.
 Why use JGProgressHUD?
 ==================
 ####There already are so many other open source progress HUD components!
-
 While other progress HUD components are nice they all have their problems. MBProgressHUD is outdated and buggy, MMProgressHUD is totally over engineered and requires a long time to implement, SVProgressHUD and HTProgressHUD are not implemented in the right way and they all don't offer the extensibility of JGProgressHUD. JGProgressHUD was inspired by all of these components to create the ideal progress indicator.
 
 <b>Here comes JGProgressHUD:</b><br>
@@ -28,20 +27,27 @@ While other progress HUD components are nice they all have their problems. MBPro
 
 Overview
 ==========
+
+###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
-• Extra Light<br>
-• Light<br>
-• Dark<br>
+• <b>Extra Light</b><br>
+• <b>Light<br>
+• <b>Dark<br>
 
+###Progress and Status Indicators:
 By default a HUD will display an indeterminate progress indicator. The progress indicator can be completely removed or a different progress indicator can be assigned to the HUD. By default there are the following indicators built in:<br>
-• Indeterminate progress indicator<br>
-• Pie progress indicator<br>
-• Ring progress indicator<br>
-By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!
+• <b>Indeterminate progress indicator</b><br>
+• <b>Pie progress indicator</b><br>
+• <b>Ring progress indicator</b><br><br>
+By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br><br>
+The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project contains example implementations for:<br>
+• <b>Success indicator</b><br>
+• <b>Error indicator</b><br>
 
+###Animations:
 By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. By default there are the following animations built in:<br>
-• Fade<br>
-• Zoom and Fade<br>
+• <b>Fade</b><br>
+• <b>Zoom and Fade</b><br><br>
 By subclassing `JGProgressHUDAnimation` you can create a custom animation!
 
 
