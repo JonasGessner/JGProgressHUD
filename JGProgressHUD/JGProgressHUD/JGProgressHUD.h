@@ -111,66 +111,85 @@ typedef enum {
 /**
  The progress indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property (if you do so, you should assign it before showing the HUD).
  
- @b Default: JGProgressHUDIndeterminateIndicatorView.
+ 
+@b Default: JGProgressHUDIndeterminateIndicatorView.
  */
 @property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView;
 
 /**
  Whether the progressIndicatorView should be displayed or not.
  @attention If you change this to @c NO the current @c progressIndicatorView will be destroyed and once this property is changed to @c YES again the default @c progressIndicatorView will be used again.
- @b Default: YES.
+ 
+@b Default: YES.
  */
 @property (nonatomic, assign) BOOL useProgressIndicatorView;
 
 /**
  The appearance style of the HUD.
- @b Default: JGProgressHUDStyleExtraLight.
+ 
+@b Default: JGProgressHUDStyleExtraLight.
  */
 @property (nonatomic, assign, readonly) JGProgressHUDStyle style;
 
 
 /**
  If the HUD should always have the same width and height.
- @b Default: NO.
+ 
+@b Default: NO.
  */
 @property (nonatomic, assign) BOOL square;
 
 /**
  Insets the contents of the HUD.
- @b Default: (20, 20, 20, 20).
+ 
+@b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets contentInsets;
 
 /**
  Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
- @b Default: (20, 20, 20, 20).
+ 
+@b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets marginInsets;
 
 /**
  The position of the HUD inside the hosting view's frame, or inside the specified frame.
- @b Default: JGProgressHUDPositionCenter
+ 
+@b Default: JGProgressHUDPositionCenter
  */
 @property (nonatomic, assign) JGProgressHUDPosition position;
 
 /**
  The animation used for showing and dismissing the HUD.
- @b Default: JGProgressHUDFadeAnimation.
+ 
+@b Default: JGProgressHUDFadeAnimation.
  */
 @property (nonatomic, strong) JGProgressHUDAnimation *animation;
 
 /**
  The animation duration for a layout change (ex. Changing the @c text, the @c position, the @c progressIndicatorView or the @c useProgressIndicatorView property).
- @b Default: 0.3.
+ 
+@b Default: 0.3.
  */
 @property (nonatomic, assign) NSTimeInterval layoutChangeAnimationDuration;
 
 /**
- The progress to display using the @c progressIndicatorView.
- @b Default: 0.0.
+ The progress to display using the @c progressIndicatorView. A change of this property is not animated. Use the @c setProgress:animated: method for an animated progress change.
+ 
+@b Default: 0.0.
  */
 @property (nonatomic, assign) float progress;
 
+/**
+ Adjusts the current progress shown by the receiver, optionally animating the change.
+ 
+ The current progress is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.
+ 
+ @param progress The new progress value.
+ @param animated YES if the change should be animated, NO if the change should happen immediately.
+ */
+- (void)setProgress:(float)progress animated:(BOOL)animated;
 
 
 /////////////

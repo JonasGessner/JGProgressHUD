@@ -12,13 +12,15 @@
 
 /**
  Duration of the animation.
- @b Default: 0.4.
+ 
+@b Default: 0.4.
  */
 @property (nonatomic) NSTimeInterval duration;
 
 /**
  Animation options
- @b Default: UIViewAnimationOptionCurveEaseInOut.
+ 
+@b Default: UIViewAnimationOptionCurveEaseInOut.
  */
 @property (nonatomic) UIViewAnimationOptions animationOptions;
 

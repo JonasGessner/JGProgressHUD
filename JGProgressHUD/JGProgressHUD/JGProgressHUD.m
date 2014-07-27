@@ -15,6 +15,8 @@
 #define __IPHONE_8_0 80000
 #endif
 
+#define kBaseSDKiOS8 (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0)
+
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
 #endif
@@ -129,7 +131,7 @@
             break;
     }
     
-    self.HUDView.frame = frame;
+    _HUDView.frame = frame;
 }
 
 - (void)updateHUD:(BOOL)disableAnimations {
@@ -326,7 +328,7 @@
 
 - (UIView *)HUDView {
     if (!_HUDView) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0
+#if kBaseSDKiOS8
         if ([UIVisualEffectView class] != Nil) {
             UIBlurEffectStyle effect;
             
@@ -382,7 +384,16 @@
         [self addSubview:_HUDView];
     }
     
+#if kBaseSDKiOS8
+    if ([_HUDView isKindOfClass:NSClassFromString(@"UIVisualEffectView")]) {
+        return ((UIVisualEffectView *)_HUDView).contentView;
+    }
+    else {
+        return _HUDView;
+    }
+#else
     return _HUDView;
+#endif
 }
 
 - (UILabel *)textLabel {
@@ -506,13 +517,17 @@
 }
 
 - (void)setProgress:(float)progress {
+    [self setProgress:progress animated:NO];
+}
+
+- (void)setProgress:(float)progress animated:(BOOL)animated {
     if (self.progress == progress) {
         return;
     }
     
     _progress = progress;
     
-    self.progressIndicatorView.progress = progress;
+    [self.progressIndicatorView setProgress:progress animated:animated];
 }
 
 #pragma mark - Overrides

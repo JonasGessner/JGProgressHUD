@@ -38,16 +38,15 @@
 #pragma mark - Getters & Setters
 
 - (void)setProgress:(float)progress {
-    _progress = progress;
+    [self setProgress:progress animated:NO];
+}
+
+- (void)setProgress:(float)progress animated:(BOOL)animated {
+    if (self.progress == progress) {
+        return;
+    }
     
-    if (![NSThread isMainThread]) {
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self setNeedsDisplay];
-        });
-    }
-    else {
-        [self setNeedsDisplay];
-    }
+    _progress = progress;
 }
 
 @end

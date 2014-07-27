@@ -116,17 +116,24 @@
     HUD.textLabel.text = @"Uploading...";
     [HUD showInView:self.navigationController.view];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        float r = 0.01;
-        for (int i = 0; i <= 1 / 0.01; i++) {
-            HUD.progress = i * r;
-            [NSThread sleepForTimeInterval:r];
-            if (i*r >= 1.0f) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [HUD dismiss];
-                });
-            }
-        }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.25 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.5 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.75 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:1.0 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD dismiss];
     });
 }
 
@@ -140,17 +147,24 @@
     HUD.textLabel.text = @"Downloading...";
     [HUD showInView:self.navigationController.view];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        float r = 0.01;
-        for (int i = 0; i <= 1 / 0.01; i++) {
-            HUD.progress = i * r;
-            [NSThread sleepForTimeInterval:r];
-            if (i*r >= 1.0f) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [HUD dismiss];
-                });
-            }
-        }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.25 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.5 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:0.75 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD setProgress:1.0 animated:YES];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [HUD dismiss];
     });
 }
 
