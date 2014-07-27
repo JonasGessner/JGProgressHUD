@@ -232,13 +232,15 @@
     }
     
     if (indexPath.section == 0) {
-        cell.textLabel.text = @"Block user interaction";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = @"Block User Interaction";
         UISwitch *s = [[UISwitch alloc] init];
         s.on = _blockUserInteraction;
         [s addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = s;
     }
     else {
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.accessoryView = nil;
         switch (indexPath.row) {
             case 0:
@@ -272,6 +274,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        return;
+    }
+    
     switch (indexPath.row) {
         case 0:
             [self simple:indexPath.section-1];

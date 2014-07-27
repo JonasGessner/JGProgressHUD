@@ -72,6 +72,7 @@ typedef enum {
 /**
  A HUD view to indicate progress, success, error, warnings or other notifications to the user.
  @Note Remember to call every method from the main thread! UIKit = always main thread!
+ @Attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
  */
 @interface JGProgressHUD : UIView
 

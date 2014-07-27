@@ -358,8 +358,6 @@
             }
             
             _HUDView.opaque = NO;
-            _HUDView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-            _HUDView.layer.shouldRasterize = YES;
         }
 #else
         _HUDView = [[UIView alloc] init];
@@ -374,8 +372,6 @@
         }
         
         _HUDView.opaque = NO;
-        _HUDView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-        _HUDView.layer.shouldRasterize = YES;
 #endif
         
         _HUDView.layer.cornerRadius = 10.0f;
