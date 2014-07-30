@@ -19,7 +19,7 @@ While other progress HUD components are nice they all have their problems. MBPro
 <b>Here comes JGProgressHUD:</b><br>
 • Super simple to implement<br>
 • Feature rich<br>
-• Easy extensibility and costomization (custom animations and progress indicators)<br>
+• Easy extensibility and customization (custom animations and progress indicators)<br>
 • Up to date, ex. using a blurred view on iOS 8<br>
 • Backwards compatibility to iOS 5<br>
 • Well documented<br>
@@ -70,7 +70,7 @@ HUD.textLabel.text = @"Loading";
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
-This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animaiton.
+This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
 <br>
 
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
