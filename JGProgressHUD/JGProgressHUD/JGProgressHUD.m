@@ -308,8 +308,12 @@
 }
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated {
+    __weak __typeof(self) weakSelf = self;
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self dismissAnimated:animated];
+        if (weakSelf) {
+            [weakSelf dismissAnimated:animated];
+        }
     });
 }
 
