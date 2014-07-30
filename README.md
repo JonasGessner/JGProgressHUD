@@ -63,7 +63,17 @@ Each header file contains detailed documentation for each method call. To start,
 
 Examples
 =================
-See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for example implementations.
+#####Simple example:
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.textLabel.text = @"Loading";
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animaiton.
+<br>
+
+See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
 
 Installation
 ================
