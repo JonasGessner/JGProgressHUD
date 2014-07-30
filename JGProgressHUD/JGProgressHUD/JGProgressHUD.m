@@ -11,6 +11,10 @@
 #import "JGProgressHUDFadeAnimation.h"
 #import "JGProgressHUDIndeterminateIndicatorView.h"
 
+#if !__has_feature(objc_arc)
+#error "JGProgressHUD requires ARC!"
+#endif
+
 #ifndef __IPHONE_8_0
 #define __IPHONE_8_0 80000
 #endif
