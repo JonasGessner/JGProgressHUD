@@ -176,6 +176,11 @@ typedef enum {
 @property (nonatomic, assign) NSTimeInterval layoutChangeAnimationDuration;
 
 /**
+ If the HUD is visible on screen.
+ */
+@property (nonatomic, assign, readonly, getter = isVisible) BOOL visible;
+
+/**
  The progress to display using the @c progressIndicatorView. A change of this property is not animated. Use the @c setProgress:animated: method for an animated progress change.
  
 @b Default: 0.0.

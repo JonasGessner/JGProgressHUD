@@ -49,6 +49,8 @@
 @synthesize progressIndicatorView = _progressIndicatorView;
 @synthesize animation = _animation;
 
+@dynamic visible;
+
 #pragma mark - Initializers
 
 - (instancetype)init {
@@ -316,7 +318,10 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf) {
-            [weakSelf dismissAnimated:animated];
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            if (strongSelf.visible) {
+                [strongSelf dismissAnimated:animated];
+            }
         }
     });
 }
@@ -333,6 +338,10 @@
 }
 
 #pragma mark - Getters & Setters
+
+- (BOOL)isVisible {
+    return (self.superview != nil);
+}
 
 - (UIView *)HUDView {
     if (!_HUDView) {
