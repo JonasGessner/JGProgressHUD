@@ -21,11 +21,26 @@
 
 #define kBaseSDKiOS8 (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_8_0)
 
+#if kBaseSDKiOS8
+#define iOS8ex(available, unavailable) \
+if (iOS8) { \
+available \
+} \
+else { \
+unavailable \
+}
+#else
+#define iOS8ex(available, unavailable) \
+unavailable
+#endif
+
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
 #endif
 
 #define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
+
+#define iOS8 ([UIVisualEffectView class] != Nil)
 
 #define CHECK_TRANSITIONING NSAssert(!_transitioning, @"HUD is currently transitioning")
 
@@ -345,51 +360,35 @@
 
 - (UIView *)HUDView {
     if (!_HUDView) {
-#if kBaseSDKiOS8
-        if ([UIVisualEffectView class] != Nil) {
-            UIBlurEffectStyle effect;
-            
-            if (self.style == JGProgressHUDStyleDark) {
-                effect = UIBlurEffectStyleDark;
-            }
-            else if (self.style == JGProgressHUDStyleLight) {
-                effect = UIBlurEffectStyleLight;
-            }
-            else {
-                effect = UIBlurEffectStyleExtraLight;
-            }
-            
-            _HUDView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:effect]];
-        }
-        else {
-            _HUDView = [[UIView alloc] init];
-            
-            if (self.style == JGProgressHUDStyleDark) {
-                _HUDView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-            }
-            else if (self.style == JGProgressHUDStyleLight) {
-                _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.75f];
-            }
-            else {
-                _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
-            }
-            
-            _HUDView.opaque = NO;
-        }
-#else
-        _HUDView = [[UIView alloc] init];
-        if (self.style == JGProgressHUDStyleDark) {
-            _HUDView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-        }
-        else if (self.style == JGProgressHUDStyleLight) {
-            _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.75f];
-        }
-        else {
-            _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
-        }
-        
-        _HUDView.opaque = NO;
-#endif
+        iOS8ex(
+               UIBlurEffectStyle effect;
+               
+               if (self.style == JGProgressHUDStyleDark) {
+                   effect = UIBlurEffectStyleDark;
+               }
+               else if (self.style == JGProgressHUDStyleLight) {
+                   effect = UIBlurEffectStyleLight;
+               }
+               else {
+                   effect = UIBlurEffectStyleExtraLight;
+               }
+               
+               _HUDView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:effect]];
+               ,
+               _HUDView = [[UIView alloc] init];
+               
+               if (self.style == JGProgressHUDStyleDark) {
+                   _HUDView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
+               }
+               else if (self.style == JGProgressHUDStyleLight) {
+                   _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.75f];
+               }
+               else {
+                   _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
+               }
+               
+               _HUDView.opaque = NO;
+               );
         
         _HUDView.layer.cornerRadius = 10.0f;
         _HUDView.layer.masksToBounds = YES;
@@ -397,16 +396,7 @@
         [self addSubview:_HUDView];
     }
     
-#if kBaseSDKiOS8
-    if ([_HUDView isKindOfClass:NSClassFromString(@"UIVisualEffectView")]) {
-        return ((UIVisualEffectView *)_HUDView).contentView;
-    }
-    else {
-        return _HUDView;
-    }
-#else
-    return _HUDView;
-#endif
+    iOS8ex(return ((UIVisualEffectView *)_HUDView).contentView;, return _HUDView;);
 }
 
 - (UILabel *)textLabel {
