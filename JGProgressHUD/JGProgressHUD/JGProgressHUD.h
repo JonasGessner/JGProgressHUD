@@ -15,7 +15,7 @@
 /**
  Positions of the HUD.
  */
-typedef enum {
+typedef NS_ENUM(NSUInteger, JGProgressHUDPosition) {
     JGProgressHUDPositionCenter = 0,
     JGProgressHUDPositionTopLeft,
     JGProgressHUDPositionTopCenter,
@@ -25,16 +25,16 @@ typedef enum {
     JGProgressHUDPositionBottomLeft,
     JGProgressHUDPositionBottomCenter,
     JGProgressHUDPositionBottomRight
-} JGProgressHUDPosition;
+};
 
 /**
  Appearance styles of the HUD.
  */
-typedef enum {
+typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
     JGProgressHUDStyleExtraLight = 0,
     JGProgressHUDStyleLight,
     JGProgressHUDStyleDark
-} JGProgressHUDStyle;
+};
 
 
 @class JGProgressHUD;
