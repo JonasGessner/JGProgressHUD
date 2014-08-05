@@ -46,6 +46,8 @@ unavailable
 
 @interface JGProgressHUD () {
     BOOL _transitioning;
+    BOOL _dismissAfterTransitionFinished;
+    BOOL _dismissAfterTransitionFinishedWithAnimation;
     BOOL _previousUserInteractionState;
 }
 
@@ -243,6 +245,12 @@ unavailable
     if ([self.delegate respondsToSelector:@selector(progressHUD:didPresentInView:)]){
         [self.delegate progressHUD:self didPresentInView:self.targetView];
     }
+    
+    if (_dismissAfterTransitionFinished) {
+        [self dismissAnimated:_dismissAfterTransitionFinishedWithAnimation];
+        _dismissAfterTransitionFinished = NO;
+        _dismissAfterTransitionFinishedWithAnimation = NO;
+    }
 }
 
 - (void)showInView:(UIView *)view {
@@ -295,6 +303,8 @@ unavailable
     _previousUserInteractionState = NO;
     
     _transitioning = NO;
+    _dismissAfterTransitionFinished = NO;
+    _dismissAfterTransitionFinishedWithAnimation = NO;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:didDismissFromView:)]) {
         [self.delegate progressHUD:self didDismissFromView:self.targetView];
@@ -308,7 +318,11 @@ unavailable
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-    CHECK_TRANSITIONING;
+    if (_transitioning) {
+        _dismissAfterTransitionFinished = YES;
+        _dismissAfterTransitionFinishedWithAnimation = animated;
+        return;
+    }
     
     _transitioning = YES;
     

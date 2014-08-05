@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.0.1
+#####Current Version: 1.0.2
 
 Why use JGProgressHUD?
 ==================
@@ -77,6 +77,12 @@ See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more
 
 Installation
 ================
+<b>CocoaPods:</b><br>
+Add this to your `Podfile`:
+```
+pod 'JGProgressHUD', '1.0.2'
+```
+
 <b>As static library:</b><br>
 Ideally you should use JGProgressHUD as a static library. To do so, drag the JGProgressHUD project file into your Xcode project. Next add JGProgressHUD as Target Dependency in your projects Build Phases. Then add libJGProgressHUD.a in Link Binary With Library. Finally make sure you have set the `-ObjC` flag in Other Linker Flags.<br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
