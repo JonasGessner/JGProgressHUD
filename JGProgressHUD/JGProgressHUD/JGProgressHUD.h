@@ -204,27 +204,27 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 
 
 /**
- Shows the HUD animated.
+ Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  */
 - (void)showInView:(UIView *)view;
 
 /**
- Shows the HUD.
+ Shows the HUD. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  @param If th HUD should show with an animation.
  */
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
 
 /**
- Shows the HUD animated.
+ Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in.
  @param rect The rect allocated in @c view for displaying the HUD.
  */
 - (void)showInRect:(CGRect)rect inView:(UIView *)view;
 
 /**
- Shows the HUD animated.
+ Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in.
  @param rect The rect allocated in @c view for displaying the HUD.
  @param If th HUD should show with an animation.

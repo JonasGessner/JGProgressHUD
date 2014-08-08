@@ -73,7 +73,8 @@ HUD.textLabel.text = @"Loading";
 ```
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
 <br>
-
+<b>Note:</b> You should preferably show the HUD in a UIViewController's view.
+<br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
 
 Installation
