@@ -82,7 +82,7 @@ Installation
 <b>CocoaPods:</b><br>
 Add this to your `Podfile`:
 ```
-pod 'JGProgressHUD', '1.0.2'
+pod 'JGProgressHUD'
 ```
 
 <b>As static library:</b><br>
