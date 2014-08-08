@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "JGProgressHUD"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Simple but powerful and modern progress HUD for iOS."
   s.description  = <<-DESC
 <b>JGProgressHUD:</b>
@@ -18,7 +18,7 @@ DESC
   s.author             = "Jonas Gessner"
   s.social_media_url   = "http://twitter.com/JonasGessner"
   s.platform     = :ios, "5.0"
-  s.source       = { :git => "https://github.com/JonasGessner/JGProgressHUD.git", :tag => "v1.0.2" }
+  s.source       = { :git => "https://github.com/JonasGessner/JGProgressHUD.git", :tag => "v1.0.3" }
   s.source_files  = "JGProgressHUD/JGProgressHUD/*.{h,m}"
   s.frameworks = "Foundation", "UIKit", "QuartzCore"
   s.requires_arc = true

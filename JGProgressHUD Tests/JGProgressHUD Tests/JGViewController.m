@@ -168,7 +168,7 @@
     });
 }
 
--(void)textOnly:(NSUInteger)section {
+- (void)textOnly:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.useProgressIndicatorView = NO;
     HUD.userInteractionEnabled = _blockUserInteraction;
@@ -216,7 +216,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
+        return 2;
     }
     else {
         return 7;
@@ -233,11 +233,25 @@
     
     if (indexPath.section == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"Block User Interaction";
-        UISwitch *s = [[UISwitch alloc] init];
-        s.on = _blockUserInteraction;
-        [s addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
-        cell.accessoryView = s;
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Block User Interaction";
+            UISwitch *s = [[UISwitch alloc] init];
+            s.on = _blockUserInteraction;
+            [s addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = s;
+        }
+        else {
+            UITextField *t = [[UITextField alloc] init];
+            t.returnKeyType = UIReturnKeyDone;
+            [t addTarget:self action:@selector(dismissKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
+            t.borderStyle = UITextBorderStyleRoundedRect;
+            [t sizeToFit];
+            CGRect f = t.frame;
+            f.size.width = 55.0f;
+            t.frame = f;
+            cell.accessoryView = t;
+            cell.textLabel.text = @"Show a keyboard ->";
+        }
     }
     else {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -301,6 +315,10 @@
             [self error:indexPath.section-1];
             break;
     }
+}
+
+- (void)dismissKeyboard:(UITextField *)t {
+    [t resignFirstResponder];
 }
 
 - (void)viewDidLoad {

@@ -21,6 +21,10 @@
     return self;
 }
 
+- (void)setAnimationOptions:(UIViewAnimationOptions)animationOptions {
+    _animationOptions = (animationOptions | UIViewAnimationOptionBeginFromCurrentState);
+}
+
 #pragma mark - Showing
 
 - (void)show {

@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.0.2
+#####Current Version: 1.0.3
 
 Why use JGProgressHUD?
 ==================
@@ -23,6 +23,7 @@ While other progress HUD components are nice they all have their problems. MBPro
 • Up to date, ex. using a blurred view on iOS 8<br>
 • Backwards compatibility to iOS 5<br>
 • Well documented<br>
+• Detects and repositions when Keyboards appear/disappear<br>
 • And most importantly, it looks good!
 
 Overview

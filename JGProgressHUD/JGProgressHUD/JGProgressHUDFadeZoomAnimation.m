@@ -35,11 +35,11 @@
     self.progressHUD.hidden = NO;
     
     //Now animate the presentation
-    [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.progressHUD.alpha = 0.5f;
         self.progressHUD.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
             self.progressHUD.alpha = 1.0f;
             self.progressHUD.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
@@ -54,11 +54,11 @@
     [super hide];
     
     //Animate the dismissal
-    [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.progressHUD.alpha = 0.5f;
         self.progressHUD.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
             self.progressHUD.alpha = 0.0f;
             self.progressHUD.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         } completion:^(BOOL finished) {

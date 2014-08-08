@@ -55,18 +55,20 @@
     [borderPath stroke];
     
     //Progress
-    UIBezierPath *processPath = [UIBezierPath bezierPath];
-    
-    [processPath setLineWidth:radius];
-    
-    CGFloat startAngle = -(M_PI / 2.0f);
-    CGFloat endAngle = startAngle + 2.0f * M_PI * self.progress;
-    
-    [processPath addArcWithCenter:center radius:radius/2.0f startAngle:startAngle endAngle:endAngle clockwise:YES];
-    
-    [processPath stroke];
-    
-    UIGraphicsPopContext();
+    if (self.progress) {
+        UIBezierPath *processPath = [UIBezierPath bezierPath];
+        
+        [processPath setLineWidth:radius];
+        
+        CGFloat startAngle = -(M_PI / 2.0f);
+        CGFloat endAngle = startAngle + 2.0f * M_PI * self.progress;
+        
+        [processPath addArcWithCenter:center radius:radius/2.0f startAngle:startAngle endAngle:endAngle clockwise:YES];
+        
+        [processPath stroke];
+        
+        UIGraphicsPopContext();
+    }
 }
 
 @end

@@ -63,17 +63,19 @@
     //Progress
     [self.ringColor setStroke];
     
-    UIBezierPath *processPath = [UIBezierPath bezierPath];
-    
-    [processPath setLineWidth:lineWidth];
-    [borderPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
-    
-    CGFloat startAngle = -(M_PI / 2.0f);
-    CGFloat endAngle = startAngle + 2.0f * M_PI * self.progress;
-    
-    [processPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
-    
-    [processPath stroke];
+    if (self.progress > 0.0f) {
+        UIBezierPath *processPath = [UIBezierPath bezierPath];
+        
+        [processPath setLineWidth:lineWidth];
+        [borderPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
+        
+        CGFloat startAngle = -(M_PI / 2.0f);
+        CGFloat endAngle = startAngle + 2.0f * M_PI * self.progress;
+        
+        [processPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
+        
+        [processPath stroke];
+    }
 }
 
 @end

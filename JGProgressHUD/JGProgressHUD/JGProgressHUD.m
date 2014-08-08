@@ -34,6 +34,10 @@ unavailable \
 unavailable
 #endif
 
+#ifndef iPad
+#define iPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#endif
+
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
 #endif
@@ -41,8 +45,6 @@ unavailable
 #define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
 #define iOS8 ([UIVisualEffectView class] != Nil)
-
-#define CHECK_TRANSITIONING NSAssert(!_transitioning, @"HUD is currently transitioning")
 
 @interface JGProgressHUD () {
     BOOL _transitioning;
@@ -67,6 +69,29 @@ unavailable
 @synthesize animation = _animation;
 
 @dynamic visible;
+
+#pragma mark - Keyboard
+
+static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
+
++ (void)keyboardFrameWillChange:(NSNotification *)notification {
+    keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    if (CGRectIsEmpty(keyboardFrame)) {
+        keyboardFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    }
+}
+
++ (void)keyboardFrameDidChange:(NSNotification *)notification {
+    keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+}
+
++ (void)load {
+    [super load];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameDidChange:) name:UIKeyboardDidChangeFrameNotification object:nil];
+}
 
 #pragma mark - Initializers
 
@@ -118,10 +143,12 @@ unavailable
             frame.origin.x = self.marginInsets.left;
             frame.origin.y = self.marginInsets.top;
             break;
+            
         case JGProgressHUDPositionTopCenter:
             frame.origin.x = center.x-frame.size.width/2.0f;
             frame.origin.y = self.marginInsets.top;
             break;
+            
         case JGProgressHUDPositionTopRight:
             frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
             frame.origin.y = self.marginInsets.top;
@@ -131,10 +158,12 @@ unavailable
             frame.origin.x = self.marginInsets.left;
             frame.origin.y = center.y-frame.size.height/2.0f;
             break;
+            
         case JGProgressHUDPositionCenter:
             frame.origin.x = center.x-frame.size.width/2.0f;
             frame.origin.y = center.y-frame.size.height/2.0f;
             break;
+            
         case JGProgressHUDPositionCenterRight:
             frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
             frame.origin.y = center.y-frame.size.height/2.0f;
@@ -144,10 +173,12 @@ unavailable
             frame.origin.x = self.marginInsets.left;
             frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
             break;
+            
         case JGProgressHUDPositionBottomCenter:
             frame.origin.x = center.x-frame.size.width/2.0f;
             frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
             break;
+            
         case JGProgressHUDPositionBottomRight:
             frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
             frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
@@ -235,6 +266,17 @@ unavailable
     }
 }
 
+- (CGRect)fullFrameInView:(UIView *)view {
+    CGRect _keyboardFrame = [view convertRect:keyboardFrame fromView:nil];
+    CGRect frame = view.bounds;
+    
+    if (!CGRectIsEmpty(_keyboardFrame) && CGRectIntersectsRect(frame, _keyboardFrame)) {
+        frame.size.height = MIN(frame.size.height, CGRectGetMinY(_keyboardFrame));
+    }
+    
+    return frame;
+}
+
 #pragma mark - Showing
 
 - (void)cleanUpAfterPresentation {
@@ -258,7 +300,14 @@ unavailable
 }
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated {
-    [self showInRect:view.bounds inView:view animated:animated];
+    CGRect frame = [self fullFrameInView:view];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
+    [self showInRect:frame inView:view animated:animated];
 }
 
 - (void)showInRect:(CGRect)rect inView:(UIView *)view {
@@ -266,19 +315,20 @@ unavailable
 }
 
 - (void)showInRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
-    CHECK_TRANSITIONING;
+    NSAssert(!_transitioning, @"HUD is currently transitioning");
+    NSAssert(!self.targetView, @"HUD is already visible");
     
     _transitioning = YES;
     
     _targetView = view;
     _previousUserInteractionState = self.targetView.userInteractionEnabled;
     
-    self.targetView.userInteractionEnabled = !self.userInteractionEnabled;
-    
     self.frame = rect;
     [view addSubview:self];
     
     [self updateHUD:YES];
+    
+    self.targetView.userInteractionEnabled = !self.userInteractionEnabled;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
@@ -297,6 +347,8 @@ unavailable
 - (void)cleanUpAfterDismissal {
     self.hidden = YES;
     [self removeFromSuperview];
+    
+    [self removeObservers];
     
     self.targetView.userInteractionEnabled = _previousUserInteractionState;
     
@@ -323,6 +375,8 @@ unavailable
         _dismissAfterTransitionFinishedWithAnimation = animated;
         return;
     }
+    
+    NSAssert(self.targetView, @"HUD is not visible");
     
     _transitioning = YES;
     
@@ -355,7 +409,38 @@ unavailable
     });
 }
 
-#pragma mark - Animation Callback
+#pragma mark - Callbacks
+
+- (void)keyboardFrameChanged:(NSNotification *)notification {
+    CGRect frame = [self fullFrameInView:self.targetView];
+    
+    if (CGRectEqualToRect(self.frame, frame)) {
+        return;
+    }
+    
+    NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    
+    [UIView beginAnimations:@"de.j-gessner.jgprogresshud.keyboardframechange" context:NULL];
+    [UIView setAnimationCurve:curve];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:duration];
+    
+    self.frame = frame;
+    [self updateHUD:YES];
+    
+    [UIView commitAnimations];
+}
+
+- (void)orientationChanged {
+    if (self.targetView && !CGRectEqualToRect(self.bounds, self.targetView.bounds)) {
+        [UIView animateWithDuration:(iPad ? 0.4 : 0.3) delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.frame = [self fullFrameInView:self.targetView];
+            [self updateHUD:YES];
+        } completion:nil];
+    }
+}
 
 - (void)animationDidFinish:(BOOL)presenting {
     if (presenting) {
@@ -387,7 +472,9 @@ unavailable
                    effect = UIBlurEffectStyleExtraLight;
                }
                
-               _HUDView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:effect]];
+               UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:effect];
+               
+               _HUDView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
                ,
                _HUDView = [[UIView alloc] init];
                
@@ -566,15 +653,20 @@ unavailable
     }
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self updateHUD:NO];
-}
-
 - (void)dealloc {
+    [self removeObservers];
+    
     [_textLabel removeObserver:self forKeyPath:@"text"];
     [_textLabel removeObserver:self forKeyPath:@"font"];
 }
+
+- (void)removeObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
+}
+
 
 @end
 
