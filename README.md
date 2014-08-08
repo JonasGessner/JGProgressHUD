@@ -72,9 +72,9 @@ HUD.textLabel.text = @"Loading";
 [HUD dismissAfterDelay:3.0];
 ```
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
-<br>
+<br><br>
 <b>Note:</b> You should preferably show the HUD in a UIViewController's view.
-<br>
+<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
 
 Installation
@@ -84,14 +84,19 @@ Add this to your `Podfile`:
 ```
 pod 'JGProgressHUD'
 ```
-
+<p>
+OR:
+<p>
 <b>As static library:</b><br>
-Ideally you should use JGProgressHUD as a static library. To do so, drag the JGProgressHUD project file into your Xcode project. Next add JGProgressHUD as Target Dependency in your projects Build Phases. Then add libJGProgressHUD.a in Link Binary With Library. Finally make sure you have set the `-ObjC` flag in Other Linker Flags.<br>
+Ideally you should use JGProgressHUD as a static library:<br>
+Drag the JGProgressHUD.xcodeproj file into your Xcode project. Next add JGProgressHUD as Target Dependency in your project's Build Phases. Then add libJGProgressHUD.a in "Link Binary With Libraries". Finally, make sure you have set the `-ObjC` flag in Other Linker Flags.<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
-
+<p>
+OR:
+<p>
 <b>Using source files:</b><br>
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart from the `JGProgressHUD-Prefix.pch` file to your project.
-
+<p>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
 
 License
