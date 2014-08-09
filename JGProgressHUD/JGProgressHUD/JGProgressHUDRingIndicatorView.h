@@ -19,28 +19,28 @@
 /**
  Background color of the ring.
  
-@b Default: black.
+ @b Default: black.
  */
 @property (nonatomic, strong) UIColor *ringBackgroundColor;
 
 /**
  Progress color of the progress ring.
  
-@b Default: white.
+ @b Default: white.
  */
 @property (nonatomic, strong) UIColor *ringColor;
 
 /**
  Sets if the progress ring should have rounded corners.
  
-@b Default: NO.
+ @b Default: NO.
  */
 @property (nonatomic, assign) BOOL roundProgressLine;
 
 /**
  Width of the ring.
  
-@b Default: 5.0
+ @b Default: 5.0
  */
 @property (nonatomic, assign) CGFloat ringWidth;
 

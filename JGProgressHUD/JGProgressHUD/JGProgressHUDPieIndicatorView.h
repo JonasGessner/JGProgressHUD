@@ -19,7 +19,7 @@
 /**
  Tint color of the Pie. 
  
-@b Default: white.
+ @b Default: white.
  */
 @property (nonatomic, strong) UIColor *color;
 

@@ -74,7 +74,14 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  @Note Remember to call every method from the main thread! UIKit = always main thread!
  @Attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
  */
-@interface JGProgressHUD : UIView
+@interface JGProgressHUD : UIView {
+    @public
+    /**
+     On iOS 8 the getter -HUDView will return a UIVisualEffectView's contentView which is not comparable to the UIView returned on iOS < 8 because it is in a different place in the view hierarchy. If you need to directly access the absolute HUD view for animations you can get the real HUD view here.
+     @sa JGProgressHUDFadeZoomAnimation
+     */
+    UIView *_HUDView;
+}
 
 /**
  Always initialize JGProgressHUD using this method or it's convenience method @c progressHUDWithStyle:.
@@ -113,7 +120,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  The progress indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property (if you do so, you should assign it before showing the HUD).
  
  
-@b Default: JGProgressHUDIndeterminateIndicatorView.
+ @b Default: JGProgressHUDIndeterminateIndicatorView.
  */
 @property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView;
 
@@ -121,14 +128,14 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  Whether the progressIndicatorView should be displayed or not.
  @attention If you change this to @c NO the current @c progressIndicatorView will be destroyed and once this property is changed to @c YES again the default @c progressIndicatorView will be used again.
  
-@b Default: YES.
+ @b Default: YES.
  */
 @property (nonatomic, assign) BOOL useProgressIndicatorView;
 
 /**
  The appearance style of the HUD.
  
-@b Default: JGProgressHUDStyleExtraLight.
+ @b Default: JGProgressHUDStyleExtraLight.
  */
 @property (nonatomic, assign, readonly) JGProgressHUDStyle style;
 
@@ -136,42 +143,42 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 /**
  If the HUD should always have the same width and height.
  
-@b Default: NO.
+ @b Default: NO.
  */
 @property (nonatomic, assign) BOOL square;
 
 /**
  Insets the contents of the HUD.
  
-@b Default: (20, 20, 20, 20).
+ @b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets contentInsets;
 
 /**
  Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
  
-@b Default: (20, 20, 20, 20).
+ @b Default: (20, 20, 20, 20).
  */
 @property (nonatomic, assign) UIEdgeInsets marginInsets;
 
 /**
  The position of the HUD inside the hosting view's frame, or inside the specified frame.
  
-@b Default: JGProgressHUDPositionCenter
+ @b Default: JGProgressHUDPositionCenter
  */
 @property (nonatomic, assign) JGProgressHUDPosition position;
 
 /**
  The animation used for showing and dismissing the HUD.
  
-@b Default: JGProgressHUDFadeAnimation.
+ @b Default: JGProgressHUDFadeAnimation.
  */
 @property (nonatomic, strong) JGProgressHUDAnimation *animation;
 
 /**
  The animation duration for a layout change (ex. Changing the @c text, the @c position, the @c progressIndicatorView or the @c useProgressIndicatorView property).
  
-@b Default: 0.3.
+ @b Default: 0.3.
  */
 @property (nonatomic, assign) NSTimeInterval layoutChangeAnimationDuration;
 
@@ -183,7 +190,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 /**
  The progress to display using the @c progressIndicatorView. A change of this property is not animated. Use the @c setProgress:animated: method for an animated progress change.
  
-@b Default: 0.0.
+ @b Default: 0.0.
  */
 @property (nonatomic, assign) float progress;
 

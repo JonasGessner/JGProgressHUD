@@ -17,7 +17,7 @@
 /**
  Ranges from 0.0 to 1.0.
  */
-@property (nonatomic) float progress;
+@property (nonatomic, assign) float progress;
 
 /**
  Adjusts the current progress shown by the receiver, optionally animating the change.

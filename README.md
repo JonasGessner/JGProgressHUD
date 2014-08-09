@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.0.3
+#####Current Version: 1.0.4
 
 Why use JGProgressHUD?
 ==================
@@ -50,7 +50,8 @@ By default a HUD will use a fade animation. Several parameters can be altered su
 • <b>Fade</b><br>
 • <b>Zoom and Fade</b><br><br>
 By subclassing `JGProgressHUDAnimation` you can create a custom animation!
-
+<br><br>
+To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
 
 Requirements
 =================
@@ -96,7 +97,7 @@ OR:
 <p>
 <b>Using source files:</b><br>
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart from the `JGProgressHUD-Prefix.pch` file to your project.
-<p>
+<br><br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
 
 License

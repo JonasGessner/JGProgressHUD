@@ -111,6 +111,7 @@
 - (void)progress:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.progressIndicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     HUD.delegate = self;
     HUD.userInteractionEnabled = _blockUserInteraction;
     HUD.textLabel.text = @"Uploading...";
@@ -140,6 +141,7 @@
 - (void)zoomAnimationWithRing:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.progressIndicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     HUD.userInteractionEnabled = _blockUserInteraction;
     JGProgressHUDFadeZoomAnimation *an = [JGProgressHUDFadeZoomAnimation animation];
     HUD.animation = an;
@@ -264,10 +266,10 @@
                 cell.textLabel.text = @"Fade, Act. Ind. & Text, Transform";
                 break;
             case 2:
-                cell.textLabel.text = @"Fade, Pie Progress";
+                cell.textLabel.text = @"Fade, Pie Progress, Dim Background";
                 break;
             case 3:
-                cell.textLabel.text = @"Zoom, Ring Progress";
+                cell.textLabel.text = @"Zoom, Ring Progress, Dim Background";
                 break;
             case 4:
                 cell.textLabel.text = @"Fade, Text Only, Bottom Position";
