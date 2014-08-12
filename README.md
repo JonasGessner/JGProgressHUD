@@ -105,6 +105,10 @@ License
 MIT License.<br>
 ©2014 Jonas Gessner.
 
+RubyMotion
+============
+If you are using this pod in your RubyMotion project, the full working example has been ported over and is available here: [https://github.com/IconoclastLabs/rm-jgprogresshud-example](https://github.com/IconoclastLabs/rm-jgprogresshud-example)
+
 Credits
 ==========
 Created by Jonas Gessner © 2014.<br>
