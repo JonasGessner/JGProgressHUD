@@ -63,6 +63,9 @@ Documentation
 ================
 Each header file contains detailed documentation for each method call. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
+####Additional Information
+To block user interaction with target view of JGProgressHUD, set `userInteractionEnabled` to `YES` (default). Otherwise set this to `NO`.
+
 Examples
 =================
 #####Simple example:
@@ -99,15 +102,14 @@ OR:
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart from the `JGProgressHUD-Prefix.pch` file to your project.
 <br><br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
+<p><p>
+#####RubyMotion
+An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
 
 License
 ==========
 MIT License.<br>
 ©2014 Jonas Gessner.
-
-RubyMotion
-============
-If you are using this pod in your RubyMotion project, the full working example has been ported over and is available here: [https://github.com/IconoclastLabs/rm-jgprogresshud-example](https://github.com/IconoclastLabs/rm-jgprogresshud-example)
 
 Credits
 ==========
