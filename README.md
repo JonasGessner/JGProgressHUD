@@ -100,10 +100,10 @@ OR:
 <p>
 <b>Using source files:</b><br>
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart from the `JGProgressHUD-Prefix.pch` file to your project.
-<br><br><br>
+<br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
-<p><p>
-#####RubyMotion
+<p>
+####RubyMotion
 An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
 
 License
