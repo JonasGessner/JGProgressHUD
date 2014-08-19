@@ -39,7 +39,7 @@ JGProgressHUD can be displayed in 3 styles:<br>
 By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br>
 • <b>Indeterminate progress indicator</b><br>
 • <b>Pie progress indicator</b><br>
-• <b>Ring progress indicator</b><br><br>
+• <b>Ring progress indicator</b><br>
 • <b>Success indicator</b><br>
 • <b>Error indicator</b><br>
 By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br>
