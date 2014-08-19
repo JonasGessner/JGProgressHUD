@@ -9,17 +9,17 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.0.4
+#####Current Version: 1.1
 
 Why use JGProgressHUD?
 ==================
 ####There already are so many other open source progress HUD components!
-While other progress HUD components are nice they all have their problems. MBProgressHUD is outdated and buggy, MMProgressHUD is totally over engineered and requires a long time to implement, SVProgressHUD and HTProgressHUD are not implemented in the right way and they all don't offer the extensibility of JGProgressHUD. JGProgressHUD was inspired by all of these components to create the ideal progress indicator.
+While other progress HUD components are nice they all have their problems. MBProgressHUD is outdated and buggy, MMProgressHUD is totally over engineered and requires a long time to implement, SVProgressHUD and HTProgressHUD are not implemented in the right way and they all don't offer the extensibility of JGProgressHUD. JGProgressHUD was inspired by all of these components to create the ideal progress HUD.
 
 <b>Here comes JGProgressHUD:</b><br>
 • Super simple to implement<br>
-• Feature rich<br>
-• Easy extensibility and customization (custom animations and progress indicators)<br>
+• Feature-rich<br>
+• Easy extensibility and customization (custom animations and indicator views)<br>
 • Up to date, ex. using a blurred view on iOS 8<br>
 • Backwards compatibility to iOS 5<br>
 • Well documented<br>
@@ -35,15 +35,15 @@ JGProgressHUD can be displayed in 3 styles:<br>
 • <b>Light<br>
 • <b>Dark<br>
 
-###Progress and Status Indicators:
-By default a HUD will display an indeterminate progress indicator. The progress indicator can be completely removed or a different progress indicator can be assigned to the HUD. By default there are the following indicators built in:<br>
+###Indicator Views:
+By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br>
 • <b>Indeterminate progress indicator</b><br>
 • <b>Pie progress indicator</b><br>
 • <b>Ring progress indicator</b><br><br>
-By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br><br>
-The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project contains example implementations for:<br>
 • <b>Success indicator</b><br>
 • <b>Error indicator</b><br>
+By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br>
+
 
 ###Animations:
 By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. By default there are the following animations built in:<br>
@@ -93,13 +93,13 @@ OR:
 <p>
 <b>As static library:</b><br>
 Ideally you should use JGProgressHUD as a static library:<br>
-Drag the JGProgressHUD.xcodeproj file into your Xcode project. Next add JGProgressHUD as Target Dependency in your project's Build Phases. Then add libJGProgressHUD.a in "Link Binary With Libraries". Finally, make sure you have set the `-ObjC` flag in Other Linker Flags.<br><br>
+Drag the `JGProgressHUD.xcodeproj` file into your Xcode project. Next, add `JGProgressHUD` and `JGProgressHUD Resources` as Target Dependency in your project's "Build Phases". Then add libJGProgressHUD.a in "Link Binary With Libraries". From the `JGProgressHUD.xcodeproj`'s Products Directory drag the `JGProgressHUD Resources.bundle` into your project's "Copy Bundle Resources". Finally, make sure you have set the `-ObjC` flag in Other Linker Flags.<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
 <p>
 OR:
 <p>
 <b>Using source files:</b><br>
-Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> apart from the `JGProgressHUD-Prefix.pch` file to your project.
+Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> to your project.
 <br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
 <p>

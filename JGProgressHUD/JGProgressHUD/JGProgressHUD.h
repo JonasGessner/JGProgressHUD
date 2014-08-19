@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  Always initialize JGProgressHUD using this method or it's convenience method @c progressHUDWithStyle:.
  @param style The appearance style of the HUD.
  */
-- (instancetype)initWithStyle:(JGProgressHUDStyle)style;
+- (instancetype)initWithStyle:(JGProgressHUDStyle)style NS_DESIGNATED_INITIALIZER;
 
 /**
  Convenience method to initialize a new HUD.
@@ -117,20 +117,22 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
 /**
- The progress indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property (if you do so, you should assign it before showing the HUD).
- 
+ @Warning Deprecated. Use @c indicatorView.
+ */
+@property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView DEPRECATED_ATTRIBUTE;
+
+/**
+ The indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property or one of the default indicator views (if you do so, you should assign it before showing the HUD).
  
  @b Default: JGProgressHUDIndeterminateIndicatorView.
  */
-@property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView;
+@property (nonatomic, strong) JGProgressHUDIndicatorView *indicatorView;
 
 /**
- Whether the progressIndicatorView should be displayed or not.
- @attention If you change this to @c NO the current @c progressIndicatorView will be destroyed and once this property is changed to @c YES again the default @c progressIndicatorView will be used again.
- 
- @b Default: YES.
+ @Warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
+ @sa indicatorView.
  */
-@property (nonatomic, assign) BOOL useProgressIndicatorView;
+@property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;
 
 /**
  The appearance style of the HUD.

@@ -15,6 +15,17 @@
 @interface JGProgressHUDIndicatorView : UIView
 
 /**
+ Designated initializer for this class.
+ @param contentView The content view to place on the container view (the container is the JGProgressHUDIndicatorView).
+ */
+- (instancetype)initWithContentView:(UIView *)contentView NS_DESIGNATED_INITIALIZER;
+
+/**
+ The content view which displays the progress.
+ */
+@property (nonatomic, strong, readonly) UIView *contentView;
+
+/**
  Ranges from 0.0 to 1.0.
  */
 @property (nonatomic, assign) float progress;
@@ -28,16 +39,5 @@
  @param animated YES if the change should be animated, NO if the change should happen immediately.
  */
 - (void)setProgress:(float)progress animated:(BOOL)animated;
-
-/**
- Designated initializer for this class.
- @param contentView The content view to place on the container view (the container is the JGProgressHUDIndicatorView).
- */
-- (instancetype)initWithContentView:(UIView *)contentView;
-
-/**
- The content view which displays the progress.
- */
-@property (nonatomic, strong, readonly) UIView *contentView;
 
 @end

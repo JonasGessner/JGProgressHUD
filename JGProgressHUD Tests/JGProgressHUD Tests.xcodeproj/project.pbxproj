@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B20E7D7197FC22E00488D60 /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */; };
-		6B334B67197E78780010087F /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B63197E78780010087F /* jg_hud_error.png */; };
-		6B334B68197E78780010087F /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B64197E78780010087F /* jg_hud_error@2x.png */; };
-		6B334B69197E78780010087F /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B65197E78780010087F /* jg_hud_success.png */; };
-		6B334B6A197E78780010087F /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B334B66197E78780010087F /* jg_hud_success@2x.png */; };
+		6B60B26719A3C09900ED1A4E /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B60B24D19A3B41600ED1A4E /* JGProgressHUD Resources.bundle */; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
 		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
 		6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018CB197BF28100DA4C49 /* UIKit.framework */; };
@@ -37,14 +34,24 @@
 			remoteGlobalIDString = 6BC01872197B2AA500DA4C49;
 			remoteInfo = JGProgressHUD;
 		};
+		6B60B24C19A3B41600ED1A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B60B24019A3B3C500ED1A4E;
+			remoteInfo = "JGProgressHUD Resources";
+		};
+		6B60B25019A3B6D600ED1A4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B60B23F19A3B3C500ED1A4E;
+			remoteInfo = "JGProgressHUD Resources";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../../JGProgressHUD/JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
-		6B334B63197E78780010087F /* jg_hud_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_error.png; sourceTree = "<group>"; };
-		6B334B64197E78780010087F /* jg_hud_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_error@2x.png"; sourceTree = "<group>"; };
-		6B334B65197E78780010087F /* jg_hud_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_success.png; sourceTree = "<group>"; };
-		6B334B66197E78780010087F /* jg_hud_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@2x.png"; sourceTree = "<group>"; };
 		6BC018C4197BF28100DA4C49 /* JGProgressHUD Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC018C7197BF28100DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -80,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */,
+				6B60B24D19A3B41600ED1A4E /* JGProgressHUD Resources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,10 +127,6 @@
 				6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */,
 				6BC018DF197BF28100DA4C49 /* JGViewController.h */,
 				6BC018E0197BF28100DA4C49 /* JGViewController.m */,
-				6B334B63197E78780010087F /* jg_hud_error.png */,
-				6B334B64197E78780010087F /* jg_hud_error@2x.png */,
-				6B334B65197E78780010087F /* jg_hud_success.png */,
-				6B334B66197E78780010087F /* jg_hud_success@2x.png */,
 				6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */,
 				6BC018E2197BF28100DA4C49 /* Images.xcassets */,
 				6BC018CE197BF28100DA4C49 /* Supporting Files */,
@@ -155,6 +159,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6B60B25119A3B6D600ED1A4E /* PBXTargetDependency */,
 				6B20E7D6197FC22A00488D60 /* PBXTargetDependency */,
 			);
 			name = "JGProgressHUD Tests";
@@ -204,6 +209,13 @@
 			remoteRef = 6B20E7D3197FC22000488D60 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		6B60B24D19A3B41600ED1A4E /* JGProgressHUD Resources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "JGProgressHUD Resources.bundle";
+			remoteRef = 6B60B24C19A3B41600ED1A4E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -212,11 +224,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BC018E3197BF28100DA4C49 /* Images.xcassets in Resources */,
-				6B334B6A197E78780010087F /* jg_hud_success@2x.png in Resources */,
 				6BC018D2197BF28100DA4C49 /* InfoPlist.strings in Resources */,
-				6B334B68197E78780010087F /* jg_hud_error@2x.png in Resources */,
-				6B334B69197E78780010087F /* jg_hud_success.png in Resources */,
-				6B334B67197E78780010087F /* jg_hud_error.png in Resources */,
+				6B60B26719A3C09900ED1A4E /* JGProgressHUD Resources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +249,11 @@
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
 			targetProxy = 6B20E7D5197FC22A00488D60 /* PBXContainerItemProxy */;
+		};
+		6B60B25119A3B6D600ED1A4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JGProgressHUD Resources";
+			targetProxy = 6B60B25019A3B6D600ED1A4E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

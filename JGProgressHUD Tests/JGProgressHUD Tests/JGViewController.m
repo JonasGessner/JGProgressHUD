@@ -11,6 +11,8 @@
 #import "JGProgressHUDPieIndicatorView.h"
 #import "JGProgressHUDRingIndicatorView.h"
 #import "JGProgressHUDFadeZoomAnimation.h"
+#import "JGProgressHUDSuccessIndicatorView.h"
+#import "JGProgressHUDErrorIndicatorView.h"
 
 @interface JGViewController () <JGProgressHUDDelegate> {
     BOOL _blockUserInteraction;
@@ -46,11 +48,8 @@
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.userInteractionEnabled = _blockUserInteraction;
     HUD.delegate = self;
-    
-    UIImageView *errorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jg_hud_success.png"]];
     HUD.textLabel.text = @"Success!";
-    JGProgressHUDIndicatorView *ind = [[JGProgressHUDIndicatorView alloc] initWithContentView:errorImageView];
-    HUD.progressIndicatorView = ind;
+    HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
     
     HUD.square = YES;
     
@@ -63,11 +62,8 @@
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
     HUD.userInteractionEnabled = _blockUserInteraction;
     HUD.delegate = self;
-    
-    UIImageView *errorImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jg_hud_error.png"]];
     HUD.textLabel.text = @"Error!";
-    JGProgressHUDIndicatorView *ind = [[JGProgressHUDIndicatorView alloc] initWithContentView:errorImageView];
-    HUD.progressIndicatorView = ind;
+    HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
     
     HUD.square = YES;
     
@@ -94,7 +90,7 @@
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        HUD.useProgressIndicatorView = NO;
+        HUD.indicatorView = nil;
         
         HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
         
@@ -110,7 +106,7 @@
 
 - (void)progress:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.progressIndicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
     HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     HUD.delegate = self;
     HUD.userInteractionEnabled = _blockUserInteraction;
@@ -140,7 +136,7 @@
 
 - (void)zoomAnimationWithRing:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.progressIndicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
     HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     HUD.userInteractionEnabled = _blockUserInteraction;
     JGProgressHUDFadeZoomAnimation *an = [JGProgressHUDFadeZoomAnimation animation];
@@ -172,7 +168,7 @@
 
 - (void)textOnly:(NSUInteger)section {
     JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.useProgressIndicatorView = NO;
+    HUD.indicatorView = nil;
     HUD.userInteractionEnabled = _blockUserInteraction;
     HUD.textLabel.text = @"Hello, World!";
     HUD.delegate = self;

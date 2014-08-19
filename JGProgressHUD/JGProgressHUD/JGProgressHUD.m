@@ -65,10 +65,10 @@ unavailable
 
 @synthesize HUDView = _HUDView;
 @synthesize textLabel = _textLabel;
-@synthesize progressIndicatorView = _progressIndicatorView;
+@synthesize indicatorView = _indicatorView;
 @synthesize animation = _animation;
 
-@dynamic visible;
+@dynamic visible, progressIndicatorView, useProgressIndicatorView;
 
 #pragma mark - Keyboard
 
@@ -107,7 +107,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
-        _useProgressIndicatorView = YES;
         _style = style;
         
         self.hidden = YES;
@@ -118,6 +117,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         self.marginInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
         
         self.layoutChangeAnimationDuration = 0.3;
+        
+        _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
     }
     
     return self;
@@ -195,7 +196,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     void (^updates)(void) = ^{
         //Indicator size
-        CGRect indicatorFrame = self.progressIndicatorView.frame;
+        CGRect indicatorFrame = self.indicatorView.frame;
         indicatorFrame.origin.y = self.contentInsets.top;
         
         CGFloat maxContentWidth = self.frame.size.width-self.marginInsets.left-self.marginInsets.right-self.contentInsets.left-self.contentInsets.right;
@@ -254,7 +255,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         [self setHUDViewFrameCenterWithSize:size];
         
-        self.progressIndicatorView.frame = indicatorFrame;
+        self.indicatorView.frame = indicatorFrame;
         self.textLabel.frame = labelFrame;
     };
     
@@ -495,6 +496,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _HUDView.layer.masksToBounds = YES;
         
         [self addSubview:_HUDView];
+        
+        if (self.indicatorView) {
+            [_HUDView addSubview:self.indicatorView];
+        }
     }
     
     iOS8ex(return ((UIVisualEffectView *)_HUDView).contentView;, return _HUDView;);
@@ -518,42 +523,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     return _textLabel;
 }
 
-- (JGProgressHUDIndicatorView *)progressIndicatorView {
-    if (!_useProgressIndicatorView) {
-        return nil;
-    }
-    
-    if (!_progressIndicatorView) {
-        _progressIndicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
-        [self.HUDView addSubview:_progressIndicatorView];
-    }
-    
-    return _progressIndicatorView;
-}
-
 - (JGProgressHUDAnimation *)animation {
     if (!_animation) {
        self.animation = [JGProgressHUDFadeAnimation animation];
     }
     
     return _animation;
-}
-
-- (void)setUseProgressIndicatorView:(BOOL)useProgressIndicatorView {
-    if (useProgressIndicatorView == self.useProgressIndicatorView) {
-        return;
-    }
-    
-    _useProgressIndicatorView = useProgressIndicatorView;
-    
-    if (!_useProgressIndicatorView) {
-        [_progressIndicatorView removeFromSuperview];
-        _progressIndicatorView = nil;
-    }
-    
-    if (self.superview) {
-        [self updateHUD:NO];
-    }
 }
 
 - (void)setAnimation:(JGProgressHUDAnimation *)animation {
@@ -587,15 +562,25 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [self updateHUD:NO];
 }
 
-- (void)setProgressIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
-    if (self.progressIndicatorView == indicatorView) {
+- (void)setProgressIndicatorView:(JGProgressHUDIndicatorView *)progressIndicatorView {
+    [self setIndicatorView:progressIndicatorView];
+}
+
+- (JGProgressHUDIndicatorView *)progressIndicatorView {
+    return [self indicatorView];
+}
+
+- (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
+    if (self.indicatorView == indicatorView) {
         return;
     }
     
-    [_progressIndicatorView removeFromSuperview];
-    _progressIndicatorView = indicatorView;
+    [_indicatorView removeFromSuperview];
+    _indicatorView = indicatorView;
     
-    [self.HUDView addSubview:indicatorView];
+    if (self.indicatorView) {
+        [self.HUDView addSubview:self.indicatorView];
+    }
     
     [self updateHUD:NO];
 }
@@ -631,7 +616,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _progress = progress;
     
-    [self.progressIndicatorView setProgress:progress animated:animated];
+    [self.indicatorView setProgress:progress animated:animated];
 }
 
 #pragma mark - Overrides
