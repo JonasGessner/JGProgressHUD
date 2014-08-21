@@ -50,7 +50,6 @@ unavailable
     BOOL _transitioning;
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
-    BOOL _previousUserInteractionState;
 }
 
 @end
@@ -322,14 +321,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     _transitioning = YES;
     
     _targetView = view;
-    _previousUserInteractionState = self.targetView.userInteractionEnabled;
     
     self.frame = rect;
     [view addSubview:self];
     
     [self updateHUD:YES];
-    
-    self.targetView.userInteractionEnabled = !self.userInteractionEnabled;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
@@ -350,10 +346,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [self removeFromSuperview];
     
     [self removeObservers];
-    
-    self.targetView.userInteractionEnabled = _previousUserInteractionState;
-    
-    _previousUserInteractionState = NO;
     
     _transitioning = NO;
     _dismissAfterTransitionFinished = NO;
@@ -627,14 +619,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-}
-
-- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
-    [super setUserInteractionEnabled:userInteractionEnabled];
-    
-    if (self.targetView) {
-        self.targetView.userInteractionEnabled = !self.userInteractionEnabled;
     }
 }
 

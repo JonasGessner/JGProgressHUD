@@ -9,14 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifndef NS_DESIGNATED_INITIALIZER
-#if __has_attribute(objc_designated_initializer)
-#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
-#else
-#define NS_DESIGNATED_INITIALIZER
-#endif
-#endif
-
 /**
  You may subclass this class to create a custom progress indicator view.
  */
@@ -26,7 +18,7 @@
  Designated initializer for this class.
  @param contentView The content view to place on the container view (the container is the JGProgressHUDIndicatorView).
  */
-- (instancetype)initWithContentView:(UIView *)contentView NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithContentView:(UIView *)contentView;
 
 /**
  The content view which displays the progress.

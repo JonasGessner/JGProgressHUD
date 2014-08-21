@@ -9,14 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#ifndef NS_DESIGNATED_INITIALIZER
-#if __has_attribute(objc_designated_initializer)
-#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
-#else
-#define NS_DESIGNATED_INITIALIZER
-#endif
-#endif
-
 @class JGProgressHUDIndicatorView;
 @class JGProgressHUDAnimation;
 
@@ -95,7 +87,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  Always initialize JGProgressHUD using this method or it's convenience method @c progressHUDWithStyle:.
  @param style The appearance style of the HUD.
  */
-- (instancetype)initWithStyle:(JGProgressHUDStyle)style NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithStyle:(JGProgressHUDStyle)style;
 
 /**
  Convenience method to initialize a new HUD.

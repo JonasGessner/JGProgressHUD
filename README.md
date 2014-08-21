@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.1
+#####Current Version: 1.1.1
 
 Why use JGProgressHUD?
 ==================
@@ -56,8 +56,8 @@ To dim the content behind the HUD set your dim color as `backgroundColor` of you
 Requirements
 =================
 
-• iOS 5 or higher<br>
-• ARC
+• Deployment target and Base SDK of iOS 5 or higher.<br>
+• ARC.
 
 Documentation
 ================
