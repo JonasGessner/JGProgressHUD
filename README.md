@@ -3,11 +3,11 @@ JGProgressHUD
 
 Simple but powerful and modern progress HUD for iOS.
 
-<img src="JGProgressHUD%20Tests/Screenshots/1.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD%20Tests/Screenshots/2.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD%20Tests/Screenshots/3.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD%20Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD%20Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
+<img src="JGProgressHUD Tests/Screenshots/1.png" width="18.9%" height="18.9%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/2.png" width="18.9%" height="18.9%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/3.png" width="18.9%" height="18.9%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
 #####Current Version: 1.1.1
 
@@ -61,6 +61,7 @@ Requirements
 
 Documentation
 ================
+Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br><br>
 Each header file contains detailed documentation for each method call. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 ####Additional Information
