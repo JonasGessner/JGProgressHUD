@@ -36,6 +36,15 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
     JGProgressHUDStyleDark
 };
 
+/**
+ Interaction types.
+ */
+typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
+    JGProgressHUDInteractionTypeBlockAllTouches = 0,
+    JGProgressHUDInteractionTypeBlockTouchesOnHUDView,
+    JGProgressHUDInteractionTypeBlockNoTouches
+};
+
 
 @class JGProgressHUD;
 
@@ -107,6 +116,20 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 @property (nonatomic, weak) id <JGProgressHUDDelegate> delegate;
 
 /**
+ A block to be invoked when the HUD view is tapped.
+ 
+ @Note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockTouchesOnHUDView or JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
+ */
+@property (nonatomic, copy) void (^tapOnHUDViewBlock)(JGProgressHUD *HUD);
+
+/**
+ A block to be invoked when the area outside of the HUD view is tapped.
+ 
+ @Note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
+ */
+@property (nonatomic, copy) void (^tapOutsideBlock)(JGProgressHUD *HUD);
+
+/**
  The actual HUD visible on screen.
  */
 @property (nonatomic, strong, readonly) UIView *HUDView;
@@ -117,11 +140,6 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
 /**
- @Warning Deprecated. Use @c indicatorView.
- */
-@property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView DEPRECATED_ATTRIBUTE;
-
-/**
  The indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property or one of the default indicator views (if you do so, you should assign it before showing the HUD).
  
  @b Default: JGProgressHUDIndeterminateIndicatorView.
@@ -129,10 +147,13 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 @property (nonatomic, strong) JGProgressHUDIndicatorView *indicatorView;
 
 /**
- @Warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
- @sa indicatorView.
+ Interaction type of the HUD.
+ 
+ @sa JGProgressHUDInteractionType.
+ 
+ @b Default: JGProgressHUDInteractionTypeBlockAllTouches.
  */
-@property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) JGProgressHUDInteractionType interactionType;
 
 /**
  The appearance style of the HUD.
@@ -140,7 +161,6 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  @b Default: JGProgressHUDStyleExtraLight.
  */
 @property (nonatomic, assign, readonly) JGProgressHUDStyle style;
-
 
 /**
  If the HUD should always have the same width and height.
@@ -276,6 +296,8 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 
 @end
 
+
+
 @interface JGProgressHUD (HUDManagement)
 
 /**
@@ -290,5 +312,21 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
  @return All visible progress HUDs in the view and its subviews.
  */
 + (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)view;
+
+@end
+
+
+
+@interface JGProgressHUD (Deprecated)
+
+/**
+ @Warning Deprecated. Use @c indicatorView.
+ */
+@property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView DEPRECATED_ATTRIBUTE;
+/**
+ @Warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
+ @sa indicatorView.
+ */
+@property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;
 
 @end

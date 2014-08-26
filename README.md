@@ -9,22 +9,24 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.1.2
+#####Current Version: 1.1.3
 
 Why use JGProgressHUD?
 ==================
 ####There already are so many other open source progress HUD components!
-While other progress HUD components are nice they all have their problems. MBProgressHUD is outdated and buggy, MMProgressHUD is totally over engineered and requires a long time to implement, SVProgressHUD and HTProgressHUD are not implemented in the right way and they all don't offer the extensibility of JGProgressHUD. JGProgressHUD was inspired by all of these components to create the ideal progress HUD.
+The answer is easy. JGProgressHUD is always up to date, incorporates the newest features os iOS while retaining backward compatibility. It is implemented correctly unlike many other HUD components and it offers the widest range of customization while still being extremely simple to use.
 
-<b>Here comes JGProgressHUD:</b><br>
-• Super simple to implement<br>
-• Feature-rich<br>
-• Easy extensibility and customization (custom animations and indicator views)<br>
-• Up to date, ex. using a blurred view on iOS 8<br>
-• Backwards compatibility to iOS 5<br>
-• Well documented<br>
-• Detects and repositions when Keyboards appear/disappear<br>
-• And most importantly, it looks good!
+<b>The ultimate progress HUD: JGProgressHUD</b><br>
+• Super simple to implement.<br>
+• Feature-rich.<br>
+• Easy extensibility and customization (custom animations, indicator views and more).<br>
+• Up to date and modern, example: The HUD is Blurred on iOS 8, and has a parallax effect on iOS >= 7<br>
+• Backward compatibility to iOS 5.<br>
+• Well documented.<br>
+• Detects and repositions when Keyboards appear/disappear.<br>
+• And most importantly, it looks good!<br>
+<br><br>
+The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 
 Overview
 ==========
@@ -64,9 +66,6 @@ Documentation
 ================
 Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br><br>
 Each header file contains detailed documentation for each method call. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
-
-####Additional Information
-To block user interaction with target view of JGProgressHUD, set `userInteractionEnabled` to `YES` (default). Otherwise set this to `NO`.
 
 Examples
 =================

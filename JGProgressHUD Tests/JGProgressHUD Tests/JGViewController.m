@@ -13,9 +13,20 @@
 #import "JGProgressHUDFadeZoomAnimation.h"
 #import "JGProgressHUDSuccessIndicatorView.h"
 #import "JGProgressHUDErrorIndicatorView.h"
+#import "JGProgressHUDIndeterminateIndicatorView.h"
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
+#define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
+#endif
+
+#define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
 @interface JGViewController () <JGProgressHUDDelegate> {
-    BOOL _blockUserInteraction;
+    JGProgressHUDStyle _style;
+    JGProgressHUDInteractionType _interaction;
+    BOOL _zoom;
+    BOOL _dim;
+    BOOL _shadow;
 }
 
 @end
@@ -43,11 +54,39 @@
 
 #pragma mark -
 
-
-- (void)success:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.userInteractionEnabled = _blockUserInteraction;
+- (JGProgressHUD *)prototypeHUD {
+    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:_style];
+    HUD.interactionType = _interaction;
+    
+    if (_zoom) {
+        JGProgressHUDFadeZoomAnimation *an = [JGProgressHUDFadeZoomAnimation animation];
+        HUD.animation = an;
+    }
+    
+    if (_dim) {
+        HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    }
+    
+    if (_shadow) {
+        __unused UIView *h = HUD.HUDView; //Forces the _HUDView to become available
+        
+        UIView *HUDView = HUD->_HUDView;
+        
+        HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+        HUDView.layer.shadowOffset = CGSizeZero;
+        HUDView.layer.shadowOpacity = 0.4f;
+        HUDView.layer.shadowRadius = 8.0f;
+        HUDView.layer.masksToBounds = NO;
+    }
+    
     HUD.delegate = self;
+    
+    return HUD;
+}
+
+- (void)success {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.textLabel.text = @"Success!";
     HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
     
@@ -58,10 +97,9 @@
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)error:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.userInteractionEnabled = _blockUserInteraction;
-    HUD.delegate = self;
+- (void)error {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.textLabel.text = @"Error!";
     HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
     
@@ -72,29 +110,82 @@
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)simple:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
-    HUD.userInteractionEnabled = _blockUserInteraction;
-    HUD.delegate = self;
+- (void)simple {
+    JGProgressHUD *HUD = self.prototypeHUD;
     
     [HUD showInView:self.navigationController.view];
-    
-    UIView *HUDView = HUD->_HUDView;
-    
-    HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
-    HUDView.layer.shadowOffset = CGSizeZero;
-    HUDView.layer.shadowOpacity = 0.4f;
-    HUDView.layer.shadowRadius = 8.0f;
-    HUDView.layer.masksToBounds = NO;
     
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)withText:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+- (void)tapToCancel {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
+    HUD.textLabel.text = @"Loading very long...";
+    
+    __block BOOL confirmationAsked = NO;
+    
+    HUD.tapOnHUDViewBlock = ^(JGProgressHUD *h) {
+        if (confirmationAsked) {
+            [h dismiss];
+        }
+        else {
+            h.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
+            h.textLabel.text = @"Cancel ?";
+            confirmationAsked = YES;
+            
+            CABasicAnimation *an = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
+            an.fromValue = @(0.0f);
+            an.toValue = @(0.5f);
+            
+            an.repeatCount = HUGE_VALF;
+            an.autoreverses = YES;
+            
+            an.duration = 0.75f;
+            
+            UIView *HUDView = h->_HUDView;
+            
+            HUDView.layer.shadowColor = [UIColor redColor].CGColor;
+            HUDView.layer.shadowOffset = CGSizeZero;
+            HUDView.layer.shadowOpacity = 0.0f;
+            HUDView.layer.shadowRadius = 8.0f;
+            HUDView.layer.masksToBounds = NO;
+            
+            [HUDView.layer addAnimation:an forKey:@"glow"];
+            
+            __weak __typeof(h) wH = h;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                if (wH && confirmationAsked) {
+                    confirmationAsked = NO;
+                    __strong __typeof(wH) sH = wH;
+                    
+                    sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:sH.style];
+                    sH.textLabel.text = @"Loading very long...";
+                    [sH->_HUDView.layer removeAnimationForKey:@"glow"];
+                }
+            });
+        }
+    };
+    
+    HUD.tapOutsideBlock = ^(JGProgressHUD *h) {
+        if (confirmationAsked) {
+            confirmationAsked = NO;
+            h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:h.style];
+            h.textLabel.text = @"Loading very long...";
+            [h->_HUDView.layer removeAnimationForKey:@"glow"];
+        }
+    };
+    
+    [HUD showInView:self.navigationController.view];
+    
+    [HUD dismissAfterDelay:120.0];
+}
+
+- (void)withText {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.textLabel.text = @"Loading...";
-    HUD.delegate = self;
-    HUD.userInteractionEnabled = _blockUserInteraction;
+    
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -112,12 +203,11 @@
     [HUD dismissAfterDelay:3];
 }
 
-- (void)progress:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+- (void)progress {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
-    HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    HUD.delegate = self;
-    HUD.userInteractionEnabled = _blockUserInteraction;
+    
     HUD.textLabel.text = @"Uploading...";
     [HUD showInView:self.navigationController.view];
     
@@ -142,14 +232,11 @@
     });
 }
 
-- (void)zoomAnimationWithRing:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+- (void)zoomAnimationWithRing {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
-    HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
-    HUD.userInteractionEnabled = _blockUserInteraction;
-    JGProgressHUDFadeZoomAnimation *an = [JGProgressHUDFadeZoomAnimation animation];
-    HUD.animation = an;
-    HUD.delegate = self;
+    
     HUD.textLabel.text = @"Downloading...";
     [HUD showInView:self.navigationController.view];
     
@@ -174,12 +261,12 @@
     });
 }
 
-- (void)textOnly:(NSUInteger)section {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:(JGProgressHUDStyle)section];
+- (void)textOnly {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
     HUD.indicatorView = nil;
-    HUD.userInteractionEnabled = _blockUserInteraction;
+    
     HUD.textLabel.text = @"Hello, World!";
-    HUD.delegate = self;
     HUD.position = JGProgressHUDPositionBottomCenter;
     HUD.marginInsets = (UIEdgeInsets) {
         .top = 0.0f,
@@ -193,39 +280,46 @@
     [HUD dismissAfterDelay:2.0f];
 }
 
-- (void)switched:(UISwitch *)s {
-    _blockUserInteraction = s.on;
-    
-    for (JGProgressHUD *visible in [JGProgressHUD allProgressHUDsInViewHierarchy:self.navigationController.view]) {
-        visible.userInteractionEnabled = _blockUserInteraction;
-    }
+- (void)setHUDStyle:(UISegmentedControl *)c {
+    _style = c.selectedSegmentIndex;
 }
+
+- (void)setInteraction:(UISegmentedControl *)c {
+    _interaction = c.selectedSegmentIndex;
+}
+
+- (void)setZoom:(UISegmentedControl *)c {
+    _zoom = c.selectedSegmentIndex;
+}
+
+- (void)setDim:(UISwitch *)s {
+    _dim = s.on;
+}
+
+- (void)setShadow:(UISwitch *)s {
+    _shadow = s.on;
+}
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"";
-    }
-    else if (section == 1) {
-        return @"Extra Light Style";
-    }
-    else if (section == 2) {
-        return @"Light Style";
+        return @"Configure";
     }
     else {
-        return @"Dark Style";
+        return @"Show a HUD";
     }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 6;
     }
     else {
-        return 7;
+        return 8;
     }
 }
 
@@ -239,24 +333,79 @@
     
     if (indexPath.section == 0) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"Block User Interaction";
-            UISwitch *s = [[UISwitch alloc] init];
-            s.on = _blockUserInteraction;
-            [s addTarget:self action:@selector(switched:) forControlEvents:UIControlEventValueChanged];
-            cell.accessoryView = s;
+            cell.textLabel.text = @"Style";
+            
+            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Extra Light", @"Light", @"Drak"]];
+            segment.selectedSegmentIndex = _style;
+            [segment addTarget:self action:@selector(setHUDStyle:) forControlEvents:UIControlEventValueChanged];
+            
+            cell.accessoryView = segment;
+            [segment sizeToFit];
         }
-        else {
+        else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Block Touches";
+            
+            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"All", @"On HUD", @"None"]];
+            segment.selectedSegmentIndex = _interaction;
+            [segment addTarget:self action:@selector(setInteraction:) forControlEvents:UIControlEventValueChanged];
+            [segment sizeToFit];
+            
+            CGRect f = segment.frame;
+            f.size.width -= 30.0f;
+            segment.frame = f;
+            
+            cell.accessoryView = segment;
+        }
+        else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Animation";
+            
+            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Fade", @"Zoom"]];
+            segment.selectedSegmentIndex = _zoom;
+            [segment addTarget:self action:@selector(setZoom:) forControlEvents:UIControlEventValueChanged];
+            [segment sizeToFit];
+            
+            cell.accessoryView = segment;
+        }
+        else if (indexPath.row == 3) {
             UITextField *t = [[UITextField alloc] init];
             t.returnKeyType = UIReturnKeyDone;
             [t addTarget:self action:@selector(dismissKeyboard:) forControlEvents:UIControlEventEditingDidEndOnExit];
             t.borderStyle = UITextBorderStyleRoundedRect;
             [t sizeToFit];
             CGRect f = t.frame;
-            f.size.width = 55.0f;
+            f.size.width = 100.0f;
             t.frame = f;
             cell.accessoryView = t;
-            cell.textLabel.text = @"Show a keyboard ->";
+            cell.textLabel.text = @"Show a keyboard";
+        }
+        else if (indexPath.row == 4) {
+            cell.textLabel.text = @"Dim Background";
+            UISwitch *s = [[UISwitch alloc] init];
+            
+            if (iOS7) {
+                s.backgroundColor = [UIColor whiteColor];
+                s.layer.cornerRadius = 16.0f;
+            }
+            
+            s.on = _dim;
+            [s addTarget:self action:@selector(setDim:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = s;
+        }
+        else if (indexPath.row == 5) {
+            cell.textLabel.text = @"Apply Shadow";
+            UISwitch *s = [[UISwitch alloc] init];
+            
+            if (iOS7) {
+                s.backgroundColor = [UIColor whiteColor];
+                s.layer.cornerRadius = 16.0f;
+            }
+            
+            s.backgroundColor = [UIColor whiteColor];
+            s.on = _shadow;
+            [s addTarget:self action:@selector(setShadow:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = s;
         }
     }
     else {
@@ -264,25 +413,28 @@
         cell.accessoryView = nil;
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"Fade, Activity Indicator, Shadow";
+                cell.textLabel.text = @"Activity Indicator";
                 break;
             case 1:
-                cell.textLabel.text = @"Fade, Act. Ind. & Text, Transform";
+                cell.textLabel.text = @"Activity Indicator & Text, Transform";
                 break;
             case 2:
-                cell.textLabel.text = @"Fade, Pie Progress, Dim Background";
+                cell.textLabel.text = @"Pie Progress";
                 break;
             case 3:
-                cell.textLabel.text = @"Zoom, Ring Progress, Dim Background";
+                cell.textLabel.text = @"Ring Progress";
                 break;
             case 4:
-                cell.textLabel.text = @"Fade, Text Only, Bottom Position";
+                cell.textLabel.text = @"Text Only, Bottom Position";
                 break;
             case 5:
-                cell.textLabel.text = @"Fade, Success, Square Shape";
+                cell.textLabel.text = @"Success, Square Shape";
                 break;
             case 6:
-                cell.textLabel.text = @"Fade, Error, Square Shape";
+                cell.textLabel.text = @"Error, Square Shape";
+                break;
+            case 7:
+                cell.textLabel.text = @"Tap To Cancel";
                 break;
         }
     }
@@ -300,25 +452,28 @@
     
     switch (indexPath.row) {
         case 0:
-            [self simple:indexPath.section-1];
+            [self simple];
             break;
         case 1:
-            [self withText:indexPath.section-1];
+            [self withText];
             break;
         case 2:
-            [self progress:indexPath.section-1];
+            [self progress];
             break;
         case 3:
-            [self zoomAnimationWithRing:indexPath.section-1];
+            [self zoomAnimationWithRing];
             break;
         case 4:
-            [self textOnly:indexPath.section-1];
+            [self textOnly];
             break;
         case 5:
-            [self success:indexPath.section-1];
+            [self success];
             break;
         case 6:
-            [self error:indexPath.section-1];
+            [self error];
+            break;
+        case 7:
+            [self tapToCancel];
             break;
     }
 }
@@ -329,8 +484,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _blockUserInteraction = YES;
     
     self.title = @"JGProgressHUD";
     

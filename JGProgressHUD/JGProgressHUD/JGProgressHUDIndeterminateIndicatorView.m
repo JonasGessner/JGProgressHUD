@@ -25,9 +25,7 @@
 }
 
 - (instancetype)init {
-    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [activityIndicatorView startAnimating];
-    return [super initWithContentView:activityIndicatorView];
+    return [self initWithHUDStyle:0];
 }
 
 - (void)setColor:(UIColor *)color {

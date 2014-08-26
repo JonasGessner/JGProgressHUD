@@ -48,6 +48,8 @@ unavailable
 
 @interface JGProgressHUD () {
     BOOL _transitioning;
+    BOOL _updateAfterappear;
+    
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
 }
@@ -67,7 +69,7 @@ unavailable
 @synthesize indicatorView = _indicatorView;
 @synthesize animation = _animation;
 
-@dynamic visible, progressIndicatorView, useProgressIndicatorView;
+@dynamic visible;
 
 #pragma mark - Keyboard
 
@@ -115,6 +117,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         self.marginInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
         
         self.layoutChangeAnimationDuration = 0.3;
+        
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
         
         _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
     }
@@ -188,6 +192,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)updateHUD:(BOOL)disableAnimations {
+    if (_transitioning) {
+        _updateAfterappear = YES;
+        return;
+    }
+    
     if (!self.superview) {
         return;
     }
@@ -283,6 +292,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _transitioning = NO;
     
+    if (_updateAfterappear) {
+        [self updateHUD:NO];
+        _updateAfterappear = NO;
+    }
+    
     if ([self.delegate respondsToSelector:@selector(progressHUD:didPresentInView:)]){
         [self.delegate progressHUD:self didPresentInView:self.targetView];
     }
@@ -317,14 +331,14 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     NSAssert(!_transitioning, @"HUD is currently transitioning");
     NSAssert(!self.targetView, @"HUD is already visible");
     
-    _transitioning = YES;
-    
     _targetView = view;
     
     self.frame = rect;
     [view addSubview:self];
     
     [self updateHUD:YES];
+    
+    _transitioning = YES;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
@@ -402,6 +416,17 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 #pragma mark - Callbacks
+
+- (void)tapped:(UITapGestureRecognizer *)t {
+    if (CGRectContainsPoint(self.HUDView.frame, [t locationInView:self])) {
+        if (self.tapOnHUDViewBlock) {
+            self.tapOnHUDViewBlock(self);
+        }
+    }
+    else if (self.tapOutsideBlock) {
+        self.tapOutsideBlock(self);
+    }
+}
 
 - (void)keyboardFrameChanged:(NSNotification *)notification {
     CGRect frame = [self fullFrameInView:self.targetView];
@@ -484,7 +509,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         if (iOS7) {
             UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
             
-            CGFloat maxMovement = 25.0f;
+            CGFloat maxMovement = 20.0f;
             
             x.minimumRelativeValue = @(-maxMovement);
             x.maximumRelativeValue = @(maxMovement);
@@ -505,6 +530,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         if (self.indicatorView) {
             [_HUDView addSubview:self.indicatorView];
         }
+        
+        [self.HUDView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
     }
     
     iOS8ex(return ((UIVisualEffectView *)_HUDView).contentView;, return _HUDView;);
@@ -566,14 +593,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [self updateHUD:NO];
 }
 
-- (void)setProgressIndicatorView:(JGProgressHUDIndicatorView *)progressIndicatorView {
-    [self setIndicatorView:progressIndicatorView];
-}
-
-- (JGProgressHUDIndicatorView *)progressIndicatorView {
-    return [self indicatorView];
-}
-
 - (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
     if (self.indicatorView == indicatorView) {
         return;
@@ -586,7 +605,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self.HUDView addSubview:self.indicatorView];
     }
     
-    [self updateHUD:NO];
+    [self updateHUD:YES];
 }
 
 - (void)setMarginInsets:(UIEdgeInsets)marginInsets {
@@ -624,6 +643,24 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 #pragma mark - Overrides
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    if (self.interactionType == JGProgressHUDInteractionTypeBlockNoTouches) {
+        return nil;
+    }
+    else {
+        UIView *view = [super hitTest:point withEvent:event];
+        
+        if (self.interactionType == JGProgressHUDInteractionTypeBlockAllTouches) {
+            return view;
+        }
+        else if (self.interactionType == JGProgressHUDInteractionTypeBlockTouchesOnHUDView && view != self) {
+            return view;
+        }
+        
+        return nil;
+    }
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.textLabel) {
@@ -684,6 +721,21 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 + (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)view {
     return [self _allProgressHUDsInViewHierarchy:view].copy;
+}
+
+@end
+
+
+@implementation JGProgressHUD (Deprecated)
+
+@dynamic progressIndicatorView, useProgressIndicatorView;
+
+- (void)setProgressIndicatorView:(JGProgressHUDIndicatorView *)progressIndicatorView {
+    [self setIndicatorView:progressIndicatorView];
+}
+
+- (JGProgressHUDIndicatorView *)progressIndicatorView {
+    return [self indicatorView];
 }
 
 @end
