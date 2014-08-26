@@ -20,7 +20,7 @@ While other progress HUD components are nice they all have their problems. MBPro
 • Super simple to implement<br>
 • Feature-rich<br>
 • Easy extensibility and customization (custom animations and indicator views)<br>
-• Up to date, ex. using a blurred view on iOS 8<br>
+• Up to date and modern: The HUD is Blurred on iOS 8, and has a parallax effect on iOS >= 7<br>
 • Backwards compatibility to iOS 5<br>
 • Well documented<br>
 • Detects and repositions when Keyboards appear/disappear<br>
