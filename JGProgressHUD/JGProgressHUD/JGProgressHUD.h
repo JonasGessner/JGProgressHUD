@@ -77,7 +77,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
 @interface JGProgressHUD : UIView {
     @public
     /**
-     On iOS 8 the getter -HUDView will return a UIVisualEffectView's contentView which is not comparable to the UIView returned on iOS < 8 because it is in a different place in the view hierarchy. If you need to directly access the absolute HUD view for animations you can get the real HUD view here.
+     On iOS 8 the getter -HUDView will return a UIVisualEffectView's contentView which is not comparable to the UIView returned on iOS < 8 because it is in a different place in the view hierarchy. If you need to directly access the absolute HUD view for animations or shadows you can get the real HUD view here. This value may be nil until `showInView:` or any other of the showing methods are called.
      @sa JGProgressHUDFadeZoomAnimation
      */
     UIView *_HUDView;

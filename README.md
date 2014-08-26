@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.1.1
+#####Current Version: 1.1.2
 
 Why use JGProgressHUD?
 ==================
@@ -56,7 +56,8 @@ To dim the content behind the HUD set your dim color as `backgroundColor` of you
 Requirements
 =================
 
-• Deployment target and Base SDK of iOS 5 or higher.<br>
+• Base SDK of iOS 7 or higher.<br>
+• Deployment target of iOS 5 or higher.<br>
 • ARC.
 
 Documentation
@@ -110,9 +111,8 @@ An example of JGProgressHUD in a RubyMotion project can be found  [here](https:/
 License
 ==========
 MIT License.<br>
-©2014 Jonas Gessner.
+©2014, Jonas Gessner.
 
 Credits
 ==========
-Created by Jonas Gessner © 2014.<br>
-Inspired by HTProgressHUD and other open source progress HUD components.
+Created by Jonas Gessner, ©2014.<br>

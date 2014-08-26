@@ -79,6 +79,14 @@
     
     [HUD showInView:self.navigationController.view];
     
+    UIView *HUDView = HUD->_HUDView;
+    
+    HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+    HUDView.layer.shadowOffset = CGSizeZero;
+    HUDView.layer.shadowOpacity = 0.4f;
+    HUDView.layer.shadowRadius = 8.0f;
+    HUDView.layer.masksToBounds = NO;
+    
     [HUD dismissAfterDelay:3.0];
 }
 
@@ -256,7 +264,7 @@
         cell.accessoryView = nil;
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"Fade, Activity Indicator";
+                cell.textLabel.text = @"Fade, Activity Indicator, Shadow";
                 break;
             case 1:
                 cell.textLabel.text = @"Fade, Act. Ind. & Text, Transform";

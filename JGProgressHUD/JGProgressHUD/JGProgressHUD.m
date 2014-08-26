@@ -109,7 +109,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _style = style;
         
         self.hidden = YES;
-        self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
         
         self.contentInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
@@ -480,9 +479,23 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
                else {
                    _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
                }
-               
-               _HUDView.opaque = NO;
                );
+        
+        if (iOS7) {
+            UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+            
+            CGFloat maxMovement = 25.0f;
+            
+            x.minimumRelativeValue = @(-maxMovement);
+            x.maximumRelativeValue = @(maxMovement);
+            
+            UIInterpolatingMotionEffect *y = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+            
+            y.minimumRelativeValue = @(-maxMovement);
+            y.maximumRelativeValue = @(maxMovement);
+            
+            _HUDView.motionEffects = @[x, y];
+        }
         
         _HUDView.layer.cornerRadius = 10.0f;
         _HUDView.layer.masksToBounds = YES;
@@ -501,7 +514,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (!_textLabel) {
         _textLabel = [[UILabel alloc] init];
         _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.opaque = NO;
         _textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
