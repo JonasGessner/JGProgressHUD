@@ -14,7 +14,7 @@ Simple but powerful and modern progress HUD for iOS.
 Why use JGProgressHUD?
 ==================
 ####There already are so many other open source progress HUD components!
-The answer is easy. JGProgressHUD is always up to date, incorporates the newest features os iOS while retaining backward compatibility. It is implemented correctly unlike many other HUD components and it offers the widest range of customization while still being extremely simple to use.
+The answer is simple. JGProgressHUD is always up to date, incorporates the newest features os iOS while retaining backward compatibility. It is implemented correctly unlike many other HUD components and it offers the widest range of customization while still being extremely simple to use.
 
 <b>The ultimate progress HUD: JGProgressHUD</b><br>
 • Super simple to implement.<br>
