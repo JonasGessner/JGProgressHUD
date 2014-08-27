@@ -3,11 +3,13 @@ JGProgressHUD
 
 Simple but powerful and modern progress HUD for iOS.
 
-<img src="JGProgressHUD Tests/Screenshots/1.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/2.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/3.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
+<p align="center">
+<img src="Presentation.png">
+<br>
+<img src="JGProgressHUD Tests/Screenshots/3.png" width="25%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/6.png" width="25%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/5.png" width="25%"/>
+</p>
 
 #####Current Version: 1.1.4
 
