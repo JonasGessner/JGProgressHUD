@@ -1,37 +1,29 @@
 JGProgressHUD
 =============
 
-Simple but powerful and modern progress HUD for iOS.
-
+Simple, powerful and modern progress HUD for iOS.<br>
 <p align="center">
 <img src="Presentation.png">
-<br>
-<img src="JGProgressHUD Tests/Screenshots/3.png" width="25%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/6.png" width="25%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/5.png" width="25%"/>
 </p>
 
-#####Current Version: 1.1.4
+Overview
+==========
 
-Why use JGProgressHUD?
-==================
-####There already are so many other open source progress HUD components!
-The answer is simple. JGProgressHUD is always up to date, incorporates the newest features os iOS while retaining backward compatibility. It is implemented correctly unlike many other HUD components and it offers the widest range of customization while still being extremely simple to use.
-
-<b>The ultimate progress HUD: JGProgressHUD</b><br>
+<b>The ultimate progress HUD for iOS has arrived: *JGProgressHUD*!</b><br>
 • Super simple to implement.<br>
 • Feature-rich.<br>
 • Easy extensibility and customization (custom animations, indicator views and more).<br>
-• Up to date and modern, example: The HUD is Blurred on iOS 8, and has a parallax effect on iOS >= 7<br>
+• Up to date and modern, example: Blurred HUD (iOS 8), parallax effect (iOS 7).<br>
 • Backward compatibility to iOS 5.<br>
 • Well documented.<br>
 • Detects and repositions when Keyboards appear/disappear.<br>
 • And most importantly, it looks good!<br>
 <br><br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
+<br>
+#####Current Version: 1.1.4
 
-Overview
-==========
+##Features:
 
 ###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
@@ -108,6 +100,14 @@ After you have included JGProgressHUD as static library or source files simply i
 <p>
 ####RubyMotion
 An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
+
+Screenshots:
+<p align="center">
+<img src="JGProgressHUD Tests/Screenshots/1.png" width="24%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/3.png" width="24%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/6.png" width="24%"/>&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/5.png" width="24%"/>
+</p>
 
 License
 ==========
