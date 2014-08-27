@@ -18,12 +18,12 @@ Overview
 • Well documented.<br>
 • Detects and repositions when Keyboards appear/disappear.<br>
 • And most importantly, it looks good!<br>
-<br><br>
+<br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
 #####Current Version: 1.1.4
 
-##Features:
+##Customization:
 
 ###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
@@ -83,7 +83,7 @@ Add this to your `Podfile`:
 ```
 pod 'JGProgressHUD'
 ```
-<br><br>
+<br>
 OR:
 <br><br>
 <b>As static library:</b><br>
