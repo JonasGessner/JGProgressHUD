@@ -9,7 +9,7 @@ Simple, powerful and modern progress HUD for iOS.<br>
 Overview
 ==========
 
-<b>The ultimate progress HUD for iOS has arrived: *JGProgressHUD*!</b><br>
+<b>The ultimate progress HUD for iOS has arrived: JGProgressHUD!</b><br>
 • Super simple to implement.<br>
 • Feature-rich.<br>
 • Easy extensibility and customization (custom animations, indicator views and more).<br>
@@ -83,30 +83,31 @@ Add this to your `Podfile`:
 ```
 pod 'JGProgressHUD'
 ```
-<p>
+<br><br>
 OR:
-<p>
+<br><br>
 <b>As static library:</b><br>
 Ideally you should use JGProgressHUD as a static library:<br>
 Drag the `JGProgressHUD.xcodeproj` file into your Xcode project. Next, add `JGProgressHUD` and `JGProgressHUD Resources` as Target Dependency in your project's "Build Phases". Then add libJGProgressHUD.a in "Link Binary With Libraries". From the `JGProgressHUD.xcodeproj`'s Products Directory drag the `JGProgressHUD Resources.bundle` into your project's "Copy Bundle Resources". Finally, make sure you have set the `-ObjC` flag in Other Linker Flags.<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
-<p>
+<br><br>
 OR:
-<p>
+<br><br>
 <b>Using source files:</b><br>
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> to your project.
 <br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
-<p>
+<br><br>
 ####RubyMotion
 An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
 
-Screenshots:
+Screenshots
+============
 <p align="center">
-<img src="JGProgressHUD Tests/Screenshots/1.png" width="24%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/3.png" width="24%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/6.png" width="24%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/5.png" width="24%"/>
+<img src="JGProgressHUD Tests/Screenshots/1.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/3.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/6.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/5.png" width="24%">
 </p>
 
 License
