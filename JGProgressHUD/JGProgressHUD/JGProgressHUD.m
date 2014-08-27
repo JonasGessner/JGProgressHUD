@@ -528,7 +528,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self addSubview:_HUDView];
         
         if (self.indicatorView) {
-            [_HUDView addSubview:self.indicatorView];
+            [self.HUDView addSubview:self.indicatorView];
         }
         
         [self.HUDView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];

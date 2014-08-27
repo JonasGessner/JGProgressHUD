@@ -9,7 +9,7 @@ Simple but powerful and modern progress HUD for iOS.
 <img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
 <img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
 
-#####Current Version: 1.1.3
+#####Current Version: 1.1.4
 
 Why use JGProgressHUD?
 ==================
