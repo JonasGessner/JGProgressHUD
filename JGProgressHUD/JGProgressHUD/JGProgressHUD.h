@@ -83,14 +83,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
  @Note Remember to call every method from the main thread! UIKit = always main thread!
  @Attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
  */
-@interface JGProgressHUD : UIView {
-    @public
-    /**
-     On iOS 8 the getter -HUDView will return a UIVisualEffectView's contentView which is not comparable to the UIView returned on iOS < 8 because it is in a different place in the view hierarchy. If you need to directly access the absolute HUD view for animations or shadows you can get the real HUD view here. This value may be nil until `showInView:` or any other of the showing methods are called.
-     @sa JGProgressHUDFadeZoomAnimation
-     */
-    UIView *_HUDView;
-}
+@interface JGProgressHUD : UIView
 
 /**
  Always initialize JGProgressHUD using this method or it's convenience method @c progressHUDWithStyle:.
@@ -130,9 +123,14 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 @property (nonatomic, copy) void (^tapOutsideBlock)(JGProgressHUD *HUD);
 
 /**
- The actual HUD visible on screen.
+ The actual HUD view visible on screen. You may add animations or shadows to this view.
  */
 @property (nonatomic, strong, readonly) UIView *HUDView;
+
+/**
+ The content view inside the @c HUDView. If you want to add additional views to the HUD you should add them as subview to the @c contentView.
+ */
+@property (nonatomic, strong, readonly) UIView *contentView;
 
 /**
  The label used to present text on the HUD. set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
@@ -168,6 +166,13 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
  @b Default: NO.
  */
 @property (nonatomic, assign) BOOL square;
+
+/**
+ The radius used for rounding the four corners of the HUD view.
+ 
+ @b Default: 10.0.
+ */
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 /**
  Insets the contents of the HUD.

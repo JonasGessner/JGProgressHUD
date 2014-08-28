@@ -4,7 +4,7 @@
 //
 //  Created by Jonas Gessner on 20.7.14.
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
-//  
+//
 
 #import "JGProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
@@ -48,7 +48,7 @@ unavailable
 
 @interface JGProgressHUD () {
     BOOL _transitioning;
-    BOOL _updateAfterappear;
+    BOOL _updateAfterAppear;
     
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
@@ -69,7 +69,7 @@ unavailable
 @synthesize indicatorView = _indicatorView;
 @synthesize animation = _animation;
 
-@dynamic visible;
+@dynamic visible, contentView;
 
 #pragma mark - Keyboard
 
@@ -121,6 +121,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
         
         _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
+        
+        _cornerRadius = 10.0f;
     }
     
     return self;
@@ -188,12 +190,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             break;
     }
     
-    _HUDView.frame = frame;
+    self.HUDView.frame = frame;
 }
 
-- (void)updateHUD:(BOOL)disableAnimations {
+- (void)updateHUDAnimated:(BOOL)animated animateIndicatorViewFrame:(BOOL)animateIndicator {
     if (_transitioning) {
-        _updateAfterappear = YES;
+        _updateAfterAppear = YES;
         return;
     }
     
@@ -201,72 +203,76 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         return;
     }
     
-    void (^updates)(void) = ^{
-        //Indicator size
-        CGRect indicatorFrame = self.indicatorView.frame;
-        indicatorFrame.origin.y = self.contentInsets.top;
-        
-        CGFloat maxContentWidth = self.frame.size.width-self.marginInsets.left-self.marginInsets.right-self.contentInsets.left-self.contentInsets.right;
-        CGFloat maxContentHeight = self.frame.size.height-self.marginInsets.top-self.marginInsets.bottom-self.contentInsets.top-self.contentInsets.bottom;
-        
-        CGSize maxContentSize = (CGSize){maxContentWidth, maxContentHeight};
-        
-        //Label size
-        CGRect labelFrame = CGRectZero;
-        
-        if (iOS7) {
-            NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
-            labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        }
-        else {
+    CGRect indicatorFrame = self.indicatorView.frame;
+    indicatorFrame.origin.y = self.contentInsets.top;
+    
+    CGFloat maxContentWidth = self.frame.size.width-self.marginInsets.left-self.marginInsets.right-self.contentInsets.left-self.contentInsets.right;
+    CGFloat maxContentHeight = self.frame.size.height-self.marginInsets.top-self.marginInsets.bottom-self.contentInsets.top-self.contentInsets.bottom;
+    
+    CGSize maxContentSize = (CGSize){maxContentWidth, maxContentHeight};
+    
+    //Label size
+    CGRect labelFrame = CGRectZero;
+    
+    if (iOS7) {
+        NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
+        labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    }
+    else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
+        labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
 #pragma clang diagnostic pop
-        }
+    }
+    
+    labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
+    
+    if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
+        labelFrame.origin.y += 10.0f;
+    }
+    
+    //HUD size
+    CGSize size = CGSizeZero;
+    
+    CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+    
+    CGFloat height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
+    
+    if (self.square) {
+        CGFloat uniSize = MAX(width, height);
         
-        labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
+        size.width = uniSize;
+        size.height = uniSize;
         
-        if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
-            labelFrame.origin.y += 10.0f;
-        }
+        CGFloat heightDelta = uniSize-height;
         
-        //HUD size
-        CGSize size = CGSizeZero;
-        
-        CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
-        
-        CGFloat height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
-        
-        if (self.square) {
-            CGFloat uniSize = MAX(width, height);
-            
-            size.width = uniSize;
-            size.height = uniSize;
-            
-            CGFloat heightDelta = uniSize-height;
-            
-            labelFrame.origin.y += heightDelta/2.0f;
-            indicatorFrame.origin.y += heightDelta/2.0f;
-        }
-        else {
-            size.width = width;
-            size.height = height;
-        }
-        
-        CGPoint center = CGPointMake(size.width/2.0f, size.height/2.0f);
-        
-        indicatorFrame.origin.x = center.x-indicatorFrame.size.width/2.0f;
-        labelFrame.origin.x = center.x-labelFrame.size.width/2.0f;
-        
-        
+        labelFrame.origin.y += heightDelta/2.0f;
+        indicatorFrame.origin.y += heightDelta/2.0f;
+    }
+    else {
+        size.width = width;
+        size.height = height;
+    }
+    
+    CGPoint center = CGPointMake(size.width/2.0f, size.height/2.0f);
+    
+    indicatorFrame.origin.x = center.x-indicatorFrame.size.width/2.0f;
+    labelFrame.origin.x = center.x-labelFrame.size.width/2.0f;
+    
+    void (^updates)(void) = ^{
         [self setHUDViewFrameCenterWithSize:size];
         
-        self.indicatorView.frame = indicatorFrame;
+        if (animateIndicator) {
+            self.indicatorView.frame = indicatorFrame;
+        }
         self.textLabel.frame = labelFrame;
     };
     
-    if (self.layoutChangeAnimationDuration > 0.0f && !disableAnimations && !_transitioning) {
+    if (!animateIndicator) {
+        self.indicatorView.frame = indicatorFrame;
+    }
+    
+    if (self.layoutChangeAnimationDuration > 0.0f && animated && !_transitioning) {
         [UIView animateWithDuration:self.layoutChangeAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:updates completion:nil];
     }
     else {
@@ -285,6 +291,15 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     return frame;
 }
 
+- (void)applyCornerRadius {
+    self.HUDView.layer.cornerRadius = self.cornerRadius;
+    iOS8ex(
+           for (UIView *sub in self.HUDView.subviews) {
+               sub.layer.cornerRadius = self.cornerRadius;
+           }
+           ,);
+}
+
 #pragma mark - Showing
 
 - (void)cleanUpAfterPresentation {
@@ -292,9 +307,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _transitioning = NO;
     
-    if (_updateAfterappear) {
-        [self updateHUD:NO];
-        _updateAfterappear = NO;
+    if (_updateAfterAppear) {
+        [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+        _updateAfterAppear = NO;
     }
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:didPresentInView:)]){
@@ -336,7 +351,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     self.frame = rect;
     [view addSubview:self];
     
-    [self updateHUD:YES];
+    [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
     
     _transitioning = YES;
     
@@ -418,7 +433,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 #pragma mark - Callbacks
 
 - (void)tapped:(UITapGestureRecognizer *)t {
-    if (CGRectContainsPoint(self.HUDView.frame, [t locationInView:self])) {
+    if (CGRectContainsPoint(self.contentView.bounds, [t locationInView:self.contentView])) {
         if (self.tapOnHUDViewBlock) {
             self.tapOnHUDViewBlock(self);
         }
@@ -445,7 +460,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [UIView setAnimationDuration:duration];
     
     self.frame = frame;
-    [self updateHUD:YES];
+    [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
     
     [UIView commitAnimations];
 }
@@ -454,7 +469,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (self.targetView && !CGRectEqualToRect(self.bounds, self.targetView.bounds)) {
         [UIView animateWithDuration:(iPad ? 0.4 : 0.3) delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
             self.frame = [self fullFrameInView:self.targetView];
-            [self updateHUD:YES];
+            [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
         } completion:nil];
     }
 }
@@ -468,7 +483,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
 }
 
-#pragma mark - Getters & Setters
+#pragma mark - Getters
 
 - (BOOL)isVisible {
     return (self.superview != nil);
@@ -522,19 +537,22 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             _HUDView.motionEffects = @[x, y];
         }
         
-        _HUDView.layer.cornerRadius = 10.0f;
-        _HUDView.layer.masksToBounds = YES;
+        [self applyCornerRadius];
         
         [self addSubview:_HUDView];
         
         if (self.indicatorView) {
-            [self.HUDView addSubview:self.indicatorView];
+            [self.contentView addSubview:self.indicatorView];
         }
         
-        [self.HUDView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
+        [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
     }
     
-    iOS8ex(return ((UIVisualEffectView *)_HUDView).contentView;, return _HUDView;);
+    return _HUDView;
+}
+
+- (UIView *)contentView {
+    iOS8ex(return ((UIVisualEffectView *)self.HUDView).contentView;, return self.HUDView;);
 }
 
 - (UILabel *)textLabel {
@@ -548,7 +566,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [_textLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
         
-        [self.HUDView addSubview:_textLabel];
+        [self.contentView addSubview:_textLabel];
     }
     
     return _textLabel;
@@ -556,10 +574,22 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 - (JGProgressHUDAnimation *)animation {
     if (!_animation) {
-       self.animation = [JGProgressHUDFadeAnimation animation];
+        self.animation = [JGProgressHUDFadeAnimation animation];
     }
     
     return _animation;
+}
+
+#pragma mark - Setters
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    if (self.cornerRadius == cornerRadius) {
+        return;
+    }
+    
+    _cornerRadius = cornerRadius;
+    
+    [self applyCornerRadius];
 }
 
 - (void)setAnimation:(JGProgressHUDAnimation *)animation {
@@ -580,7 +610,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     
     _position = position;
-    [self updateHUD:NO];
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
 }
 
 - (void)setSquare:(BOOL)square {
@@ -590,7 +620,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _square = square;
     
-    [self updateHUD:NO];
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
 }
 
 - (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
@@ -602,10 +632,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     _indicatorView = indicatorView;
     
     if (self.indicatorView) {
-        [self.HUDView addSubview:self.indicatorView];
+        [self.contentView addSubview:self.indicatorView];
     }
     
-    [self updateHUD:YES];
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:NO];
 }
 
 - (void)setMarginInsets:(UIEdgeInsets)marginInsets {
@@ -615,7 +645,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _marginInsets = marginInsets;
     
-    [self updateHUD:NO];
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
 }
 
 - (void)setContentInsets:(UIEdgeInsets)contentInsets {
@@ -625,7 +655,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _contentInsets = contentInsets;
     
-    [self updateHUD:NO];
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
 }
 
 - (void)setProgress:(float)progress {
@@ -664,7 +694,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == self.textLabel) {
-        [self updateHUD:NO];
+        [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

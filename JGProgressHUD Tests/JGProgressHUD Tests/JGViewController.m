@@ -68,15 +68,10 @@
     }
     
     if (_shadow) {
-        __unused UIView *h = HUD.HUDView; //Forces the _HUDView to become available
-        
-        UIView *HUDView = HUD->_HUDView;
-        
-        HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
-        HUDView.layer.shadowOffset = CGSizeZero;
-        HUDView.layer.shadowOpacity = 0.4f;
-        HUDView.layer.shadowRadius = 8.0f;
-        HUDView.layer.masksToBounds = NO;
+        HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+        HUD.HUDView.layer.shadowOffset = CGSizeZero;
+        HUD.HUDView.layer.shadowOpacity = 0.4f;
+        HUD.HUDView.layer.shadowRadius = 8.0f;
     }
     
     HUD.delegate = self;
@@ -143,15 +138,12 @@
             
             an.duration = 0.75f;
             
-            UIView *HUDView = h->_HUDView;
+            h.HUDView.layer.shadowColor = [UIColor redColor].CGColor;
+            h.HUDView.layer.shadowOffset = CGSizeZero;
+            h.HUDView.layer.shadowOpacity = 0.0f;
+            h.HUDView.layer.shadowRadius = 8.0f;
             
-            HUDView.layer.shadowColor = [UIColor redColor].CGColor;
-            HUDView.layer.shadowOffset = CGSizeZero;
-            HUDView.layer.shadowOpacity = 0.0f;
-            HUDView.layer.shadowRadius = 8.0f;
-            HUDView.layer.masksToBounds = NO;
-            
-            [HUDView.layer addAnimation:an forKey:@"glow"];
+            [h.HUDView.layer addAnimation:an forKey:@"glow"];
             
             __weak __typeof(h) wH = h;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -161,7 +153,7 @@
                     
                     sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:sH.style];
                     sH.textLabel.text = @"Loading very long...";
-                    [sH->_HUDView.layer removeAnimationForKey:@"glow"];
+                    [h.HUDView.layer removeAnimationForKey:@"glow"];
                 }
             });
         }
@@ -172,7 +164,7 @@
             confirmationAsked = NO;
             h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:h.style];
             h.textLabel.text = @"Loading very long...";
-            [h->_HUDView.layer removeAnimationForKey:@"glow"];
+            [h.HUDView.layer removeAnimationForKey:@"glow"];
         }
     };
     
@@ -337,7 +329,7 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Style";
             
-            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Extra Light", @"Light", @"Drak"]];
+            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Extra Light", @"Light", @"Dark"]];
             segment.selectedSegmentIndex = _style;
             [segment addTarget:self action:@selector(setHUDStyle:) forControlEvents:UIControlEventValueChanged];
             

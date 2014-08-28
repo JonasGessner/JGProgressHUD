@@ -1,35 +1,29 @@
 JGProgressHUD
 =============
 
-Simple but powerful and modern progress HUD for iOS.
+Simple, powerful and modern progress HUD for iOS.<br>
+<p align="center">
+<img src="Presentation.png">
+</p>
 
-<img src="JGProgressHUD Tests/Screenshots/1.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/2.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/3.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/6.png" width="18.9%" height="18.9%"/>&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/5.png" width="18.9%" height="18.9%"/>
+Overview
+==========
 
-#####Current Version: 1.1.4
-
-Why use JGProgressHUD?
-==================
-####There already are so many other open source progress HUD components!
-The answer is simple. JGProgressHUD is always up to date, incorporates the newest features os iOS while retaining backward compatibility. It is implemented correctly unlike many other HUD components and it offers the widest range of customization while still being extremely simple to use.
-
-<b>The ultimate progress HUD: JGProgressHUD</b><br>
+<b>The ultimate progress HUD for iOS has arrived: JGProgressHUD!</b><br>
 • Super simple to implement.<br>
 • Feature-rich.<br>
 • Easy extensibility and customization (custom animations, indicator views and more).<br>
-• Up to date and modern, example: The HUD is Blurred on iOS 8, and has a parallax effect on iOS >= 7<br>
+• Up to date and modern, example: Blurred HUD (iOS 8), parallax effect (iOS 7).<br>
 • Backward compatibility to iOS 5.<br>
 • Well documented.<br>
 • Detects and repositions when Keyboards appear/disappear.<br>
 • And most importantly, it looks good!<br>
-<br><br>
+<br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
+<br>
+#####Current Version: 1.2
 
-Overview
-==========
+##Customization:
 
 ###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
@@ -89,23 +83,32 @@ Add this to your `Podfile`:
 ```
 pod 'JGProgressHUD'
 ```
-<p>
+<br>
 OR:
-<p>
+<br><br>
 <b>As static library:</b><br>
 Ideally you should use JGProgressHUD as a static library:<br>
 Drag the `JGProgressHUD.xcodeproj` file into your Xcode project. Next, add `JGProgressHUD` and `JGProgressHUD Resources` as Target Dependency in your project's "Build Phases". Then add libJGProgressHUD.a in "Link Binary With Libraries". From the `JGProgressHUD.xcodeproj`'s Products Directory drag the `JGProgressHUD Resources.bundle` into your project's "Copy Bundle Resources". Finally, make sure you have set the `-ObjC` flag in Other Linker Flags.<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
-<p>
+<br><br>
 OR:
-<p>
+<br><br>
 <b>Using source files:</b><br>
 Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> to your project.
 <br><br>
 After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h`.
-<p>
+<br><br>
 ####RubyMotion
 An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
+
+Screenshots
+============
+<p align="center">
+<img src="JGProgressHUD Tests/Screenshots/1.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/3.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/6.png" width="24%">&nbsp;
+<img src="JGProgressHUD Tests/Screenshots/5.png" width="24%">
+</p>
 
 License
 ==========

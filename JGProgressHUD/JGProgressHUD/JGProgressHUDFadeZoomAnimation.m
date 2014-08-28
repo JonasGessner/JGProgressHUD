@@ -29,7 +29,7 @@
     
     //Prepare the HUD
     self.progressHUD.alpha = 0.0f;
-    self.progressHUD->_HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+    self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
     
     NSTimeInterval totalDuration = self.expandAnimationDuaration+self.shrinkAnimationDuaration;
     
@@ -43,10 +43,10 @@
     } completion:nil];
     
     [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.progressHUD->_HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
+        self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.progressHUD->_HUDView.transform = CGAffineTransformIdentity;
+            self.progressHUD.HUDView.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
             [self animationFinished];
         }];
@@ -66,13 +66,13 @@
     } completion:nil];
     
     [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.progressHUD->_HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
+        self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.progressHUD->_HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+            self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         } completion:^(BOOL finished) {
             //HUD is now hidden, restore the transform
-            self.progressHUD->_HUDView.transform = CGAffineTransformIdentity;
+            self.progressHUD.HUDView.transform = CGAffineTransformIdentity;
             
             //Alway call this last
             [self animationFinished];
