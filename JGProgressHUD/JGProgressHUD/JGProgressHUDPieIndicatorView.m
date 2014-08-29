@@ -14,14 +14,16 @@
 
 @property (nonatomic, weak) UIColor *color;
 
+@property (nonatomic, weak) UIColor *fillColor;
+
 @end
 
 @implementation JGProgressHUDPieIndicatorLayer
 
-@dynamic progress, color;
+@dynamic progress, color, fillColor;
 
 + (BOOL)needsDisplayForKey:(NSString *)key {
-    return ([key isEqualToString:@"progress"] || [key isEqualToString:@"color"] || [super needsDisplayForKey:key]);
+    return ([key isEqualToString:@"progress"] || [key isEqualToString:@"color"] || [key isEqualToString:@"fillColor"] || [super needsDisplayForKey:key]);
 }
 
 - (id <CAAction>)actionForKey:(NSString *)key {
@@ -46,13 +48,21 @@
     CGFloat lineWidth = 2.0f;
     CGFloat radius = floorf(MIN(rect.size.width, rect.size.height) / 2.0f) -lineWidth;
     
-    [self.color setStroke];
-    
-    //Border
+    //Border && Fill
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0f endAngle:2*M_PI clockwise:NO];
     
     [borderPath setLineWidth:lineWidth];
+    
+    if (self.fillColor) {
+        [self.fillColor setFill];
+        
+        [borderPath fill];
+    }
+    
+    [self.color set];
+    
     [borderPath stroke];
+    
     
     //Progress
     if (self.progress) {
@@ -87,9 +97,16 @@
         
         if (style == JGProgressHUDStyleDark) {
             self.color = [UIColor whiteColor];
+            self.fillColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
         }
         else {
             self.color = [UIColor blackColor];
+            if (style == JGProgressHUDStyleLight) {
+                self.fillColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
+            }
+            else {
+                self.fillColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+            }
         }
     }
     
@@ -121,8 +138,18 @@
     [(JGProgressHUDPieIndicatorLayer *)self.layer setColor:self.color];
 }
 
+- (void)setFillColor:(UIColor *)fillColor {
+    if ([fillColor isEqual:self.fillColor]) {
+        return;
+    }
+    
+    _fillColor = fillColor;
+    
+    [(JGProgressHUDPieIndicatorLayer *)self.layer setFillColor:self.fillColor];
+}
+
 - (void)setProgress:(float)progress animated:(BOOL)animated {
-    if (self.progress == progress) {
+    if (fequal(self.progress, progress)) {
         return;
     }
     

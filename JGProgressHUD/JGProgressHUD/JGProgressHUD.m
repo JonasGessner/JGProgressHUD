@@ -66,6 +66,7 @@ unavailable
 
 @synthesize HUDView = _HUDView;
 @synthesize textLabel = _textLabel;
+@synthesize detailTextLabel = _detailTextLabel;
 @synthesize indicatorView = _indicatorView;
 @synthesize animation = _animation;
 
@@ -213,30 +214,52 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     //Label size
     CGRect labelFrame = CGRectZero;
+    CGRect detailFrame = CGRectZero;
     
-    if (iOS7) {
-        NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
-        labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    }
-    else {
+    if (_textLabel) {
+        if (iOS7) {
+            NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
+            labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        }
+        else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
+            labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
 #pragma clang diagnostic pop
+        }
+        
+        labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
+        
+        if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
+            labelFrame.origin.y += 10.0f;
+        }
     }
     
-    labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
-    
-    if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
-        labelFrame.origin.y += 10.0f;
+    if (_detailTextLabel) {
+        if (iOS7) {
+            NSDictionary *attributes = @{NSFontAttributeName : self.detailTextLabel.font};
+            detailFrame.size = [self.detailTextLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        }
+        else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            detailFrame.size = [self.detailTextLabel.text sizeWithFont:self.detailTextLabel.font constrainedToSize:maxContentSize lineBreakMode:self.detailTextLabel.lineBreakMode];
+#pragma clang diagnostic pop
+        }
+        
+        detailFrame.origin.y = CGRectGetMaxY(labelFrame)+5.0f;
+        
+        if (!CGRectIsEmpty(detailFrame) && !CGRectIsEmpty(indicatorFrame) && CGRectIsEmpty(labelFrame)) {
+            detailFrame.origin.y += 5.0f;
+        }
     }
     
     //HUD size
     CGSize size = CGSizeZero;
     
-    CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, labelFrame.size.width)+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+    CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width))+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
     
-    CGFloat height = CGRectGetMaxY(labelFrame)+self.contentInsets.bottom;
+    CGFloat height = MAX(CGRectGetMaxY(labelFrame), MAX(CGRectGetMaxY(detailFrame), CGRectGetMaxY(indicatorFrame)))+self.contentInsets.bottom;
     
     if (self.square) {
         CGFloat uniSize = MAX(width, height);
@@ -244,10 +267,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         size.width = uniSize;
         size.height = uniSize;
         
-        CGFloat heightDelta = uniSize-height;
+        CGFloat heightDelta = (uniSize-height)/2.0f;
         
-        labelFrame.origin.y += heightDelta/2.0f;
-        indicatorFrame.origin.y += heightDelta/2.0f;
+        labelFrame.origin.y += heightDelta;
+        detailFrame.origin.y += heightDelta;
+        indicatorFrame.origin.y += heightDelta;
     }
     else {
         size.width = width;
@@ -258,6 +282,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     indicatorFrame.origin.x = center.x-indicatorFrame.size.width/2.0f;
     labelFrame.origin.x = center.x-labelFrame.size.width/2.0f;
+    detailFrame.origin.x = center.x-detailFrame.size.width/2.0f;
     
     void (^updates)(void) = ^{
         [self setHUDViewFrameCenterWithSize:size];
@@ -265,7 +290,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         if (animateIndicator) {
             self.indicatorView.frame = indicatorFrame;
         }
-        self.textLabel.frame = labelFrame;
+        
+        _textLabel.frame = labelFrame;
+        _detailTextLabel.frame = detailFrame;
     };
     
     if (!animateIndicator) {
@@ -273,7 +300,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     
     if (self.layoutChangeAnimationDuration > 0.0f && animated && !_transitioning) {
-        [UIView animateWithDuration:self.layoutChangeAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:updates completion:nil];
+        [UIView animateWithDuration:self.layoutChangeAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseInOut animations:updates completion:nil];
     }
     else {
         updates();
@@ -561,7 +588,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+        _textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
         _textLabel.numberOfLines = 0;
         [_textLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
@@ -570,6 +597,23 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     
     return _textLabel;
+}
+
+- (UILabel *)detailTextLabel {
+    if (!_detailTextLabel) {
+        _detailTextLabel = [[UILabel alloc] init];
+        _detailTextLabel.backgroundColor = [UIColor clearColor];
+        _detailTextLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
+        _detailTextLabel.textAlignment = NSTextAlignmentCenter;
+        _detailTextLabel.font = [UIFont systemFontOfSize:13.0f];
+        _detailTextLabel.numberOfLines = 0;
+        [_detailTextLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
+        [_detailTextLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
+        
+        [self.contentView addSubview:_detailTextLabel];
+    }
+    
+    return _detailTextLabel;
 }
 
 - (JGProgressHUDAnimation *)animation {
@@ -583,7 +627,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 #pragma mark - Setters
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    if (self.cornerRadius == cornerRadius) {
+    if (fequal(self.cornerRadius, cornerRadius)) {
         return;
     }
     
@@ -663,7 +707,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)setProgress:(float)progress animated:(BOOL)animated {
-    if (self.progress == progress) {
+    if (fequal(self.progress, progress)) {
         return;
     }
     
@@ -693,7 +737,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self.textLabel) {
+    if (object == _textLabel || object == _detailTextLabel) {
         [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
     }
     else {
@@ -706,6 +750,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     [_textLabel removeObserver:self forKeyPath:@"text"];
     [_textLabel removeObserver:self forKeyPath:@"font"];
+    
+    [_detailTextLabel removeObserver:self forKeyPath:@"text"];
+    [_detailTextLabel removeObserver:self forKeyPath:@"font"];
 }
 
 - (void)removeObservers {

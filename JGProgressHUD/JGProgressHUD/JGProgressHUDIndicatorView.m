@@ -7,6 +7,7 @@
 //  
 
 #import "JGProgressHUDIndicatorView.h"
+#import "JGProgressHUD.h"
 
 @implementation JGProgressHUDIndicatorView
 
@@ -42,7 +43,7 @@
 }
 
 - (void)setProgress:(float)progress animated:(BOOL)animated {
-    if (self.progress == progress) {
+    if (fequal(self.progress, progress)) {
         return;
     }
     

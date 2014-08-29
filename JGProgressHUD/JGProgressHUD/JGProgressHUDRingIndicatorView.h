@@ -19,14 +19,14 @@
 /**
  Background color of the ring.
  
- @b Default: black.
+ @b Default: Black for JGProgressHUDStyleDark, light gray otherwise.
  */
 @property (nonatomic, strong) UIColor *ringBackgroundColor;
 
 /**
  Progress color of the progress ring.
  
- @b Default: white.
+ @b Default: White for JGProgressHUDStyleDark, otherwise black.
  */
 @property (nonatomic, strong) UIColor *ringColor;
 
@@ -40,7 +40,7 @@
 /**
  Width of the ring.
  
- @b Default: 5.0
+ @b Default: 3.0.
  */
 @property (nonatomic, assign) CGFloat ringWidth;
 

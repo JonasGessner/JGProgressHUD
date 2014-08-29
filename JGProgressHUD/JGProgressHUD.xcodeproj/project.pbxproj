@@ -333,6 +333,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -349,6 +350,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -430,6 +432,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-Wfloat-equal";
 			};
 			name = Debug;
 		};
@@ -442,6 +445,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-Wfloat-equal";
 			};
 			name = Release;
 		};
@@ -455,6 +459,7 @@
 				6B60B24619A3B3C500ED1A4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6BC0186E197B2AA500DA4C49 /* Build configuration list for PBXProject "JGProgressHUD" */ = {
 			isa = XCConfigurationList;

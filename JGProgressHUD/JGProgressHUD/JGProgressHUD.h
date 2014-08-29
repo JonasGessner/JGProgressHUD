@@ -45,7 +45,6 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
     JGProgressHUDInteractionTypeBlockNoTouches
 };
 
-
 @class JGProgressHUD;
 
 @protocol JGProgressHUDDelegate <NSObject>
@@ -136,6 +135,11 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
  The label used to present text on the HUD. set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
  */
 @property (nonatomic, strong, readonly) UILabel *textLabel;
+
+/**
+ The label used to present detail text on the HUD. set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
+ */
+@property (nonatomic, strong, readonly) UILabel *detailTextLabel;
 
 /**
  The indicator view. You can assign a custom subclass of JGProgressHUDIndicatorView to this property or one of the default indicator views (if you do so, you should assign it before showing the HUD).
@@ -335,3 +339,11 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 @property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;
 
 @end
+
+
+/**
+ Macro for safe floating point comparison (for internal use in JGProgressHUD).
+ */
+#ifndef fequal
+#define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
+#endif

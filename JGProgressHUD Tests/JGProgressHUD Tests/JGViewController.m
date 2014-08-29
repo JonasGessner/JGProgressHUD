@@ -79,7 +79,7 @@
     return HUD;
 }
 
-- (void)success {
+- (void)showSuccessHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Success!";
@@ -92,7 +92,7 @@
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)error {
+- (void)showErrorHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Error!";
@@ -105,7 +105,7 @@
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)simple {
+- (void)showSimpleHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     [HUD showInView:self.navigationController.view];
@@ -113,7 +113,7 @@
     [HUD dismissAfterDelay:3.0];
 }
 
-- (void)tapToCancel {
+- (void)showCancellableHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Loading very long...";
@@ -173,7 +173,7 @@
     [HUD dismissAfterDelay:120.0];
 }
 
-- (void)withText {
+- (void)showNormalHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Loading...";
@@ -192,68 +192,70 @@
     
     HUD.marginInsets = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
     
-    [HUD dismissAfterDelay:3];
+    [HUD dismissAfterDelay:3.0];
 }
 
-- (void)progress {
+- (void)showPieHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
     
-    HUD.textLabel.text = @"Uploading...";
-    [HUD showInView:self.navigationController.view];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.25 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.5 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.75 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:1.0 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD dismiss];
-    });
-}
-
-- (void)zoomAnimationWithRing {
-    JGProgressHUD *HUD = self.prototypeHUD;
-    
-    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.detailTextLabel.text = @"0% Complete";
     
     HUD.textLabel.text = @"Downloading...";
     [HUD showInView:self.navigationController.view];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.25 animated:YES];
-    });
+    HUD.layoutChangeAnimationDuration = 0.0;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.5 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:0.75 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD setProgress:1.0 animated:YES];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [HUD dismiss];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self incrementHUD:HUD progress:0];
     });
 }
 
-- (void)textOnly {
+- (void)incrementHUD:(JGProgressHUD *)HUD progress:(int)progress {
+    progress += 1;
+    
+    [HUD setProgress:progress/100.0f animated:NO];
+    HUD.detailTextLabel.text = [NSString stringWithFormat:@"%i%% Complete", progress];
+    
+    if (progress == 100) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            HUD.textLabel.text = @"Success";
+            HUD.detailTextLabel.text = nil;
+            
+            HUD.layoutChangeAnimationDuration = 0.3;
+            HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [HUD dismiss];
+        });
+    }
+    else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self incrementHUD:HUD progress:progress];
+        });
+    }
+}
+
+- (void)showRingHUD {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
+    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    
+    HUD.detailTextLabel.text = @"0% Complete";
+    
+    HUD.textLabel.text = @"Downloading...";
+    [HUD showInView:self.navigationController.view];
+    
+    HUD.layoutChangeAnimationDuration = 0.0;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self incrementHUD:HUD progress:0];
+    });
+}
+
+- (void)showTextHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.indicatorView = nil;
@@ -269,7 +271,7 @@
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:2.0f];
+    [HUD dismissAfterDelay:2.0];
 }
 
 - (void)setHUDStyle:(UISegmentedControl *)c {
@@ -411,10 +413,10 @@
                 cell.textLabel.text = @"Activity Indicator & Text, Transform";
                 break;
             case 2:
-                cell.textLabel.text = @"Pie Progress";
+                cell.textLabel.text = @"Pie Progress, Text & Detail Text";
                 break;
             case 3:
-                cell.textLabel.text = @"Ring Progress";
+                cell.textLabel.text = @"Ring Progress, Text & Detail Text";
                 break;
             case 4:
                 cell.textLabel.text = @"Text Only, Bottom Position";
@@ -444,28 +446,28 @@
     
     switch (indexPath.row) {
         case 0:
-            [self simple];
+            [self showSimpleHUD];
             break;
         case 1:
-            [self withText];
+            [self showNormalHUD];
             break;
         case 2:
-            [self progress];
+            [self showPieHUD];
             break;
         case 3:
-            [self zoomAnimationWithRing];
+            [self showRingHUD];
             break;
         case 4:
-            [self textOnly];
+            [self showTextHUD];
             break;
         case 5:
-            [self success];
+            [self showSuccessHUD];
             break;
         case 6:
-            [self error];
+            [self showErrorHUD];
             break;
         case 7:
-            [self tapToCancel];
+            [self showCancellableHUD];
             break;
     }
 }

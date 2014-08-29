@@ -19,8 +19,15 @@
 /**
  Tint color of the Pie. 
  
- @b Default: white.
+ @b Default: White for JGProgressHUDStyleDark, otherwise black.
  */
 @property (nonatomic, strong) UIColor *color;
+
+/**
+ The background fill color inside the pie.
+ 
+ @b Default: Dark gray for JGProgressHUDStyleDark, otherwise light gray.
+ */
+@property (nonatomic, strong) UIColor *fillColor;
 
 @end

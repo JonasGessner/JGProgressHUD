@@ -98,7 +98,12 @@
         }
         else {
             self.ringColor = [UIColor blackColor];
-            self.ringBackgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
+            if (style == JGProgressHUDStyleLight) {
+                self.ringBackgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
+            }
+            else {
+                self.ringBackgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+            }
         }
     }
     
@@ -114,7 +119,7 @@
         
         self.ringColor = [UIColor whiteColor];
         self.ringBackgroundColor = [UIColor blackColor];
-        self.ringWidth = 5.0f;
+        self.ringWidth = 3.0f;
     }
     
     return self;
@@ -153,7 +158,7 @@
 }
 
 - (void)setRingWidth:(CGFloat)ringWidth {
-    if (ringWidth == self.ringWidth) {
+    if (fequal(ringWidth, self.ringWidth)) {
         return;
     }
     
@@ -163,7 +168,7 @@
 }
 
 - (void)setProgress:(float)progress animated:(BOOL)animated {
-    if (self.progress == progress) {
+    if (fequal(self.progress, progress)) {
         return;
     }
     
