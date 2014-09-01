@@ -87,6 +87,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 }
 
++ (CGRect)currentKeyboardFrame {
+    return keyboardFrame;
+}
+
 + (void)load {
     [super load];
     
@@ -308,7 +312,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (CGRect)fullFrameInView:(UIView *)view {
-    CGRect _keyboardFrame = [view convertRect:keyboardFrame fromView:nil];
+    CGRect _keyboardFrame = [view convertRect:[[self class] currentKeyboardFrame] fromView:nil];
     CGRect frame = view.bounds;
     
     if (!CGRectIsEmpty(_keyboardFrame) && CGRectIntersectsRect(frame, _keyboardFrame)) {
