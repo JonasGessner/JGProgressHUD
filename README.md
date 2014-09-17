@@ -21,7 +21,7 @@ Overview
 <br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.1
+#####Current Version: 1.2.2
 
 ##Customization:
 
