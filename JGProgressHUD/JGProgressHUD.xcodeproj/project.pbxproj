@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B29118E19CA0D4500E93DF9 /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B29118C19CA0D4500E93DF9 /* jg_hud_error@3x.png */; };
+		6B29118F19CA0D4500E93DF9 /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B29118D19CA0D4500E93DF9 /* jg_hud_success@3x.png */; };
 		6B60B25419A3B78B00ED1A4E /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B60B25319A3B78B00ED1A4E /* JGProgressHUDSuccessIndicatorView.m */; };
 		6B60B25719A3BC3C00ED1A4E /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B60B25619A3BC3C00ED1A4E /* JGProgressHUDErrorIndicatorView.m */; };
 		6B60B27519A3C34D00ED1A4E /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B60B27119A3C34D00ED1A4E /* jg_hud_error.png */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B29118C19CA0D4500E93DF9 /* jg_hud_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jg_hud_error@3x.png"; path = "JGProgressHUD/JGProgressHUD Resources.bundle/jg_hud_error@3x.png"; sourceTree = SOURCE_ROOT; };
+		6B29118D19CA0D4500E93DF9 /* jg_hud_success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "jg_hud_success@3x.png"; path = "JGProgressHUD/JGProgressHUD Resources.bundle/jg_hud_success@3x.png"; sourceTree = SOURCE_ROOT; };
 		6B334B46197DB7940010087F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6B60B24019A3B3C500ED1A4E /* JGProgressHUD Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JGProgressHUD Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B60B25219A3B78B00ED1A4E /* JGProgressHUDSuccessIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDSuccessIndicatorView.h; sourceTree = "<group>"; };
@@ -96,8 +100,10 @@
 			children = (
 				6B60B27119A3C34D00ED1A4E /* jg_hud_error.png */,
 				6B60B27219A3C34D00ED1A4E /* jg_hud_error@2x.png */,
+				6B29118C19CA0D4500E93DF9 /* jg_hud_error@3x.png */,
 				6B60B27319A3C34D00ED1A4E /* jg_hud_success.png */,
 				6B60B27419A3C34D00ED1A4E /* jg_hud_success@2x.png */,
+				6B29118D19CA0D4500E93DF9 /* jg_hud_success@3x.png */,
 			);
 			path = Resources;
 			sourceTree = SOURCE_ROOT;
@@ -279,10 +285,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B60B27619A3C34D00ED1A4E /* jg_hud_error@2x.png in Resources */,
 				6B60B27519A3C34D00ED1A4E /* jg_hud_error.png in Resources */,
+				6B60B27619A3C34D00ED1A4E /* jg_hud_error@2x.png in Resources */,
+				6B29118E19CA0D4500E93DF9 /* jg_hud_error@3x.png in Resources */,
 				6B60B27719A3C34D00ED1A4E /* jg_hud_success.png in Resources */,
 				6B60B27819A3C34D00ED1A4E /* jg_hud_success@2x.png in Resources */,
+				6B29118F19CA0D4500E93DF9 /* jg_hud_success@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,28 +432,118 @@
 		6BC01897197B2AA600DA4C49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DSTROOT = /tmp/JGProgressHUD.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD-Prefix.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;
 				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = "-Wfloat-equal";
+				WARNING_LDFLAGS = (
+					"-Weverything",
+					"-Wcast-align",
+					"-Wmissing-declarations",
+					"-Wmissing-prototypes",
+					"-Woverlength-strings",
+					"-Wshadow",
+					"-Wundeclared-selector",
+					"-Wunreachable-code",
+					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-documentation-unknown-command",
+					"-Wno-packed",
+				);
 			};
 			name = Debug;
 		};
 		6BC01898197B2AA600DA4C49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DSTROOT = /tmp/JGProgressHUD.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD-Prefix.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = include;
 				SKIP_INSTALL = YES;
 				WARNING_CFLAGS = "-Wfloat-equal";
+				WARNING_LDFLAGS = (
+					"-Weverything",
+					"-Wcast-align",
+					"-Wmissing-declarations",
+					"-Wmissing-prototypes",
+					"-Woverlength-strings",
+					"-Wshadow",
+					"-Wundeclared-selector",
+					"-Wunreachable-code",
+					"-Wformat=2",
+					"-Woverriding-method-mismatch",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-unused-parameter",
+					"-Wno-covered-switch-default",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-switch-enum",
+					"-Wno-implicit-retain-self",
+					"-Wno-vla",
+					"-Wno-pedantic",
+					"-Wno-explicit-ownership-type",
+					"-Wno-bad-function-cast",
+					"-Wno-documentation-unknown-command",
+					"-Wno-packed",
+				);
 			};
 			name = Release;
 		};

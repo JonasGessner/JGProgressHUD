@@ -13,7 +13,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect __unused)frame {
     return [self init];
 }
 
@@ -42,7 +42,7 @@
     [self setProgress:progress animated:NO];
 }
 
-- (void)setProgress:(float)progress animated:(BOOL)animated {
+- (void)setProgress:(float)progress animated:(BOOL __unused)animated {
     if (fequal(self.progress, progress)) {
         return;
     }

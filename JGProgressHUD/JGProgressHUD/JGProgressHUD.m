@@ -105,7 +105,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     return [self initWithStyle:JGProgressHUDStyleExtraLight];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect __unused)frame {
     return [self initWithStyle:JGProgressHUDStyleExtraLight];
 }
 
@@ -483,7 +483,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
-    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+    UIViewAnimationCurve curve = (UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
     
     [UIView beginAnimations:@"de.j-gessner.jgprogresshud.keyboardframechange" context:NULL];
     [UIView setAnimationCurve:curve];
@@ -594,8 +594,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
         _textLabel.numberOfLines = 0;
-        [_textLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
-        [_textLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
+        [_textLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
+        [_textLabel addObserver:self forKeyPath:@"font" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         
         [self.contentView addSubview:_textLabel];
     }
@@ -611,8 +611,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _detailTextLabel.textAlignment = NSTextAlignmentCenter;
         _detailTextLabel.font = [UIFont systemFontOfSize:13.0f];
         _detailTextLabel.numberOfLines = 0;
-        [_detailTextLabel addObserver:self forKeyPath:@"text" options:kNilOptions context:NULL];
-        [_detailTextLabel addObserver:self forKeyPath:@"font" options:kNilOptions context:NULL];
+        [_detailTextLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
+        [_detailTextLabel addObserver:self forKeyPath:@"font" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         
         [self.contentView addSubview:_detailTextLabel];
     }

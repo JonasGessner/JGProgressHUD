@@ -79,8 +79,8 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 
 /**
  A HUD view to indicate progress, success, error, warnings or other notifications to the user.
- @Note Remember to call every method from the main thread! UIKit = always main thread!
- @Attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
+ @note Remember to call every method from the main thread! UIKit = always main thread!
+ @attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
  */
 @interface JGProgressHUD : UIView
 
@@ -110,14 +110,14 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 /**
  A block to be invoked when the HUD view is tapped.
  
- @Note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockTouchesOnHUDView or JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
+ @note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockTouchesOnHUDView or JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
  */
 @property (nonatomic, copy) void (^tapOnHUDViewBlock)(JGProgressHUD *HUD);
 
 /**
  A block to be invoked when the area outside of the HUD view is tapped.
  
- @Note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
+ @note The interaction type of the HUD must be JGProgressHUDInteractionTypeBlockNoTouches, if not this block won't be fired.
  */
 @property (nonatomic, copy) void (^tapOutsideBlock)(JGProgressHUD *HUD);
 
@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 /**
  Shows the HUD. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
- @param If th HUD should show with an animation.
+ @param animated If th HUD should show with an animation.
  */
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
 
@@ -265,7 +265,7 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in.
  @param rect The rect allocated in @c view for displaying the HUD.
- @param If th HUD should show with an animation.
+ @param animated If th HUD should show with an animation.
  */
 - (void)showInRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
 
@@ -329,11 +329,11 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 @interface JGProgressHUD (Deprecated)
 
 /**
- @Warning Deprecated. Use @c indicatorView.
+ @warning Deprecated. Use @c indicatorView.
  */
 @property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView DEPRECATED_ATTRIBUTE;
 /**
- @Warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
+ @warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
  @sa indicatorView.
  */
 @property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;

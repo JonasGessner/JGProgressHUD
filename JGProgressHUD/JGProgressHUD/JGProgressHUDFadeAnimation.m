@@ -39,7 +39,7 @@
     //Perform the presentation animation
     [UIView animateWithDuration:self.duration delay:0.0 options:self.animationOptions animations:^{
         self.progressHUD.alpha = 1.0f;
-    } completion:^(BOOL finished) {
+    } completion:^(BOOL __unused finished) {
         [self animationFinished];
     }];
 }
@@ -52,7 +52,7 @@
     //Perform the dismissal animation
     [UIView animateWithDuration:self.duration delay:0.0 options:self.animationOptions animations:^{
         self.progressHUD.alpha = 0.0f;
-    } completion:^(BOOL finished) {
+    } completion:^(BOOL __unused finished) {
         [self animationFinished];
     }];
 }

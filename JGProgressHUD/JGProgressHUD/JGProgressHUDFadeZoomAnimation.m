@@ -38,16 +38,16 @@
     
     
     //Now animate the presentation
-    [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
+    [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
         self.progressHUD.alpha = 1.0f;
     } completion:nil];
     
-    [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    } completion:^(BOOL __unused _finished) {
+        [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
             self.progressHUD.HUDView.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished) {
+        } completion:^(BOOL __unused __finished) {
             [self animationFinished];
         }];
     }];
@@ -61,16 +61,16 @@
     NSTimeInterval totalDuration = self.expandAnimationDuaration+self.shrinkAnimationDuaration;
     
     //Animate the dismissal
-    [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
+    [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
         self.progressHUD.alpha = 0.0f;
     } completion:nil];
     
-    [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    [UIView animateWithDuration:self.expandAnimationDuaration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionCurveEaseIn | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(self.expandScale.width, self.expandScale.height);
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState animations:^{
+    } completion:^(BOOL __unused _finished) {
+        [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
             self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-        } completion:^(BOOL finished) {
+        } completion:^(BOOL __unused __finished) {
             //HUD is now hidden, restore the transform
             self.progressHUD.HUDView.transform = CGAffineTransformIdentity;
             

@@ -10,7 +10,7 @@
 
 @implementation JGProgressHUDErrorIndicatorView
 
-- (instancetype)initWithContentView:(UIView *)contentView {
+- (instancetype)initWithContentView:(UIView *__unused)contentView {
     NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"JGProgressHUD Resources" ofType:@"bundle"];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[bundlePath stringByAppendingPathComponent:@"jg_hud_error.png"]]];
