@@ -52,6 +52,8 @@ unavailable
     
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
+    
+    JGProgressHUDIndicatorView *_indicatorViewAfterTransitioning;
 }
 
 @end
@@ -338,7 +340,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _transitioning = NO;
     
-    if (_updateAfterAppear) {
+    if (_indicatorViewAfterTransitioning) {
+        self.indicatorView = _indicatorViewAfterTransitioning;
+        _indicatorViewAfterTransitioning = nil;
+        _updateAfterAppear = NO;
+    }
+    else if (_updateAfterAppear) {
         [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
         _updateAfterAppear = NO;
     }
@@ -673,6 +680,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 - (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
     if (self.indicatorView == indicatorView) {
+        return;
+    }
+    
+    if (_transitioning) {
+        _indicatorViewAfterTransitioning = indicatorView;
         return;
     }
     
