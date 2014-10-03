@@ -542,7 +542,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
                    effect = UIBlurEffectStyleExtraLight;
                }
                
-               UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:effect];
+               UIBlurEffect *blurEffect = self.style != JGProgressHUDStyleNone ? [UIBlurEffect effectWithStyle:effect] : nil;
                
                _HUDView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
                ,
@@ -553,6 +553,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
                }
                else if (self.style == JGProgressHUDStyleLight) {
                    _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.75f];
+               }
+               else if (self.style == JGProgressHUDStyleNone) {
+                   _HUDView.backgroundColor = [UIColor clearColor];
                }
                else {
                    _HUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
