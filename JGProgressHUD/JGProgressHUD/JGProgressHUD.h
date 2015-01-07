@@ -33,7 +33,8 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDPosition) {
 typedef NS_ENUM(NSUInteger, JGProgressHUDStyle) {
     JGProgressHUDStyleExtraLight = 0,
     JGProgressHUDStyleLight,
-    JGProgressHUDStyleDark
+    JGProgressHUDStyleDark,
+    JGProgressHUDStyleNone
 };
 
 /**
