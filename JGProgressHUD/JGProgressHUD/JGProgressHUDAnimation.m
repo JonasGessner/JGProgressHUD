@@ -7,6 +7,7 @@
 //  
 
 #import "JGProgressHUDAnimation.h"
+#import "JGProgressHUD.h"
 
 @interface JGProgressHUD (Private)
 

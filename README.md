@@ -21,7 +21,7 @@ Overview
 <br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.2
+#####Current Version: 1.2.3
 
 ##Customization:
 
@@ -52,7 +52,7 @@ To dim the content behind the HUD set your dim color as `backgroundColor` of you
 Requirements
 =================
 
-• Base SDK of iOS 7 or higher.<br>
+• Base SDK of iOS 8 or higher.<br>
 • Deployment target of iOS 5 or higher.<br>
 • ARC.
 

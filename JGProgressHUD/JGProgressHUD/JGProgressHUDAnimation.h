@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //  
 
-#import "JGProgressHUD.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@class JGProgressHUD;
 
 /**
  You may subclass this class to create a custom progress indicator view.

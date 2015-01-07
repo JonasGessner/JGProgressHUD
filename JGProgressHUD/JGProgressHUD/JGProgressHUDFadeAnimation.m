@@ -7,6 +7,7 @@
 //  
 
 #import "JGProgressHUDFadeAnimation.h"
+#import "JGProgressHUD.h"
 
 @implementation JGProgressHUDFadeAnimation
 
