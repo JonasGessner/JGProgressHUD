@@ -105,7 +105,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (self) {
         _style = style;
-        
+		_identifier = [[NSProcessInfo processInfo] globallyUniqueString];
+
         self.hidden = YES;
         self.backgroundColor = [UIColor clearColor];
         

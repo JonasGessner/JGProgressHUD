@@ -112,6 +112,12 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 + (instancetype)progressHUDWithStyle:(JGProgressHUDStyle)style;
 
 /**
+ *  The unique hud identifier.
+ *	@note Identify when showing multiple huds.
+ */
+@property (nonatomic, copy) NSString *identifier;
+
+/**
  The view in which the HUD is presented.
  */
 @property (nonatomic, weak, readonly) UIView *targetView;
