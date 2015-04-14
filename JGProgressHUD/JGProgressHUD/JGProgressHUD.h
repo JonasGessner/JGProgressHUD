@@ -341,21 +341,6 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 
 
 
-@interface JGProgressHUD (Deprecated)
-
-/**
- @warning Deprecated. Use @c indicatorView.
- */
-@property (nonatomic, strong) JGProgressHUDIndicatorView *progressIndicatorView DEPRECATED_ATTRIBUTE;
-/**
- @warning Deprecated this no longer has any effect. To show no indicator view set @c indicatorView to @c nil, otherwise assign an indicator view to @c indicatorView (By default @c indicatorView is @c JGProgressHUDIndeterminateIndicatorView).
- @sa indicatorView.
- */
-@property (nonatomic, assign) BOOL useProgressIndicatorView DEPRECATED_ATTRIBUTE;
-
-@end
-
-
 /**
  Macro for safe floating point comparison (for internal use in JGProgressHUD).
  */
