@@ -251,6 +251,13 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
 - (void)setProgress:(float)progress animated:(BOOL)animated;
 
 
+/**
+ Specify a minimum time that the HUD will be on-screen. Useful to prevent the HUD from flashing quickly on the screen when network operations complete more quickly than expected.
+ 
+ @b Default: 0.0.
+ */
+@property (nonatomic, assign) NSTimeInterval minimumDisplayTime;
+
 /////////////
 // Showing //
 /////////////

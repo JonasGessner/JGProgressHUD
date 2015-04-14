@@ -48,6 +48,8 @@ NS_INLINE CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
     
+    CFAbsoluteTime _displayTime;
+    
     JGProgressHUDIndicatorView *_indicatorViewAfterTransitioning;
 }
 
@@ -336,6 +338,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     self.hidden = NO;
     
     _transitioning = NO;
+    _displayTime = CFAbsoluteTimeGetCurrent();
     
     if (_indicatorViewAfterTransitioning) {
         self.indicatorView = _indicatorViewAfterTransitioning;
@@ -397,6 +400,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _transitioning = YES;
     
+    _displayTime = 0;
+    
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
     }
@@ -441,6 +446,15 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (self.targetView == nil) {
         return;
+    }
+    
+    if (self.minimumDisplayTime > 0 && _displayTime > 0) {
+        CFAbsoluteTime displayedTime = CFAbsoluteTimeGetCurrent() - _displayTime;
+        if (displayedTime < self.minimumDisplayTime) {
+            NSTimeInterval delay = self.minimumDisplayTime - displayedTime;
+            [self dismissAfterDelay:delay animated:animated];
+            return;
+        }
     }
     
     _transitioning = YES;
