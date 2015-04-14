@@ -48,7 +48,7 @@ NS_INLINE CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
     
-    CFAbsoluteTime _displayTime;
+    CFAbsoluteTime _displayTimestamp;
     
     JGProgressHUDIndicatorView *_indicatorViewAfterTransitioning;
 }
@@ -338,7 +338,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     self.hidden = NO;
     
     _transitioning = NO;
-    _displayTime = CFAbsoluteTimeGetCurrent();
+    _displayTimestamp = CFAbsoluteTimeGetCurrent(); //Correct timestamp to the current time for animated presentations
     
     if (_indicatorViewAfterTransitioning) {
         self.indicatorView = _indicatorViewAfterTransitioning;
@@ -400,7 +400,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     _transitioning = YES;
     
-    _displayTime = 0;
+    _displayTimestamp = CFAbsoluteTimeGetCurrent();
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
@@ -448,11 +448,14 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         return;
     }
     
-    if (self.minimumDisplayTime > 0 && _displayTime > 0) {
-        CFAbsoluteTime displayedTime = CFAbsoluteTimeGetCurrent() - _displayTime;
+    if (self.minimumDisplayTime > 0.0 && _displayTimestamp > 0.0) {
+        CFAbsoluteTime displayedTime = CFAbsoluteTimeGetCurrent()-_displayTimestamp;
+        
         if (displayedTime < self.minimumDisplayTime) {
-            NSTimeInterval delay = self.minimumDisplayTime - displayedTime;
-            [self dismissAfterDelay:delay animated:animated];
+            NSTimeInterval delta = self.minimumDisplayTime-displayedTime;
+            
+            [self dismissAfterDelay:delta animated:animated];
+            
             return;
         }
     }
