@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Hardtack. All rights reserved.
 //
 
-#import "JGProgressHUD.h"
+#import "JGProgressHUD-Defines.h"
 #import "JGProgressHUDIndicatorView.h"
 
 @interface JGProgressHUDPieIndicatorView : JGProgressHUDIndicatorView

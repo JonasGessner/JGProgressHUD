@@ -7,13 +7,19 @@
 //
 
 #import "JGProgressHUDSuccessIndicatorView.h"
+#import "JGProgressHUD.h"
 
 @implementation JGProgressHUDSuccessIndicatorView
 
-- (instancetype)initWithContentView:(UIView * __unused)contentView {
-    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"JGProgressHUD Resources" ofType:@"bundle"];
+- (instancetype)initWithContentView:(UIView *__unused)contentView {
+    NSBundle *fwBundle = [NSBundle bundleForClass:[JGProgressHUD class]];
+    if ([fwBundle isEqual:[NSBundle mainBundle]]) {
+        fwBundle = nil;
+    }
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[bundlePath stringByAppendingPathComponent:@"jg_hud_success.png"]]];
+    NSString *imgPath = [(fwBundle ? : [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"JGProgressHUD Resources" ofType:@"bundle"]]) pathForResource:@"jg_hud_success" ofType:@"png"];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgPath]];
     
     self = [super initWithContentView:imageView];
     

@@ -21,7 +21,7 @@ Overview
 <br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.4
+#####Current Version: 1.2.5
 
 ##Customization:
 
@@ -88,20 +88,28 @@ pod 'JGProgressHUD'
 <br>
 OR:
 <br><br>
-<b>Static Library:</b><br>
+<b>Framework (iOS >= 8.0 only):</b><br>
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
-2. Add `JGProgressHUD` and `JGProgressHUD Resources` as Target Dependency in your project's "Build Phases" section.
-3. Add libJGProgressHUD.a in "Link Binary With Libraries".<br>
-4. From the `JGProgressHUD.xcodeproj`'s "Products" Directory drag the `JGProgressHUD Resources.bundle` into your project's "Copy Bundle Resources" section.<br>
-5. Finally, make sure you have added the `-ObjC` flag in Other Linker Flags.<br><br>
-See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
+2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
+3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
+See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as framework.
+<br><br>
+After you have included JGProgressHUD as framework simply import `JGProgressHUD.h` like this:
+```objc
+#import <JGProgressHUD/JGProgressHUD.h>
+```
 <br><br>
 OR:
 <br><br>
-<b>Source Files:</b><br>
-Add all files from <a href="JGProgressHUD/JGProgressHUD">JGProgressHUD</a> to your project.
+<b>Static Library:</b><br>
+1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
+2. Add `JGProgressHUD` and `JGProgressHUD Resources` to "Target Dependencies" in the "Build Phases" tab of your project's target.<br>
+3. Add `libJGProgressHUD.a` to "Link Binary With Libraries".<br>
+4. From the `JGProgressHUD.xcodeproj`'s "Products" Directory drag the `JGProgressHUD Resources.bundle` into the "Copy Bundle Resources" section.<br>
+5. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
+See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
 <br><br>
-After you have included JGProgressHUD as static library or source files simply import `JGProgressHUD.h` like this:
+After you have included JGProgressHUD as static library simply import `JGProgressHUD.h` like this:
 ```objc
 #import "JGProgressHUD.h"
 ```

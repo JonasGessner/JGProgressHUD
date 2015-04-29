@@ -7,13 +7,12 @@
 //
 
 #import "JGViewController.h"
+
+#if JGProgressHUD_Framework
+#import <JGProgressHUD/JGProgressHUD.h>
+#else
 #import "JGProgressHUD.h"
-#import "JGProgressHUDPieIndicatorView.h"
-#import "JGProgressHUDRingIndicatorView.h"
-#import "JGProgressHUDFadeZoomAnimation.h"
-#import "JGProgressHUDSuccessIndicatorView.h"
-#import "JGProgressHUDErrorIndicatorView.h"
-#import "JGProgressHUDIndeterminateIndicatorView.h"
+#endif
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 838.00

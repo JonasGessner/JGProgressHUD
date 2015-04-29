@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B12977D1AF1248500EECA97 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B12977A1AF1245200EECA97 /* JGProgressHUD.framework */; };
+		6B12977E1AF1248500EECA97 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B12977A1AF1245200EECA97 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6B1297821AF124BD00EECA97 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */; };
+		6B1297831AF124BD00EECA97 /* JGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGViewController.m */; };
 		6B20E7D7197FC22E00488D60 /* libJGProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */; };
+		6B48F0D31AF12789006EDEB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D3197BF28100DA4C49 /* main.m */; };
+		6B48F0DA1AF12991006EDEB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018E2197BF28100DA4C49 /* Images.xcassets */; };
+		6B48F0DC1AF129A0006EDEB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018D0197BF28100DA4C49 /* InfoPlist.strings */; };
 		6B60B26719A3C09900ED1A4E /* JGProgressHUD Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6B60B24D19A3B41600ED1A4E /* JGProgressHUD Resources.bundle */; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
 		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
@@ -20,6 +27,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6B1297791AF1245200EECA97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BF7DC5A1AEFCFD9000A0AE0;
+			remoteInfo = "JGProgressHUD Framework";
+		};
+		6B12977F1AF1248500EECA97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
+			remoteInfo = "JGProgressHUD Framework";
+		};
 		6B20E7D3197FC22000488D60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */;
@@ -50,7 +71,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6B1297811AF1248500EECA97 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6B12977E1AF1248500EECA97 /* JGProgressHUD.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6B1297541AF1245200EECA97 /* JGProgressHUD Tests - Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests - Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../../JGProgressHUD/JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6BC018C4197BF28100DA4C49 /* JGProgressHUD Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC018C7197BF28100DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -69,6 +105,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6B1297511AF1245200EECA97 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B12977D1AF1248500EECA97 /* JGProgressHUD.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC018C1197BF28100DA4C49 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -88,6 +132,7 @@
 			children = (
 				6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */,
 				6B60B24D19A3B41600ED1A4E /* JGProgressHUD Resources.bundle */,
+				6B12977A1AF1245200EECA97 /* JGProgressHUD.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				6BC018C4197BF28100DA4C49 /* JGProgressHUD Tests.app */,
+				6B1297541AF1245200EECA97 /* JGProgressHUD Tests - Framework.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,11 +169,11 @@
 		6BC018CD197BF28100DA4C49 /* JGProgressHUD Tests */ = {
 			isa = PBXGroup;
 			children = (
+				6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */,
 				6BC018D6197BF28100DA4C49 /* JGAppDelegate.h */,
 				6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */,
 				6BC018DF197BF28100DA4C49 /* JGViewController.h */,
 				6BC018E0197BF28100DA4C49 /* JGViewController.m */,
-				6B20E7CF197FC22000488D60 /* JGProgressHUD.xcodeproj */,
 				6BC018E2197BF28100DA4C49 /* Images.xcassets */,
 				6BC018CE197BF28100DA4C49 /* Supporting Files */,
 			);
@@ -148,6 +194,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6B1297531AF1245200EECA97 /* JGProgressHUD Tests - Framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B12977B1AF1245200EECA97 /* Build configuration list for PBXNativeTarget "JGProgressHUD Tests - Framework" */;
+			buildPhases = (
+				6B1297501AF1245200EECA97 /* Sources */,
+				6B1297511AF1245200EECA97 /* Frameworks */,
+				6B1297521AF1245200EECA97 /* Resources */,
+				6B1297811AF1248500EECA97 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6B1297801AF1248500EECA97 /* PBXTargetDependency */,
+			);
+			name = "JGProgressHUD Tests - Framework";
+			productName = "JGProgressHUD Tests - Framework";
+			productReference = 6B1297541AF1245200EECA97 /* JGProgressHUD Tests - Framework.app */;
+			productType = "com.apple.product-type.application";
+		};
 		6BC018C3197BF28100DA4C49 /* JGProgressHUD Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BC018F9197BF28100DA4C49 /* Build configuration list for PBXNativeTarget "JGProgressHUD Tests" */;
@@ -176,6 +241,11 @@
 				CLASSPREFIX = JG;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jonas Gessner";
+				TargetAttributes = {
+					6B1297531AF1245200EECA97 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
 			};
 			buildConfigurationList = 6BC018BF197BF28100DA4C49 /* Build configuration list for PBXProject "JGProgressHUD Tests" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -197,11 +267,19 @@
 			projectRoot = "";
 			targets = (
 				6BC018C3197BF28100DA4C49 /* JGProgressHUD Tests */,
+				6B1297531AF1245200EECA97 /* JGProgressHUD Tests - Framework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		6B12977A1AF1245200EECA97 /* JGProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JGProgressHUD.framework;
+			remoteRef = 6B1297791AF1245200EECA97 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6B20E7D4197FC22000488D60 /* libJGProgressHUD.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -219,6 +297,15 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6B1297521AF1245200EECA97 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B48F0DA1AF12991006EDEB5 /* Images.xcassets in Resources */,
+				6B48F0DC1AF129A0006EDEB5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC018C2197BF28100DA4C49 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +319,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6B1297501AF1245200EECA97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B48F0D31AF12789006EDEB5 /* main.m in Sources */,
+				6B1297821AF124BD00EECA97 /* JGAppDelegate.m in Sources */,
+				6B1297831AF124BD00EECA97 /* JGViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC018C0197BF28100DA4C49 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -245,6 +342,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6B1297801AF1248500EECA97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JGProgressHUD Framework";
+			targetProxy = 6B12977F1AF1248500EECA97 /* PBXContainerItemProxy */;
+		};
 		6B20E7D6197FC22A00488D60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
@@ -269,6 +371,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6B1297741AF1245200EECA97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"JGProgressHUD_Framework=1",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6B1297751AF1245200EECA97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "JGProgressHUD_Framework=1";
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		6BC018F7197BF28100DA4C49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -350,6 +495,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD Tests/JGProgressHUD Tests-Prefix.pch";
 				INFOPLIST_FILE = "JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -365,6 +511,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD Tests/JGProgressHUD Tests-Prefix.pch";
 				INFOPLIST_FILE = "JGProgressHUD Tests/JGProgressHUD Tests-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -374,6 +521,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6B12977B1AF1245200EECA97 /* Build configuration list for PBXNativeTarget "JGProgressHUD Tests - Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B1297741AF1245200EECA97 /* Debug */,
+				6B1297751AF1245200EECA97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6BC018BF197BF28100DA4C49 /* Build configuration list for PBXProject "JGProgressHUD Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
