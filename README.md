@@ -93,6 +93,12 @@ OR:
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
 3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as framework.
+
+If you are using Carthage to build your frameworks, simply add
+```
+github "JonasGessner/JGProgressHUD" >= 1.2.6
+```
+to your Cartfile, and then run `carthage update` to build the framework.
 <br><br>
 After you have included JGProgressHUD as framework simply import `JGProgressHUD.h` like this:
 ```objc
