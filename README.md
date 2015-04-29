@@ -102,7 +102,10 @@ to your Cartfile, and then run `carthage update` to build the framework.
 <br><br>
 After you have included JGProgressHUD as framework simply import `JGProgressHUD.h` like this:
 ```objc
-#import <JGProgressHUD/JGProgressHUD.h>
+#import <JGProgressHUD/JGProgressHUD.h>  // Objective-C
+```
+```swift
+import JGProgressHUD  // Swift
 ```
 <br><br>
 OR:
