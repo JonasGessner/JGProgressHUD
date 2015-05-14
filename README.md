@@ -5,7 +5,6 @@ Simple, powerful and modern progress HUD for iOS.<br>
 <p align="center">
 <img src="Presentation.png">
 </p>
-
 Overview
 ==========
 
@@ -21,8 +20,10 @@ Overview
 <br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.5
-
+#####Current Version: 1.2.6
+[![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)]()<br>
+[![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)]()
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ##Customization:
 
 ###Styles:
@@ -56,12 +57,12 @@ Requirements
 • Deployment target of iOS 5.0 or higher.<br>
 • ARC.
 
-• JGProgressHUD can also be used by projects written in Swift. You just need to import `JGProgressHUD.h` in the Objective-C bridging header.
+• JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
 
 Documentation
 ================
 Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br><br>
-Each header file contains detailed documentation for each method call. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
+Each method is well documented, making it easy to quickly get a great overview of JGProgressHUD. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 Examples
 =================
@@ -74,7 +75,7 @@ HUD.textLabel.text = @"Loading";
 ```
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
 <br><br>
-<b>Note:</b> You should preferably show the HUD in a UIViewController's view.
+<b>Important:</b> You should always show HUDs in a UIViewController's view.
 <br><br>
 See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
 
@@ -88,6 +89,14 @@ pod 'JGProgressHUD'
 <br>
 OR:
 <br><br>
+<b>Carthage:</b><br>
+Add this to your `Cartfile`:
+```
+github "JonasGessner/JGProgressHUD" >= 1.2.6
+```
+<br>
+OR:
+<br><br>
 <b>Framework (iOS >= 8.0 only):</b><br>
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
@@ -97,6 +106,10 @@ See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an e
 After you have included JGProgressHUD as framework simply import `JGProgressHUD.h` like this:
 ```objc
 #import <JGProgressHUD/JGProgressHUD.h>
+```
+Swift projects:
+```swift
+import JGProgressHUD
 ```
 <br><br>
 OR:
@@ -113,6 +126,8 @@ After you have included JGProgressHUD as static library simply import `JGProgres
 ```objc
 #import "JGProgressHUD.h"
 ```
+Swift projects need to import JGProgressHUD in the Objective-C bridging header.
+<br><br>
 ####RubyMotion
 An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
 

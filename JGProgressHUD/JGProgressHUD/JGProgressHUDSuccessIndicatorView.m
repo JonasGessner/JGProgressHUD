@@ -12,12 +12,9 @@
 @implementation JGProgressHUDSuccessIndicatorView
 
 - (instancetype)initWithContentView:(UIView *__unused)contentView {
-    NSBundle *fwBundle = [NSBundle bundleForClass:[JGProgressHUD class]];
-    if ([fwBundle isEqual:[NSBundle mainBundle]]) {
-        fwBundle = nil;
-    }
+    NSBundle *resourceBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[JGProgressHUD class]] pathForResource:@"JGProgressHUD Resources" ofType:@"bundle"]];
     
-    NSString *imgPath = [(fwBundle ? : [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"JGProgressHUD Resources" ofType:@"bundle"]]) pathForResource:@"jg_hud_success" ofType:@"png"];
+    NSString *imgPath = [resourceBundle pathForResource:@"jg_hud_success" ofType:@"png"];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgPath]];
     
