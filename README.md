@@ -29,8 +29,8 @@ The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project cont
 ###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
 • <b>Extra Light</b><br>
-• <b>Light<br>
-• <b>Dark<br>
+• <b>Light</b><br>
+• <b>Dark</b><br>
 
 ###Indicator Views:
 By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br>
