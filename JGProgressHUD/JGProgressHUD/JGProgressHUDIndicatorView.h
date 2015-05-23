@@ -40,4 +40,19 @@
  */
 - (void)setProgress:(float)progress animated:(BOOL)animated;
 
+/**
+ Schedules an accessibility update on the next run loop.
+ */
+- (void)setNeedsAccessibilityUpdate;
+
+/**
+ Runs @c updateAccessibility immediately if an accessibility update has been scheduled (through @c setNeedsAccessibilityUpdate) but has not executed yet.
+ */
+- (void)updateAccessibilityIfNeeded;
+
+/**
+ Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c setNeedsAccessibilityUpdate.
+ */
+- (void)updateAccessibility;
+
 @end

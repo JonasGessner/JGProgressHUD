@@ -16,21 +16,22 @@ Overview
 • Backward compatibility to iOS 5.<br>
 • Well documented and maintained.<br>
 • Detects and repositions when Keyboards appear/disappear.<br>
+• Voice Over/`UIAccessibility` support.<br>
 • And most importantly, it looks good!<br>
 <br>
 The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.6
-[![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)]()<br>
-[![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)]()
+#####Current Version: 1.2.7
+![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)<br>
+![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ##Customization:
 
 ###Styles:
 JGProgressHUD can be displayed in 3 styles:<br>
 • <b>Extra Light</b><br>
-• <b>Light<br>
-• <b>Dark<br>
+• <b>Light</b><br>
+• <b>Dark</b><br>
 
 ###Indicator Views:
 By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br>

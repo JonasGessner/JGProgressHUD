@@ -27,4 +27,8 @@
     return [self initWithContentView:nil];
 }
 
+- (void)updateAccessibility {
+    self.accessibilityLabel = NSLocalizedString(@"Error",);
+}
+
 @end

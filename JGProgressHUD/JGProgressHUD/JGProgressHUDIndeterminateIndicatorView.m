@@ -32,4 +32,8 @@
     [(UIActivityIndicatorView *)self.contentView setColor:color];
 }
 
+- (void)updateAccessibility {
+    self.accessibilityLabel = NSLocalizedString(@"Indeterminate progress",);
+}
+
 @end
