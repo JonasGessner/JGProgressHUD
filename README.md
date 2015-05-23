@@ -15,7 +15,7 @@ Overview
 • Up to date and modern, example: Blurred HUD (iOS 8), parallax effect (iOS 7).<br>
 • Backward compatibility to iOS 5.<br>
 • Well documented and maintained.<br>
-• Detects and repositions when Keyboards appear/disappear.<br>
+• Detects and repositions when keyboards appear/disappear.<br>
 • Voice Over/`UIAccessibility` support.<br>
 • And most importantly, it looks good!<br>
 <br>
