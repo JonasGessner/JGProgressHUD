@@ -370,6 +370,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated {
+    NSAssert([NSThread isMainThread], @"Calls to JGProgressHUD need to happen on the main thread.");
     CGRect frame = [self fullFrameInView:view];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -442,6 +443,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)dismissAnimated:(BOOL)animated {
+    NSAssert([NSThread isMainThread], @"Calls to JGProgressHUD need to happen on the main thread.");
     if (_transitioning) {
         _dismissAfterTransitionFinished = YES;
         _dismissAfterTransitionFinishedWithAnimation = animated;
