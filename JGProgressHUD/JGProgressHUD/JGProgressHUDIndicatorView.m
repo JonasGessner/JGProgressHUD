@@ -86,7 +86,7 @@ NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
     [self setProgress:progress animated:NO];
 }
 
-- (void)setProgress:(float)progress animated:(BOOL __unused)animated {
+- (void)setProgress:(float)progress animated:(BOOL)animated {
     if (fequal(self.progress, progress)) {
         return;
     }

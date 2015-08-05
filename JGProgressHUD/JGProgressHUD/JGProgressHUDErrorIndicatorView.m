@@ -16,9 +16,7 @@
     
     NSString *imgPath = [resourceBundle pathForResource:@"jg_hud_error" ofType:@"png"];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgPath]];
-    
-    self = [super initWithContentView:imageView];
+    self = [super initWithImage:[UIImage imageWithContentsOfFile:imgPath]];
     
     return self;
 }

@@ -16,6 +16,9 @@
  */
 - (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
 
+
+
+
 /**
  Set the color of the activity indicator view.
  @param color The color to apply to the activity indicator view.

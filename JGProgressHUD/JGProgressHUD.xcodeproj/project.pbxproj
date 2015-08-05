@@ -27,6 +27,10 @@
 		6BC018B3197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018AB197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m */; };
 		6BC018B7197B2BC700DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B6197B2BC700DA4C49 /* UIKit.framework */; };
 		6BC018B9197B2BCB00DA4C49 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */; };
+		6BEEFF591B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BEEFF571B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BEEFF5A1B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEEFF581B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m */; };
+		6BEEFF5B1B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEEFF581B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m */; };
+		6BEEFF5F1B7220AD006B4CD7 /* JGProgressHUDImageIndicatorView.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 6BEEFF571B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h */; };
 		6BF7DC4B1AEE6D39000A0AE0 /* JGProgressHUD.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 6BC0189C197B2ABF00DA4C49 /* JGProgressHUD.h */; };
 		6BF7DC4C1AEE6D39000A0AE0 /* JGProgressHUDAnimation.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 6BC0189E197B2ABF00DA4C49 /* JGProgressHUDAnimation.h */; };
 		6BF7DC4D1AEE6D39000A0AE0 /* JGProgressHUDFadeAnimation.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 6BC018A0197B2ABF00DA4C49 /* JGProgressHUDFadeAnimation.h */; };
@@ -81,6 +85,7 @@
 			dstPath = include;
 			dstSubfolderSpec = 16;
 			files = (
+				6BEEFF5F1B7220AD006B4CD7 /* JGProgressHUDImageIndicatorView.h in Copy Headers */,
 				6BF7DC4B1AEE6D39000A0AE0 /* JGProgressHUD.h in Copy Headers */,
 				6BF7DC4C1AEE6D39000A0AE0 /* JGProgressHUDAnimation.h in Copy Headers */,
 				6BF7DC4D1AEE6D39000A0AE0 /* JGProgressHUDFadeAnimation.h in Copy Headers */,
@@ -132,6 +137,8 @@
 		6BC018B6197B2BC700DA4C49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6BD009001991033600DE219C /* JGProgressHUD-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		6BEEFF571B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGProgressHUDImageIndicatorView.h; sourceTree = "<group>"; };
+		6BEEFF581B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
 		6BF7DC5A1AEFCFD9000A0AE0 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF7DC5D1AEFCFD9000A0AE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BF7DC881AEFD063000A0AE0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -255,18 +262,44 @@
 			children = (
 				6BC018A6197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.h */,
 				6BC018A7197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m */,
-				6BC018A4197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.h */,
-				6BC018A5197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m */,
+				6BEEFF571B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h */,
+				6BEEFF581B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m */,
+				6BEEFF5E1B721FEE006B4CD7 /* Indeterminate Progress */,
+				6BEEFF5C1B721FD0006B4CD7 /* Progress Indicators */,
+				6BEEFF5D1B721FDB006B4CD7 /* Success/Error Indicators */,
+			);
+			name = Indicators;
+			sourceTree = "<group>";
+		};
+		6BEEFF5C1B721FD0006B4CD7 /* Progress Indicators */ = {
+			isa = PBXGroup;
+			children = (
 				6BC018A8197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.h */,
 				6BC018A9197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m */,
 				6BC018AA197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.h */,
 				6BC018AB197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m */,
+			);
+			name = "Progress Indicators";
+			sourceTree = "<group>";
+		};
+		6BEEFF5D1B721FDB006B4CD7 /* Success/Error Indicators */ = {
+			isa = PBXGroup;
+			children = (
 				6B60B25219A3B78B00ED1A4E /* JGProgressHUDSuccessIndicatorView.h */,
 				6B60B25319A3B78B00ED1A4E /* JGProgressHUDSuccessIndicatorView.m */,
 				6B60B25519A3BC3C00ED1A4E /* JGProgressHUDErrorIndicatorView.h */,
 				6B60B25619A3BC3C00ED1A4E /* JGProgressHUDErrorIndicatorView.m */,
 			);
-			name = Indicators;
+			name = "Success/Error Indicators";
+			sourceTree = "<group>";
+		};
+		6BEEFF5E1B721FEE006B4CD7 /* Indeterminate Progress */ = {
+			isa = PBXGroup;
+			children = (
+				6BC018A4197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.h */,
+				6BC018A5197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m */,
+			);
+			name = "Indeterminate Progress";
 			sourceTree = "<group>";
 		};
 		6BF7DC5B1AEFCFD9000A0AE0 /* JGProgressHUD Framework */ = {
@@ -303,6 +336,7 @@
 				6BF7DC851AEFD045000A0AE0 /* JGProgressHUDSuccessIndicatorView.h in Headers */,
 				6BF7DC861AEFD045000A0AE0 /* JGProgressHUDErrorIndicatorView.h in Headers */,
 				6BF7DC931AEFD35D000A0AE0 /* JGProgressHUD-Defines.h in Headers */,
+				6BEEFF591B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +402,7 @@
 		6BC0186B197B2AA500DA4C49 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jonas Gessner";
 				TargetAttributes = {
 					6B60B23F19A3B3C500ED1A4E = {
@@ -439,6 +473,7 @@
 				6BC018AC197B2ABF00DA4C49 /* JGProgressHUD.m in Sources */,
 				6BC018B2197B2ABF00DA4C49 /* JGProgressHUDPieIndicatorView.m in Sources */,
 				6BC018AF197B2ABF00DA4C49 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
+				6BEEFF5A1B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m in Sources */,
 				6BC018B3197B2ABF00DA4C49 /* JGProgressHUDRingIndicatorView.m in Sources */,
 				6BC018B0197B2ABF00DA4C49 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				6BC018B1197B2ABF00DA4C49 /* JGProgressHUDIndicatorView.m in Sources */,
@@ -456,6 +491,7 @@
 				6BF7DC751AEFD02A000A0AE0 /* JGProgressHUDFadeAnimation.m in Sources */,
 				6BF7DC761AEFD02A000A0AE0 /* JGProgressHUDFadeZoomAnimation.m in Sources */,
 				6BF7DC771AEFD02A000A0AE0 /* JGProgressHUDIndicatorView.m in Sources */,
+				6BEEFF5B1B721ED0006B4CD7 /* JGProgressHUDImageIndicatorView.m in Sources */,
 				6BF7DC781AEFD02A000A0AE0 /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
 				6BF7DC791AEFD02A000A0AE0 /* JGProgressHUDPieIndicatorView.m in Sources */,
 				6BF7DC7A1AEFD02A000A0AE0 /* JGProgressHUDRingIndicatorView.m in Sources */,
@@ -529,6 +565,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -721,6 +758,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JGProgressHUD;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -749,6 +787,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JGProgressHUD;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

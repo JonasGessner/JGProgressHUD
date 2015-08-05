@@ -28,17 +28,13 @@
 - (void)show {
     [super show];
     
-    //Prepare the HUD
     self.progressHUD.alpha = 0.0f;
     self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
     
     NSTimeInterval totalDuration = self.expandAnimationDuaration+self.shrinkAnimationDuaration;
     
-    //Show the HUD
     self.progressHUD.hidden = NO;
     
-    
-    //Now animate the presentation
     [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
         self.progressHUD.alpha = 1.0f;
     } completion:nil];
@@ -61,7 +57,6 @@
     
     NSTimeInterval totalDuration = self.expandAnimationDuaration+self.shrinkAnimationDuaration;
     
-    //Animate the dismissal
     [UIView animateWithDuration:totalDuration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut) animations:^{
         self.progressHUD.alpha = 0.0f;
     } completion:nil];
@@ -72,10 +67,8 @@
         [UIView animateWithDuration:self.shrinkAnimationDuaration delay:0.0 options:(UIViewAnimationOptions)(UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
             self.progressHUD.HUDView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         } completion:^(BOOL __unused __finished) {
-            //HUD is now hidden, restore the transform
             self.progressHUD.HUDView.transform = CGAffineTransformIdentity;
             
-            //Alway call this last
             [self animationFinished];
         }];
     }];

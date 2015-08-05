@@ -19,9 +19,9 @@ Overview
 • Voice Over/`UIAccessibility` support.<br>
 • And most importantly, it looks good!<br>
 <br>
-The <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> example project contains all kinds of different uses of JGProgressHUD. Check out the code and see how much JGProgressHUD can do!
+The <a href="Examples">Examples</a> project contains all kinds of different uses of JGProgressHUD. Check out the code and see what JGProgressHUD can do!
 <br>
-#####Current Version: 1.2.7
+#####Current Version: 1.3
 ![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)<br>
 ![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -40,6 +40,7 @@ By default a HUD will display an indeterminate progress indicator. You can not s
 • <b>Ring progress indicator</b><br>
 • <b>Success indicator</b><br>
 • <b>Error indicator</b><br>
+• <b>Image indicator</b><br>
 By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br>
 
 
@@ -67,7 +68,7 @@ Each method is well documented, making it easy to quickly get a great overview o
 
 Examples
 =================
-#####Simple example:
+#####Showing indeterminate progress:
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.textLabel.text = @"Loading";
@@ -75,10 +76,35 @@ HUD.textLabel.text = @"Loading";
 [HUD dismissAfterDelay:3.0];
 ```
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
+<br>
+#####Showing an error message:
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.textLabel.text = @"Error";
+HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgressHUDSuccessIndicatorView is also available
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+<br>
+#####Showing a custom image:
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.indicatorView = [[JGProgressHUDImageIndicatorView alloc] initWithImage:[UIImage imageNamed:@"my_image.png"]];
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+<br>
+#####Showing determinate progress:
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style]; //Or JGProgressHUDRingIndicatorView
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
 <br><br>
 <b>Important:</b> You should always show HUDs in a UIViewController's view.
 <br><br>
-See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for more example implementations.
+See the <a href="Examples">Examples</a> project for more example implementations.
 
 Installation
 ================
@@ -102,7 +128,7 @@ OR:
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
 3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
-See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as framework.
+See the <a href="Examples">Examples</a> project for an example implementation of JGProgressHUD as framework.
 <br><br>
 After you have included JGProgressHUD as framework simply import `JGProgressHUD.h` like this:
 ```objc
@@ -121,7 +147,7 @@ OR:
 3. Add `libJGProgressHUD.a` to "Link Binary With Libraries".<br>
 4. From the `JGProgressHUD.xcodeproj`'s "Products" Directory drag the `JGProgressHUD Resources.bundle` into the "Copy Bundle Resources" section.<br>
 5. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
-See the <a href="JGProgressHUD%20Tests">JGProgressHUD Tests</a> project for an example implementation of JGProgressHUD as static library.
+See the <a href="Examples">Examples</a> project for an example implementation of JGProgressHUD as static library.
 <br><br>
 After you have included JGProgressHUD as static library simply import `JGProgressHUD.h` like this:
 ```objc
@@ -135,10 +161,10 @@ An example of JGProgressHUD in a RubyMotion project can be found  [here](https:/
 Screenshots
 ============
 <p align="center">
-<img src="JGProgressHUD Tests/Screenshots/1.png" width="24%">&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/3.png" width="24%">&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/6.png" width="24%">&nbsp;
-<img src="JGProgressHUD Tests/Screenshots/5.png" width="24%">
+<img src="Examples/Screenshots/1.png" width="24%">&nbsp;
+<img src="Examples/Screenshots/3.png" width="24%">&nbsp;
+<img src="Examples/Screenshots/6.png" width="24%">&nbsp;
+<img src="Examples/Screenshots/5.png" width="24%">
 </p>
 
 License

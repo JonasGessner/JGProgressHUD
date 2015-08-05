@@ -176,7 +176,9 @@
     
     [CATransaction begin];
     [CATransaction setAnimationDuration:(animated ? 0.3 : 0.0)];
+    
     [(JGProgressHUDRingIndicatorLayer *)self.layer setProgress:self.progress];
+    
     [CATransaction commit];
 }
 

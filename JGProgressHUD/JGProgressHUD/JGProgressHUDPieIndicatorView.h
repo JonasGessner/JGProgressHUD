@@ -16,6 +16,9 @@
  */
 - (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
 
+
+
+
 /**
  Tint color of the Pie. 
  

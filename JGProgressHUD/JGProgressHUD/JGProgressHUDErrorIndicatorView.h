@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import "JGProgressHUDIndicatorView.h"
+#import "JGProgressHUDImageIndicatorView.h"
 
-@interface JGProgressHUDErrorIndicatorView : JGProgressHUDIndicatorView
+@interface JGProgressHUDErrorIndicatorView : JGProgressHUDImageIndicatorView
 
 /**
  Default initializer for this class.

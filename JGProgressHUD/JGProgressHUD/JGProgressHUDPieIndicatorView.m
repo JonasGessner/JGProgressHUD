@@ -65,7 +65,7 @@
     
     
     //Progress
-    if (self.progress) {
+    if (self.progress > 0.0) {
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         
         [processPath setLineWidth:radius];
@@ -156,7 +156,6 @@
     [super setProgress:progress animated:animated];
     
     [CATransaction begin];
-    
     [CATransaction setAnimationDuration:(animated ? 0.3 : 0.0)];
     
     [(JGProgressHUDPieIndicatorLayer *)self.layer setProgress:progress];
