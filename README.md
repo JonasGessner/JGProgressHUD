@@ -85,7 +85,6 @@ HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgress
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
-<br>
 #####Showing a custom image:
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -93,7 +92,6 @@ HUD.indicatorView = [[JGProgressHUDImageIndicatorView alloc] initWithImage:[UIIm
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
-<br>
 #####Showing determinate progress:
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
@@ -101,7 +99,7 @@ HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
-<br><br>
+<br>
 <b>Important:</b> You should always show HUDs in a UIViewController's view.
 <br><br>
 See the <a href="Examples">Examples</a> project for more example implementations.
