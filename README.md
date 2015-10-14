@@ -21,9 +21,10 @@ Overview
 <br>
 The <a href="Examples">Examples</a> project contains all kinds of different uses of JGProgressHUD. Check out the code and see what JGProgressHUD can do!
 <br>
-#####Current Version: 1.3
-![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)<br>
-![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)
+<br>
+[![GitHub release](https://img.shields.io/github/release/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/releases)
+[![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
+[![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ##Customization:
 
@@ -117,7 +118,7 @@ OR:
 <b>Carthage:</b><br>
 Add this to your `Cartfile`:
 ```
-github "JonasGessner/JGProgressHUD" >= 1.2.6
+github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 <br>
 OR:
@@ -172,4 +173,4 @@ MIT License.<br>
 
 Credits
 ==========
-Created by Jonas Gessner, © 2014-2015.<br>
+Created and maintained by Jonas Gessner, © 2014-2015.<br>

@@ -508,6 +508,16 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
 }
 
+NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
+    UIViewAnimationOptions testOptions = UIViewAnimationCurveLinear << 16;
+    
+    if (testOptions != UIViewAnimationOptionCurveLinear) {
+        NSLog(@"Unexpected implementation of UIViewAnimationOptionCurveLinear");
+    }
+    
+    return (UIViewAnimationOptions)(curve << 16);
+}
+
 - (void)keyboardFrameChanged:(NSNotification *)notification {
     CGRect frame = [self fullFrameInView:self.targetView];
     
@@ -517,17 +527,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
-    UIViewAnimationCurve curve = (UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
+        UIViewAnimationCurve curve = (UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
     
-    [UIView beginAnimations:@"de.j-gessner.jgprogresshud.keyboardframechange" context:NULL];
-    [UIView setAnimationCurve:curve];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:duration];
-    
-    self.frame = frame;
-    [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
-    
-    [UIView commitAnimations];
+    [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionsFromUIViewAnimationCurve(curve) animations:^{
+        self.frame = frame;
+        [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
+    } completion:nil];
 }
 
 - (void)orientationChanged {
