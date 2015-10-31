@@ -140,6 +140,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 #pragma mark - Layout
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.frame = [self fullFrameInView:self.targetView];
+    [self updateHUDAnimated:NO animateIndicatorViewFrame:self.isVisible];
+}
+
 - (void)setHUDViewFrameCenterWithSize:(CGSize)size {
     CGRect frame = CGRectZero;
     
@@ -371,9 +377,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 - (void)showInView:(UIView *)view animated:(BOOL)animated {
     CGRect frame = [self fullFrameInView:view];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIDeviceOrientationDidChangeNotification object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
     
@@ -533,15 +537,6 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
         self.frame = frame;
         [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
     } completion:nil];
-}
-
-- (void)orientationChanged {
-    if (self.targetView && !CGRectEqualToRect(self.bounds, self.targetView.bounds)) {
-        [UIView animateWithDuration:(iPad ? 0.4 : 0.3) delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.frame = [self fullFrameInView:self.targetView];
-            [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
-        } completion:nil];
-    }
 }
 
 - (void)animationDidFinish:(BOOL)presenting {
