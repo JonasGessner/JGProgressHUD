@@ -18,4 +18,17 @@
     return self;
 }
 
+- (instancetype)initWithImages:(NSArray<UIImage *> *)images duration:(NSTimeInterval)duration {
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:images.firstObject];
+    imageView.animationImages = [images copy];
+    imageView.animationDuration = duration;
+    imageView.animationRepeatCount = NSIntegerMax;
+    imageView.backgroundColor = [UIColor clearColor];
+    [imageView startAnimating];
+    
+    self = [super initWithContentView:imageView];
+    
+    return self;
+}
+
 @end
