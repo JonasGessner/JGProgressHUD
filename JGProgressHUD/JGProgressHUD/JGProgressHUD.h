@@ -109,12 +109,12 @@
 @property (nonatomic, strong, readonly) UIView *contentView;
 
 /**
- The label used to present text on the HUD. set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
+ The label used to present text on the HUD. Set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
  */
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 
 /**
- The label used to present detail text on the HUD. set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
+ The label used to present detail text on the HUD. Set the @c text property of this label to change the displayed text. You may not change the label's @c frame or @c bounds.
  */
 @property (nonatomic, strong, readonly) UILabel *detailTextLabel;
 
@@ -231,7 +231,7 @@
 /**
  Shows the HUD. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
- @param animated If th HUD should show with an animation.
+ @param animated If the HUD should show with an animation.
  */
 - (void)showInView:(UIView *)view animated:(BOOL)animated;
 
@@ -243,10 +243,10 @@
 - (void)showInRect:(CGRect)rect inView:(UIView *)view;
 
 /**
- Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
+ Shows the HUD. You should preferably show the HUD in a UIViewController's view.
  @param view The view to show the HUD in.
  @param rect The rect allocated in @c view for displaying the HUD.
- @param animated If th HUD should show with an animation.
+ @param animated If the HUD should show with an animation.
  */
 - (void)showInRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
 
