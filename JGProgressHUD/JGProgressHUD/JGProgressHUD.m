@@ -372,6 +372,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 - (void)showInView:(UIView *)view animated:(BOOL)animated {
     CGRect frame = [self fullFrameInView:view];
     
+    // !!!: Use UIApplicationDidChangeStatusBarFrameNotification since UIDeviceOrientationDidChangeNotification still gives the old bounds in orientationChanged selector for self.targetView on iPad unless it is called after a delay.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
+    
     [self showInRect:frame inView:view animated:animated];
 }
 
@@ -389,12 +395,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 #endif
         return;
     }
-    
-    // !!!: Use UIApplicationDidChangeStatusBarFrameNotification since UIDeviceOrientationDidChangeNotification still gives the old bounds in orientationChanged selector for self.targetView on iPad unless it is called after a delay.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
     
     _targetView = view;
     

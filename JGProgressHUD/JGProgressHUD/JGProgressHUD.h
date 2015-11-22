@@ -223,13 +223,13 @@
 
 
 /**
- Shows the HUD animated. You should preferably show the HUD in a UIViewController's view.
+ Shows the HUD animated. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  */
 - (void)showInView:(UIView *)view;
 
 /**
- Shows the HUD. You should preferably show the HUD in a UIViewController's view.
+ Shows the HUD. You should preferably show the HUD in a UIViewController's view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  @param animated If the HUD should show with an animation.
  */
