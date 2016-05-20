@@ -8,6 +8,11 @@
 
 #import "JGProgressHUDIndicatorView.h"
 
+/**
+ An indicator for displaying custom images. Supports animated images.
+ 
+ You may subclass this class to create a custom image indicator view.
+ */
 @interface JGProgressHUDImageIndicatorView : JGProgressHUDIndicatorView
 
 /**

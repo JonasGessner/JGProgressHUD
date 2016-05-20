@@ -56,9 +56,9 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
     JGProgressHUDInteractionTypeBlockNoTouches
 };
 
+#ifndef fequal
 /**
  Macro for safe floating point comparison (for internal use in JGProgressHUD).
  */
-#ifndef fequal
 #define fequal(a,b) (fabs((a) - (b)) < FLT_EPSILON)
 #endif

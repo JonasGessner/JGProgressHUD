@@ -16,9 +16,6 @@
  */
 - (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
 
-
-
-
 /**
  Background color of the ring.
  
