@@ -51,6 +51,8 @@ NS_INLINE CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     CFAbsoluteTime _displayTimestamp;
     
     JGProgressHUDIndicatorView *_indicatorViewAfterTransitioning;
+    
+    UIView *_HUDViewHost;
 }
 
 @end
@@ -129,7 +131,13 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
         
-        _cornerRadius = 10.0f;
+        _HUDViewHost = [[UIView alloc] init];
+        _HUDViewHost.backgroundColor = [UIColor clearColor];
+        _HUDViewHost.clipsToBounds = YES;
+        
+        [self addSubview:_HUDViewHost];
+        
+        self.cornerRadius = 10.0f;
     }
     
     return self;
@@ -197,7 +205,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             break;
     }
     
-    self.HUDView.frame = JGProgressHUD_CGRectIntegral(frame);
+    _HUDViewHost.frame = JGProgressHUD_CGRectIntegral(frame);
+    self.HUDView.frame = _HUDViewHost.bounds;
 }
 
 - (void)updateHUDAnimated:(BOOL)animated animateIndicatorViewFrame:(BOOL)animateIndicator {
@@ -325,12 +334,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 }
 
 - (void)applyCornerRadius {
-    self.HUDView.layer.cornerRadius = self.cornerRadius;
-    if (iOS8) {
-        for (UIView *sub in self.HUDView.subviews) {
-            sub.layer.cornerRadius = self.cornerRadius;
-        }
-    };
+    _HUDViewHost.layer.cornerRadius = self.cornerRadius;
 }
 
 #pragma mark - Showing
@@ -344,7 +348,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (_indicatorViewAfterTransitioning) {
         self.indicatorView = _indicatorViewAfterTransitioning;
         _indicatorViewAfterTransitioning = nil;
-        _updateAfterAppear = NO;
+        _updateAfterAppear = NO; //Setting indicatorView always updateHUDAnimated:animateIndicatorViewFrame:
     }
     else if (_updateAfterAppear) {
         [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
@@ -609,9 +613,7 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
             _HUDView.motionEffects = @[x, y];
         }
         
-        [self applyCornerRadius];
-        
-        [self addSubview:_HUDView];
+        [_HUDViewHost addSubview:_HUDView];
         
         if (self.indicatorView) {
             [self.contentView addSubview:self.indicatorView];

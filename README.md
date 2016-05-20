@@ -169,8 +169,8 @@ Screenshots
 License
 ==========
 MIT License.<br>
-© 2014-2015, Jonas Gessner.
+© 2014-2016, Jonas Gessner.
 
 Credits
 ==========
-Created and maintained by Jonas Gessner, © 2014-2015.<br>
+Created and maintained by Jonas Gessner, © 2014-2016.<br>
