@@ -115,6 +115,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (self) {
         _style = style;
+        _voiceOverEnabled = YES;
         
         self.hidden = YES;
         self.backgroundColor = [UIColor clearColor];
@@ -360,7 +361,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _dismissAfterTransitionFinishedWithAnimation = NO;
     }
     
-    if (UIAccessibilityIsVoiceOverRunning()) {
+    if (self.voiceOverEnabled && UIAccessibilityIsVoiceOverRunning()) {
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
     }
 }
