@@ -505,11 +505,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 - (void)tapped:(UITapGestureRecognizer *)t {
     if (CGRectContainsPoint(self.contentView.bounds, [t locationInView:self.contentView])) {
-        if (self.tapOnHUDViewBlock) {
+        if (self.tapOnHUDViewBlock != nil) {
             self.tapOnHUDViewBlock(self);
         }
     }
-    else if (self.tapOutsideBlock) {
+    else if (self.tapOutsideBlock != nil) {
         self.tapOutsideBlock(self);
     }
 }

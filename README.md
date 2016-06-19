@@ -1,7 +1,7 @@
 JGProgressHUD
 =============
 
-Simple, powerful and modern progress HUD for iOS.<br>
+Modern and extensive Apple-style progress HUD for iOS.<br>
 <p align="center">
 <img src="Presentation.png">
 </p>
@@ -9,13 +9,13 @@ Overview
 ==========
 
 <b>The ultimate progress HUD for iOS has arrived: JGProgressHUD!</b><br>
-• Super simple to implement.<br>
+• Well designed, easy to use.<br>
 • Feature-rich.<br>
-• Easy extensibility and customization (custom animations, indicator views and more).<br>
-• Up to date and modern, example: Blurred HUD (iOS 8), parallax effect (iOS 7).<br>
-• Backward compatibility to iOS 5.<br>
+• Extensible and customizable (custom animations, indicator views and more).<br>
+• Uses the newest features of iOS: Blurred HUD (iOS 8+), parallax effect (iOS 7+).<br>
+• Backward compatibility to iOS 6.<br>
 • Well documented and maintained.<br>
-• Detects and repositions when keyboards appear/disappear.<br>
+• Detects and repositions when keyboard appears/disappears.<br>
 • Voice Over/`UIAccessibility` support.<br>
 • And most importantly, it looks good!<br>
 <br>
@@ -57,7 +57,7 @@ Requirements
 =================
 
 • Base SDK of iOS 8 or higher.<br>
-• Deployment target of iOS 5.0 or higher.<br>
+• Deployment target of iOS 6.0 or higher.<br>
 • ARC.
 
 • JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
