@@ -56,6 +56,18 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
     JGProgressHUDInteractionTypeBlockNoTouches
 };
 
+/**
+ Parallax Modes.
+ */
+typedef NS_ENUM(NSUInteger, JGProgressHUDParallaxMode) {
+    /** Follows the device setting for parallax. If "Reduce Motion" is enabled, no parallax effect is added to the HUD, if "Reduce Motion" is disabled the HUD will have a parallax effect. */
+    JGProgressHUDParallaxModeDevice = 0,
+    /** Always adds a parallax effect to the HUD. */
+    JGProgressHUDParallaxModeAlwaysOn,
+    /** Never adds a parallax effect to the HUD. */
+    JGProgressHUDParallaxModeAlwaysOff
+};
+
 #ifndef fequal
 /**
  Macro for safe floating point comparison (for internal use in JGProgressHUD).

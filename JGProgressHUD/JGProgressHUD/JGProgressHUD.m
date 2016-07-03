@@ -550,6 +550,36 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     }
 }
 
+- (void)updateMotionOnHUDView {
+    if (iOS7) {
+        BOOL wantsParallax = ((self.parallaxMode == JGProgressHUDParallaxModeDevice && !UIAccessibilityIsReduceMotionEnabled()) || self.parallaxMode == JGProgressHUDParallaxModeAlwaysOn);
+        BOOL hasParallax = (_HUDViewHost.motionEffects.count > 0);
+        
+        if (wantsParallax == hasParallax) {
+            return;
+        }
+        
+        if (!wantsParallax) {
+            _HUDViewHost.motionEffects = @[];
+        }
+        else {
+            UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+            
+            CGFloat maxMovement = 20.0f;
+            
+            x.minimumRelativeValue = @(-maxMovement);
+            x.maximumRelativeValue = @(maxMovement);
+            
+            UIInterpolatingMotionEffect *y = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+            
+            y.minimumRelativeValue = @(-maxMovement);
+            y.maximumRelativeValue = @(maxMovement);
+            
+            _HUDViewHost.motionEffects = @[x, y];
+        }
+    }
+}
+
 - (void)animationDidFinish:(BOOL)presenting {
     if (presenting) {
         [self cleanUpAfterPresentation];
@@ -567,6 +597,10 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 
 - (UIView *)HUDView {
     if (!_HUDView) {
+        if (iOS7) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMotionOnHUDView) name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+        }
+        
         if (iOS8) {
             UIBlurEffectStyle effect = 0;
             
@@ -598,21 +632,7 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
             }
         }
         
-        if (iOS7) {
-            UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-            
-            CGFloat maxMovement = 20.0f;
-            
-            x.minimumRelativeValue = @(-maxMovement);
-            x.maximumRelativeValue = @(maxMovement);
-            
-            UIInterpolatingMotionEffect *y = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-            
-            y.minimumRelativeValue = @(-maxMovement);
-            y.maximumRelativeValue = @(maxMovement);
-            
-            _HUDView.motionEffects = @[x, y];
-        }
+        [self updateMotionOnHUDView];
         
         [_HUDViewHost addSubview:_HUDView];
         
@@ -701,6 +721,16 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     _animation = animation;
     
     _animation.progressHUD = self;
+}
+
+- (void)setParallaxMode:(JGProgressHUDParallaxMode)parallaxMode {
+    if (self.parallaxMode == parallaxMode) {
+        return;
+    }
+    
+    _parallaxMode = parallaxMode;
+    
+    [self updateMotionOnHUDView];
 }
 
 - (void)setPosition:(JGProgressHUDPosition)position {
@@ -816,6 +846,8 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 }
 
 - (void)removeObservers {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
