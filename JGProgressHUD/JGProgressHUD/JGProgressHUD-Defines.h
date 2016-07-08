@@ -60,9 +60,9 @@ typedef NS_ENUM(NSUInteger, JGProgressHUDInteractionType) {
  Parallax Modes.
  */
 typedef NS_ENUM(NSUInteger, JGProgressHUDParallaxMode) {
-    /** Follows the device setting for parallax. If "Reduce Motion" is enabled, no parallax effect is added to the HUD, if "Reduce Motion" is disabled the HUD will have a parallax effect. */
+    /** Follows the device setting for parallax. If "Reduce Motion" is enabled, no parallax effect is added to the HUD, if "Reduce Motion" is disabled the HUD will have a parallax effect. This behaviour is only supported on iOS 8 and higher. */
     JGProgressHUDParallaxModeDevice = 0,
-    /** Always adds a parallax effect to the HUD. */
+    /** Always adds a parallax effect to the HUD. Parallax is only supported on iOS 7 and higher. */
     JGProgressHUDParallaxModeAlwaysOn,
     /** Never adds a parallax effect to the HUD. */
     JGProgressHUDParallaxModeAlwaysOff

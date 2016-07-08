@@ -552,7 +552,9 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 
 - (void)updateMotionOnHUDView {
     if (iOS7) {
-        BOOL wantsParallax = ((self.parallaxMode == JGProgressHUDParallaxModeDevice && !UIAccessibilityIsReduceMotionEnabled()) || self.parallaxMode == JGProgressHUDParallaxModeAlwaysOn);
+        BOOL reduceMotionEnabled = (iOS8 && UIAccessibilityIsReduceMotionEnabled());
+        
+        BOOL wantsParallax = ((self.parallaxMode == JGProgressHUDParallaxModeDevice && !reduceMotionEnabled) || self.parallaxMode == JGProgressHUDParallaxModeAlwaysOn);
         BOOL hasParallax = (_HUDViewHost.motionEffects.count > 0);
         
         if (wantsParallax == hasParallax) {
@@ -597,11 +599,9 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 
 - (UIView *)HUDView {
     if (!_HUDView) {
-        if (iOS7) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMotionOnHUDView) name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
-        }
-        
         if (iOS8) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMotionOnHUDView) name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+            
             UIBlurEffectStyle effect = 0;
             
             if (self.style == JGProgressHUDStyleDark) {
@@ -846,7 +846,9 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 }
 
 - (void)removeObservers {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+    if (iOS8) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+    }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
     
