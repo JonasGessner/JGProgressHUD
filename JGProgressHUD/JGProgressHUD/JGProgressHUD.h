@@ -234,7 +234,12 @@
  */
 @property (nonatomic, assign) BOOL voiceOverEnabled;
 
-
+/**
+ The minimum width of the HUD view.
+ 
+ @b Default: NO
+ */
+@property (nonatomic, assign) BOOL fullWidth;
 
 /**
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
