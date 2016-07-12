@@ -235,7 +235,7 @@
 @property (nonatomic, assign) BOOL voiceOverEnabled;
 
 /**
- The minimum width of the HUD view.
+ Set the HUD view is full width or not
  
  @b Default: NO
  */
