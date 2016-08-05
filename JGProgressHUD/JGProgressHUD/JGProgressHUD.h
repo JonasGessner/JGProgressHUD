@@ -200,7 +200,7 @@
 @property (nonatomic, assign) NSTimeInterval layoutChangeAnimationDuration;
 
 /**
- If the HUD is visible on screen.
+ @return Whether the HUD is visible on screen.
  */
 @property (nonatomic, assign, readonly, getter = isVisible) BOOL visible;
 

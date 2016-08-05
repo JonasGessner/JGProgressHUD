@@ -153,6 +153,13 @@
                     sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:sH.style];
                     sH.textLabel.text = @"Loading very long...";
                     [h.HUDView.layer removeAnimationForKey:@"glow"];
+                    
+                    if (_shadow) {
+                        h.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
+                        h.HUDView.layer.shadowOffset = CGSizeZero;
+                        h.HUDView.layer.shadowOpacity = 0.4f;
+                        h.HUDView.layer.shadowRadius = 8.0f;
+                    }
                 }
             });
         }
@@ -191,7 +198,7 @@
     
     HUD.marginInsets = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
     
-    [HUD dismissAfterDelay:3.0];
+    [HUD dismissAfterDelay:4.0];
 }
 
 - (void)showPieHUD {
