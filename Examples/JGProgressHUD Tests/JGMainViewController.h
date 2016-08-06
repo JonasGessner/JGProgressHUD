@@ -1,5 +1,5 @@
 //
-//  JGViewController.h
+//  JGMainViewController.h
 //  JGProgressHUD Tests
 //
 //  Created by Jonas Gessner on 20.07.14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JGViewController : UITableViewController
+@interface JGMainViewController : UITableViewController
 
 @end

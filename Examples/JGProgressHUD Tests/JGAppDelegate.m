@@ -7,16 +7,16 @@
 //
 
 #import "JGAppDelegate.h"
-#import "JGViewController.h"
+#import "JGMainViewController.h"
 
 @implementation JGAppDelegate {
-    JGViewController *_vc;
+    JGMainViewController *_vc;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    _vc = [[JGViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    _vc = [[JGMainViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_vc];
     

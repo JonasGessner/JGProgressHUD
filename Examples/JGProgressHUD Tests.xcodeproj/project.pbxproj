@@ -12,18 +12,20 @@
 		6B0687581B776965002C584E /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0687511B77692F002C584E /* JGProgressHUD.framework */; };
 		6B0687591B776965002C584E /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0687511B77692F002C584E /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B1297821AF124BD00EECA97 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */; };
-		6B1297831AF124BD00EECA97 /* JGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGViewController.m */; };
+		6B1297831AF124BD00EECA97 /* JGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGMainViewController.m */; };
 		6B1EE4031D2FCEA6000C3CFD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B1EE4021D2FCEA6000C3CFD /* Launch Screen.storyboard */; };
 		6B48F0D31AF12789006EDEB5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D3197BF28100DA4C49 /* main.m */; };
 		6B48F0DA1AF12991006EDEB5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018E2197BF28100DA4C49 /* Images.xcassets */; };
 		6B48F0DC1AF129A0006EDEB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018D0197BF28100DA4C49 /* InfoPlist.strings */; };
+		6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
+		6B8A14DC1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
 		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
 		6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018CB197BF28100DA4C49 /* UIKit.framework */; };
 		6BC018D2197BF28100DA4C49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018D0197BF28100DA4C49 /* InfoPlist.strings */; };
 		6BC018D4197BF28100DA4C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D3197BF28100DA4C49 /* main.m */; };
 		6BC018D8197BF28100DA4C49 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */; };
-		6BC018E1197BF28100DA4C49 /* JGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGViewController.m */; };
+		6BC018E1197BF28100DA4C49 /* JGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGMainViewController.m */; };
 		6BC018E3197BF28100DA4C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018E2197BF28100DA4C49 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,8 @@
 		6B0687461B77692F002C584E /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../../JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6B1297541AF1245200EECA97 /* JGProgressHUD Tests - Framework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests - Framework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B1EE4021D2FCEA6000C3CFD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6B8A14D91D55FD1A006DAB93 /* JGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDetailViewController.h; sourceTree = "<group>"; };
+		6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDetailViewController.m; sourceTree = "<group>"; };
 		6BC018C4197BF28100DA4C49 /* JGProgressHUD Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC018C7197BF28100DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,8 +103,8 @@
 		6BC018D5197BF28100DA4C49 /* JGProgressHUD Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6BC018D6197BF28100DA4C49 /* JGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGAppDelegate.h; sourceTree = "<group>"; };
 		6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGAppDelegate.m; sourceTree = "<group>"; };
-		6BC018DF197BF28100DA4C49 /* JGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGViewController.h; sourceTree = "<group>"; };
-		6BC018E0197BF28100DA4C49 /* JGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGViewController.m; sourceTree = "<group>"; };
+		6BC018DF197BF28100DA4C49 /* JGMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JGMainViewController.h; sourceTree = "<group>"; };
+		6BC018E0197BF28100DA4C49 /* JGMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGMainViewController.m; sourceTree = "<group>"; };
 		6BC018E2197BF28100DA4C49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6BC018E9197BF28100DA4C49 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6BC01909197C1D0F00DA4C49 /* JGProgressHUD Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JGProgressHUD Tests-Info.plist"; sourceTree = "<group>"; };
@@ -174,8 +178,10 @@
 				6B0687461B77692F002C584E /* JGProgressHUD.xcodeproj */,
 				6BC018D6197BF28100DA4C49 /* JGAppDelegate.h */,
 				6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */,
-				6BC018DF197BF28100DA4C49 /* JGViewController.h */,
-				6BC018E0197BF28100DA4C49 /* JGViewController.m */,
+				6BC018DF197BF28100DA4C49 /* JGMainViewController.h */,
+				6BC018E0197BF28100DA4C49 /* JGMainViewController.m */,
+				6B8A14D91D55FD1A006DAB93 /* JGDetailViewController.h */,
+				6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */,
 				6BC018E2197BF28100DA4C49 /* Images.xcassets */,
 				6B1EE4021D2FCEA6000C3CFD /* Launch Screen.storyboard */,
 				6BC018CE197BF28100DA4C49 /* Supporting Files */,
@@ -329,7 +335,8 @@
 			files = (
 				6B48F0D31AF12789006EDEB5 /* main.m in Sources */,
 				6B1297821AF124BD00EECA97 /* JGAppDelegate.m in Sources */,
-				6B1297831AF124BD00EECA97 /* JGViewController.m in Sources */,
+				6B1297831AF124BD00EECA97 /* JGMainViewController.m in Sources */,
+				6B8A14DC1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,8 +345,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BC018D4197BF28100DA4C49 /* main.m in Sources */,
-				6BC018E1197BF28100DA4C49 /* JGViewController.m in Sources */,
+				6BC018E1197BF28100DA4C49 /* JGMainViewController.m in Sources */,
 				6BC018D8197BF28100DA4C49 /* JGAppDelegate.m in Sources */,
+				6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

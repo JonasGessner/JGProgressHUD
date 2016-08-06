@@ -1,12 +1,13 @@
 //
-//  JGViewController.m
+//  JGMainViewController.m
 //  JGProgressHUD Tests
 //
 //  Created by Jonas Gessner on 20.07.14.
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import "JGViewController.h"
+#import "JGMainViewController.h"
+#import "JGDetailViewController.h"
 
 #if JGProgressHUD_Framework
 #import <JGProgressHUD/JGProgressHUD.h>
@@ -20,7 +21,7 @@
 
 #define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
-@interface JGViewController () <JGProgressHUDDelegate> {
+@interface JGMainViewController () <JGProgressHUDDelegate> {
     JGProgressHUDStyle _style;
     JGProgressHUDInteractionType _interaction;
     BOOL _zoom;
@@ -30,7 +31,7 @@
 
 @end
 
-@implementation JGViewController
+@implementation JGMainViewController
 
 #pragma mark - JGProgressHUDDelegate
 
@@ -266,7 +267,7 @@
     
     HUD.indicatorView = nil;
     
-    HUD.textLabel.text = @"Hello, World!";
+    HUD.textLabel.text = @"Hello World!";
     HUD.position = JGProgressHUDPositionBottomCenter;
     HUD.marginInsets = (UIEdgeInsets) {
         .top = 0.0f,
@@ -481,12 +482,20 @@
     [t resignFirstResponder];
 }
 
+- (void)pushDetailVC {
+    JGDetailViewController *vc = [[JGDetailViewController alloc] init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"JGProgressHUD";
     
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push VC" style:UIBarButtonItemStylePlain target:self action:@selector(pushDetailVC)];
 }
 
 
