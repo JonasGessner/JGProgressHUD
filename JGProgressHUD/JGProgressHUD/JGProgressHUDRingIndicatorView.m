@@ -67,7 +67,7 @@
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         
         [processPath setLineWidth:lineWidth];
-        [borderPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
+        [processPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
         
         CGFloat startAngle = -((CGFloat)M_PI / 2.0f);
         CGFloat endAngle = startAngle + 2.0f * (CGFloat)M_PI * self.progress;
