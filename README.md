@@ -130,11 +130,10 @@ github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 
 <b>Framework:</b><br/>
-1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
-2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
-3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br><br>
-See the <a href="Examples">Examples</a> project for an example implementation of JGProgressHUD as framework.
-<br/><br/>
+1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br/>
+2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br/>
+3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br/>
+
 After including JGProgressHUD as framework simply import `JGProgressHUD.h`:
 
 ```objc
@@ -142,9 +141,6 @@ After including JGProgressHUD as framework simply import `JGProgressHUD.h`:
 ```
 
 Swift projects need to import `JGProgressHUD.h` in the Objective-C bridging header.
-<br/><br/>
-#### RubyMotion
-An example of JGProgressHUD in a RubyMotion project can be found  [here](https://github.com/IconoclastLabs/rm-jgprogresshud-example).
 
 Screenshots
 ============
