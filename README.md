@@ -71,15 +71,18 @@ Each method is well documented, making it easy to quickly get a great overview o
 Examples
 =================
 ##### Showing indeterminate progress:
+
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.textLabel.text = @"Loading";
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
+
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
 <br/>
 ##### Showing an error message:
+
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.textLabel.text = @"Error";
@@ -87,21 +90,25 @@ HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgress
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
+
 ##### Showing a custom image:
+
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.indicatorView = [[JGProgressHUDImageIndicatorView alloc] initWithImage:[UIImage imageNamed:@"my_image.png"]];
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
+
 ##### Showing determinate progress:
+
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style]; //Or JGProgressHUDRingIndicatorView
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
-<br/>
+
 <b>Important:</b> You should always show HUDs in a UIViewController's view.
 <br/><br/>
 See the <a href="Examples">Examples</a> project for more example implementations.
@@ -114,14 +121,14 @@ In your `Podfile` add:
 ```
 pod 'JGProgressHUD'
 ```
-<br/>
+
 <b>Carthage:</b><br/>
 In your `Cartfile` add:
+
 ```
 github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 
-<br/>
 <b>Framework:</b><br/>
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br>
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br>
@@ -133,7 +140,7 @@ After including JGProgressHUD as framework simply import `JGProgressHUD.h`:
 ```objc
 #import <JGProgressHUD/JGProgressHUD.h>
 ```
-<br/><br/>
+
 Swift projects need to import `JGProgressHUD.h` in the Objective-C bridging header.
 <br/><br/>
 #### RubyMotion
