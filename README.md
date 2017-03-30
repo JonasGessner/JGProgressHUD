@@ -20,7 +20,7 @@ Overview
 • Voice Over/`UIAccessibility` support.<br/>
 • And most importantly, it looks good!<br/>
 <br/>
-The <a href="Examples">Examples</a> project contains all kinds of different uses of JGProgressHUD. Check out the code and see what JGProgressHUD can do!
+Check out the <a href="Examples">Examples</a> project to see multiple uses and some of the awesome features of JGProgressHUD in action!
 <br/>
 <br/>
 [![GitHub release](https://img.shields.io/github/release/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/releases)
@@ -109,16 +109,14 @@ See the <a href="Examples">Examples</a> project for more example implementations
 Installation
 ================
 <b>CocoaPods:</b><br/>
-Add this to your `Podfile`:
+In your `Podfile` add:
 
 ```
 pod 'JGProgressHUD'
 ```
-
 <br/>
 <b>Carthage:</b><br/>
-Add this to your `Cartfile`:
-
+In your `Cartfile` add:
 ```
 github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
@@ -135,13 +133,6 @@ After including JGProgressHUD as framework simply import `JGProgressHUD.h`:
 ```objc
 #import <JGProgressHUD/JGProgressHUD.h>
 ```
-
-Swift:
-
-```swift
-import JGProgressHUD
-```
-
 <br/><br/>
 Swift projects need to import `JGProgressHUD.h` in the Objective-C bridging header.
 <br/><br/>
@@ -160,7 +151,7 @@ Screenshots
 License
 ==========
 MIT License.<br/>
-© 2014-2016, Jonas Gessner.
+© 2014-2017, Jonas Gessner.
 
 Credits
 ==========
