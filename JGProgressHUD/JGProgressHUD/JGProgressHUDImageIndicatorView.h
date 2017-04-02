@@ -22,4 +22,12 @@
  */
 - (instancetype)initWithImage:(UIImage *)image;
 
+/**
+ Initializes the indicator view with an UIImageView showing an animation with the @c images.
+ 
+ @param images An array of images to build the animation with
+ @param duration The duration of the whole animation
+ */
+- (instancetype)initWithImages:(NSArray <UIImage *> *)images duration:(NSTimeInterval)duration;
+
 @end
