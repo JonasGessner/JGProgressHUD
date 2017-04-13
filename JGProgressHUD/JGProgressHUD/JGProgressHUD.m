@@ -155,6 +155,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self addSubview:_HUDView];
         
         self.cornerRadius = 10.0f;
+        self.fullWidth = NO;
     }
     
     return self;
@@ -290,7 +291,17 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     //HUD size
     CGSize size = CGSizeZero;
     
-    CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width))+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+    CGFloat maxInnerWidth = self.contentInsets.left +
+        MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width)) +
+        self.contentInsets.right;
+    
+    CGFloat width = MIN(maxInnerWidth,
+                        self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+    
+    // Support full width
+    if (self.fullWidth) {
+        width = _targetView.bounds.size.width;
+    }
     
     CGFloat height = MAX(CGRectGetMaxY(labelFrame), MAX(CGRectGetMaxY(detailFrame), CGRectGetMaxY(indicatorFrame)))+self.contentInsets.bottom;
     
@@ -846,6 +857,16 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     _progress = progress;
     
     [self.indicatorView setProgress:progress animated:animated];
+}
+
+- (void)setFullWidth:(BOOL)fullWidth {
+    if (self.fullWidth == fullWidth) {
+        return;
+    }
+    
+    _fullWidth = fullWidth;
+    
+    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
 }
 
 #pragma mark - Overrides
