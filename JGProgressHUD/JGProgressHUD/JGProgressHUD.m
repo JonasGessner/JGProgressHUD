@@ -251,7 +251,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (_textLabel) {
         if (iOS7) {
-            NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
+            NSDictionary *attributes = self.textLabel.attributedText
+            ? [self.textLabel.attributedText attributesAtIndex:0 longestEffectiveRange:nil inRange:NSMakeRange(0, self.textLabel.attributedText.length)]
+            : @{NSFontAttributeName : self.textLabel.font};
             labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         }
         else {
@@ -270,7 +272,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (_detailTextLabel) {
         if (iOS7) {
-            NSDictionary *attributes = @{NSFontAttributeName : self.detailTextLabel.font};
+            NSDictionary *attributes = self.detailTextLabel.attributedText
+            ? [self.detailTextLabel.attributedText attributesAtIndex:0 longestEffectiveRange:nil inRange:NSMakeRange(0, self.detailTextLabel.attributedText.length)]
+            : @{NSFontAttributeName : self.detailTextLabel.font};
             detailFrame.size = [self.detailTextLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         }
         else {
