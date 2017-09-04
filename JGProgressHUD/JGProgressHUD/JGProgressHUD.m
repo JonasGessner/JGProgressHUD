@@ -291,9 +291,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     CGSize size = CGSizeZero;
     
     CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width))+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
-    
-    CGFloat height = MAX(CGRectGetMaxY(labelFrame), MAX(CGRectGetMaxY(detailFrame), CGRectGetMaxY(indicatorFrame)))+self.contentInsets.bottom;
-    
+
+    CGFloat labelMaxY = _textLabel.text ? CGRectGetMaxY(labelFrame) : 0.0;
+    CGFloat detailLabelMaxY = _detailTextLabel.text ? CGRectGetMaxY(detailFrame) : 0.0;
+    CGFloat height = MAX(labelMaxY, MAX(detailLabelMaxY, CGRectGetMaxY(indicatorFrame)))+self.contentInsets.bottom;
+
     if (self.square) {
         CGFloat uniSize = MAX(width, height);
         
