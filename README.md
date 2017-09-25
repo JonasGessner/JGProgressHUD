@@ -7,25 +7,28 @@ Modern and extensive Apple-style progress HUD for iOS.<br/>
 </p>
 
 Overview
---------------
+---------------
 
-<b>The ultimate progress HUD for iOS has arrived: JGProgressHUD!</b><br/>
-• Plug and play: Simple integration, easy setup, few lines of code required.<br/>
-• Extensible and customizable (custom animations, indicator views and more).<br/>
-• Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.<br/>
-• Uses AutoLayout to provide a fully dynamic layout.<br/>
-• Detects and repositions when keyboard appears/disappears.<br/>
-• Well documented and maintained.<br/>
-• Voice Over/`UIAccessibility` support.<br/>
-• And most importantly, it looks good!<br/>
-<br/>
+__The ultimate progress HUD for iOS has arrived: JGProgressHUD!__
+
+- Plug and play: Simple integration, easy setup, few lines of code required.
+- Extensible and customizable (custom animations, indicator views and more).
+- Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.
+- Uses AutoLayout to provide a fully dynamic layout.
+- Detects and repositions when keyboard appears/disappears.
+- Well documented and maintained.
+- Voice Over/`UIAccessibility` support.
+- And most importantly, it looks good!
+
 Check out the <a href="Examples">Examples</a> project to see multiple uses and some of the awesome features of JGProgressHUD in action!
 <br/>
 <br/>
+
 [![GitHub release](https://img.shields.io/github/release/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/releases)
 [![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
 [![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Customization
 -----------
 ### Styles:
