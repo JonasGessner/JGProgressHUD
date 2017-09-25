@@ -17,7 +17,7 @@
 
 @end
 
-NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
+static void runOnNextRunLoop(void (^block)(void)) {
     [[NSRunLoop currentRunLoop] performSelector:@selector(runBlock:) target:[JGProgressHUDIndicatorView class] argument:(id)block order:0 modes:@[NSRunLoopCommonModes]];
 }
 

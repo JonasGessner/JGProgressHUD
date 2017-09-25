@@ -9,17 +9,7 @@
 #import "JGMainViewController.h"
 #import "JGDetailViewController.h"
 
-#if JGProgressHUD_Framework
-#import <JGProgressHUD/JGProgressHUD.h>
-#else
-#import "JGProgressHUD.h"
-#endif
-
-#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
-#define kCFCoreFoundationVersionNumber_iOS_7_0 838.00
-#endif
-
-#define iOS7 (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
+@import JGProgressHUD;
 
 @interface JGMainViewController () <JGProgressHUDDelegate> {
     JGProgressHUDStyle _style;
@@ -32,6 +22,14 @@
 @end
 
 @implementation JGMainViewController
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if (self) {
+        _interaction = JGProgressHUDInteractionTypeBlockTouchesOnHUDView;
+    }
+    return self;
+}
 
 #pragma mark - JGProgressHUDDelegate
 
@@ -68,10 +66,7 @@
     }
     
     if (_shadow) {
-        HUD.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
-        HUD.HUDView.layer.shadowOffset = CGSizeZero;
-        HUD.HUDView.layer.shadowOpacity = 0.4f;
-        HUD.HUDView.layer.shadowRadius = 8.0f;
+        HUD.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:8.0 opacity:0.4f];
     }
     
     HUD.delegate = self;
@@ -89,7 +84,7 @@
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:3.0];
+    [HUD dismissAfterDelay:4.0];
 }
 
 - (void)showErrorHUD {
@@ -102,7 +97,7 @@
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:3.0];
+    [HUD dismissAfterDelay:4.0];
 }
 
 - (void)showSimpleHUD {
@@ -110,13 +105,13 @@
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:3.0];
+    [HUD dismissAfterDelay:4.0];
 }
 
 - (void)showCancellableHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
-    HUD.textLabel.text = @"Loading very long...";
+    HUD.textLabel.text = @"Loading for a long time...";
     
     __block BOOL confirmationAsked = NO;
     
@@ -126,7 +121,7 @@
         }
         else {
             h.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init];
-            h.textLabel.text = @"Cancel ?";
+            h.textLabel.text = @"Cancel?";
             confirmationAsked = YES;
             
             CABasicAnimation *an = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
@@ -138,10 +133,7 @@
             
             an.duration = 0.75f;
             
-            h.HUDView.layer.shadowColor = [UIColor redColor].CGColor;
-            h.HUDView.layer.shadowOffset = CGSizeZero;
-            h.HUDView.layer.shadowOpacity = 0.0f;
-            h.HUDView.layer.shadowRadius = 8.0f;
+            h.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor redColor] offset:CGSizeZero radius:8.0 opacity:0.0f];
             
             [h.HUDView.layer addAnimation:an forKey:@"glow"];
             
@@ -152,7 +144,7 @@
                     __strong __typeof(wH) sH = wH;
                     
                     sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:sH.style];
-                    sH.textLabel.text = @"Loading very long...";
+                    sH.textLabel.text = @"Loading for a long time...";
                     [h.HUDView.layer removeAnimationForKey:@"glow"];
                     
                     if (_shadow) {
@@ -180,26 +172,43 @@
     [HUD dismissAfterDelay:120.0];
 }
 
-- (void)showNormalHUD {
+- (void)showHUDWithTransform {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Loading...";
     
+    HUD.layoutMargins = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
+    
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        HUD.indicatorView = nil;
-        
-        HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
-        
-        HUD.textLabel.text = @"Done";
-        
-        HUD.position = JGProgressHUDPositionBottomCenter;
+        [UIView animateWithDuration:0.3 animations:^{
+            HUD.indicatorView = nil;
+            
+            HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
+            
+            HUD.textLabel.text = @"Done";
+            
+            HUD.position = JGProgressHUDPositionBottomCenter;
+        }];
     });
     
-    HUD.marginInsets = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
-    
     [HUD dismissAfterDelay:4.0];
+}
+
+- (void)showRingHUD {
+    JGProgressHUD *HUD = self.prototypeHUD;
+    
+    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    
+    HUD.detailTextLabel.text = @"0% Complete";
+    
+    HUD.textLabel.text = @"Downloading...";
+    [HUD showInView:self.navigationController.view];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self incrementHUD:HUD progress:0];
+    });
 }
 
 - (void)showPieHUD {
@@ -212,9 +221,7 @@
     HUD.textLabel.text = @"Downloading...";
     [HUD showInView:self.navigationController.view];
     
-    HUD.layoutChangeAnimationDuration = 0.0;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self incrementHUD:HUD progress:0];
     });
 }
@@ -230,8 +237,9 @@
             HUD.textLabel.text = @"Success";
             HUD.detailTextLabel.text = nil;
             
-            HUD.layoutChangeAnimationDuration = 0.3;
-            HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+            [UIView animateWithDuration:0.1 animations:^{
+               HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+            }];
         });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -245,40 +253,22 @@
     }
 }
 
-- (void)showRingHUD {
-    JGProgressHUD *HUD = self.prototypeHUD;
-    
-    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
-    
-    HUD.detailTextLabel.text = @"0% Complete";
-    
-    HUD.textLabel.text = @"Downloading...";
-    [HUD showInView:self.navigationController.view];
-    
-    HUD.layoutChangeAnimationDuration = 0.0;
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self incrementHUD:HUD progress:0];
-    });
-}
-
 - (void)showTextHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.indicatorView = nil;
     
-    HUD.textLabel.text = @"Hello World!";
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"Attributed" attributes:@{NSForegroundColorAttributeName : [UIColor redColor], NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
+    
+    [text appendAttributedString:[[NSAttributedString alloc] initWithString:@" Text" attributes:@{NSForegroundColorAttributeName : [UIColor greenColor], NSFontAttributeName: [UIFont systemFontOfSize:11.0]}]];
+    
+    HUD.textLabel.attributedText = text;
+    
     HUD.position = JGProgressHUDPositionBottomCenter;
-    HUD.marginInsets = (UIEdgeInsets) {
-        .top = 0.0f,
-        .bottom = 20.0f,
-        .left = 0.0f,
-        .right = 0.0f,
-    };
     
     [HUD showInView:self.navigationController.view];
     
-    [HUD dismissAfterDelay:2.0];
+    [HUD dismissAfterDelay:4.0];
 }
 
 - (void)setHUDStyle:(UISegmentedControl *)c {
@@ -383,27 +373,20 @@
         else if (indexPath.row == 4) {
             cell.textLabel.text = @"Dim Background";
             UISwitch *s = [[UISwitch alloc] init];
-            
-            if (iOS7) {
-                s.backgroundColor = [UIColor whiteColor];
-                s.layer.cornerRadius = 16.0f;
-            }
-            
+            s.backgroundColor = [UIColor whiteColor];
+            s.layer.cornerRadius = 16.0f;
             s.on = _dim;
+            
             [s addTarget:self action:@selector(setDim:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = s;
         }
         else if (indexPath.row == 5) {
             cell.textLabel.text = @"Apply Shadow";
             UISwitch *s = [[UISwitch alloc] init];
-            
-            if (iOS7) {
-                s.backgroundColor = [UIColor whiteColor];
-                s.layer.cornerRadius = 16.0f;
-            }
-            
+            s.layer.cornerRadius = 16.0f;
             s.backgroundColor = [UIColor whiteColor];
             s.on = _shadow;
+            
             [s addTarget:self action:@selector(setShadow:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = s;
         }
@@ -416,7 +399,7 @@
                 cell.textLabel.text = @"Activity Indicator";
                 break;
             case 1:
-                cell.textLabel.text = @"Activity Indicator & Text, Transform";
+                cell.textLabel.text = @"Activity Indicator & Text, Position Change";
                 break;
             case 2:
                 cell.textLabel.text = @"Pie Progress, Text & Detail Text";
@@ -425,7 +408,7 @@
                 cell.textLabel.text = @"Ring Progress, Text & Detail Text";
                 break;
             case 4:
-                cell.textLabel.text = @"Text Only, Bottom Position";
+                cell.textLabel.text = @"Attributed text, Bottom Position";
                 break;
             case 5:
                 cell.textLabel.text = @"Success, Square Shape";
@@ -455,7 +438,7 @@
             [self showSimpleHUD];
             break;
         case 1:
-            [self showNormalHUD];
+            [self showHUDWithTransform];
             break;
         case 2:
             [self showPieHUD];

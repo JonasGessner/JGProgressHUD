@@ -14,24 +14,24 @@
 /**
  Initializes the indicator view and sets the correct color to match the HUD style.
  */
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
+- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style;
 
 /**
  Background color of the ring.
  
  @b Default: Black for JGProgressHUDStyleDark, light gray otherwise.
  */
-@property (nonatomic, strong) UIColor *ringBackgroundColor;
+@property (nonatomic, strong, nonnull) UIColor *ringBackgroundColor;
 
 /**
  Progress color of the progress ring.
  
  @b Default: White for JGProgressHUDStyleDark, otherwise black.
  */
-@property (nonatomic, strong) UIColor *ringColor;
+@property (nonatomic, strong, nonnull) UIColor *ringColor;
 
 /**
- Sets if the progress ring should have rounded corners.
+ Sets if the progress ring should have a rounded line cap.
  
  @b Default: NO.
  */

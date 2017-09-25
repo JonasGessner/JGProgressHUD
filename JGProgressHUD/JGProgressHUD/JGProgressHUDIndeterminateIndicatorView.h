@@ -14,12 +14,12 @@
 /**
  Initializes the indicator view and sets the correct color to match the HUD style.
  */
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
+- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style;
 
 /**
  Set the color of the activity indicator view.
  @param color The color to apply to the activity indicator view.
  */
-- (void)setColor:(UIColor *)color;
+- (void)setColor:(UIColor *__nonnull)color;
 
 @end

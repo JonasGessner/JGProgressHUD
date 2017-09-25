@@ -1,22 +1,21 @@
 JGProgressHUD
-=============
+---------------
 
-Modern and extensive Apple-style progress HUD for iOS.<br>
+Modern and extensive Apple-style progress HUD for iOS.<br/>
 <p align="center">
 <img src="Presentation.png"/>
 </p>
 
 Overview
-=============
+--------------
 
 <b>The ultimate progress HUD for iOS has arrived: JGProgressHUD!</b><br/>
-• Well designed, easy to use.<br/>
-• Feature-rich.<br/>
+• Plug and play: Simple integration, easy setup, few lines of code required.<br/>
 • Extensible and customizable (custom animations, indicator views and more).<br/>
-• Uses the newest features of iOS: Blurred HUD (iOS 8+), parallax effect (iOS 7+).<br/>
-• Backward compatibility to iOS 6.<br/>
-• Well documented and maintained.<br/>
+• Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.<br/>
+• Uses AutoLayout to provide a fully dynamic layout.<br/>
 • Detects and repositions when keyboard appears/disappears.<br/>
+• Well documented and maintained.<br/>
 • Voice Over/`UIAccessibility` support.<br/>
 • And most importantly, it looks good!<br/>
 <br/>
@@ -27,23 +26,23 @@ Check out the <a href="Examples">Examples</a> project to see multiple uses and s
 [![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
 [![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-## Customization:
-
+Customization
+-----------
 ### Styles:
-JGProgressHUD can be displayed in 3 styles:<br>
+JGProgressHUD can be displayed in 3 styles:<br/>
 • <b>Extra Light</b><br/>
 • <b>Light</b><br/>
 • <b>Dark</b><br/>
 
 ### Indicator Views:
-By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br>
+By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br/>
 • <b>Indeterminate progress indicator</b><br/>
 • <b>Pie progress indicator</b><br/>
 • <b>Ring progress indicator</b><br/>
 • <b>Success indicator</b><br/>
 • <b>Error indicator</b><br/>
 • <b>Image indicator</b><br/>
-By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br>
+By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br/>
 
 
 ### Animations:
@@ -55,21 +54,21 @@ By subclassing `JGProgressHUDAnimation` you can create a custom animation!
 To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
 
 Requirements
-=================
+------------
 
-• Base SDK of iOS 8 or higher.<br/>
-• Deployment target of iOS 6.0 or higher.<br/>
+• Base SDK of iOS 11 or higher.<br/>
+• Deployment target of iOS 8.0 or higher.<br/>
 • ARC.
 
 • JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
 
 Documentation
-================
+----------------
 Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br/><br/>
 Each method is well documented, making it easy to quickly get a great overview of JGProgressHUD. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 Examples
-=================
+--------------
 ##### Showing indeterminate progress:
 
 ```objc
@@ -114,36 +113,42 @@ HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.
 See the <a href="Examples">Examples</a> project for more example implementations.
 
 Installation
-================
-<b>CocoaPods:</b><br/>
+--------------
+### CocoaPods:
 In your `Podfile` add:
 
 ```
 pod 'JGProgressHUD'
 ```
 
-<b>Carthage:</b><br/>
+### Carthage:
 In your `Cartfile` add:
 
 ```
 github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 
-<b>Framework:</b><br/>
+### Framework:
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br/>
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br/>
 3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br/>
 
-After including JGProgressHUD as framework simply import `JGProgressHUD.h`:
+After you have included JGProgressHUD as framework simply import the module where you want to use it:
 
 ```objc
-#import <JGProgressHUD/JGProgressHUD.h>
+@import JGProgressHUD;
 ```
 
-Swift projects need to import `JGProgressHUD.h` in the Objective-C bridging header.
+Swift projects:
+
+```swift
+import JGProgressHUD
+```
+
+See the <a href="Examples">Examples</a> project for an example implementation of JGProgressHUD as framework.
 
 Screenshots
-============
+-------------
 <p align="center">
 <img src="Examples/Screenshots/1.png" width="24%"/>&nbsp;
 <img src="Examples/Screenshots/3.png" width="24%"/>&nbsp;
@@ -152,10 +157,10 @@ Screenshots
 </p>
 
 License
-==========
+---------
 MIT License.<br/>
 © 2014-2017, Jonas Gessner.
 
 Credits
-==========
+----------
 Created and maintained by Jonas Gessner, © 2014-2017.<br/>

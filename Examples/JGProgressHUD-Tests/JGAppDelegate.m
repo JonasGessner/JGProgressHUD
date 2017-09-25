@@ -9,16 +9,14 @@
 #import "JGAppDelegate.h"
 #import "JGMainViewController.h"
 
-@implementation JGAppDelegate {
-    JGMainViewController *_vc;
-}
+@implementation JGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    _vc = [[JGMainViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    JGMainViewController *vc = [[JGMainViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_vc];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     
     self.window.rootViewController = nav;
     

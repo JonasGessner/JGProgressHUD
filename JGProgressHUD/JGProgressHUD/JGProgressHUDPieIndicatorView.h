@@ -14,20 +14,20 @@
 /**
  Initializes the indicator view and sets the correct color to match the HUD style.
  */
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style;
+- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style;
 
 /**
  Tint color of the Pie. 
  
  @b Default: White for JGProgressHUDStyleDark, otherwise black.
  */
-@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong, nonnull) UIColor *color;
 
 /**
  The background fill color inside the pie.
  
  @b Default: Dark gray for JGProgressHUDStyleDark, otherwise light gray.
  */
-@property (nonatomic, strong) UIColor *fillColor;
+@property (nonatomic, strong, nonnull) UIColor *fillColor;
 
 @end

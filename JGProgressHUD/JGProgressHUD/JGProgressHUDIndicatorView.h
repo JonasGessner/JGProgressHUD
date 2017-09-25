@@ -19,10 +19,7 @@
  
  @param contentView The content view to place on the container view (the container is the JGProgressHUDIndicatorView).
  */
-- (instancetype)initWithContentView:(UIView *)contentView;
-
-
-
+- (instancetype __nonnull)initWithContentView:(UIView *__nullable)contentView;
 
 /**
  Ranges from 0.0 to 1.0.
@@ -42,7 +39,7 @@
 /**
  The content view which displays the progress.
  */
-@property (nonatomic, strong, readonly) UIView *contentView;
+@property (nonatomic, strong, readonly, nullable) UIView *contentView;
 
 /**
  Schedules an accessibility update on the next run loop.
