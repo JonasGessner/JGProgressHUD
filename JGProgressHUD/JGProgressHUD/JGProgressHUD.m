@@ -28,9 +28,6 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
     
-    BOOL _observeTraitCollectionChange;
-    BOOL _presentingFull;
-    
     CFAbsoluteTime _displayTimestamp;
     
     JGProgressHUDIndicatorView *__nullable _indicatorViewAfterTransitioning;
@@ -111,7 +108,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (self) {
         _style = style;
         _voiceOverEnabled = YES;
-        _observeTraitCollectionChange = NO;
         
         _HUDView = [[UIView alloc] init];
         self.HUDView.backgroundColor = [UIColor clearColor];
@@ -346,8 +342,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _dismissAfterTransitionFinished = NO;
         _dismissAfterTransitionFinishedWithAnimation = NO;
     }
-    
-    if (self.voiceOverEnabled && UIAccessibilityIsVoiceOverRunning()) {
+    else if (self.voiceOverEnabled && UIAccessibilityIsVoiceOverRunning()) {
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
     }
 }
@@ -373,6 +368,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         return;
     }
     
+    if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
+        [self.delegate progressHUD:self willPresentInView:view];
+    }
+    
     _targetView = view;
     [_targetView addSubview:self];
     
@@ -388,13 +387,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [self layoutHUD];
     
     _transitioning = YES;
-    _observeTraitCollectionChange = YES;
     
     _displayTimestamp = CFAbsoluteTimeGetCurrent();
-    
-    if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
-        [self.delegate progressHUD:self willPresentInView:view];
-    }
     
     if (animated && self.animation != nil) {
         [self.animation show];
@@ -415,17 +409,16 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     [self removeObservers];
     
-    _presentingFull = NO;
     _transitioning = NO;
     _dismissAfterTransitionFinished = NO;
     _dismissAfterTransitionFinishedWithAnimation = NO;
-    _observeTraitCollectionChange = NO;
+    
+    __typeof(self.targetView) targetView = self.targetView;
+    _targetView = nil;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:didDismissFromView:)]) {
-        [self.delegate progressHUD:self didDismissFromView:self.targetView];
+        [self.delegate progressHUD:self didDismissFromView:targetView];
     }
-    
-    _targetView = nil;
 }
 
 - (void)dismiss {
@@ -455,12 +448,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         }
     }
     
-    _transitioning = YES;
-    
     if ([self.delegate respondsToSelector:@selector(progressHUD:willDismissFromView:)]) {
         [self.delegate progressHUD:self willDismissFromView:self.targetView];
     }
     
+    _transitioning = YES;
+
     if (animated && self.animation) {
         [self.animation hide];
     }
