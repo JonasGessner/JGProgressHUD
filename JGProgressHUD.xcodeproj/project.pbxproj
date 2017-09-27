@@ -38,6 +38,40 @@
 		6B3238191F79AA0E007C0547 /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */; };
 		6B6E77541F79645E0031D476 /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */; };
 		6B6E77561F7964690031D476 /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9B11F7A626E005E783F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9B01F7A626E005E783F /* Foundation.framework */; };
+		6BABF9B31F7A6272005E783F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9B21F7A6272005E783F /* QuartzCore.framework */; };
+		6BABF9B51F7A6277005E783F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9B41F7A6277005E783F /* UIKit.framework */; };
+		6BABF9B61F7A6293005E783F /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06872F1B7766E1002C584E /* JGProgressHUD.m */; };
+		6BABF9B71F7A6296005E783F /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */; };
+		6BABF9B81F7A62A6005E783F /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06872E1B7766E1002C584E /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9B91F7A62A6005E783F /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9BA1F7A62A6005E783F /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06872D1B7766E1002C584E /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9BB1F7A62A6005E783F /* JGProgressHUDAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0686F61B776670002C584E /* JGProgressHUDAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9BC1F7A62A6005E783F /* JGProgressHUDAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0686F71B776670002C584E /* JGProgressHUDAnimation.m */; };
+		6BABF9BD1F7A62A6005E783F /* JGProgressHUDFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0686F81B776670002C584E /* JGProgressHUDFadeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9BE1F7A62A6005E783F /* JGProgressHUDFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0686F91B776670002C584E /* JGProgressHUDFadeAnimation.m */; };
+		6BABF9BF1F7A62A6005E783F /* JGProgressHUDFadeZoomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0686FA1B776670002C584E /* JGProgressHUDFadeZoomAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9C01F7A62A6005E783F /* JGProgressHUDFadeZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0686FB1B776670002C584E /* JGProgressHUDFadeZoomAnimation.m */; };
+		6BABF9C11F7A62A6005E783F /* JGProgressHUDIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06870D1B776690002C584E /* JGProgressHUDIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9C21F7A62A6005E783F /* JGProgressHUDIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06870E1B776690002C584E /* JGProgressHUDIndicatorView.m */; };
+		6BABF9C31F7A62A6005E783F /* JGProgressHUDImageIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0687091B776690002C584E /* JGProgressHUDImageIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9C41F7A62A6005E783F /* JGProgressHUDImageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06870A1B776690002C584E /* JGProgressHUDImageIndicatorView.m */; };
+		6BABF9C51F7A62A6005E783F /* JGProgressHUDIndeterminateIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06870B1B776690002C584E /* JGProgressHUDIndeterminateIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9C61F7A62A6005E783F /* JGProgressHUDIndeterminateIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06870C1B776690002C584E /* JGProgressHUDIndeterminateIndicatorView.m */; };
+		6BABF9C71F7A62A6005E783F /* JGProgressHUDPieIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06870F1B776690002C584E /* JGProgressHUDPieIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9C81F7A62A6005E783F /* JGProgressHUDPieIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687101B776690002C584E /* JGProgressHUDPieIndicatorView.m */; };
+		6BABF9C91F7A62A6005E783F /* JGProgressHUDRingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0687111B776690002C584E /* JGProgressHUDRingIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9CA1F7A62A6005E783F /* JGProgressHUDRingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687121B776690002C584E /* JGProgressHUDRingIndicatorView.m */; };
+		6BABF9CB1F7A62A6005E783F /* JGProgressHUDErrorIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0687071B776690002C584E /* JGProgressHUDErrorIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9CC1F7A62A6005E783F /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687081B776690002C584E /* JGProgressHUDErrorIndicatorView.m */; };
+		6BABF9CD1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0687131B776690002C584E /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BABF9CE1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687141B776690002C584E /* JGProgressHUDSuccessIndicatorView.m */; };
+		6BABF9CF1F7A62CA005E783F /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380E1F79AA02007C0547 /* jg_hud_error.png */; };
+		6BABF9D01F7A62CA005E783F /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380F1F79AA02007C0547 /* jg_hud_error@2x.png */; };
+		6BABF9D11F7A62CA005E783F /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238101F79AA02007C0547 /* jg_hud_error@3x.png */; };
+		6BABF9D21F7A62CA005E783F /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238111F79AA02007C0547 /* jg_hud_success.png */; };
+		6BABF9D31F7A62CA005E783F /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */; };
+		6BABF9D41F7A62CA005E783F /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */; };
 		6BF7DC871AEFD05B000A0AE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B6197B2BC700DA4C49 /* UIKit.framework */; };
 		6BF7DC8A1AEFD066000A0AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC01876197B2AA500DA4C49 /* Foundation.framework */; };
 		6BF7DC8B1AEFD072000A0AE0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */; };
@@ -73,10 +107,15 @@
 		6B3238111F79AA02007C0547 /* jg_hud_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_success.png; sourceTree = "<group>"; };
 		6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@2x.png"; sourceTree = "<group>"; };
 		6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@3x.png"; sourceTree = "<group>"; };
-		6B32381E1F7A4535007C0547 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = JGProgressHUD/Info.plist; sourceTree = "<group>"; };
 		6B334B46197DB7940010087F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDShadow.h; path = JGProgressHUD/JGProgressHUDShadow.h; sourceTree = "<group>"; };
 		6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDShadow.m; path = JGProgressHUD/JGProgressHUDShadow.m; sourceTree = "<group>"; };
+		6BABF9A31F7A6133005E783F /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BABF9AB1F7A616E005E783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "JGProgressHUD/JGProgressHUD-iOS/Info.plist"; sourceTree = "<group>"; };
+		6BABF9AF1F7A6211005E783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "JGProgressHUD/JGProgressHUD-tvOS/Info.plist"; sourceTree = "<group>"; };
+		6BABF9B01F7A626E005E783F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6BABF9B21F7A6272005E783F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		6BABF9B41F7A6277005E783F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS11.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		6BC01876197B2AA500DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC018B6197B2BC700DA4C49 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -85,6 +124,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6BABF99F1F7A6133005E783F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9B51F7A6277005E783F /* UIKit.framework in Frameworks */,
+				6BABF9B31F7A6272005E783F /* QuartzCore.framework in Frameworks */,
+				6BABF9B11F7A626E005E783F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BF7DC561AEFCFD9000A0AE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -112,12 +161,20 @@
 			path = JGProgressHUD/Resources;
 			sourceTree = "<group>";
 		};
-		6B32381D1F7A44FA007C0547 /* Supporting Files */ = {
+		6B32381D1F7A44FA007C0547 /* Supporting Files (iOS) */ = {
 			isa = PBXGroup;
 			children = (
-				6B32381E1F7A4535007C0547 /* Info.plist */,
+				6BABF9AB1F7A616E005E783F /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = "Supporting Files (iOS)";
+			sourceTree = "<group>";
+		};
+		6BABF9AE1F7A61E1005E783F /* Supporting Files (tvOS) */ = {
+			isa = PBXGroup;
+			children = (
+				6BABF9AF1F7A6211005E783F /* Info.plist */,
+			);
+			name = "Supporting Files (tvOS)";
 			sourceTree = "<group>";
 		};
 		6BC0186A197B2AA500DA4C49 = {
@@ -125,7 +182,8 @@
 			children = (
 				6BC01878197B2AA500DA4C49 /* JGProgressHUD */,
 				6B32380D1F79AA02007C0547 /* Resources */,
-				6B32381D1F7A44FA007C0547 /* Supporting Files */,
+				6B32381D1F7A44FA007C0547 /* Supporting Files (iOS) */,
+				6BABF9AE1F7A61E1005E783F /* Supporting Files (tvOS) */,
 				6BC01875197B2AA500DA4C49 /* Frameworks */,
 				6BC01874197B2AA500DA4C49 /* Products */,
 			);
@@ -135,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				6BF7DC5A1AEFCFD9000A0AE0 /* JGProgressHUD.framework */,
+				6BABF9A31F7A6133005E783F /* JGProgressHUD.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +201,9 @@
 		6BC01875197B2AA500DA4C49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BABF9B41F7A6277005E783F /* UIKit.framework */,
+				6BABF9B21F7A6272005E783F /* QuartzCore.framework */,
+				6BABF9B01F7A626E005E783F /* Foundation.framework */,
 				6BF7DC881AEFD063000A0AE0 /* CoreGraphics.framework */,
 				6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */,
 				6BC018B6197B2BC700DA4C49 /* UIKit.framework */,
@@ -154,11 +216,11 @@
 		6BC01878197B2AA500DA4C49 /* JGProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				6B06872D1B7766E1002C584E /* JGProgressHUD-Defines.h */,
 				6B06872E1B7766E1002C584E /* JGProgressHUD.h */,
 				6B06872F1B7766E1002C584E /* JGProgressHUD.m */,
 				6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */,
 				6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */,
-				6B06872D1B7766E1002C584E /* JGProgressHUD-Defines.h */,
 				6BC018B4197B2AC300DA4C49 /* Animations */,
 				6BC018B5197B2ACB00DA4C49 /* Indicators */,
 			);
@@ -186,13 +248,13 @@
 				6B0687091B776690002C584E /* JGProgressHUDImageIndicatorView.h */,
 				6B06870A1B776690002C584E /* JGProgressHUDImageIndicatorView.m */,
 				6BEEFF5E1B721FEE006B4CD7 /* Indeterminate Progress */,
-				6BEEFF5C1B721FD0006B4CD7 /* Progress Indicators */,
-				6BEEFF5D1B721FDB006B4CD7 /* Success/Error Indicators */,
+				6BEEFF5C1B721FD0006B4CD7 /* Determinate Progress */,
+				6BEEFF5D1B721FDB006B4CD7 /* Success/Error */,
 			);
 			name = Indicators;
 			sourceTree = "<group>";
 		};
-		6BEEFF5C1B721FD0006B4CD7 /* Progress Indicators */ = {
+		6BEEFF5C1B721FD0006B4CD7 /* Determinate Progress */ = {
 			isa = PBXGroup;
 			children = (
 				6B06870F1B776690002C584E /* JGProgressHUDPieIndicatorView.h */,
@@ -200,10 +262,10 @@
 				6B0687111B776690002C584E /* JGProgressHUDRingIndicatorView.h */,
 				6B0687121B776690002C584E /* JGProgressHUDRingIndicatorView.m */,
 			);
-			name = "Progress Indicators";
+			name = "Determinate Progress";
 			sourceTree = "<group>";
 		};
-		6BEEFF5D1B721FDB006B4CD7 /* Success/Error Indicators */ = {
+		6BEEFF5D1B721FDB006B4CD7 /* Success/Error */ = {
 			isa = PBXGroup;
 			children = (
 				6B0687071B776690002C584E /* JGProgressHUDErrorIndicatorView.h */,
@@ -211,7 +273,7 @@
 				6B0687131B776690002C584E /* JGProgressHUDSuccessIndicatorView.h */,
 				6B0687141B776690002C584E /* JGProgressHUDSuccessIndicatorView.m */,
 			);
-			name = "Success/Error Indicators";
+			name = Success/Error;
 			sourceTree = "<group>";
 		};
 		6BEEFF5E1B721FEE006B4CD7 /* Indeterminate Progress */ = {
@@ -226,6 +288,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		6BABF9A01F7A6133005E783F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9C71F7A62A6005E783F /* JGProgressHUDPieIndicatorView.h in Headers */,
+				6BABF9BF1F7A62A6005E783F /* JGProgressHUDFadeZoomAnimation.h in Headers */,
+				6BABF9C91F7A62A6005E783F /* JGProgressHUDRingIndicatorView.h in Headers */,
+				6BABF9B91F7A62A6005E783F /* JGProgressHUDShadow.h in Headers */,
+				6BABF9BB1F7A62A6005E783F /* JGProgressHUDAnimation.h in Headers */,
+				6BABF9C31F7A62A6005E783F /* JGProgressHUDImageIndicatorView.h in Headers */,
+				6BABF9C11F7A62A6005E783F /* JGProgressHUDIndicatorView.h in Headers */,
+				6BABF9B81F7A62A6005E783F /* JGProgressHUD.h in Headers */,
+				6BABF9CD1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.h in Headers */,
+				6BABF9CB1F7A62A6005E783F /* JGProgressHUDErrorIndicatorView.h in Headers */,
+				6BABF9BD1F7A62A6005E783F /* JGProgressHUDFadeAnimation.h in Headers */,
+				6BABF9BA1F7A62A6005E783F /* JGProgressHUD-Defines.h in Headers */,
+				6BABF9C51F7A62A6005E783F /* JGProgressHUDIndeterminateIndicatorView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BF7DC571AEFCFD9000A0AE0 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,9 +331,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6BF7DC591AEFCFD9000A0AE0 /* JGProgressHUD */ = {
+		6BABF9A21F7A6133005E783F /* JGProgressHUD-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6BF7DC6D1AEFCFD9000A0AE0 /* Build configuration list for PBXNativeTarget "JGProgressHUD" */;
+			buildConfigurationList = 6BABF9A81F7A6133005E783F /* Build configuration list for PBXNativeTarget "JGProgressHUD-tvOS" */;
+			buildPhases = (
+				6BABF99E1F7A6133005E783F /* Sources */,
+				6BABF99F1F7A6133005E783F /* Frameworks */,
+				6BABF9A01F7A6133005E783F /* Headers */,
+				6BABF9A11F7A6133005E783F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JGProgressHUD-tvOS";
+			productName = "JGProgressHUD-tvOS";
+			productReference = 6BABF9A31F7A6133005E783F /* JGProgressHUD.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6BF7DC591AEFCFD9000A0AE0 /* JGProgressHUD-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BF7DC6D1AEFCFD9000A0AE0 /* Build configuration list for PBXNativeTarget "JGProgressHUD-iOS" */;
 			buildPhases = (
 				6BF7DC551AEFCFD9000A0AE0 /* Sources */,
 				6BF7DC561AEFCFD9000A0AE0 /* Frameworks */,
@@ -262,7 +362,7 @@
 			);
 			dependencies = (
 			);
-			name = JGProgressHUD;
+			name = "JGProgressHUD-iOS";
 			productName = "JGProgressHUD Framework";
 			productReference = 6BF7DC5A1AEFCFD9000A0AE0 /* JGProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
@@ -276,6 +376,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Jonas Gessner";
 				TargetAttributes = {
+					6BABF9A21F7A6133005E783F = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Manual;
+					};
 					6BF7DC591AEFCFD9000A0AE0 = {
 						CreatedOnToolsVersion = 6.3;
 					};
@@ -293,12 +397,26 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6BF7DC591AEFCFD9000A0AE0 /* JGProgressHUD */,
+				6BF7DC591AEFCFD9000A0AE0 /* JGProgressHUD-iOS */,
+				6BABF9A21F7A6133005E783F /* JGProgressHUD-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6BABF9A11F7A6133005E783F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9CF1F7A62CA005E783F /* jg_hud_error.png in Resources */,
+				6BABF9D01F7A62CA005E783F /* jg_hud_error@2x.png in Resources */,
+				6BABF9D11F7A62CA005E783F /* jg_hud_error@3x.png in Resources */,
+				6BABF9D21F7A62CA005E783F /* jg_hud_success.png in Resources */,
+				6BABF9D31F7A62CA005E783F /* jg_hud_success@2x.png in Resources */,
+				6BABF9D41F7A62CA005E783F /* jg_hud_success@3x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BF7DC581AEFCFD9000A0AE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +433,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6BABF99E1F7A6133005E783F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9B61F7A6293005E783F /* JGProgressHUD.m in Sources */,
+				6BABF9BC1F7A62A6005E783F /* JGProgressHUDAnimation.m in Sources */,
+				6BABF9CA1F7A62A6005E783F /* JGProgressHUDRingIndicatorView.m in Sources */,
+				6BABF9C41F7A62A6005E783F /* JGProgressHUDImageIndicatorView.m in Sources */,
+				6BABF9BE1F7A62A6005E783F /* JGProgressHUDFadeAnimation.m in Sources */,
+				6BABF9C61F7A62A6005E783F /* JGProgressHUDIndeterminateIndicatorView.m in Sources */,
+				6BABF9C01F7A62A6005E783F /* JGProgressHUDFadeZoomAnimation.m in Sources */,
+				6BABF9CC1F7A62A6005E783F /* JGProgressHUDErrorIndicatorView.m in Sources */,
+				6BABF9C21F7A62A6005E783F /* JGProgressHUDIndicatorView.m in Sources */,
+				6BABF9C81F7A62A6005E783F /* JGProgressHUDPieIndicatorView.m in Sources */,
+				6BABF9CE1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.m in Sources */,
+				6BABF9B71F7A6296005E783F /* JGProgressHUDShadow.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BF7DC551AEFCFD9000A0AE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +474,75 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		6BABF9A91F7A6133005E783F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD";
+				PRODUCT_NAME = JGProgressHUD;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6BABF9AA1F7A6133005E783F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD";
+				PRODUCT_NAME = JGProgressHUD;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		6BC01894197B2AA600DA4C49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -445,7 +651,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -474,7 +680,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
-				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -491,6 +697,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6BABF9A81F7A6133005E783F /* Build configuration list for PBXNativeTarget "JGProgressHUD-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BABF9A91F7A6133005E783F /* Debug */,
+				6BABF9AA1F7A6133005E783F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6BC0186E197B2AA500DA4C49 /* Build configuration list for PBXProject "JGProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -500,7 +715,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BF7DC6D1AEFCFD9000A0AE0 /* Build configuration list for PBXNativeTarget "JGProgressHUD" */ = {
+		6BF7DC6D1AEFCFD9000A0AE0 /* Build configuration list for PBXNativeTarget "JGProgressHUD-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6BF7DC6E1AEFCFD9000A0AE0 /* Debug */,

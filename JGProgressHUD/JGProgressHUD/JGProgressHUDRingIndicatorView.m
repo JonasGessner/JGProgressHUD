@@ -76,6 +76,8 @@
         
         [processPath stroke];
     }
+    
+    UIGraphicsPopContext();
 }
 
 @end
@@ -85,44 +87,27 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
-    self = [super init];
+- (instancetype)init {
+    self = [super initWithContentView:nil];;
     
     if (self) {
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer setNeedsDisplay];
         
-        if (style == JGProgressHUDStyleDark) {
-            self.ringColor = [UIColor whiteColor];
-            self.ringBackgroundColor = [UIColor blackColor];
-        }
-        else {
-            self.ringColor = [UIColor blackColor];
-            if (style == JGProgressHUDStyleLight) {
-                self.ringBackgroundColor = [UIColor colorWithWhite:0.85f alpha:1.0f];
-            }
-            else {
-                self.ringBackgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-            }
-        }
+        self.ringWidth = 3.0f;
+        self.ringColor = [UIColor clearColor];
+        self.ringBackgroundColor = [UIColor clearColor];
     }
     
     return self;
 }
 
+- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
+    return [self init];
+}
+
 - (instancetype)initWithContentView:(UIView *)contentView {
-    self = [super initWithContentView:contentView];
-    
-    if (self) {
-        self.layer.contentsScale = [UIScreen mainScreen].scale;
-        [self.layer setNeedsDisplay];
-        
-        self.ringColor = [UIColor whiteColor];
-        self.ringBackgroundColor = [UIColor blackColor];
-        self.ringWidth = 3.0f;
-    }
-    
-    return self;
+    return [self init];
 }
 
 #pragma mark - Getters & Setters
@@ -183,6 +168,24 @@
 }
 
 #pragma mark - Overrides
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
+    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
+    
+    if (style == JGProgressHUDStyleDark) {
+        self.ringColor = [UIColor colorWithWhite:1.0 alpha:1.0];
+        self.ringBackgroundColor = [UIColor colorWithWhite:0.0 alpha:1.0];
+    }
+    else {
+        self.ringColor = [UIColor blackColor];
+        if (style == JGProgressHUDStyleLight) {
+            self.ringBackgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+        }
+        else {
+            self.ringBackgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        }
+    }
+}
 
 + (Class)layerClass {
     return [JGProgressHUDRingIndicatorLayer class];

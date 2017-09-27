@@ -31,12 +31,11 @@
 - (void)show {
     [super show];
     
-    self.progressHUD.alpha = 0.0f;
-    
+    self.progressHUD.alpha = 0.0;
     self.progressHUD.hidden = NO;
     
     [UIView animateWithDuration:self.duration delay:0.0 options:self.animationOptions animations:^{
-        self.progressHUD.alpha = 1.0f;
+        self.progressHUD.alpha = 1.0;
     } completion:^(BOOL __unused finished) {
         [self animationFinished];
     }];
@@ -48,7 +47,7 @@
     [super hide];
     
     [UIView animateWithDuration:self.duration delay:0.0 options:self.animationOptions animations:^{
-        self.progressHUD.alpha = 0.0f;
+        self.progressHUD.alpha = 0.0;
     } completion:^(BOOL __unused finished) {
         [self animationFinished];
     }];

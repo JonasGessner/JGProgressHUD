@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6BF7DC591AEFCFD9000A0AE0"
+               BlueprintIdentifier = "6BABF9A21F7A6133005E783F"
                BuildableName = "JGProgressHUD.framework"
-               BlueprintName = "JGProgressHUD"
+               BlueprintName = "JGProgressHUD-tvOS"
                ReferencedContainer = "container:JGProgressHUD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,9 +47,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BF7DC591AEFCFD9000A0AE0"
+            BlueprintIdentifier = "6BABF9A21F7A6133005E783F"
             BuildableName = "JGProgressHUD.framework"
-            BlueprintName = "JGProgressHUD"
+            BlueprintName = "JGProgressHUD-tvOS"
             ReferencedContainer = "container:JGProgressHUD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BF7DC591AEFCFD9000A0AE0"
+            BlueprintIdentifier = "6BABF9A21F7A6133005E783F"
             BuildableName = "JGProgressHUD.framework"
-            BlueprintName = "JGProgressHUD"
+            BlueprintName = "JGProgressHUD-tvOS"
             ReferencedContainer = "container:JGProgressHUD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

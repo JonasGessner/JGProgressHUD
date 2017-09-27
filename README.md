@@ -1,7 +1,7 @@
 JGProgressHUD
 ---------------
 
-Modern and extensive Apple-style progress HUD for iOS.<br/>
+Modern and extensive Apple-style progress HUD for iOS and tvOS.<br/>
 <p align="center">
 <img src="Presentation.png"/>
 </p>
@@ -9,7 +9,7 @@ Modern and extensive Apple-style progress HUD for iOS.<br/>
 Overview
 ---------------
 
-__The ultimate progress HUD for iOS has arrived: JGProgressHUD!__
+__The ultimate progress HUD for iOS and tvOS has arrived: JGProgressHUD!__
 
 - Plug and play: Simple integration, easy setup, few lines of code required.
 - Extensible and customizable (custom animations, indicator views and more).
@@ -32,26 +32,31 @@ Check out the <a href="Examples">Examples</a> project to see multiple uses and s
 Customization
 -----------
 ### Styles:
-JGProgressHUD can be displayed in 3 styles:<br/>
-• <b>Extra Light</b><br/>
-• <b>Light</b><br/>
-• <b>Dark</b><br/>
+JGProgressHUD can be displayed in 3 styles:
+
+- __Extra Light__
+- __Light__
+- __Dark__
 
 ### Indicator Views:
-By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:<br/>
-• <b>Indeterminate progress indicator</b><br/>
-• <b>Pie progress indicator</b><br/>
-• <b>Ring progress indicator</b><br/>
-• <b>Success indicator</b><br/>
-• <b>Error indicator</b><br/>
-• <b>Image indicator</b><br/>
+By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:
+
+- __Indeterminate progress indicator__
+- __Pie progress indicator__
+- __Ring progress indicator__
+- __Success indicator__
+- __Error indicator__
+- __Image indicator__
+
 By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br/>
 
 
 ### Animations:
-By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. By default there are the following animations built in:<br/>
-• <b>Fade</b><br/>
-• <b>Zoom and Fade</b><br/><br/>
+By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. By default there are the following animations built in:
+
+- __Fade__
+- __Zoom and Fade__
+
 By subclassing `JGProgressHUDAnimation` you can create a custom animation!
 <br/><br/>
 To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
@@ -59,11 +64,10 @@ To dim the content behind the HUD set your dim color as `backgroundColor` of you
 Requirements
 ------------
 
-• Base SDK of iOS 11 or higher.<br/>
-• Deployment target of iOS 8.0 or higher.<br/>
-• ARC.
+- Base SDK of iOS/tvOS 11 or higher.
+- Deployment target of iOS/tvOS 8.0 or higher.
 
-• JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
+JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
 
 Documentation
 ----------------
@@ -106,7 +110,7 @@ HUD.indicatorView = [[JGProgressHUDImageIndicatorView alloc] initWithImage:[UIIm
 
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style]; //Or JGProgressHUDRingIndicatorView
+HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init]; //Or JGProgressHUDRingIndicatorView
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
@@ -132,11 +136,12 @@ github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 
 ### Framework:
-1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.<br/>
-2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.<br/>
-3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.<br/>
 
-After you have included JGProgressHUD as framework simply import the module where you want to use it:
+1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.
+2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.
+3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.
+
+Then import the module where you want to use it:
 
 ```objc
 @import JGProgressHUD;

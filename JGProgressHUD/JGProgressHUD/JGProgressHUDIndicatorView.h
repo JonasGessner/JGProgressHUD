@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "JGProgressHUD-Defines.h"
 
-/**
- You may subclass this class to create a custom progress indicator view.
- */
+/** You may subclass this class to create a custom progress indicator view. */
 @interface JGProgressHUDIndicatorView : UIView
 
 /**
@@ -21,9 +20,10 @@
  */
 - (instancetype __nonnull)initWithContentView:(UIView *__nullable)contentView;
 
-/**
- Ranges from 0.0 to 1.0.
- */
+/** Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c JGProgressHUD when the indicator view is added to the HUD and when the HUD's @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing. */
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled;
+
+/** Ranges from 0.0 to 1.0. */
 @property (nonatomic, assign) float progress;
 
 /**
@@ -41,9 +41,7 @@
  */
 @property (nonatomic, strong, readonly, nullable) UIView *contentView;
 
-/**
- Schedules an accessibility update on the next run loop.
- */
+/** Schedules an accessibility update on the next run loop. */
 - (void)setNeedsAccessibilityUpdate;
 
 /**

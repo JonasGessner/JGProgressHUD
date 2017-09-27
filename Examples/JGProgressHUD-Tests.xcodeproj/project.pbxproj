@@ -12,11 +12,13 @@
 		6B6E77651F7970570031D476 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E77641F7970570031D476 /* ViewController.swift */; };
 		6B6E776A1F7970570031D476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E77691F7970570031D476 /* Assets.xcassets */; };
 		6B6E776D1F7970570031D476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E776B1F7970570031D476 /* LaunchScreen.storyboard */; };
-		6B87F3271F7973A900F606F1 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */; };
-		6B87F3281F7973A900F606F1 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6B87F32B1F7973AE00F606F1 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */; };
-		6B87F32C1F7973AE00F606F1 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
+		6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */; };
+		6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DD1F7A67E4005E783F /* ViewController.swift */; };
+		6BABF9E11F7A67E4005E783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9DF1F7A67E4005E783F /* Main.storyboard */; };
+		6BABF9E31F7A67E4005E783F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9E21F7A67E4005E783F /* Assets.xcassets */; };
+		6BABF9ED1F7A6820005E783F /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */; };
+		6BABF9EE1F7A6820005E783F /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
 		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
 		6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018CB197BF28100DA4C49 /* UIKit.framework */; };
@@ -28,13 +30,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6B87F3061F7970F000F606F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6BC01873197B2AA500DA4C49;
-			remoteInfo = JGProgressHUD;
-		};
 		6B87F3121F79715000F606F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
@@ -63,6 +58,27 @@
 			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
 			remoteInfo = JGProgressHUD;
 		};
+		6BABF9E81F7A67E4005E783F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BF7DC5A1AEFCFD9000A0AE0;
+			remoteInfo = "JGProgressHUD-iOS";
+		};
+		6BABF9EA1F7A67E4005E783F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6BABF9A31F7A6133005E783F;
+			remoteInfo = "JGProgressHUD-tvOS";
+		};
+		6BABF9EF1F7A6820005E783F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BABF9A21F7A6133005E783F;
+			remoteInfo = "JGProgressHUD-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,7 +88,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6B87F32C1F7973AE00F606F1 /* JGProgressHUD.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,7 +98,17 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6B87F3281F7973A900F606F1 /* JGProgressHUD.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BABF9F11F7A6820005E783F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6BABF9EE1F7A6820005E783F /* JGProgressHUD.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +126,12 @@
 		6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JGProgressHUD.xcodeproj; path = ../JGProgressHUD.xcodeproj; sourceTree = "<group>"; };
 		6B8A14D91D55FD1A006DAB93 /* JGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDetailViewController.h; sourceTree = "<group>"; };
 		6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDetailViewController.m; sourceTree = "<group>"; };
+		6BABF9D91F7A67E3005E783F /* JGProgressHUD-Tests-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD-Tests-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6BABF9DD1F7A67E4005E783F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6BABF9E01F7A67E4005E783F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6BABF9E21F7A67E4005E783F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6BABF9E41F7A67E4005E783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BC018C4197BF28100DA4C49 /* JGProgressHUD-Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD-Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC018C7197BF28100DA4C49 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,7 +153,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B87F3271F7973A900F606F1 /* JGProgressHUD.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BABF9D61F7A67E3005E783F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9ED1F7A6820005E783F /* JGProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +170,6 @@
 			files = (
 				6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */,
 				6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */,
-				6B87F32B1F7973AE00F606F1 /* JGProgressHUD.framework in Frameworks */,
 				6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,9 +192,22 @@
 		6B87F3011F7970F000F606F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */,
+				6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */,
+				6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6BABF9DA1F7A67E4005E783F /* JGProgressHUD-Tests-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */,
+				6BABF9DD1F7A67E4005E783F /* ViewController.swift */,
+				6BABF9DF1F7A67E4005E783F /* Main.storyboard */,
+				6BABF9E21F7A67E4005E783F /* Assets.xcassets */,
+				6BABF9E41F7A67E4005E783F /* Info.plist */,
+			);
+			path = "JGProgressHUD-Tests-tvOS";
 			sourceTree = "<group>";
 		};
 		6BC018BB197BF28100DA4C49 = {
@@ -166,6 +216,7 @@
 				6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */,
 				6BC018CD197BF28100DA4C49 /* JGProgressHUD-Tests */,
 				6B6E77611F7970570031D476 /* JGProgressHUD-Tests-Swift */,
+				6BABF9DA1F7A67E4005E783F /* JGProgressHUD-Tests-tvOS */,
 				6BC018C6197BF28100DA4C49 /* Frameworks */,
 				6BC018C5197BF28100DA4C49 /* Products */,
 			);
@@ -176,6 +227,7 @@
 			children = (
 				6BC018C4197BF28100DA4C49 /* JGProgressHUD-Tests.app */,
 				6B6E77601F7970570031D476 /* JGProgressHUD-Tests-Swift.app */,
+				6BABF9D91F7A67E3005E783F /* JGProgressHUD-Tests-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +293,25 @@
 			productReference = 6B6E77601F7970570031D476 /* JGProgressHUD-Tests-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6BABF9D81F7A67E3005E783F /* JGProgressHUD-Tests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BABF9EC1F7A67E4005E783F /* Build configuration list for PBXNativeTarget "JGProgressHUD-Tests-tvOS" */;
+			buildPhases = (
+				6BABF9D51F7A67E3005E783F /* Sources */,
+				6BABF9D61F7A67E3005E783F /* Frameworks */,
+				6BABF9D71F7A67E3005E783F /* Resources */,
+				6BABF9F11F7A6820005E783F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BABF9F01F7A6820005E783F /* PBXTargetDependency */,
+			);
+			name = "JGProgressHUD-Tests-tvOS";
+			productName = "JGProgressHUD-Tests-tvOS";
+			productReference = 6BABF9D91F7A67E3005E783F /* JGProgressHUD-Tests-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		6BC018C3197BF28100DA4C49 /* JGProgressHUD-Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BC018F9197BF28100DA4C49 /* Build configuration list for PBXNativeTarget "JGProgressHUD-Tests" */;
@@ -276,6 +347,11 @@
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
+					6BABF9D81F7A67E3005E783F = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = VASVVWP22W;
+						ProvisioningStyle = Automatic;
+					};
 					6BC018C3197BF28100DA4C49 = {
 						DevelopmentTeam = VASVVWP22W;
 					};
@@ -302,16 +378,24 @@
 			targets = (
 				6BC018C3197BF28100DA4C49 /* JGProgressHUD-Tests */,
 				6B6E775F1F7970570031D476 /* JGProgressHUD-Tests-Swift */,
+				6BABF9D81F7A67E3005E783F /* JGProgressHUD-Tests-tvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		6B87F3071F7970F000F606F1 /* JGProgressHUD.framework */ = {
+		6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = JGProgressHUD.framework;
-			remoteRef = 6B87F3061F7970F000F606F1 /* PBXContainerItemProxy */;
+			remoteRef = 6BABF9E81F7A67E4005E783F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JGProgressHUD.framework;
+			remoteRef = 6BABF9EA1F7A67E4005E783F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -323,6 +407,15 @@
 			files = (
 				6B6E776D1F7970570031D476 /* LaunchScreen.storyboard in Resources */,
 				6B6E776A1F7970570031D476 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BABF9D71F7A67E3005E783F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9E31F7A67E4005E783F /* Assets.xcassets in Resources */,
+				6BABF9E11F7A67E4005E783F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +438,15 @@
 			files = (
 				6B6E77651F7970570031D476 /* ViewController.swift in Sources */,
 				6B6E77631F7970570031D476 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BABF9D51F7A67E3005E783F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */,
+				6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +484,11 @@
 			name = JGProgressHUD;
 			targetProxy = 6B87F32D1F7973AE00F606F1 /* PBXContainerItemProxy */;
 		};
+		6BABF9F01F7A6820005E783F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JGProgressHUD-tvOS";
+			targetProxy = 6BABF9EF1F7A6820005E783F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -391,6 +498,14 @@
 				6B6E776C1F7970570031D476 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6BABF9DF1F7A67E4005E783F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6BABF9E01F7A67E4005E783F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		6BC018D0197BF28100DA4C49 /* InfoPlist.strings */ = {
@@ -455,6 +570,62 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6BABF9E51F7A67E4005E783F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = VASVVWP22W;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "JGProgressHUD-Tests-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD-Tests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		6BABF9E61F7A67E4005E783F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = VASVVWP22W;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "JGProgressHUD-Tests-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD-Tests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -599,6 +770,15 @@
 			buildConfigurations = (
 				6B6E776F1F7970570031D476 /* Debug */,
 				6B6E77701F7970570031D476 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BABF9EC1F7A67E4005E783F /* Build configuration list for PBXNativeTarget "JGProgressHUD-Tests-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BABF9E51F7A67E4005E783F /* Debug */,
+				6BABF9E61F7A67E4005E783F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -33,9 +33,12 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     JGProgressHUDIndicatorView *__nullable _indicatorViewAfterTransitioning;
     
     UIView *__nonnull _blurViewContainer;
+    UIView *__nonnull _shadowView;
+    CAShapeLayer *__nonnull _shadowMaskLayer;
 }
 
 @property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *blurView;
+@property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *vibrancyView;
 
 @end
 
@@ -49,6 +52,7 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
 
 @synthesize HUDView = _HUDView;
 @synthesize blurView = _blurView;
+@synthesize vibrancyView = _vibrancyView;
 @synthesize textLabel = _textLabel;
 @synthesize detailTextLabel = _detailTextLabel;
 @synthesize indicatorView = _indicatorView;
@@ -61,6 +65,7 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
 
 static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
+#if TARGET_OS_IOS
 + (void)keyboardFrameWillChange:(NSNotification *)notification {
     keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (CGRectIsEmpty(keyboardFrame)) {
@@ -76,10 +81,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     keyboardFrame = CGRectZero;
 }
 
-+ (CGRect)currentKeyboardFrame {
-    return keyboardFrame;
-}
-
 + (void)load {
     [super load];
     
@@ -90,6 +91,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide) name:UIKeyboardDidHideNotification object:nil];
     }
+}
+#endif
+
++ (CGRect)currentKeyboardFrame {
+    return keyboardFrame;
 }
 
 #pragma mark - Initializers
@@ -102,13 +108,26 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     return [self initWithStyle:JGProgressHUDStyleExtraLight];
 }
 
+/*
+ Basic architecture:
+ 
+ * self covers the entire target view.
+ * self.HUDView is a subview of self and has the size and position of the visible HUD. The layer has rounded corners set with self.cornerRadius. The layer does not clip to bounds.
+ * _shadowView is a subview of self.HUDView and always covers the entire self.HUDView. The corners are also rounded in the same way as self.HUDView. It draws its shadow only on the outside by using a masking layer, so that the shadow does not interfere with the blur view.
+ * _blurViewContainer is a subview of self.HUDView and always covers the entire self.HUDView. The corners are also rounded in the same way as self.HUDView but it additionally clips to bounds.
+ * self.blurView is a subview of _blurViewContainer and provides the blur effect. The corners are not rounded and the view does not clip to bounds.
+ * self.vibrancyView is a subview of self.blurView.contentView and provides the vibrancy effect. The corners are not rounded and the view does not clip to bounds.
+ * self.contentView is a subview of self.vibrancyView.contentView. It does not always have the same frame as it's superview (during transitions).
+ * self.contentView contains the labels and the indicator view.
+ 
+ */
 - (instancetype)initWithStyle:(JGProgressHUDStyle)style {
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
         _style = style;
         _voiceOverEnabled = YES;
-        
+    
         _HUDView = [[UIView alloc] init];
         self.HUDView.backgroundColor = [UIColor clearColor];
         [self addSubview:self.HUDView];
@@ -118,7 +137,21 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _blurViewContainer.clipsToBounds = YES;
         [self.HUDView addSubview:_blurViewContainer];
         
-        _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
+        _shadowView = [[UIView alloc] init];
+        _shadowView.backgroundColor = [UIColor clearColor];
+        _shadowView.userInteractionEnabled = NO;
+        
+        _shadowMaskLayer = [CAShapeLayer layer];
+        _shadowMaskLayer.fillRule = kCAFillRuleEvenOdd;
+        _shadowMaskLayer.fillColor = [UIColor blackColor].CGColor;
+        _shadowMaskLayer.opacity = 1.0f;
+        
+        _shadowView.layer.mask = _shadowMaskLayer;
+        
+        [self.HUDView addSubview:_shadowView];
+        
+        _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
+        [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
         
         self.hidden = YES;
         self.backgroundColor = [UIColor clearColor];
@@ -128,7 +161,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
         
-        self.cornerRadius = 10.0f;
+        self.cornerRadius = 10.0;
     }
     
     return self;
@@ -194,14 +227,42 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     CGRect updatedHUDFrame = JGProgressHUD_CGRectIntegral(frame);
     
     self.HUDView.frame = updatedHUDFrame;
+    _shadowView.frame = self.HUDView.bounds;
+    
+    [UIView performWithoutAnimation:^{
+        [self updateShadowViewMask];
+    }];
+    
     _blurViewContainer.frame = self.HUDView.bounds;
     self.blurView.frame = self.HUDView.bounds;
+    self.vibrancyView.frame = self.HUDView.bounds;
     
     [UIView performWithoutAnimation:^{
         self.contentView.frame = (CGRect){{(oldHUDFrame.size.width - updatedHUDFrame.size.width)/2.0, (oldHUDFrame.size.height - updatedHUDFrame.size.height)/2.0}, updatedHUDFrame.size};
     }];
     
     self.contentView.frame = self.HUDView.bounds;
+}
+
+- (void)updateShadowViewMask {
+    if (CGRectIsEmpty(_shadowView.layer.bounds)) {
+        return;
+    }
+    CGRect layerBounds = CGRectMake(0.0, 0.0, _shadowView.layer.bounds.size.width + self.shadow.radius*4.0, _shadowView.layer.bounds.size.height + self.shadow.radius*4.0);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:layerBounds];
+    
+    CGRect maskRect = CGRectInset(layerBounds, self.shadow.radius*2.0, self.shadow.radius*2.0);
+    
+    UIBezierPath *roundedPath = [UIBezierPath bezierPathWithRoundedRect:maskRect cornerRadius:self.cornerRadius];
+    
+    [path appendPath:roundedPath];
+    
+    _shadowMaskLayer.path = path.CGPath;
+    
+    _shadowMaskLayer.frame = CGRectInset(_shadowView.layer.bounds, -self.shadow.radius*2.0, -self.shadow.radius*2.0);
+    
+    _shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_shadowView.layer.bounds cornerRadius:self.cornerRadius].CGPath;
 }
 
 - (void)layoutHUD {
@@ -238,7 +299,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         labelFrame.size = neededSize;
         labelFrame.origin.y = currentY;
-        currentY = CGRectGetMaxY(labelFrame) + 10.0;
+        currentY = CGRectGetMaxY(labelFrame) + 6.0;
     }
     
     if (_detailTextLabel.text.length > 0) {
@@ -397,8 +458,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self cleanUpAfterPresentation];
     }
     
+#if TARGET_OS_IOS
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
+#endif
 }
 
 #pragma mark - Dismissing
@@ -492,6 +555,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
 }
 
+#if TARGET_OS_IOS
 static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
     UIViewAnimationOptions testOptions = UIViewAnimationCurveLinear << 16;
     
@@ -511,6 +575,7 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         [self layoutHUD];
     } completion:nil];
 }
+#endif
 
 - (void)updateMotionOnHUDView {
     BOOL reduceMotionEnabled = UIAccessibilityIsReduceMotionEnabled();
@@ -580,21 +645,33 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         [self updateMotionOnHUDView];
         
         [_blurViewContainer addSubview:_blurView];
-        
-        if (self.indicatorView) {
-            [self.contentView addSubview:self.indicatorView];
-        }
-        
+
         [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
     }
     
     return _blurView;
 }
 
+- (UIVisualEffectView *)vibrancyView {
+    if (!_vibrancyView) {
+        UIVibrancyEffect *vibrancyEffect = (self.vibrancyEnabled ? [UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurView.effect] : nil);
+        
+        _vibrancyView = [[UIVisualEffectView alloc] initWithEffect:vibrancyEffect];
+        
+        [self.blurView.contentView addSubview:_vibrancyView];
+    }
+    
+    return _vibrancyView;
+}
+
 - (UIView *)contentView {
     if (_contentView == nil) {
         _contentView = [[UIView alloc] init];
-        [self.blurView.contentView addSubview:_contentView];
+        [self.vibrancyView.contentView addSubview:_contentView];
+        
+        if (self.indicatorView != nil) {
+            [self.contentView addSubview:self.indicatorView];
+        }
     }
     
     return _contentView;
@@ -606,7 +683,12 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+#if TARGET_OS_TV
+        CGFloat fontSize = 20.0;
+#else
+        CGFloat fontSize = 17.0;
+#endif
+        _textLabel.font = [UIFont boldSystemFontOfSize:fontSize];
         _textLabel.numberOfLines = 0;
         [_textLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
@@ -625,7 +707,12 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         _detailTextLabel.backgroundColor = [UIColor clearColor];
         _detailTextLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _detailTextLabel.textAlignment = NSTextAlignmentCenter;
-        _detailTextLabel.font = [UIFont systemFontOfSize:13.0f];
+#if TARGET_OS_TV
+        CGFloat fontSize = 17.0;
+#else
+        CGFloat fontSize = 15.0;
+#endif
+        _detailTextLabel.font = [UIFont systemFontOfSize:fontSize];
         _detailTextLabel.numberOfLines = 0;
         [_detailTextLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_detailTextLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
@@ -659,18 +746,44 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 }
 
 - (void)setShadow:(JGProgressHUDShadow *)shadow {
+    if (shadow == self.shadow) {
+        return;
+    }
+    
     _shadow = shadow;
     
-    if (_shadow != nil) {
-        self.HUDView.layer.shadowColor = _shadow.color.CGColor;
-        self.HUDView.layer.shadowOffset = _shadow.offset;
-        self.HUDView.layer.shadowOpacity = _shadow.opacity;
-        self.HUDView.layer.shadowRadius = _shadow.radius;
+    NSOperatingSystemVersion osVersion = [NSProcessInfo processInfo].operatingSystemVersion;
+    
+    // Workaround for a weird bug on iOS 9
+    if (osVersion.majorVersion == 9 && osVersion.minorVersion < 3) {
+        if (_shadow != nil) {
+            self.HUDView.layer.shadowColor = _shadow.color.CGColor;
+            self.HUDView.layer.shadowOffset = _shadow.offset;
+            self.HUDView.layer.shadowOpacity = _shadow.opacity;
+            self.HUDView.layer.shadowRadius = _shadow.radius;
+        }
+        else {
+            self.HUDView.layer.shadowOffset = CGSizeZero;
+            self.HUDView.layer.shadowOpacity = 0.0;
+            self.HUDView.layer.shadowRadius = 0.0;
+        }
     }
     else {
-        self.HUDView.layer.shadowOffset = CGSizeZero;
-        self.HUDView.layer.shadowOpacity = 0.0;
-        self.HUDView.layer.shadowRadius = 0.0;
+        [UIView performWithoutAnimation:^{
+            [self updateShadowViewMask];
+        }];
+        
+        if (_shadow != nil) {
+            _shadowView.layer.shadowColor = _shadow.color.CGColor;
+            _shadowView.layer.shadowOffset = _shadow.offset;
+            _shadowView.layer.shadowOpacity = _shadow.opacity;
+            _shadowView.layer.shadowRadius = _shadow.radius;
+        }
+        else {
+            _shadowView.layer.shadowOffset = CGSizeZero;
+            _shadowView.layer.shadowOpacity = 0.0;
+            _shadowView.layer.shadowRadius = 0.0;
+        }
     }
 }
 
@@ -715,6 +828,20 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
     [self layoutHUD];
 }
 
+- (void)setVibrancyEnabled:(BOOL)vibrancyEnabled {
+    if (vibrancyEnabled == self.vibrancyEnabled) {
+        return;
+    }
+    
+    _vibrancyEnabled = vibrancyEnabled;
+    
+    UIVibrancyEffect *vibrancyEffect = (self.vibrancyEnabled ? [UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurView.effect] : nil);
+    
+    self.vibrancyView.effect = vibrancyEffect;
+    
+    [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
+}
+
 - (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
     if (self.indicatorView == indicatorView) {
         return;
@@ -725,12 +852,15 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         return;
     }
     
-    [_indicatorView removeFromSuperview];
-    _indicatorView = indicatorView;
-    
-    if (self.indicatorView) {
-        [self.contentView addSubview:self.indicatorView];
-    }
+    [UIView performWithoutAnimation:^{
+        [_indicatorView removeFromSuperview];
+        _indicatorView = indicatorView;
+        
+        if (self.indicatorView != nil) {
+            [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
+            [self.contentView addSubview:self.indicatorView];
+        }
+    }];
     
     [self layoutHUD];
 }
@@ -817,8 +947,10 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 - (void)removeObservers {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
     
+#if TARGET_OS_IOS
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
+#endif
 }
 
 @end

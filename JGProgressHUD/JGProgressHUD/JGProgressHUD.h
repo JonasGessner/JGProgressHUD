@@ -118,6 +118,12 @@
 @property (nonatomic, assign) BOOL square;
 
 /**
+ Internally @c JGProgressHUD uses an @c UIVisualEffectView with a @c UIBlurEffect. A second @c UIVisualEffectView can be added on top of that with a @c UIVibrancyEffect which amplifies and adjusts the color of content layered behind the view, allowing content placed inside the contentView to become more vivid. This flag sets whether the @c UIVibrancyEffect should be used. Using the vibrancy effect can sometimes, depending on the contents of the display, result in a weird look (especially on iOS 8).
+ @b Default: NO.
+ */
+@property (nonatomic, assign) BOOL vibrancyEnabled;
+
+/**
  The radius used for rounding the four corners of the HUD view.
  @b Default: 10.0.
  */

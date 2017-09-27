@@ -16,6 +16,7 @@
     JGProgressHUDInteractionType _interaction;
     BOOL _zoom;
     BOOL _dim;
+    BOOL _vibrancy;
     BOOL _shadow;
 }
 
@@ -64,6 +65,8 @@
     if (_dim) {
         HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
     }
+    
+    HUD.vibrancyEnabled = _vibrancy;
     
     if (_shadow) {
         HUD.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:8.0 opacity:0.4f];
@@ -143,7 +146,7 @@
                     confirmationAsked = NO;
                     __strong __typeof(wH) sH = wH;
                     
-                    sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:sH.style];
+                    sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
                     sH.textLabel.text = @"Loading for a long time...";
                     [h.HUDView.layer removeAnimationForKey:@"glow"];
                     
@@ -161,8 +164,8 @@
     HUD.tapOutsideBlock = ^(JGProgressHUD *h) {
         if (confirmationAsked) {
             confirmationAsked = NO;
-            h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:h.style];
-            h.textLabel.text = @"Loading very long...";
+            h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
+            h.textLabel.text = @"Loading for a long time...";
             [h.HUDView.layer removeAnimationForKey:@"glow"];
         }
     };
@@ -199,7 +202,7 @@
 - (void)showRingHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
-    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.indicatorView = [[JGProgressHUDRingIndicatorView alloc] init];
     
     HUD.detailTextLabel.text = @"0% Complete";
     
@@ -214,7 +217,7 @@
 - (void)showPieHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
-    HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] initWithHUDStyle:HUD.style];
+    HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init];
     
     HUD.detailTextLabel.text = @"0% Complete";
     
@@ -283,6 +286,10 @@
     _zoom = c.selectedSegmentIndex;
 }
 
+- (void)setVibrancy:(UISwitch *)s {
+    _vibrancy = s.on;
+}
+
 - (void)setDim:(UISwitch *)s {
     _dim = s.on;
 }
@@ -306,7 +313,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 6;
+        return 7;
     }
     else {
         return 8;
@@ -371,20 +378,27 @@
             cell.textLabel.text = @"Show a keyboard";
         }
         else if (indexPath.row == 4) {
+            cell.textLabel.text = @"Use vibrancy effect";
+            UISwitch *s = [[UISwitch alloc] init];
+            s.tintColor = [UIColor whiteColor];
+            s.on = _vibrancy;
+            
+            [s addTarget:self action:@selector(setVibrancy:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = s;
+        }
+        else if (indexPath.row == 5) {
             cell.textLabel.text = @"Dim Background";
             UISwitch *s = [[UISwitch alloc] init];
-            s.backgroundColor = [UIColor whiteColor];
-            s.layer.cornerRadius = 16.0f;
+            s.tintColor = [UIColor whiteColor];
             s.on = _dim;
             
             [s addTarget:self action:@selector(setDim:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = s;
         }
-        else if (indexPath.row == 5) {
+        else if (indexPath.row == 6) {
             cell.textLabel.text = @"Apply Shadow";
             UISwitch *s = [[UISwitch alloc] init];
-            s.layer.cornerRadius = 16.0f;
-            s.backgroundColor = [UIColor whiteColor];
+            s.tintColor = [UIColor whiteColor];
             s.on = _shadow;
             
             [s addTarget:self action:@selector(setShadow:) forControlEvents:UIControlEventValueChanged];
@@ -480,6 +494,5 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push VC" style:UIBarButtonItemStylePlain target:self action:@selector(pushDetailVC)];
 }
-
 
 @end

@@ -51,6 +51,10 @@ static void runOnNextRunLoop(void (^block)(void)) {
     return self;
 }
 
+#pragma mark - Setup
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {}
+
 #pragma mark - Accessibility
 
 + (void)runBlock:(void (^)(void))block {

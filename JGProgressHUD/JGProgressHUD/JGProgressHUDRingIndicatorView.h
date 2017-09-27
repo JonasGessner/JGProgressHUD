@@ -4,7 +4,7 @@
 //
 //  Created by Jonas Gessner on 20.7.14.
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
-//  
+//
 
 #import "JGProgressHUD-Defines.h"
 #import "JGProgressHUDIndicatorView.h"
@@ -14,10 +14,11 @@
 /**
  Initializes the indicator view and sets the correct color to match the HUD style.
  */
-- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style;
+- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style __attribute((deprecated(("This initializer is no longer needed. Use the init initializer method."))));
 
 /**
  Background color of the ring.
+ @attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD's @c indicatorView property.
  
  @b Default: Black for JGProgressHUDStyleDark, light gray otherwise.
  */
@@ -25,6 +26,7 @@
 
 /**
  Progress color of the progress ring.
+ @attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD's @c indicatorView property.
  
  @b Default: White for JGProgressHUDStyleDark, otherwise black.
  */
@@ -45,3 +47,4 @@
 @property (nonatomic, assign) CGFloat ringWidth;
 
 @end
+

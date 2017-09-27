@@ -16,14 +16,10 @@
  */
 @interface JGProgressHUDAnimation : NSObject
 
-/**
- Convenience method for initializing an animation.
- */
+/** Convenience initializer. */
 + (instancetype __nonnull)animation;
 
-/**
- The HUD which uses this animation.
- */
+/** The HUD using this animation. */
 @property (nonatomic, weak, readonly, nullable) JGProgressHUD *progressHUD;
 
 /**
