@@ -33,10 +33,9 @@ Examples
 --------------
 
 <p align="center">
-<video src="Examples/Screenshots/demo1.mp4" autoplay loop style='height: 200px;'>
-</video>
+<img src="Examples/Screenshots/demo1.gif"/ style='width: 30vw; max-width: 250px; object-fit: contain'>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<video src="Examples/Screenshots/demo2.mp4" autoplay loop style='height: 200px;'>
+<img src="Examples/Screenshots/demo2.gif"/ style='width: 30vw; max-width: 250px; object-fit: contain'>
 </video>
 </p>
 
