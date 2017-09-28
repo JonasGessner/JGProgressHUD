@@ -33,10 +33,10 @@ Examples
 --------------
 
 <p align="center">
-<video src="Examples/Screenshots/demo1.mov" autoplay loop style='height: 200px;'>
+<video src="Examples/Screenshots/demo1.mp4" autoplay loop style='height: 200px;'>
 </video>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<video src="Examples/Screenshots/demo2.mov" autoplay loop style='height: 200px;'>
+<video src="Examples/Screenshots/demo2.mp4" autoplay loop style='height: 200px;'>
 </video>
 </p>
 
