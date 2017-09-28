@@ -55,7 +55,7 @@
  */
 @property (nonatomic, weak, nullable) id <JGProgressHUDDelegate> delegate;
 
-/** The actual HUD view visible on screen. You may add animations or shadows to this view. */
+/** The actual HUD view visible on screen. You may add animations to this view. */
 @property (nonatomic, strong, readonly, nonnull) UIView *HUDView;
 
 /**
@@ -118,7 +118,7 @@
 @property (nonatomic, assign) BOOL square;
 
 /**
- Internally @c JGProgressHUD uses an @c UIVisualEffectView with a @c UIBlurEffect. A second @c UIVisualEffectView can be added on top of that with a @c UIVibrancyEffect which amplifies and adjusts the color of content layered behind the view, allowing content placed inside the contentView to become more vivid. This flag sets whether the @c UIVibrancyEffect should be used. Using the vibrancy effect can sometimes, depending on the contents of the display, result in a weird look (especially on iOS 8).
+ Internally @c JGProgressHUD uses an @c UIVisualEffectView with a @c UIBlurEffect. A second @c UIVisualEffectView can be added on top of that with a @c UIVibrancyEffect which amplifies and adjusts the color of content layered behind the view, allowing content placed inside the contentView to become more vivid. This flag sets whether the @c UIVibrancyEffect should be used. Using the vibrancy effect can sometimes, depending on the contents of the display, result in a weird look (especially on iOS < 9.3).
  @b Default: NO.
  */
 @property (nonatomic, assign) BOOL vibrancyEnabled;
@@ -178,6 +178,7 @@
  */
 @property (nonatomic, assign) BOOL voiceOverEnabled;
 
+#if TARGET_OS_IOS
 /**
  A block to be invoked when the HUD view is tapped.
  @note The interaction type of the HUD must be @c JGProgressHUDInteractionTypeBlockTouchesOnHUDView or @c JGProgressHUDInteractionTypeBlockAllTouches, otherwise this block won't be fired.
@@ -189,6 +190,7 @@
  @note The interaction type of the HUD must be @c JGProgressHUDInteractionTypeBlockAllTouches, otherwise this block won't be fired.
  */
 @property (nonatomic, copy, nullable) void (^tapOutsideBlock)(JGProgressHUD *__nonnull HUD);
+#endif
 
 /**
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.

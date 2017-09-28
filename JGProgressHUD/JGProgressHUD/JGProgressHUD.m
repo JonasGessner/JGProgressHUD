@@ -127,7 +127,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (self) {
         _style = style;
         _voiceOverEnabled = YES;
-    
+        
         _HUDView = [[UIView alloc] init];
         self.HUDView.backgroundColor = [UIColor clearColor];
         [self addSubview:self.HUDView];
@@ -138,8 +138,10 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         [self.HUDView addSubview:_blurViewContainer];
         
         _shadowView = [[UIView alloc] init];
-        _shadowView.backgroundColor = [UIColor clearColor];
+        _shadowView.backgroundColor = [UIColor blackColor];
         _shadowView.userInteractionEnabled = NO;
+        _shadowView.layer.shadowOpacity = 1.0f;
+        _shadowView.alpha = 0.0;
         
         _shadowMaskLayer = [CAShapeLayer layer];
         _shadowMaskLayer.fillRule = kCAFillRuleEvenOdd;
@@ -155,13 +157,15 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         self.hidden = YES;
         self.backgroundColor = [UIColor clearColor];
-
+        
         self.contentInsets = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
         self.layoutMargins = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
-
-        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
         
         self.cornerRadius = 10.0;
+        
+#if TARGET_OS_IOS
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
+#endif
     }
     
     return self;
@@ -228,10 +232,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     self.HUDView.frame = updatedHUDFrame;
     _shadowView.frame = self.HUDView.bounds;
-    
-    [UIView performWithoutAnimation:^{
-        [self updateShadowViewMask];
-    }];
+    [self updateShadowViewMask];
     
     _blurViewContainer.frame = self.HUDView.bounds;
     self.blurView.frame = self.HUDView.bounds;
@@ -248,6 +249,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     if (CGRectIsEmpty(_shadowView.layer.bounds)) {
         return;
     }
+    
     CGRect layerBounds = CGRectMake(0.0, 0.0, _shadowView.layer.bounds.size.width + self.shadow.radius*4.0, _shadowView.layer.bounds.size.height + self.shadow.radius*4.0);
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:layerBounds];
@@ -258,11 +260,27 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     [path appendPath:roundedPath];
     
-    _shadowMaskLayer.path = path.CGPath;
-    
     _shadowMaskLayer.frame = CGRectInset(_shadowView.layer.bounds, -self.shadow.radius*2.0, -self.shadow.radius*2.0);
     
-    _shadowView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_shadowView.layer.bounds cornerRadius:self.cornerRadius].CGPath;
+    CAAnimation *currentAnimation = [self.HUDView.layer animationForKey:@"position"];
+    if (currentAnimation != nil) {
+        [CATransaction begin];
+        
+        [CATransaction setAnimationDuration:currentAnimation.duration];
+        [CATransaction setAnimationTimingFunction:currentAnimation.timingFunction];
+        
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+        [_shadowMaskLayer addAnimation:pathAnimation forKey:@"path"];
+        
+        _shadowMaskLayer.path = path.CGPath;
+        
+        [CATransaction commit];
+    }
+    else {
+        _shadowMaskLayer.path = path.CGPath;
+        // Remove implicit CALayer animations:
+        [_shadowMaskLayer removeAllAnimations];
+    }
 }
 
 - (void)layoutHUD {
@@ -293,7 +311,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (_textLabel.text.length > 0) {
         _textLabel.preferredMaxLayoutWidth = maxContentWidth;
-
+        
         CGSize neededSize = _textLabel.intrinsicContentSize;
         neededSize.height = MIN(neededSize.height, maxContentHeight);
         
@@ -304,7 +322,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     if (_detailTextLabel.text.length > 0) {
         _detailTextLabel.preferredMaxLayoutWidth = maxContentWidth;
-
+        
         CGSize neededSize = _detailTextLabel.intrinsicContentSize;
         neededSize.height = MIN(neededSize.height, maxContentHeight);
         
@@ -340,7 +358,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     indicatorFrame.origin.x = center.x - indicatorFrame.size.width/2.0f;
     labelFrame.origin.x = center.x - labelFrame.size.width/2.0f;
     detailFrame.origin.x = center.x - detailFrame.size.width/2.0f;
-
+    
     [UIView performWithoutAnimation:^{
         self.indicatorView.frame = indicatorFrame;
         _textLabel.frame = JGProgressHUD_CGRectIntegral(labelFrame);
@@ -373,6 +391,9 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 - (void)applyCornerRadius {
     self.HUDView.layer.cornerRadius = self.cornerRadius;
     _blurViewContainer.layer.cornerRadius = self.cornerRadius;
+    _shadowView.layer.cornerRadius = self.cornerRadius;
+    
+    [self updateShadowViewMask];
 }
 
 #pragma mark - Showing
@@ -434,18 +455,19 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     
     _targetView = view;
+    
+    self.frame = _targetView.bounds;
+    
     [_targetView addSubview:self];
     
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    self.frame = _targetView.bounds;
     
     [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0].active = YES;
     [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0].active = YES;
     [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0].active = YES;
     [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0].active = YES;
     
-    [self layoutHUD];
+    [self layoutIfNeeded];
     
     _transitioning = YES;
     
@@ -516,7 +538,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
     
     _transitioning = YES;
-
+    
     if (animated && self.animation) {
         [self.animation hide];
     }
@@ -544,6 +566,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 #pragma mark - Callbacks
 
+#if TARGET_OS_IOS
 - (void)tapped:(UITapGestureRecognizer *)t {
     if (CGRectContainsPoint(self.contentView.bounds, [t locationInView:self.contentView])) {
         if (self.tapOnHUDViewBlock != nil) {
@@ -555,7 +578,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
 }
 
-#if TARGET_OS_IOS
 static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
     UIViewAnimationOptions testOptions = UIViewAnimationCurveLinear << 16;
     
@@ -645,8 +667,10 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         [self updateMotionOnHUDView];
         
         [_blurViewContainer addSubview:_blurView];
-
+        
+#if TARGET_OS_IOS
         [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
+#endif
     }
     
     return _blurView;
@@ -752,38 +776,20 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
     
     _shadow = shadow;
     
-    NSOperatingSystemVersion osVersion = [NSProcessInfo processInfo].operatingSystemVersion;
+    [self updateShadowViewMask];
     
-    // Workaround for a weird bug on iOS 9
-    if (osVersion.majorVersion == 9 && osVersion.minorVersion < 3) {
-        if (_shadow != nil) {
-            self.HUDView.layer.shadowColor = _shadow.color.CGColor;
-            self.HUDView.layer.shadowOffset = _shadow.offset;
-            self.HUDView.layer.shadowOpacity = _shadow.opacity;
-            self.HUDView.layer.shadowRadius = _shadow.radius;
-        }
-        else {
-            self.HUDView.layer.shadowOffset = CGSizeZero;
-            self.HUDView.layer.shadowOpacity = 0.0;
-            self.HUDView.layer.shadowRadius = 0.0;
-        }
+    if (_shadow != nil) {
+        _shadowView.layer.shadowColor = _shadow.color.CGColor;
+        _shadowView.layer.shadowOffset = _shadow.offset;
+        _shadowView.layer.shadowRadius = _shadow.radius;
+        
+        _shadowView.alpha = _shadow.opacity;
     }
     else {
-        [UIView performWithoutAnimation:^{
-            [self updateShadowViewMask];
-        }];
+        _shadowView.layer.shadowOffset = CGSizeZero;
+        _shadowView.layer.shadowRadius = 0.0;
         
-        if (_shadow != nil) {
-            _shadowView.layer.shadowColor = _shadow.color.CGColor;
-            _shadowView.layer.shadowOffset = _shadow.offset;
-            _shadowView.layer.shadowOpacity = _shadow.opacity;
-            _shadowView.layer.shadowRadius = _shadow.radius;
-        }
-        else {
-            _shadowView.layer.shadowOffset = CGSizeZero;
-            _shadowView.layer.shadowOpacity = 0.0;
-            _shadowView.layer.shadowRadius = 0.0;
-        }
+        _shadowView.alpha = 0.0;
     }
 }
 

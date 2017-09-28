@@ -69,7 +69,7 @@
     HUD.vibrancyEnabled = _vibrancy;
     
     if (_shadow) {
-        HUD.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:8.0 opacity:0.4f];
+        HUD.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
     }
     
     HUD.delegate = self;
@@ -127,18 +127,11 @@
             h.textLabel.text = @"Cancel?";
             confirmationAsked = YES;
             
-            CABasicAnimation *an = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-            an.fromValue = @(0.0f);
-            an.toValue = @(0.5f);
-            
-            an.repeatCount = HUGE_VALF;
-            an.autoreverses = YES;
-            
-            an.duration = 0.75f;
-            
             h.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor redColor] offset:CGSizeZero radius:8.0 opacity:0.0f];
             
-            [h.HUDView.layer addAnimation:an forKey:@"glow"];
+            [UIView animateWithDuration:0.75 delay:0.0 options:UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse | UIViewAnimationOptionCurveEaseInOut animations:^{
+                h.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor redColor] offset:CGSizeZero radius:8.0 opacity:0.5f];
+            } completion:nil];
             
             __weak __typeof(h) wH = h;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -148,13 +141,13 @@
                     
                     sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
                     sH.textLabel.text = @"Loading for a long time...";
-                    [h.HUDView.layer removeAnimationForKey:@"glow"];
+                    
+                    [UIView animateWithDuration:0.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                        sH.shadow = nil;
+                    } completion:nil];
                     
                     if (_shadow) {
-                        h.HUDView.layer.shadowColor = [UIColor blackColor].CGColor;
-                        h.HUDView.layer.shadowOffset = CGSizeZero;
-                        h.HUDView.layer.shadowOpacity = 0.4f;
-                        h.HUDView.layer.shadowRadius = 8.0f;
+                        sH.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
                     }
                 }
             });
@@ -166,7 +159,10 @@
             confirmationAsked = NO;
             h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
             h.textLabel.text = @"Loading for a long time...";
-            [h.HUDView.layer removeAnimationForKey:@"glow"];
+            
+            [UIView animateWithDuration:0.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                h.shadow = nil;
+            } completion:nil];
         }
     };
     
@@ -185,7 +181,7 @@
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             HUD.indicatorView = nil;
             
             HUD.textLabel.font = [UIFont systemFontOfSize:30.0f];
@@ -237,11 +233,10 @@
     
     if (progress == 100) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            HUD.textLabel.text = @"Success";
-            HUD.detailTextLabel.text = nil;
-            
             [UIView animateWithDuration:0.1 animations:^{
-               HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
+                HUD.textLabel.text = @"Success";
+                HUD.detailTextLabel.text = nil;
+                HUD.indicatorView = [[JGProgressHUDSuccessIndicatorView alloc] init];
             }];
         });
         
