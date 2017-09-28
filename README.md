@@ -3,7 +3,7 @@ JGProgressHUD
 
 Modern and extensive Apple-style progress HUD for iOS and tvOS.<br/>
 <p align="center">
-<img src="Presentation.png"/>
+<img src="Examples/Screenshots/Presentation.png"/ style='height: 100%; width: 100%; object-fit: contain'>
 </p>
 
 Overview
@@ -39,7 +39,7 @@ JGProgressHUD can be displayed in 3 styles:
 - __Dark__
 
 ### Indicator Views:
-By default a HUD will display an indeterminate progress indicator. You can not show an indicator view at all by setting the `indicatorView` property to nil. These indicator views are available:
+By default a HUD will display an indeterminate progress indicator. The indicator view can be completely hidden by setting the `indicatorView` property to nil. These indicator views are available by default:
 
 - __Indeterminate progress indicator__
 - __Pie progress indicator__
@@ -47,42 +47,40 @@ By default a HUD will display an indeterminate progress indicator. You can not s
 - __Success indicator__
 - __Error indicator__
 - __Image indicator__
-
-By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view!<br/>
+- 
+By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view.<br/>
 
 
 ### Animations:
-By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. By default there are the following animations built in:
+By default a HUD will use a fade animation. Several parameters can be altered such as animation duration or animation curve. A HUD can be displayed without animation and different animations can be used. These animations are available by default:
 
 - __Fade__
 - __Zoom and Fade__
 
-By subclassing `JGProgressHUDAnimation` you can create a custom animation!
+By subclassing `JGProgressHUDAnimation` you can create a custom animation.
 <br/><br/>
 To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
-
-Requirements
-------------
-
-- Base SDK of iOS/tvOS 11 or higher.
-- Deployment target of iOS/tvOS 8.0 or higher.
-
-JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
-
-Documentation
-----------------
-Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br/><br/>
-Each method is well documented, making it easy to quickly get a great overview of JGProgressHUD. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 Examples
 --------------
 ##### Showing indeterminate progress:
+
+Objective C:
 
 ```objc
 JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
 HUD.textLabel.text = @"Loading";
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
+```
+
+Swift:
+
+```swift
+let hud = JGProgressHUD(style: .dark)
+hud.textLabel.text = "Loading"
+hud.show(in: self.view)
+hud.dismiss(afterDelay: 3.0)
 ```
 
 This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
@@ -155,14 +153,18 @@ import JGProgressHUD
 
 See the <a href="Examples">Examples</a> project for an example implementation of JGProgressHUD as framework.
 
-Screenshots
--------------
-<p align="center">
-<img src="Examples/Screenshots/1.png" width="24%"/>&nbsp;
-<img src="Examples/Screenshots/3.png" width="24%"/>&nbsp;
-<img src="Examples/Screenshots/6.png" width="24%"/>&nbsp;
-<img src="Examples/Screenshots/5.png" width="24%"/>
-</p>
+Requirements
+------------
+
+- Base SDK of iOS/tvOS 11 or higher.
+- Deployment target of iOS/tvOS 8.0 or higher.
+
+JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
+
+Documentation
+----------------
+Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br/><br/>
+Each method is well documented, making it easy to quickly get a great overview of JGProgressHUD. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 License
 ---------
