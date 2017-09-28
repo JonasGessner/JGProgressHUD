@@ -1,7 +1,7 @@
 JGProgressHUD
 ---------------
 
-Modern and extensive Apple-style progress HUD for iOS and tvOS.<br/>
+Elegant, modern and delightful progress HUD for iOS and tvOS.<br/>
 <p align="center">
 <img src="Examples/Screenshots/Presentation.png"/ style='height: 100%; width: 100%; object-fit: contain'>
 </p>
@@ -9,18 +9,20 @@ Modern and extensive Apple-style progress HUD for iOS and tvOS.<br/>
 Overview
 ---------------
 
-__The ultimate progress HUD for iOS and tvOS has arrived: JGProgressHUD!__
+__The ultimate progress HUD for iOS and tvOS is here: JGProgressHUD!__
 
 - Plug and play: Simple integration, easy setup, few lines of code required.
-- Extensible and customizable (custom animations, indicator views and more).
+- Easily customizable (custom animations, indicator views and more).
 - Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.
 - Uses AutoLayout to provide a fully dynamic layout.
 - Detects and repositions when keyboard appears/disappears.
 - Well documented and maintained.
 - Voice Over/`UIAccessibility` support.
+- Backward compatibility to iOS 8.
+- Can be used with Swift and Objective C.
 - And most importantly, it looks good!
 
-Check out the <a href="Examples">Examples</a> project to see multiple uses and some of the awesome features of JGProgressHUD in action!
+Download the source code and open the <a href="Examples">Examples</a> project to try JGProgressHUD and see all of its features in action!
 <br/>
 <br/>
 
@@ -39,7 +41,7 @@ JGProgressHUD can be displayed in 3 styles:
 - __Dark__
 
 ### Indicator Views:
-By default a HUD will display an indeterminate progress indicator. The indicator view can be completely hidden by setting the `indicatorView` property to nil. These indicator views are available by default:
+By default a HUD will display an indeterminate progress indicator. The indicator view can be completely hidden by setting the `indicatorView` property to `nil`. These indicator views are available by default:
 
 - __Indeterminate progress indicator__
 - __Pie progress indicator__
@@ -47,8 +49,8 @@ By default a HUD will display an indeterminate progress indicator. The indicator
 - __Success indicator__
 - __Error indicator__
 - __Image indicator__
-- 
-By subclassing `JGProgressHUDIndicatorView` you can create a custom indicator view.<br/>
+
+Custom indicator views can be created by subclassing `JGProgressHUDIndicatorView`.<br/>
 
 
 ### Animations:
@@ -57,7 +59,7 @@ By default a HUD will use a fade animation. Several parameters can be altered su
 - __Fade__
 - __Zoom and Fade__
 
-By subclassing `JGProgressHUDAnimation` you can create a custom animation.
+Custom animations can be created by subclassing `JGProgressHUDAnimation`.
 <br/><br/>
 To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
 
@@ -83,8 +85,8 @@ hud.show(in: self.view)
 hud.dismiss(afterDelay: 3.0)
 ```
 
-This displays a dark HUD with a spinner and the title "Loading", it is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
-<br/>
+This displays a dark HUD with an activity indicator and the title "Loading". The HUD is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
+
 ##### Showing an error message:
 
 ```objc
@@ -113,7 +115,7 @@ HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init]; //Or JGProgres
 [HUD dismissAfterDelay:3.0];
 ```
 
-<b>Important:</b> You should always show HUDs in a UIViewController's view.
+<b>Important:</b> You should always show `JGProgressHUD` in a `UIViewController` view.
 <br/><br/>
 See the <a href="Examples">Examples</a> project for more example implementations.
 
@@ -133,7 +135,7 @@ In your `Cartfile` add:
 github "JonasGessner/JGProgressHUD" >= 1.3.1
 ```
 
-### Framework:
+### Manual Installation (Framework):
 
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.
 2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.
@@ -145,7 +147,7 @@ Then import the module where you want to use it:
 @import JGProgressHUD;
 ```
 
-Swift projects:
+Swift:
 
 ```swift
 import JGProgressHUD

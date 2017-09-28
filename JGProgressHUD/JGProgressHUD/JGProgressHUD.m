@@ -113,7 +113,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
  
  * self covers the entire target view.
  * self.HUDView is a subview of self and has the size and position of the visible HUD. The layer has rounded corners set with self.cornerRadius. The layer does not clip to bounds.
- * _shadowView is a subview of self.HUDView and always covers the entire self.HUDView. The corners are also rounded in the same way as self.HUDView. It draws its shadow only on the outside by using a masking layer, so that the shadow does not interfere with the blur view.
+ * _shadowView is a subview of self.HUDView and always covers the entire HUDView. The corners are also rounded in the same way as self.HUDView. It draws its shadow only on the outside by using a masking layer, so that the shadow does not interfere with the blur view.
  * _blurViewContainer is a subview of self.HUDView and always covers the entire self.HUDView. The corners are also rounded in the same way as self.HUDView but it additionally clips to bounds.
  * self.blurView is a subview of _blurViewContainer and provides the blur effect. The corners are not rounded and the view does not clip to bounds.
  * self.vibrancyView is a subview of self.blurView.contentView and provides the vibrancy effect. The corners are not rounded and the view does not clip to bounds.
