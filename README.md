@@ -3,7 +3,7 @@ JGProgressHUD
 
 An elegant and simple progress HUD for iOS and tvOS.<br/>
 <p align="center">
-<img src="Examples/Screenshots/Presentation.png"/ style='height: 100%; width: 100%; object-fit: contain'>
+<img src="Examples/Screenshots/Presentation.png" style='height: 100%; width: 100%; object-fit: contain'/>
 </p>
 
 Overview
@@ -33,10 +33,9 @@ Examples
 --------------
 
 <p align="center">
-<img src="Examples/Screenshots/demo1.gif"/ style='width: 30vw; max-width: 250px; object-fit: contain'>
+<img src="Examples/Screenshots/demo1.gif" width="250"/>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-<img src="Examples/Screenshots/demo2.gif"/ style='width: 30vw; max-width: 250px; object-fit: contain'>
-</video>
+<img src="Examples/Screenshots/demo2.gif" width="250"/>
 </p>
 
 #### Showing indeterminate progress:
