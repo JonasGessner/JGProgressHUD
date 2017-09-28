@@ -13,6 +13,8 @@
 		6B6E776A1F7970570031D476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E77691F7970570031D476 /* Assets.xcassets */; };
 		6B6E776D1F7970570031D476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E776B1F7970570031D476 /* LaunchScreen.storyboard */; };
 		6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
+		6B9A4F041F7D8F8100234337 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; };
+		6B9A4F051F7D8F8100234337 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */; };
 		6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DD1F7A67E4005E783F /* ViewController.swift */; };
 		6BABF9E11F7A67E4005E783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9DF1F7A67E4005E783F /* Main.storyboard */; };
@@ -20,7 +22,6 @@
 		6BABF9ED1F7A6820005E783F /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */; };
 		6BABF9EE1F7A6820005E783F /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C7197BF28100DA4C49 /* Foundation.framework */; };
-		6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018C9197BF28100DA4C49 /* CoreGraphics.framework */; };
 		6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018CB197BF28100DA4C49 /* UIKit.framework */; };
 		6BC018D2197BF28100DA4C49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018D0197BF28100DA4C49 /* InfoPlist.strings */; };
 		6BC018D4197BF28100DA4C49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D3197BF28100DA4C49 /* main.m */; };
@@ -57,6 +58,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
 			remoteInfo = JGProgressHUD;
+		};
+		6B9A4F061F7D8F8100234337 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
+			remoteInfo = "JGProgressHUD-iOS";
 		};
 		6BABF9E81F7A67E4005E783F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -98,6 +106,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6B9A4F051F7D8F8100234337 /* JGProgressHUD.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B9A4F041F7D8F8100234337 /* JGProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +178,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC018CA197BF28100DA4C49 /* CoreGraphics.framework in Frameworks */,
 				6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */,
 				6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */,
 			);
@@ -287,6 +296,7 @@
 			dependencies = (
 				6B87F3181F7971BB00F606F1 /* PBXTargetDependency */,
 				6B87F32A1F7973A900F606F1 /* PBXTargetDependency */,
+				6B9A4F071F7D8F8100234337 /* PBXTargetDependency */,
 			);
 			name = "JGProgressHUD-Tests-Swift";
 			productName = "JGProgressHUD-Tests-Swift";
@@ -479,6 +489,11 @@
 			isa = PBXTargetDependency;
 			name = JGProgressHUD;
 			targetProxy = 6B87F32D1F7973AE00F606F1 /* PBXContainerItemProxy */;
+		};
+		6B9A4F071F7D8F8100234337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JGProgressHUD-iOS";
+			targetProxy = 6B9A4F061F7D8F8100234337 /* PBXContainerItemProxy */;
 		};
 		6BABF9F01F7A6820005E783F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -731,7 +746,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD-Tests/JGProgressHUD-Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -750,7 +765,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD-Tests/JGProgressHUD-Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

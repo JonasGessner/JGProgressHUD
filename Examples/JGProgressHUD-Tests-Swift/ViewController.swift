@@ -56,7 +56,9 @@ final class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        showPieHUD()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000)) {
+            self.showPieHUD()
+        }
     }
     
     func showSimpleHUD() {
@@ -112,9 +114,9 @@ final class ViewController: UIViewController {
         
         if progress == 100 {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                hud.textLabel.text = "Success"
-                hud.detailTextLabel.text = nil
                 UIView.animate(withDuration: 0.1, animations: {
+                    hud.textLabel.text = "Success"
+                    hud.detailTextLabel.text = nil
                     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 })
                 

@@ -1,7 +1,7 @@
 JGProgressHUD
 ---------------
 
-Elegant, modern and delightful progress HUD for iOS and tvOS.<br/>
+An elegant and simple progress HUD for iOS and tvOS.<br/>
 <p align="center">
 <img src="Examples/Screenshots/Presentation.png"/ style='height: 100%; width: 100%; object-fit: contain'>
 </p>
@@ -11,7 +11,7 @@ Overview
 
 __The ultimate progress HUD for iOS and tvOS is here: JGProgressHUD!__
 
-- Plug and play: Simple integration, easy setup, few lines of code required.
+- Plug and play: Simple integration, easy to use, few lines of code required.
 - Easily customizable (custom animations, indicator views and more).
 - Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.
 - Uses AutoLayout to provide a fully dynamic layout.
@@ -23,13 +23,68 @@ __The ultimate progress HUD for iOS and tvOS is here: JGProgressHUD!__
 - And most importantly, it looks good!
 
 Download the source code and open the <a href="Examples">Examples</a> project to try JGProgressHUD and see all of its features in action!
-<br/>
-<br/>
 
 [![GitHub release](https://img.shields.io/github/release/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/releases)
 [![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
 [![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+Examples
+--------------
+
+<p align="center">
+<video src="Examples/Screenshots/demo1.mov" autoplay loop style='height: 200px;'>
+</video>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<video src="Examples/Screenshots/demo2.mov" autoplay loop style='height: 200px;'>
+</video>
+</p>
+
+#### Showing indeterminate progress:
+
+Objective C:
+
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.textLabel.text = @"Loading";
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+
+Swift:
+
+```swift
+let hud = JGProgressHUD(style: .dark)
+hud.textLabel.text = "Loading"
+hud.show(in: self.view)
+hud.dismiss(afterDelay: 3.0)
+```
+
+This displays a dark HUD with an activity indicator and the title "Loading". The HUD is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
+
+#### Showing an error message:
+
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.textLabel.text = @"Error";
+HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgressHUDSuccessIndicatorView is also available
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+
+#### Showing determinate progress:
+
+```objc
+JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init]; //Or JGProgressHUDRingIndicatorView
+HUD.progress = 0.5f;
+[HUD showInView:self.view];
+[HUD dismissAfterDelay:3.0];
+```
+
+__Important:__ You should always show `JGProgressHUD` in a `UIViewController` view.
+
+Download the source code and open the <a href="Examples">Examples</a> project to explore more use cases for JGProgressHUD.
 
 Customization
 -----------
@@ -60,64 +115,8 @@ By default a HUD will use a fade animation. Several parameters can be altered su
 - __Zoom and Fade__
 
 Custom animations can be created by subclassing `JGProgressHUDAnimation`.
-<br/><br/>
+
 To dim the content behind the HUD set your dim color as `backgroundColor` of your `JGProgressHUD` instance.
-
-Examples
---------------
-##### Showing indeterminate progress:
-
-Objective C:
-
-```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-HUD.textLabel.text = @"Loading";
-[HUD showInView:self.view];
-[HUD dismissAfterDelay:3.0];
-```
-
-Swift:
-
-```swift
-let hud = JGProgressHUD(style: .dark)
-hud.textLabel.text = "Loading"
-hud.show(in: self.view)
-hud.dismiss(afterDelay: 3.0)
-```
-
-This displays a dark HUD with an activity indicator and the title "Loading". The HUD is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
-
-##### Showing an error message:
-
-```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-HUD.textLabel.text = @"Error";
-HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgressHUDSuccessIndicatorView is also available
-[HUD showInView:self.view];
-[HUD dismissAfterDelay:3.0];
-```
-
-##### Showing a custom image:
-
-```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-HUD.indicatorView = [[JGProgressHUDImageIndicatorView alloc] initWithImage:[UIImage imageNamed:@"my_image.png"]];
-[HUD showInView:self.view];
-[HUD dismissAfterDelay:3.0];
-```
-
-##### Showing determinate progress:
-
-```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init]; //Or JGProgressHUDRingIndicatorView
-[HUD showInView:self.view];
-[HUD dismissAfterDelay:3.0];
-```
-
-<b>Important:</b> You should always show `JGProgressHUD` in a `UIViewController` view.
-<br/><br/>
-See the <a href="Examples">Examples</a> project for more example implementations.
 
 Installation
 --------------
@@ -132,14 +131,13 @@ pod 'JGProgressHUD'
 In your `Cartfile` add:
 
 ```
-github "JonasGessner/JGProgressHUD" >= 1.3.1
+github "JonasGessner/JGProgressHUD"
 ```
 
 ### Manual Installation (Framework):
 
 1. Drag the `JGProgressHUD.xcodeproj` file into your Xcode project.
-2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your project's target.
-3. Add the `-ObjC` flag to "Other Linker Flags" in the "Build Settings" tab of your project's target.
+2. Add `JGProgressHUD.framework` to "Embedded Binaries" in the "General" tab of your target.
 
 Then import the module where you want to use it:
 
