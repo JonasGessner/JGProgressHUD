@@ -13,6 +13,6 @@
 /**
  Default initializer for this class.
  */
-- (instancetype)init;
+- (instancetype __nonnull)init;
 
 @end

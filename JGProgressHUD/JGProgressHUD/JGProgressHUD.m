@@ -15,27 +15,7 @@
 #error "JGProgressHUD requires ARC!"
 #endif
 
-#ifndef iPad
-#define iPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#endif
-
-#ifndef NSFoundationVersionNumber_iOS_7_0
-#define NSFoundationVersionNumber_iOS_7_0 1047.20
-#endif
-
-#ifndef NSFoundationVersionNumber_iOS_8_0
-#define NSFoundationVersionNumber_iOS_8_0 1134.10
-#endif
-
-#ifndef iOS7
-#define iOS7 (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_7_0)
-#endif
-
-#ifndef iOS8
-#define iOS8 (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_8_0)
-#endif
-
-NS_INLINE CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
+static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     CGFloat scale = [[UIScreen mainScreen] scale];
     
     return (CGRect){{((CGFloat)floor(rect.origin.x*scale))/scale, ((CGFloat)floor(rect.origin.y*scale))/scale}, {((CGFloat)ceil(rect.size.width*scale))/scale, ((CGFloat)ceil(rect.size.height*scale))/scale}};
@@ -48,41 +28,44 @@ NS_INLINE CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     BOOL _dismissAfterTransitionFinished;
     BOOL _dismissAfterTransitionFinishedWithAnimation;
     
-    BOOL _observeTraitCollectionChange;
-    BOOL _presentingFull;
-    
     CFAbsoluteTime _displayTimestamp;
     
-    JGProgressHUDIndicatorView *_indicatorViewAfterTransitioning;
+    JGProgressHUDIndicatorView *__nullable _indicatorViewAfterTransitioning;
     
-    UIView *_hostForActualHUDView;
+    UIView *__nonnull _blurViewContainer;
+    UIView *__nonnull _shadowView;
+    CAShapeLayer *__nonnull _shadowMaskLayer;
 }
 
-@property (nonatomic, strong, readonly) UIView *actualHUDView;
+@property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *blurView;
+@property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *vibrancyView;
 
 @end
 
 @interface JGProgressHUDAnimation (Private)
 
-@property (nonatomic, weak) JGProgressHUD *progressHUD;
+@property (nonatomic, weak, nullable) JGProgressHUD *progressHUD;
 
 @end
 
 @implementation JGProgressHUD
 
 @synthesize HUDView = _HUDView;
-@synthesize actualHUDView = _actualHUDView;
+@synthesize blurView = _blurView;
+@synthesize vibrancyView = _vibrancyView;
 @synthesize textLabel = _textLabel;
 @synthesize detailTextLabel = _detailTextLabel;
 @synthesize indicatorView = _indicatorView;
 @synthesize animation = _animation;
+@synthesize contentView = _contentView;
 
-@dynamic visible, contentView;
+@dynamic visible;
 
 #pragma mark - Keyboard
 
 static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
+#if TARGET_OS_IOS
 + (void)keyboardFrameWillChange:(NSNotification *)notification {
     keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     if (CGRectIsEmpty(keyboardFrame)) {
@@ -98,10 +81,6 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     keyboardFrame = CGRectZero;
 }
 
-+ (CGRect)currentKeyboardFrame {
-    return keyboardFrame;
-}
-
 + (void)load {
     [super load];
     
@@ -112,6 +91,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide) name:UIKeyboardDidHideNotification object:nil];
     }
+}
+#endif
+
++ (CGRect)currentKeyboardFrame {
+    return keyboardFrame;
 }
 
 #pragma mark - Initializers
@@ -124,37 +108,64 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     return [self initWithStyle:JGProgressHUDStyleExtraLight];
 }
 
+/*
+ Basic architecture:
+ 
+ * self covers the entire target view.
+ * self.HUDView is a subview of self and has the size and position of the visible HUD. The layer has rounded corners set with self.cornerRadius. The layer does not clip to bounds.
+ * _shadowView is a subview of self.HUDView and always covers the entire HUDView. The corners are also rounded in the same way as self.HUDView. It draws its shadow only on the outside by using a masking layer, so that the shadow does not interfere with the blur view.
+ * _blurViewContainer is a subview of self.HUDView and always covers the entire self.HUDView. The corners are also rounded in the same way as self.HUDView but it additionally clips to bounds.
+ * self.blurView is a subview of _blurViewContainer and provides the blur effect. The corners are not rounded and the view does not clip to bounds.
+ * self.vibrancyView is a subview of self.blurView.contentView and provides the vibrancy effect. The corners are not rounded and the view does not clip to bounds.
+ * self.contentView is a subview of self.vibrancyView.contentView. It does not always have the same frame as it's superview (during transitions).
+ * self.contentView contains the labels and the indicator view.
+ 
+ */
 - (instancetype)initWithStyle:(JGProgressHUDStyle)style {
     self = [super initWithFrame:CGRectZero];
     
     if (self) {
         _style = style;
         _voiceOverEnabled = YES;
-        _observeTraitCollectionChange = NO;
+        
+        _HUDView = [[UIView alloc] init];
+        self.HUDView.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.HUDView];
+        
+        _blurViewContainer = [[UIView alloc] init];
+        _blurViewContainer.backgroundColor = [UIColor clearColor];
+        _blurViewContainer.clipsToBounds = YES;
+        [self.HUDView addSubview:_blurViewContainer];
+        
+        _shadowView = [[UIView alloc] init];
+        _shadowView.backgroundColor = [UIColor blackColor];
+        _shadowView.userInteractionEnabled = NO;
+        _shadowView.layer.shadowOpacity = 1.0f;
+        _shadowView.alpha = 0.0;
+        
+        _shadowMaskLayer = [CAShapeLayer layer];
+        _shadowMaskLayer.fillRule = kCAFillRuleEvenOdd;
+        _shadowMaskLayer.fillColor = [UIColor blackColor].CGColor;
+        _shadowMaskLayer.opacity = 1.0f;
+        
+        _shadowView.layer.mask = _shadowMaskLayer;
+        
+        [self.HUDView addSubview:_shadowView];
+        
+        _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
+        [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
         
         self.hidden = YES;
         self.backgroundColor = [UIColor clearColor];
         
-        self.contentInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
-        self.marginInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f);
+        self.contentInsets = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
+        self.layoutMargins = UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
         
-        self.layoutChangeAnimationDuration = 0.3;
+        self.cornerRadius = 10.0;
         
+#if TARGET_OS_IOS
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
-        
-        _indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] initWithHUDStyle:self.style];
-        
-        _HUDView = [[UIView alloc] init];
-        _HUDView.backgroundColor = [UIColor clearColor];
-        
-        _hostForActualHUDView = [[UIView alloc] init];
-        _hostForActualHUDView.backgroundColor = [UIColor clearColor];
-        _hostForActualHUDView.clipsToBounds = YES;
-        
-        [_HUDView addSubview:_hostForActualHUDView];
-        [self addSubview:_HUDView];
-        
-        self.cornerRadius = 10.0f;
+#endif
     }
     
     return self;
@@ -166,133 +177,164 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 #pragma mark - Layout
 
-- (void)setHUDViewFrameCenterWithSize:(CGSize)size {
-    CGRect frame = CGRectZero;
-    
-    frame.size = size;
-    
-    CGRect viewBounds = self.bounds;
-    
-    CGPoint center = CGPointMake(viewBounds.origin.x+viewBounds.size.width/2.0f, viewBounds.origin.y+viewBounds.size.height/2.0f);
+- (void)setHUDViewFrameCenterWithSize:(CGSize)size insetViewFrame:(CGRect)viewFrame {
+    CGRect frame = (CGRect){CGPointZero, size};
     
     switch (self.position) {
         case JGProgressHUDPositionTopLeft:
-            frame.origin.x = self.marginInsets.left;
-            frame.origin.y = self.marginInsets.top;
+            frame.origin.x = CGRectGetMinX(viewFrame);
+            frame.origin.y = CGRectGetMinY(viewFrame);
             break;
             
         case JGProgressHUDPositionTopCenter:
-            frame.origin.x = center.x-frame.size.width/2.0f;
-            frame.origin.y = self.marginInsets.top;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
+            frame.origin.y = CGRectGetMinY(viewFrame);
             break;
             
         case JGProgressHUDPositionTopRight:
-            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
-            frame.origin.y = self.marginInsets.top;
+            frame.origin.x = CGRectGetMaxX(viewFrame) - size.width;
+            frame.origin.y = CGRectGetMinY(viewFrame);
             break;
             
         case JGProgressHUDPositionCenterLeft:
-            frame.origin.x = self.marginInsets.left;
-            frame.origin.y = center.y-frame.size.height/2.0f;
+            frame.origin.x = CGRectGetMinX(viewFrame);
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
             break;
             
         case JGProgressHUDPositionCenter:
-            frame.origin.x = center.x-frame.size.width/2.0f;
-            frame.origin.y = center.y-frame.size.height/2.0f;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
             break;
             
         case JGProgressHUDPositionCenterRight:
-            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
-            frame.origin.y = center.y-frame.size.height/2.0f;
+            frame.origin.x = CGRectGetMaxX(viewFrame) - frame.size.width;
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
             break;
             
         case JGProgressHUDPositionBottomLeft:
-            frame.origin.x = self.marginInsets.left;
-            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
+            frame.origin.x = CGRectGetMinX(viewFrame);
+            frame.origin.y = CGRectGetMaxY(viewFrame) - size.height;
             break;
             
         case JGProgressHUDPositionBottomCenter:
-            frame.origin.x = center.x-frame.size.width/2.0f;
-            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
+            frame.origin.y = CGRectGetMaxY(viewFrame) - frame.size.height;
             break;
             
         case JGProgressHUDPositionBottomRight:
-            frame.origin.x = viewBounds.size.width-self.marginInsets.right-frame.size.width;
-            frame.origin.y = viewBounds.size.height-self.marginInsets.bottom-frame.size.height;
+            frame.origin.x = CGRectGetMaxX(viewFrame) - size.width;
+            frame.origin.y = CGRectGetMaxY(viewFrame) - size.height;
             break;
     }
     
-    _HUDView.frame = JGProgressHUD_CGRectIntegral(frame);
-    _hostForActualHUDView.frame = _HUDView.bounds;
-    self.actualHUDView.frame = _hostForActualHUDView.bounds;
+    CGRect oldHUDFrame = self.HUDView.frame;
+    CGRect updatedHUDFrame = JGProgressHUD_CGRectIntegral(frame);
+    
+    self.HUDView.frame = updatedHUDFrame;
+    _shadowView.frame = self.HUDView.bounds;
+    [self updateShadowViewMask];
+    
+    _blurViewContainer.frame = self.HUDView.bounds;
+    self.blurView.frame = self.HUDView.bounds;
+    self.vibrancyView.frame = self.HUDView.bounds;
+    
+    [UIView performWithoutAnimation:^{
+        self.contentView.frame = (CGRect){{(oldHUDFrame.size.width - updatedHUDFrame.size.width)/2.0, (oldHUDFrame.size.height - updatedHUDFrame.size.height)/2.0}, updatedHUDFrame.size};
+    }];
+    
+    self.contentView.frame = self.HUDView.bounds;
 }
 
-- (void)updateHUDAnimated:(BOOL)animated animateIndicatorViewFrame:(BOOL)animateIndicator {
+- (void)updateShadowViewMask {
+    if (CGRectIsEmpty(_shadowView.layer.bounds)) {
+        return;
+    }
+    
+    CGRect layerBounds = CGRectMake(0.0, 0.0, _shadowView.layer.bounds.size.width + self.shadow.radius*4.0, _shadowView.layer.bounds.size.height + self.shadow.radius*4.0);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:layerBounds];
+    
+    CGRect maskRect = CGRectInset(layerBounds, self.shadow.radius*2.0, self.shadow.radius*2.0);
+    
+    UIBezierPath *roundedPath = [UIBezierPath bezierPathWithRoundedRect:maskRect cornerRadius:self.cornerRadius];
+    
+    [path appendPath:roundedPath];
+    
+    _shadowMaskLayer.frame = CGRectInset(_shadowView.layer.bounds, -self.shadow.radius*2.0, -self.shadow.radius*2.0);
+    
+    CAAnimation *currentAnimation = [self.HUDView.layer animationForKey:@"position"];
+    if (currentAnimation != nil) {
+        [CATransaction begin];
+        
+        [CATransaction setAnimationDuration:currentAnimation.duration];
+        [CATransaction setAnimationTimingFunction:currentAnimation.timingFunction];
+        
+        CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"path"];
+        [_shadowMaskLayer addAnimation:pathAnimation forKey:@"path"];
+        
+        _shadowMaskLayer.path = path.CGPath;
+        
+        [CATransaction commit];
+    }
+    else {
+        _shadowMaskLayer.path = path.CGPath;
+        // Remove implicit CALayer animations:
+        [_shadowMaskLayer removeAllAnimations];
+    }
+}
+
+- (void)layoutHUD {
     if (_transitioning) {
         _updateAfterAppear = YES;
         return;
     }
     
-    if (!self.superview) {
+    if (self.superview == nil) {
         return;
     }
     
     CGRect indicatorFrame = self.indicatorView.frame;
     indicatorFrame.origin.y = self.contentInsets.top;
     
-    CGFloat maxContentWidth = self.frame.size.width-self.marginInsets.left-self.marginInsets.right-self.contentInsets.left-self.contentInsets.right;
-    CGFloat maxContentHeight = self.frame.size.height-self.marginInsets.top-self.marginInsets.bottom-self.contentInsets.top-self.contentInsets.bottom;
+    CGRect insetFrame = [self insetFrameForView:self];
     
-    CGSize maxContentSize = (CGSize){maxContentWidth, maxContentHeight};
+    CGFloat maxContentWidth = insetFrame.size.width - self.contentInsets.left - self.contentInsets.right;
+    CGFloat maxContentHeight = insetFrame.size.height - self.contentInsets.top - self.contentInsets.bottom;
     
-    //Label size
     CGRect labelFrame = CGRectZero;
     CGRect detailFrame = CGRectZero;
     
-    if (_textLabel) {
-        if (iOS7) {
-            NSDictionary *attributes = @{NSFontAttributeName : self.textLabel.font};
-            labelFrame.size = [self.textLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        }
-        else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            labelFrame.size = [self.textLabel.text sizeWithFont:self.textLabel.font constrainedToSize:maxContentSize lineBreakMode:self.textLabel.lineBreakMode];
-#pragma clang diagnostic pop
-        }
-        
-        labelFrame.origin.y = CGRectGetMaxY(indicatorFrame);
-        
-        if (!CGRectIsEmpty(labelFrame) && !CGRectIsEmpty(indicatorFrame)) {
-            labelFrame.origin.y += 10.0f;
-        }
+    CGFloat currentY = CGRectGetMaxY(indicatorFrame);
+    if (!CGRectIsEmpty(indicatorFrame)) {
+        currentY += 10.0;
     }
     
-    if (_detailTextLabel) {
-        if (iOS7) {
-            NSDictionary *attributes = @{NSFontAttributeName : self.detailTextLabel.font};
-            detailFrame.size = [self.detailTextLabel.text boundingRectWithSize:maxContentSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        }
-        else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-            detailFrame.size = [self.detailTextLabel.text sizeWithFont:self.detailTextLabel.font constrainedToSize:maxContentSize lineBreakMode:self.detailTextLabel.lineBreakMode];
-#pragma clang diagnostic pop
-        }
+    if (_textLabel.text.length > 0) {
+        _textLabel.preferredMaxLayoutWidth = maxContentWidth;
         
-        detailFrame.origin.y = CGRectGetMaxY(labelFrame)+5.0f;
+        CGSize neededSize = _textLabel.intrinsicContentSize;
+        neededSize.height = MIN(neededSize.height, maxContentHeight);
         
-        if (!CGRectIsEmpty(detailFrame) && !CGRectIsEmpty(indicatorFrame) && CGRectIsEmpty(labelFrame)) {
-            detailFrame.origin.y += 5.0f;
-        }
+        labelFrame.size = neededSize;
+        labelFrame.origin.y = currentY;
+        currentY = CGRectGetMaxY(labelFrame) + 6.0;
     }
     
-    //HUD size
+    if (_detailTextLabel.text.length > 0) {
+        _detailTextLabel.preferredMaxLayoutWidth = maxContentWidth;
+        
+        CGSize neededSize = _detailTextLabel.intrinsicContentSize;
+        neededSize.height = MIN(neededSize.height, maxContentHeight);
+        
+        detailFrame.size = neededSize;
+        detailFrame.origin.y = currentY;
+    }
+    
     CGSize size = CGSizeZero;
     
-    CGFloat width = MIN(self.contentInsets.left+MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width))+self.contentInsets.right, self.frame.size.width-self.marginInsets.left-self.marginInsets.right);
+    CGFloat width = MIN(self.contentInsets.left + MAX(indicatorFrame.size.width, MAX(labelFrame.size.width, detailFrame.size.width)) + self.contentInsets.right, insetFrame.size.width);
     
-    CGFloat height = MAX(CGRectGetMaxY(labelFrame), MAX(CGRectGetMaxY(detailFrame), CGRectGetMaxY(indicatorFrame)))+self.contentInsets.bottom;
+    CGFloat height = MAX(CGRectGetMaxY(labelFrame), MAX(CGRectGetMaxY(detailFrame), CGRectGetMaxY(indicatorFrame))) + self.contentInsets.bottom;
     
     if (self.square) {
         CGFloat uniSize = MAX(width, height);
@@ -313,64 +355,45 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     CGPoint center = CGPointMake(size.width/2.0f, size.height/2.0f);
     
-    indicatorFrame.origin.x = center.x-indicatorFrame.size.width/2.0f;
-    labelFrame.origin.x = center.x-labelFrame.size.width/2.0f;
-    detailFrame.origin.x = center.x-detailFrame.size.width/2.0f;
+    indicatorFrame.origin.x = center.x - indicatorFrame.size.width/2.0f;
+    labelFrame.origin.x = center.x - labelFrame.size.width/2.0f;
+    detailFrame.origin.x = center.x - detailFrame.size.width/2.0f;
     
-    void (^updates)(void) = ^{
-        [self setHUDViewFrameCenterWithSize:size];
-        
-        if (animateIndicator) {
-            self.indicatorView.frame = indicatorFrame;
-        }
-        
+    [UIView performWithoutAnimation:^{
+        self.indicatorView.frame = indicatorFrame;
         _textLabel.frame = JGProgressHUD_CGRectIntegral(labelFrame);
         _detailTextLabel.frame = JGProgressHUD_CGRectIntegral(detailFrame);
-    };
+    }];
     
-    if (!animateIndicator) {
-        self.indicatorView.frame = JGProgressHUD_CGRectIntegral(indicatorFrame);
-    }
-    
-    if (self.layoutChangeAnimationDuration > 0.0f && animated && !_transitioning) {
-        [UIView animateWithDuration:self.layoutChangeAnimationDuration delay:0.0 options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionCurveEaseInOut animations:updates completion:nil];
-    }
-    else {
-        updates();
-    }
+    [self setHUDViewFrameCenterWithSize:size insetViewFrame:insetFrame];
 }
 
-- (CGRect)fullFrameInView:(UIView *)view {
-    CGRect _keyboardFrame = [view convertRect:[[self class] currentKeyboardFrame] fromView:nil];
+- (CGRect)insetFrameForView:(UIView *)view {
+    CGRect localKeyboardFrame = [view convertRect:[[self class] currentKeyboardFrame] fromView:nil];
     CGRect frame = view.bounds;
     
-    if (!CGRectIsEmpty(_keyboardFrame) && CGRectIntersectsRect(frame, _keyboardFrame)) {
-        frame.size.height = MIN(frame.size.height, CGRectGetMinY(_keyboardFrame));
+    if (!CGRectIsEmpty(localKeyboardFrame) && CGRectIntersectsRect(frame, localKeyboardFrame)) {
+        CGFloat keyboardMinY = CGRectGetMinY(localKeyboardFrame);
+        
+        if (@available(iOS 11, tvOS 11, *)) {
+            if (self.insetsLayoutMarginsFromSafeArea) {
+                // This makes sure that the bottom safe area inset is only respected when that area is not covered by the keyboard. When the keyboard covers the bottom area outside of the safe area it is not necessary to keep the bottom safe area insets part of the insets for the HUD.
+                keyboardMinY += self.safeAreaInsets.bottom;
+            }
+        }
+        
+        frame.size.height = MAX(MIN(frame.size.height, keyboardMinY), 0.0);
     }
     
-    return frame;
+    return UIEdgeInsetsInsetRect(frame, view.layoutMargins);
 }
 
 - (void)applyCornerRadius {
-    _HUDView.layer.cornerRadius = self.cornerRadius;
-    _hostForActualHUDView.layer.cornerRadius = self.cornerRadius;
-}
-
-- (void)traitCollectionDidChange:(__unused UITraitCollection *)previousTraitCollection {
-    [super traitCollectionDidChange:previousTraitCollection];
+    self.HUDView.layer.cornerRadius = self.cornerRadius;
+    _blurViewContainer.layer.cornerRadius = self.cornerRadius;
+    _shadowView.layer.cornerRadius = self.cornerRadius;
     
-    if (_presentingFull && _observeTraitCollectionChange) {
-        [self updateFrame:YES];
-    }
-}
-
-- (void)updateFrame:(BOOL)animated {
-    if (self.targetView && !CGRectEqualToRect(self.bounds, self.targetView.bounds)) {
-        [UIView animateWithDuration:(animated ? (iPad ? 0.4 : 0.3) : 0.0) delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.frame = [self fullFrameInView:self.targetView];
-            [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
-        } completion:nil];
-    }
+    [self updateShadowViewMask];
 }
 
 #pragma mark - Showing
@@ -379,15 +402,16 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     self.hidden = NO;
     
     _transitioning = NO;
-    _displayTimestamp = CFAbsoluteTimeGetCurrent(); //Correct timestamp to the current time for animated presentations
+    // Correct timestamp to the current time for animated presentations:
+    _displayTimestamp = CFAbsoluteTimeGetCurrent();
     
     if (_indicatorViewAfterTransitioning) {
         self.indicatorView = _indicatorViewAfterTransitioning;
         _indicatorViewAfterTransitioning = nil;
-        _updateAfterAppear = NO; //Setting indicatorView always updateHUDAnimated:animateIndicatorViewFrame:
+        _updateAfterAppear = NO;
     }
     else if (_updateAfterAppear) {
-        [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+        [self layoutHUD];
         _updateAfterAppear = NO;
     }
     
@@ -400,8 +424,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _dismissAfterTransitionFinished = NO;
         _dismissAfterTransitionFinishedWithAnimation = NO;
     }
-    
-    if (self.voiceOverEnabled && UIAccessibilityIsVoiceOverRunning()) {
+    else if (self.voiceOverEnabled && UIAccessibilityIsVoiceOverRunning()) {
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
     }
 }
@@ -410,27 +433,13 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     [self showInView:view animated:YES];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self layoutHUD];
+}
+
 - (void)showInView:(UIView *)view animated:(BOOL)animated {
-    CGRect frame = [self fullFrameInView:view];
-    
-    _presentingFull = YES;
-    
-    // !!!: Use UIApplicationDidChangeStatusBarFrameNotification since UIDeviceOrientationDidChangeNotification still gives the old bounds in orientationChanged selector for self.targetView on iPad unless it is called after a delay.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
-    
-    [self showInRect:frame inView:view animated:animated];
-}
-
-- (void)showInRect:(CGRect)rect inView:(UIView *)view {
-    [self showInRect:rect inView:view animated:YES];
-}
-
-- (void)showInRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
     if (_transitioning) {
         return;
     }
@@ -441,28 +450,40 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         return;
     }
     
-    _targetView = view;
-    
-    self.frame = rect;
-    [view addSubview:self];
-    
-    [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
-    
-    _transitioning = YES;
-    _observeTraitCollectionChange = YES;
-    
-    _displayTimestamp = CFAbsoluteTimeGetCurrent();
-    
     if ([self.delegate respondsToSelector:@selector(progressHUD:willPresentInView:)]) {
         [self.delegate progressHUD:self willPresentInView:view];
     }
     
-    if (animated && self.animation) {
+    _targetView = view;
+    
+    self.frame = _targetView.bounds;
+    
+    [_targetView addSubview:self];
+    
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0].active = YES;
+    [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_targetView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0].active = YES;
+    
+    [self layoutIfNeeded];
+    
+    _transitioning = YES;
+    
+    _displayTimestamp = CFAbsoluteTimeGetCurrent();
+    
+    if (animated && self.animation != nil) {
         [self.animation show];
     }
     else {
         [self cleanUpAfterPresentation];
     }
+    
+#if TARGET_OS_IOS
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameChanged:) name:UIKeyboardDidChangeFrameNotification object:nil];
+#endif
 }
 
 #pragma mark - Dismissing
@@ -473,17 +494,16 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     [self removeObservers];
     
-    _presentingFull = NO;
     _transitioning = NO;
     _dismissAfterTransitionFinished = NO;
     _dismissAfterTransitionFinishedWithAnimation = NO;
-    _observeTraitCollectionChange = NO;
+    
+    __typeof(self.targetView) targetView = self.targetView;
+    _targetView = nil;
     
     if ([self.delegate respondsToSelector:@selector(progressHUD:didDismissFromView:)]) {
-        [self.delegate progressHUD:self didDismissFromView:self.targetView];
+        [self.delegate progressHUD:self didDismissFromView:targetView];
     }
-    
-    _targetView = nil;
 }
 
 - (void)dismiss {
@@ -513,11 +533,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         }
     }
     
-    _transitioning = YES;
-    
     if ([self.delegate respondsToSelector:@selector(progressHUD:willDismissFromView:)]) {
         [self.delegate progressHUD:self willDismissFromView:self.targetView];
     }
+    
+    _transitioning = YES;
     
     if (animated && self.animation) {
         [self.animation hide];
@@ -546,6 +566,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 
 #pragma mark - Callbacks
 
+#if TARGET_OS_IOS
 - (void)tapped:(UITapGestureRecognizer *)t {
     if (CGRectContainsPoint(self.contentView.bounds, [t locationInView:self.contentView])) {
         if (self.tapOnHUDViewBlock != nil) {
@@ -557,7 +578,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     }
 }
 
-NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
+static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
     UIViewAnimationOptions testOptions = UIViewAnimationCurveLinear << 16;
     
     if (testOptions != UIViewAnimationOptionCurveLinear) {
@@ -568,59 +589,43 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 }
 
 - (void)keyboardFrameChanged:(NSNotification *)notification {
-    CGRect frame = [self fullFrameInView:self.targetView];
-    
-    if (CGRectEqualToRect(self.frame, frame)) {
-        return;
-    }
-    
     NSTimeInterval duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     
     UIViewAnimationCurve curve = (UIViewAnimationCurve)[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] unsignedIntegerValue];
     
     [UIView animateWithDuration:duration delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionsFromUIViewAnimationCurve(curve) animations:^{
-        self.frame = frame;
-        [self updateHUDAnimated:NO animateIndicatorViewFrame:YES];
+        [self layoutHUD];
     } completion:nil];
 }
-
-- (void)orientationChanged {
-    [self updateFrame:YES];
-}
-
-- (void)appDidBecomeActive {
-     [self updateFrame:YES];
-}
+#endif
 
 - (void)updateMotionOnHUDView {
-    if (iOS7) {
-        BOOL reduceMotionEnabled = (iOS8 && UIAccessibilityIsReduceMotionEnabled());
+    BOOL reduceMotionEnabled = UIAccessibilityIsReduceMotionEnabled();
+    
+    BOOL wantsParallax = ((self.parallaxMode == JGProgressHUDParallaxModeDevice && !reduceMotionEnabled) || self.parallaxMode == JGProgressHUDParallaxModeAlwaysOn);
+    BOOL hasParallax = (self.HUDView.motionEffects.count > 0);
+    
+    if (wantsParallax == hasParallax) {
+        return;
+    }
+    
+    if (!wantsParallax) {
+        self.HUDView.motionEffects = @[];
+    }
+    else {
+        UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
         
-        BOOL wantsParallax = ((self.parallaxMode == JGProgressHUDParallaxModeDevice && !reduceMotionEnabled) || self.parallaxMode == JGProgressHUDParallaxModeAlwaysOn);
-        BOOL hasParallax = (_HUDView.motionEffects.count > 0);
+        CGFloat maxMovement = 20.0f;
         
-        if (wantsParallax == hasParallax) {
-            return;
-        }
+        x.minimumRelativeValue = @(-maxMovement);
+        x.maximumRelativeValue = @(maxMovement);
         
-        if (!wantsParallax) {
-            _HUDView.motionEffects = @[];
-        }
-        else {
-            UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-            
-            CGFloat maxMovement = 20.0f;
-            
-            x.minimumRelativeValue = @(-maxMovement);
-            x.maximumRelativeValue = @(maxMovement);
-            
-            UIInterpolatingMotionEffect *y = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-            
-            y.minimumRelativeValue = @(-maxMovement);
-            y.maximumRelativeValue = @(maxMovement);
-            
-            _HUDView.motionEffects = @[x, y];
-        }
+        UIInterpolatingMotionEffect *y = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+        
+        y.minimumRelativeValue = @(-maxMovement);
+        y.maximumRelativeValue = @(maxMovement);
+        
+        self.HUDView.motionEffects = @[x, y];
     }
 }
 
@@ -639,62 +644,61 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     return (self.superview != nil);
 }
 
-- (UIView *)actualHUDView {
-    if (!_actualHUDView) {
-        if (iOS8) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMotionOnHUDView) name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
-            
-            UIBlurEffectStyle effect = 0;
-            
-            if (self.style == JGProgressHUDStyleDark) {
-                effect = UIBlurEffectStyleDark;
-            }
-            else if (self.style == JGProgressHUDStyleLight) {
-                effect = UIBlurEffectStyleLight;
-            }
-            else {
-                effect = UIBlurEffectStyleExtraLight;
-            }
-            
-            UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:effect];
-            
-            _actualHUDView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+- (UIVisualEffectView *)blurView {
+    if (!_blurView) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMotionOnHUDView) name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
+        
+        UIBlurEffectStyle effect;
+        
+        if (self.style == JGProgressHUDStyleDark) {
+            effect = UIBlurEffectStyleDark;
+        }
+        else if (self.style == JGProgressHUDStyleLight) {
+            effect = UIBlurEffectStyleLight;
         }
         else {
-            _actualHUDView = [[UIView alloc] init];
-            
-            if (self.style == JGProgressHUDStyleDark) {
-                _actualHUDView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.8f];
-            }
-            else if (self.style == JGProgressHUDStyleLight) {
-                _actualHUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.75f];
-            }
-            else {
-                _actualHUDView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.95f];
-            }
+            effect = UIBlurEffectStyleExtraLight;
         }
+        
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:effect];
+        
+        _blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         
         [self updateMotionOnHUDView];
         
-        [_hostForActualHUDView addSubview:_actualHUDView];
+        [_blurViewContainer addSubview:_blurView];
         
-        if (self.indicatorView) {
-            [self.contentView addSubview:self.indicatorView];
-        }
-        
+#if TARGET_OS_IOS
         [self.contentView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
+#endif
     }
     
-    return _actualHUDView;
+    return _blurView;
+}
+
+- (UIVisualEffectView *)vibrancyView {
+    if (!_vibrancyView) {
+        UIVibrancyEffect *vibrancyEffect = (self.vibrancyEnabled ? [UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurView.effect] : nil);
+        
+        _vibrancyView = [[UIVisualEffectView alloc] initWithEffect:vibrancyEffect];
+        
+        [self.blurView.contentView addSubview:_vibrancyView];
+    }
+    
+    return _vibrancyView;
 }
 
 - (UIView *)contentView {
-    if (iOS8) {
-        return ((UIVisualEffectView *)self.actualHUDView).contentView;
+    if (_contentView == nil) {
+        _contentView = [[UIView alloc] init];
+        [self.vibrancyView.contentView addSubview:_contentView];
+        
+        if (self.indicatorView != nil) {
+            [self.contentView addSubview:self.indicatorView];
+        }
     }
-    else {
-        return self.actualHUDView;
-    }
+    
+    return _contentView;
 }
 
 - (UILabel *)textLabel {
@@ -703,8 +707,14 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+#if TARGET_OS_TV
+        CGFloat fontSize = 20.0;
+#else
+        CGFloat fontSize = 17.0;
+#endif
+        _textLabel.font = [UIFont boldSystemFontOfSize:fontSize];
         _textLabel.numberOfLines = 0;
+        [_textLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_textLabel addObserver:self forKeyPath:@"font" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         _textLabel.isAccessibilityElement = YES;
@@ -721,8 +731,14 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
         _detailTextLabel.backgroundColor = [UIColor clearColor];
         _detailTextLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
         _detailTextLabel.textAlignment = NSTextAlignmentCenter;
-        _detailTextLabel.font = [UIFont systemFontOfSize:13.0f];
+#if TARGET_OS_TV
+        CGFloat fontSize = 17.0;
+#else
+        CGFloat fontSize = 15.0;
+#endif
+        _detailTextLabel.font = [UIFont systemFontOfSize:fontSize];
         _detailTextLabel.numberOfLines = 0;
+        [_detailTextLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_detailTextLabel addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         [_detailTextLabel addObserver:self forKeyPath:@"font" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
         _detailTextLabel.isAccessibilityElement = YES;
@@ -753,6 +769,30 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     [self applyCornerRadius];
 }
 
+- (void)setShadow:(JGProgressHUDShadow *)shadow {
+    if (shadow == self.shadow) {
+        return;
+    }
+    
+    _shadow = shadow;
+    
+    [self updateShadowViewMask];
+    
+    if (_shadow != nil) {
+        _shadowView.layer.shadowColor = _shadow.color.CGColor;
+        _shadowView.layer.shadowOffset = _shadow.offset;
+        _shadowView.layer.shadowRadius = _shadow.radius;
+        
+        _shadowView.alpha = _shadow.opacity;
+    }
+    else {
+        _shadowView.layer.shadowOffset = CGSizeZero;
+        _shadowView.layer.shadowRadius = 0.0;
+        
+        _shadowView.alpha = 0.0;
+    }
+}
+
 - (void)setAnimation:(JGProgressHUDAnimation *)animation {
     if (_animation == animation) {
         return;
@@ -781,7 +821,7 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     }
     
     _position = position;
-    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+    [self layoutHUD];
 }
 
 - (void)setSquare:(BOOL)square {
@@ -791,7 +831,21 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     
     _square = square;
     
-    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+    [self layoutHUD];
+}
+
+- (void)setVibrancyEnabled:(BOOL)vibrancyEnabled {
+    if (vibrancyEnabled == self.vibrancyEnabled) {
+        return;
+    }
+    
+    _vibrancyEnabled = vibrancyEnabled;
+    
+    UIVibrancyEffect *vibrancyEffect = (self.vibrancyEnabled ? [UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurView.effect] : nil);
+    
+    self.vibrancyView.effect = vibrancyEffect;
+    
+    [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
 }
 
 - (void)setIndicatorView:(JGProgressHUDIndicatorView *)indicatorView {
@@ -804,24 +858,31 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
         return;
     }
     
-    [_indicatorView removeFromSuperview];
-    _indicatorView = indicatorView;
+    [UIView performWithoutAnimation:^{
+        [_indicatorView removeFromSuperview];
+        _indicatorView = indicatorView;
+        
+        if (self.indicatorView != nil) {
+            [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
+            [self.contentView addSubview:self.indicatorView];
+        }
+    }];
     
-    if (self.indicatorView) {
-        [self.contentView addSubview:self.indicatorView];
-    }
+    [self layoutHUD];
+}
+
+- (void)layoutMarginsDidChange {
+    [super layoutMarginsDidChange];
     
-    [self updateHUDAnimated:YES animateIndicatorViewFrame:NO];
+    [self layoutHUD];
 }
 
 - (void)setMarginInsets:(UIEdgeInsets)marginInsets {
-    if (UIEdgeInsetsEqualToEdgeInsets(self.marginInsets, marginInsets)) {
-        return;
-    }
-    
-    _marginInsets = marginInsets;
-    
-    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+    [self setLayoutMargins:marginInsets];
+}
+
+- (UIEdgeInsets)marginInsets {
+    return [self layoutMargins];
 }
 
 - (void)setContentInsets:(UIEdgeInsets)contentInsets {
@@ -831,7 +892,7 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
     
     _contentInsets = contentInsets;
     
-    [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+    [self layoutHUD];
 }
 
 - (void)setProgress:(float)progress {
@@ -870,7 +931,7 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == _textLabel || object == _detailTextLabel) {
-        [self updateHUDAnimated:YES animateIndicatorViewFrame:YES];
+        [self layoutHUD];
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -880,30 +941,25 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 - (void)dealloc {
     [self removeObservers];
     
+    [_textLabel removeObserver:self forKeyPath:@"attributedText"];
     [_textLabel removeObserver:self forKeyPath:@"text"];
     [_textLabel removeObserver:self forKeyPath:@"font"];
     
+    [_detailTextLabel removeObserver:self forKeyPath:@"attributedText"];
     [_detailTextLabel removeObserver:self forKeyPath:@"text"];
     [_detailTextLabel removeObserver:self forKeyPath:@"font"];
 }
 
 - (void)removeObservers {
-    if (iOS8) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIAccessibilityReduceMotionStatusDidChangeNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-    
+#if TARGET_OS_IOS
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
+#endif
 }
 
 @end
-
-
-
 
 @implementation JGProgressHUD (HUDManagement)
 
@@ -936,6 +992,18 @@ NS_INLINE UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(
 
 + (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)view {
     return [self _allProgressHUDsInViewHierarchy:view].copy;
+}
+
+@end
+
+@implementation JGProgressHUD (Deprecated)
+
+- (void)showInRect:(CGRect __unused)rect inView:(UIView *)view {
+    [self showInView:view];
+}
+
+- (void)showInRect:(CGRect __unused)rect inView:(UIView *)view animated:(BOOL)animated {
+    [self showInView:view animated:animated];
 }
 
 @end

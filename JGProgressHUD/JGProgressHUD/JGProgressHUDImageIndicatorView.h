@@ -20,6 +20,6 @@
  
  @param image The image to show in the indicator view.
  */
-- (instancetype)initWithImage:(UIImage *)image;
+- (instancetype __nonnull)initWithImage:(UIImage *__nonnull)image;
 
 @end

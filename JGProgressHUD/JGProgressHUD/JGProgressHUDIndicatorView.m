@@ -17,7 +17,7 @@
 
 @end
 
-NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
+static void runOnNextRunLoop(void (^block)(void)) {
     [[NSRunLoop currentRunLoop] performSelector:@selector(runBlock:) target:[JGProgressHUDIndicatorView class] argument:(id)block order:0 modes:@[NSRunLoopCommonModes]];
 }
 
@@ -50,6 +50,10 @@ NS_INLINE void runOnNextRunLoop(void (^block)(void)) {
     }
     return self;
 }
+
+#pragma mark - Setup
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {}
 
 #pragma mark - Accessibility
 

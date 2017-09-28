@@ -16,18 +16,11 @@
  */
 @interface JGProgressHUDAnimation : NSObject
 
-/**
- Convenience method for initializing an animation.
- */
-+ (instancetype)animation;
+/** Convenience initializer. */
++ (instancetype __nonnull)animation;
 
-
-
-
-/**
- The HUD which uses this animation.
- */
-@property (nonatomic, weak, readonly) JGProgressHUD *progressHUD;
+/** The HUD using this animation. */
+@property (nonatomic, weak, readonly, nullable) JGProgressHUD *progressHUD;
 
 /**
  The @c progressHUD is hidden from screen with @c alpha = 1 and @c hidden = @c YES. Ideally, you should prepare the HUD for presentation, then set @c hidden to @c NO on the @c progressHUD and then perform the animation.

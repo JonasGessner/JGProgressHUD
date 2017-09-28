@@ -3,29 +3,34 @@
 //  JGProgressHUD
 //
 //  Created by Jonas Gessner on 19.07.14.
-//  Copyright (c) 2014 Hardtack. All rights reserved.
+//  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
 #import "JGProgressHUDIndeterminateIndicatorView.h"
 
 @implementation JGProgressHUDIndeterminateIndicatorView
 
-- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
+- (instancetype)init {
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [activityIndicatorView startAnimating];
+    
     self = [super initWithContentView:activityIndicatorView];
-    
-    if (self) {
-        if (style != JGProgressHUDStyleDark) {
-            self.color = [UIColor blackColor];
-        }
-    }
-    
     return self;
 }
 
-- (instancetype)init {
-    return [self initWithHUDStyle:0];
+- (instancetype)initWithHUDStyle:(JGProgressHUDStyle)style {
+    return [self init];
+}
+
+- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
+    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
+    
+    if (style != JGProgressHUDStyleDark) {
+        self.color = [UIColor blackColor];
+    }
+    else {
+        self.color = [UIColor whiteColor];
+    }
 }
 
 - (void)setColor:(UIColor *)color {
