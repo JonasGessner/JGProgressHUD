@@ -167,8 +167,8 @@ Each method is well documented, making it easy to quickly get a great overview o
 License
 ---------
 MIT License.<br/>
-© 2014-2017, Jonas Gessner.
+© 2014-2018, Jonas Gessner.
 
 Credits
 ----------
-Created and maintained by Jonas Gessner, © 2014-2017.<br/>
+Created and maintained by Jonas Gessner, © 2014-2018.<br/>
