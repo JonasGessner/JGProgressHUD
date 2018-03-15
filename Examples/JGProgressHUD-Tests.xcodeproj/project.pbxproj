@@ -15,6 +15,8 @@
 		6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
 		6B9A4F041F7D8F8100234337 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; };
 		6B9A4F051F7D8F8100234337 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6B9A4F2E1F8D284100234337 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; };
+		6B9A4F2F1F8D284100234337 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */; };
 		6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DD1F7A67E4005E783F /* ViewController.swift */; };
 		6BABF9E11F7A67E4005E783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9DF1F7A67E4005E783F /* Main.storyboard */; };
@@ -66,6 +68,13 @@
 			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
 			remoteInfo = "JGProgressHUD-iOS";
 		};
+		6B9A4F301F8D284100234337 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BF7DC591AEFCFD9000A0AE0;
+			remoteInfo = "JGProgressHUD-iOS";
+		};
 		6BABF9E81F7A67E4005E783F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6B87F3001F7970F000F606F1 /* JGProgressHUD.xcodeproj */;
@@ -96,6 +105,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				6B9A4F2F1F8D284100234337 /* JGProgressHUD.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,6 +190,7 @@
 			files = (
 				6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */,
 				6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */,
+				6B9A4F2E1F8D284100234337 /* JGProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +347,7 @@
 			dependencies = (
 				6B87F3131F79715000F606F1 /* PBXTargetDependency */,
 				6B87F32E1F7973AE00F606F1 /* PBXTargetDependency */,
+				6B9A4F311F8D284100234337 /* PBXTargetDependency */,
 			);
 			name = "JGProgressHUD-Tests";
 			productName = "JGProgressHUD Tests";
@@ -350,7 +362,7 @@
 			attributes = {
 				CLASSPREFIX = JG;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Jonas Gessner";
 				TargetAttributes = {
 					6B6E775F1F7970570031D476 = {
@@ -494,6 +506,11 @@
 			isa = PBXTargetDependency;
 			name = "JGProgressHUD-iOS";
 			targetProxy = 6B9A4F061F7D8F8100234337 /* PBXContainerItemProxy */;
+		};
+		6B9A4F311F8D284100234337 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "JGProgressHUD-iOS";
+			targetProxy = 6B9A4F301F8D284100234337 /* PBXContainerItemProxy */;
 		};
 		6BABF9F01F7A6820005E783F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -730,6 +747,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
