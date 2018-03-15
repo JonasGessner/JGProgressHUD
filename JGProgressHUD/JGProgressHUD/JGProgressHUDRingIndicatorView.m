@@ -48,14 +48,14 @@
     
     CGRect rect = self.bounds;
     
-    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.height/2.0f), rect.origin.y + (CGFloat)floor(rect.size.height/2.0f));
+    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.width/2.0), rect.origin.y + (CGFloat)floor(rect.size.height/2.0));
     CGFloat lineWidth = self.ringWidth;
-    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0f) - lineWidth;
+    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0) - lineWidth;
     
     //Background
     [self.ringBackgroundColor setStroke];
     
-    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0f endAngle:2.0f*(CGFloat)M_PI clockwise:NO];
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0 endAngle:2.0*(CGFloat)M_PI clockwise:NO];
     
     [borderPath setLineWidth:lineWidth];
     [borderPath stroke];
@@ -63,14 +63,14 @@
     //Progress
     [self.ringColor setStroke];
     
-    if (self.progress > 0.0f) {
+    if (self.progress > 0.0) {
         UIBezierPath *processPath = [UIBezierPath bezierPath];
         
         [processPath setLineWidth:lineWidth];
         [processPath setLineCapStyle:(self.roundProgressLine ? kCGLineCapRound : kCGLineCapSquare)];
         
-        CGFloat startAngle = -((CGFloat)M_PI / 2.0f);
-        CGFloat endAngle = startAngle + 2.0f * (CGFloat)M_PI * self.progress;
+        CGFloat startAngle = -((CGFloat)M_PI / 2.0);
+        CGFloat endAngle = startAngle + 2.0 * (CGFloat)M_PI * self.progress;
         
         [processPath addArcWithCenter:center radius:radius startAngle:startAngle endAngle:endAngle clockwise:YES];
         
@@ -94,7 +94,7 @@
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         [self.layer setNeedsDisplay];
         
-        self.ringWidth = 3.0f;
+        self.ringWidth = 3.0;
         self.ringColor = [UIColor clearColor];
         self.ringBackgroundColor = [UIColor clearColor];
     }

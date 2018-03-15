@@ -34,7 +34,7 @@ static void runOnNextRunLoop(void (^block)(void)) {
 }
 
 - (instancetype)initWithContentView:(UIView *)contentView {
-    self = [super initWithFrame:(contentView ? contentView.frame : CGRectMake(0.0f, 0.0f, 50.0f, 50.0f))];
+    self = [super initWithFrame:(contentView ? contentView.frame : CGRectMake(0.0, 0.0, 50.0, 50.0))];
     if (self) {
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];

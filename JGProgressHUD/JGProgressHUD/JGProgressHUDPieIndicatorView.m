@@ -44,11 +44,11 @@
     
     CGRect rect = self.bounds;
     
-    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.height/2.0f), rect.origin.y + (CGFloat)floor(rect.size.height/2.0f));
-    CGFloat lineWidth = 2.0f;
-    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0f)-lineWidth;
+    CGPoint center = CGPointMake(rect.origin.x + (CGFloat)floor(rect.size.width/2.0), rect.origin.y + (CGFloat)floor(rect.size.height/2.0));
+    CGFloat lineWidth = 2.0;
+    CGFloat radius = (CGFloat)floor(MIN(rect.size.width, rect.size.height)/2.0)-lineWidth;
     
-    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0f endAngle:2.0f*(CGFloat)M_PI clockwise:NO];
+    UIBezierPath *borderPath = [UIBezierPath bezierPathWithArcCenter:center radius:radius startAngle:0.0 endAngle:2.0*(CGFloat)M_PI clockwise:NO];
     
     [borderPath setLineWidth:lineWidth];
     
@@ -67,10 +67,10 @@
         
         [processPath setLineWidth:radius];
         
-        CGFloat startAngle = -((CGFloat)M_PI/2.0f);
-        CGFloat endAngle = startAngle + 2.0f * (CGFloat)M_PI * self.progress;
+        CGFloat startAngle = -((CGFloat)M_PI/2.0);
+        CGFloat endAngle = startAngle + 2.0 * (CGFloat)M_PI * self.progress;
         
-        [processPath addArcWithCenter:center radius:radius/2.0f startAngle:startAngle endAngle:endAngle clockwise:YES];
+        [processPath addArcWithCenter:center radius:radius/2.0 startAngle:startAngle endAngle:endAngle clockwise:YES];
         
         [processPath stroke];
     }
