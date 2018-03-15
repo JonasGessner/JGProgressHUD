@@ -361,8 +361,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
     
     [UIView performWithoutAnimation:^{
         self.indicatorView.frame = indicatorFrame;
-        _textLabel.frame = JGProgressHUD_CGRectIntegral(labelFrame);
-        _detailTextLabel.frame = JGProgressHUD_CGRectIntegral(detailFrame);
+        self->_textLabel.frame = JGProgressHUD_CGRectIntegral(labelFrame);
+        self->_detailTextLabel.frame = JGProgressHUD_CGRectIntegral(detailFrame);
     }];
     
     [self setHUDViewFrameCenterWithSize:size insetViewFrame:insetFrame];
@@ -860,8 +860,8 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
     }
     
     [UIView performWithoutAnimation:^{
-        [_indicatorView removeFromSuperview];
-        _indicatorView = indicatorView;
+        [self->_indicatorView removeFromSuperview];
+        self->_indicatorView = indicatorView;
         
         if (self.indicatorView != nil) {
             [self.indicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
