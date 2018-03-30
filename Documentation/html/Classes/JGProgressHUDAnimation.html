@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>JGProgressHUDAnimation Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">JGProgressHUD </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Jonas Gessner</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/progressHUD">progressHUD</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/animation">+ animation</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/animationFinished">- animationFinished</option>
+		
+		<option value="//api/name/hide">- hide</option>
+		
+		<option value="//api/name/show">- show</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">JGProgressHUDAnimation Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>JGProgressHUDAnimation.h<br />JGProgressHUDAnimation.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>You may subclass this class to create a custom progress indicator view.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/animation" title="animation"></a>
+	<h3 class="method-title"><code><a href="#//api/name/animation">+&nbsp;animation</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenience initializer.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)animation</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Convenience initializer.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDAnimation.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/show" title="show"></a>
+	<h3 class="method-title"><code><a href="#//api/name/show">&ndash;&nbsp;show</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The @c <a href="#//api/name/progressHUD">progressHUD</a> is hidden from screen with @c alpha = 1 and @c hidden = @c YES. Ideally, you should prepare the HUD for presentation, then set @c hidden to @c NO on the @c <a href="#//api/name/progressHUD">progressHUD</a> and then perform the <a href="#//api/name/animation">animation</a>.
+  @post Call @c <a href="#//api/name/animationFinished">animationFinished</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)show</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The @c <a href="#//api/name/progressHUD">progressHUD</a> is hidden from screen with @c alpha = 1 and @c hidden = @c YES. Ideally, you should prepare the HUD for presentation, then set @c hidden to @c NO on the @c <a href="#//api/name/progressHUD">progressHUD</a> and then perform the <a href="#//api/name/animation">animation</a>.
+  @post Call @c <a href="#//api/name/animationFinished">animationFinished</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDAnimation.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/hide" title="hide"></a>
+	<h3 class="method-title"><code><a href="#//api/name/hide">&ndash;&nbsp;hide</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The @c <a href="#//api/name/progressHUD">progressHUD</a> wis visible on screen with @c alpha = 1 and @c hidden = @c NO. You should only perform the <a href="#//api/name/animation">animation</a> in this method, the @c <a href="#//api/name/progressHUD">progressHUD</a> itself will take care of hiding itself and removing itself from superview.
+@post Call @c <a href="#//api/name/animationFinished">animationFinished</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)hide</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The @c <a href="#//api/name/progressHUD">progressHUD</a> wis visible on screen with @c alpha = 1 and @c hidden = @c NO. You should only perform the <a href="#//api/name/animation">animation</a> in this method, the @c <a href="#//api/name/progressHUD">progressHUD</a> itself will take care of hiding itself and removing itself from superview.
+@post Call @c <a href="#//api/name/animationFinished">animationFinished</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDAnimation.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/animationFinished" title="animationFinished"></a>
+	<h3 class="method-title"><code><a href="#//api/name/animationFinished">&ndash;&nbsp;animationFinished</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>@pre This method should only be called at the end of a @c <a href="#//api/name/show">show</a> or @c <a href="#//api/name/hide">hide</a> animaiton.
+@attention ALWAYS call this method after completing a @c <a href="#//api/name/show">show</a> or @c <a href="#//api/name/hide">hide</a> <a href="#//api/name/animation">animation</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)animationFinished</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>@pre This method should only be called at the end of a @c <a href="#//api/name/show">show</a> or @c <a href="#//api/name/hide">hide</a> animaiton.
+@attention ALWAYS call this method after completing a @c <a href="#//api/name/show">show</a> or @c <a href="#//api/name/hide">hide</a> <a href="#//api/name/animation">animation</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDAnimation.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/progressHUD" title="progressHUD"></a>
+	<h3 class="method-title"><code><a href="#//api/name/progressHUD">&nbsp;&nbsp;progressHUD</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The HUD using this <a href="#//api/name/animation">animation</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, weak, readonly, nullable) JGProgressHUD *progressHUD</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The HUD using this <a href="#//api/name/animation">animation</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDAnimation.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

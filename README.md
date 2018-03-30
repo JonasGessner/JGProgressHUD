@@ -161,8 +161,8 @@ JGProgressHUD can also be used by projects written in Swift. See <a href="https:
 
 Documentation
 ----------------
-Detailed documentation can be found on <a href="http://cocoadocs.org/docsets/JGProgressHUD">CocoaDocs</a>.<br/><br/>
-Each method is well documented, making it easy to quickly get a great overview of JGProgressHUD. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
+Detailed documentation can be found on <a href="https://github.com/JonasGessner/JGProgressHUD/tree/master/Documentation">here</a>.<br/><br/>
+Each class and method is well documented, making it easy to quickly get a good overview. To start, see <a href="JGProgressHUD/JGProgressHUD/JGProgressHUD.h">JGProgressHUD.h</a>.
 
 License
 ---------
