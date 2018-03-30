@@ -48,7 +48,7 @@ final class ViewController: UIViewController {
     override func loadView() {
         self.view = GradientView(startColor: UIColor(rgb: 0x24C6DC), endColor: UIColor(rgb: 0x514A9D))
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         

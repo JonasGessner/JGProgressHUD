@@ -97,19 +97,28 @@
  */
 @property (nonatomic, strong, nonnull) JGProgressHUDAnimation *animation;
 
+#if TARGET_OS_IOS
 /**
  Interaction type of the HUD. Determines whether touches should be let through to the views behind the HUD.
  @sa JGProgressHUDInteractionType.
  @b Default: JGProgressHUDInteractionTypeBlockAllTouches.
  */
 @property (nonatomic, assign) JGProgressHUDInteractionType interactionType;
+#endif
 
 /**
- Parallax mode for the HUD. This setting determines whether the HUD should have a parallax (@c UIDeviceMotion) effect.
+ Parallax mode for the HUD. This setting determines whether the HUD should have a parallax (@c UIDeviceMotion) effect. This effect is controlled by device motion on iOS and remote touchpad panning gestures on tvOS.
  @sa JGProgressHUDParallaxMode.
  @b Default: JGProgressHUDParallaxModeDevice.
  */
 @property (nonatomic, assign) JGProgressHUDParallaxMode parallaxMode;
+
+#if TARGET_OS_TV
+/**
+ When this property is set to @c YES the HUD will try to become focused, which prevents interactions with the @c targetView. If set to @c NO the HUD will not become focused and interactions with @c targetView remain possible. Default: @c YES.
+ */
+@property (nonatomic, assign) BOOL wantsFocus;
+#endif
 
 /**
  If the HUD should always have the same width and height.

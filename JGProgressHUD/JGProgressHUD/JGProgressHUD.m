@@ -165,6 +165,8 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         
 #if TARGET_OS_IOS
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
+#elif TARGET_OS_TV
+        _wantsFocus = YES;
 #endif
     }
     
@@ -399,6 +401,12 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
 #pragma mark - Showing
 
 - (void)cleanUpAfterPresentation {
+#if TARGET_OS_TV
+    if (self.wantsFocus) {
+        [self.targetView setNeedsFocusUpdate];
+    }
+#endif
+
     self.hidden = NO;
     
     _transitioning = NO;
@@ -760,6 +768,20 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 
 #pragma mark - Setters
 
+#if TARGET_OS_TV
+- (void)setWantsFocus:(BOOL)wantsFocus {
+    if (self.wantsFocus == wantsFocus) {
+        return;
+    }
+
+    _wantsFocus = wantsFocus;
+
+    self.userInteractionEnabled = self.wantsFocus;
+
+    [self.targetView setNeedsFocusUpdate];
+}
+#endif
+
 - (void)setCornerRadius:(CGFloat)cornerRadius {
     if (fequal(self.cornerRadius, cornerRadius)) {
         return;
@@ -912,13 +934,14 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 
 #pragma mark - Overrides
 
+#if TARGET_OS_IOS
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     if (self.interactionType == JGProgressHUDInteractionTypeBlockNoTouches) {
         return nil;
     }
     else {
         UIView *view = [super hitTest:point withEvent:event];
-        
+
         if (self.interactionType == JGProgressHUDInteractionTypeBlockAllTouches) {
             return view;
         }
@@ -929,6 +952,19 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         return nil;
     }
 }
+#elif TARGET_OS_TV
+- (NSArray<id<UIFocusEnvironment>> *)preferredFocusEnvironments {
+    return @[self];
+}
+
+- (UIView *)preferredFocusedView {
+    return nil;
+}
+
+- (BOOL)canBecomeFocused {
+    return self.wantsFocus;
+}
+#endif
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (object == _textLabel || object == _detailTextLabel) {
