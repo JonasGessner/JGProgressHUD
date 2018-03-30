@@ -8,6 +8,9 @@
 
 #import "JGProgressHUDAnimation.h"
 
+/**
+ An animation that fades in the HUD and expands the HUD from scale @c (0, 0) to a customizable scale, and finally to scale @c (1, 1), creating a bouncing effect.
+ */
 @interface JGProgressHUDFadeZoomAnimation : JGProgressHUDAnimation
 
 /**
@@ -27,7 +30,7 @@
 /**
  The scale to apply to the HUD when expanding.
  
- @b Default: (1.1f, 1.1f).
+ @b Default: (1.1, 1.1).
  */
 @property (nonatomic, assign) CGSize expandScale;
 

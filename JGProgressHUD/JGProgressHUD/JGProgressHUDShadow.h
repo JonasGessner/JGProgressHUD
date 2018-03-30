@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ A wrapper representing properties of a shadow.
+ */
 @interface JGProgressHUDShadow : NSObject
 
 - (instancetype __nonnull)initWithColor:(UIColor *__nonnull)color offset:(CGSize)offset radius:(CGFloat)radius opacity:(float)opacity;

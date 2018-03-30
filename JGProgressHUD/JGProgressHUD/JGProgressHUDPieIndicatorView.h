@@ -9,6 +9,9 @@
 #import "JGProgressHUD-Defines.h"
 #import "JGProgressHUDIndicatorView.h"
 
+/**
+ A pie shaped determinate progress indicator.
+ */
 @interface JGProgressHUDPieIndicatorView : JGProgressHUDIndicatorView
 
 /**

@@ -9,6 +9,9 @@
 #import "JGProgressHUD-Defines.h"
 #import "JGProgressHUDIndicatorView.h"
 
+/**
+ An indeterminate progress indicator showing a @c UIActivityIndicatorView.
+ */
 @interface JGProgressHUDIndeterminateIndicatorView : JGProgressHUDIndicatorView
 
 /**

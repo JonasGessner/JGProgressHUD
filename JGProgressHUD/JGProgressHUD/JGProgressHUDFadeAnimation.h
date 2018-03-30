@@ -8,6 +8,9 @@
 
 #import "JGProgressHUDAnimation.h"
 
+/**
+ A simple fade animation that fades the HUD from alpha @c 0.0 to alpha @c 1.0.
+ */
 @interface JGProgressHUDFadeAnimation : JGProgressHUDAnimation
 
 /**
