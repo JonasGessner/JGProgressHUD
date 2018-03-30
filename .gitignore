@@ -18,4 +18,4 @@ profile
 DerivedData
 .idea/
 Mockup.pxm
-Documentation/generate-docs.sh
+docs/generate-docs.sh
