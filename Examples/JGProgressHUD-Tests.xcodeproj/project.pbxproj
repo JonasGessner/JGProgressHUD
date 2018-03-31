@@ -13,12 +13,12 @@
 		6B6E776A1F7970570031D476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E77691F7970570031D476 /* Assets.xcassets */; };
 		6B6E776D1F7970570031D476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6E776B1F7970570031D476 /* LaunchScreen.storyboard */; };
 		6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */; };
+		6B8CB8C0206F8982006840B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E77641F7970570031D476 /* ViewController.swift */; };
 		6B9A4F041F7D8F8100234337 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; };
 		6B9A4F051F7D8F8100234337 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B9A4F2E1F8D284100234337 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; };
 		6B9A4F2F1F8D284100234337 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9E91F7A67E4005E783F /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */; };
-		6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABF9DD1F7A67E4005E783F /* ViewController.swift */; };
 		6BABF9E11F7A67E4005E783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9DF1F7A67E4005E783F /* Main.storyboard */; };
 		6BABF9E31F7A67E4005E783F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BABF9E21F7A67E4005E783F /* Assets.xcassets */; };
 		6BABF9ED1F7A6820005E783F /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9EB1F7A67E4005E783F /* JGProgressHUD.framework */; };
@@ -147,7 +147,6 @@
 		6B8A14DA1D55FD1A006DAB93 /* JGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDetailViewController.m; sourceTree = "<group>"; };
 		6BABF9D91F7A67E3005E783F /* JGProgressHUD-Tests-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JGProgressHUD-Tests-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6BABF9DD1F7A67E4005E783F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6BABF9E01F7A67E4005E783F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6BABF9E21F7A67E4005E783F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BABF9E41F7A67E4005E783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				6BABF9DB1F7A67E4005E783F /* AppDelegate.swift */,
-				6BABF9DD1F7A67E4005E783F /* ViewController.swift */,
 				6BABF9DF1F7A67E4005E783F /* Main.storyboard */,
 				6BABF9E21F7A67E4005E783F /* Assets.xcassets */,
 				6BABF9E41F7A67E4005E783F /* Info.plist */,
@@ -463,7 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BABF9DE1F7A67E4005E783F /* ViewController.swift in Sources */,
+				6B8CB8C0206F8982006840B3 /* ViewController.swift in Sources */,
 				6BABF9DC1F7A67E4005E783F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

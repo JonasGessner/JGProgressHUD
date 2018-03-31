@@ -17,5 +17,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
-Mockup.pxm
 docs/generate-docs.sh
+*.pxm

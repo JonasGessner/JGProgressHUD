@@ -114,7 +114,7 @@
 - (void)showCancellableHUD {
     JGProgressHUD *HUD = self.prototypeHUD;
     
-    HUD.textLabel.text = @"Loading for a long time...";
+    HUD.textLabel.text = @"Loading for a long time";
     
     __block BOOL confirmationAsked = NO;
     
@@ -140,7 +140,7 @@
                     __strong __typeof(wH) sH = wH;
                     
                     sH.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
-                    sH.textLabel.text = @"Loading for a long time...";
+                    sH.textLabel.text = @"Loading for a long time";
                     
                     [UIView animateWithDuration:0.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                         sH.shadow = nil;
@@ -158,11 +158,15 @@
         if (confirmationAsked) {
             confirmationAsked = NO;
             h.indicatorView = [[JGProgressHUDIndeterminateIndicatorView alloc] init];
-            h.textLabel.text = @"Loading for a long time...";
+            h.textLabel.text = @"Loading for a long time";
             
             [UIView animateWithDuration:0.0 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
                 h.shadow = nil;
             } completion:nil];
+
+            if (_shadow) {
+                sH.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
+            }
         }
     };
     
@@ -174,7 +178,7 @@
 - (void)showHUDWithTransform {
     JGProgressHUD *HUD = self.prototypeHUD;
     
-    HUD.textLabel.text = @"Loading...";
+    HUD.textLabel.text = @"Loading";
     
     HUD.layoutMargins = UIEdgeInsetsMake(0.0f, 0.0f, 10.0f, 0.0f);
     
@@ -202,7 +206,7 @@
     
     HUD.detailTextLabel.text = @"0% Complete";
     
-    HUD.textLabel.text = @"Downloading...";
+    HUD.textLabel.text = @"Downloading";
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -217,7 +221,7 @@
     
     HUD.detailTextLabel.text = @"0% Complete";
     
-    HUD.textLabel.text = @"Downloading...";
+    HUD.textLabel.text = @"Downloading";
     [HUD showInView:self.navigationController.view];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

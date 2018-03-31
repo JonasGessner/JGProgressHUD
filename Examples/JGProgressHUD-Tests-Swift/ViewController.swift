@@ -9,6 +9,14 @@
 import UIKit
 import JGProgressHUD
 
+private typealias Gradient = (start: UIColor, end: UIColor)
+
+private let blueGradient: Gradient = (UIColor(rgb: 0x24C6DC), UIColor(rgb: 0x514A9D))
+private let tealGradient: Gradient = (UIColor(rgb: 0x1CD8D2), UIColor(rgb: 0x93EDC7))
+private let redGradient: Gradient = (UIColor(rgb: 0xAE2727), UIColor(rgb: 0x79319B))
+
+private let gradient = blueGradient
+
 final class GradientView: UIView {
     init(startColor: UIColor, endColor: UIColor) {
         super.init(frame: .zero)
@@ -45,26 +53,32 @@ extension UIColor {
 }
 
 final class ViewController: UIViewController {
+    #if os(iOS)
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    #endif
     
     override func loadView() {
-        self.view = GradientView(startColor: UIColor(rgb: 0x24C6DC), endColor: UIColor(rgb: 0x514A9D))
+        self.view = GradientView(startColor: gradient.start, endColor: gradient.end)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000)) {
-            self.showPieHUD()
+            self.showLoadingHUD()
         }
     }
     
     func showSimpleHUD() {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
-        hud.textLabel.text = "Simple example in Swift"
+        #if os(tvOS)
+            hud.textLabel.text = "Simple example on tvOS in Swift"
+        #else
+            hud.textLabel.text = "Simple example in Swift"
+        #endif
         hud.detailTextLabel.text = "See JGProgressHUD-Tests for more examples"
         hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.2)
         hud.show(in: self.view)
@@ -73,7 +87,7 @@ final class ViewController: UIViewController {
     func showHUDWithTransform() {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
-        hud.textLabel.text = "Loading..."
+        hud.textLabel.text = "Loading"
         hud.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
         
         hud.show(in: self.view)
@@ -94,12 +108,17 @@ final class ViewController: UIViewController {
         }
     }
     
-    func showPieHUD() {
+    func showLoadingHUD() {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
-        hud.indicatorView = JGProgressHUDPieIndicatorView()
+        if arc4random_uniform(2) == 0 {
+            hud.indicatorView = JGProgressHUDPieIndicatorView()
+        }
+        else {
+            hud.indicatorView = JGProgressHUDRingIndicatorView()
+        }
         hud.detailTextLabel.text = "0% Complete"
-        hud.textLabel.text = "Downloading..."
+        hud.textLabel.text = "Downloading"
         hud.show(in: self.view)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
