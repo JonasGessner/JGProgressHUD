@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.platforms     	= { :ios => "8.0", :tvos => "9.0" }
   s.source       	= { :git => "https://github.com/JonasGessner/JGProgressHUD.git", :tag => "v2.0.2" }
   s.source_files 	= "JGProgressHUD/JGProgressHUD/*.{h,m}"
-  s.resource	 	= "JGProgressHUD/Resources/*.png"
+  s.resource_bundle = { "JGProgressHUD" => "JGProgressHUD/Resources/*.png" }
   s.frameworks 	 	= "Foundation", "UIKit", "QuartzCore"
   s.requires_arc 	= true
 
