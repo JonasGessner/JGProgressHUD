@@ -63,7 +63,7 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
 
 #pragma mark - Keyboard
 
-static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
+static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 
 #if TARGET_OS_IOS
 + (void)keyboardFrameWillChange:(NSNotification *)notification {
@@ -140,13 +140,13 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         _shadowView = [[UIView alloc] init];
         _shadowView.backgroundColor = [UIColor blackColor];
         _shadowView.userInteractionEnabled = NO;
-        _shadowView.layer.shadowOpacity = 1.0f;
+        _shadowView.layer.shadowOpacity = 1.0;
         _shadowView.alpha = 0.0;
         
         _shadowMaskLayer = [CAShapeLayer layer];
         _shadowMaskLayer.fillRule = kCAFillRuleEvenOdd;
         _shadowMaskLayer.fillColor = [UIColor blackColor].CGColor;
-        _shadowMaskLayer.opacity = 1.0f;
+        _shadowMaskLayer.opacity = 1.0;
         
         _shadowView.layer.mask = _shadowMaskLayer;
         
@@ -189,7 +189,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             break;
             
         case JGProgressHUDPositionTopCenter:
-            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0;
             frame.origin.y = CGRectGetMinY(viewFrame);
             break;
             
@@ -200,17 +200,17 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             
         case JGProgressHUDPositionCenterLeft:
             frame.origin.x = CGRectGetMinX(viewFrame);
-            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0;
             break;
             
         case JGProgressHUDPositionCenter:
-            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
-            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0;
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0;
             break;
             
         case JGProgressHUDPositionCenterRight:
             frame.origin.x = CGRectGetMaxX(viewFrame) - frame.size.width;
-            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0f;
+            frame.origin.y = CGRectGetMidY(viewFrame) - size.height/2.0;
             break;
             
         case JGProgressHUDPositionBottomLeft:
@@ -219,7 +219,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
             break;
             
         case JGProgressHUDPositionBottomCenter:
-            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0f;
+            frame.origin.x = CGRectGetMidX(viewFrame) - size.width/2.0;
             frame.origin.y = CGRectGetMaxY(viewFrame) - frame.size.height;
             break;
             
@@ -344,7 +344,7 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         size.width = uniSize;
         size.height = uniSize;
         
-        CGFloat heightDelta = (uniSize-height)/2.0f;
+        CGFloat heightDelta = (uniSize-height)/2.0;
         
         labelFrame.origin.y += heightDelta;
         detailFrame.origin.y += heightDelta;
@@ -355,11 +355,11 @@ static CGRect keyboardFrame = (CGRect){{0.0f, 0.0f}, {0.0f, 0.0f}};
         size.height = height;
     }
     
-    CGPoint center = CGPointMake(size.width/2.0f, size.height/2.0f);
+    CGPoint center = CGPointMake(size.width/2.0, size.height/2.0);
     
-    indicatorFrame.origin.x = center.x - indicatorFrame.size.width/2.0f;
-    labelFrame.origin.x = center.x - labelFrame.size.width/2.0f;
-    detailFrame.origin.x = center.x - detailFrame.size.width/2.0f;
+    indicatorFrame.origin.x = center.x - indicatorFrame.size.width/2.0;
+    labelFrame.origin.x = center.x - labelFrame.size.width/2.0;
+    detailFrame.origin.x = center.x - detailFrame.size.width/2.0;
     
     [UIView performWithoutAnimation:^{
         self.indicatorView.frame = indicatorFrame;
@@ -624,7 +624,7 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
     else {
         UIInterpolatingMotionEffect *x = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
         
-        CGFloat maxMovement = 20.0f;
+        CGFloat maxMovement = 20.0;
         
         x.minimumRelativeValue = @(-maxMovement);
         x.maximumRelativeValue = @(maxMovement);
