@@ -146,7 +146,7 @@
                         sH.shadow = nil;
                     } completion:nil];
                     
-                    if (_shadow) {
+                    if (self->_shadow) {
                         sH.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
                     }
                 }
@@ -164,8 +164,8 @@
                 h.shadow = nil;
             } completion:nil];
 
-            if (_shadow) {
-                sH.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
+            if (self->_shadow) {
+                h.shadow = [JGProgressHUDShadow shadowWithColor:[UIColor blackColor] offset:CGSizeZero radius:5.0 opacity:0.3f];
             }
         }
     };
