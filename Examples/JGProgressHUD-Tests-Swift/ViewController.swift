@@ -88,7 +88,7 @@ final class ViewController: UIViewController {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
         hud.textLabel.text = "Loading"
-        hud.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 10.0, 0.0)
+        hud.layoutMargins = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 10.0, right: 0.0)
         
         hud.show(in: self.view)
         
