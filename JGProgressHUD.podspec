@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
   s.source_files 	= "JGProgressHUD/JGProgressHUD/*.{h,m}"
   s.resource_bundle 	= { "JGProgressHUD" => "JGProgressHUD/Resources/*.png" }
   s.frameworks 	 	= "Foundation", "UIKit", "QuartzCore"
+  s.swift_version = "4.0"
   s.requires_arc 	= true
 
 end
