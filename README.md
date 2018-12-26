@@ -70,6 +70,18 @@ HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgress
 [HUD dismissAfterDelay:3.0];
 ```
 
+Swift:
+
+```swift
+let hud = JGProgressHUD(style: .dark)
+hud.textLabel.text = "Error"
+hud.indicatorView = JGProgressHUDErrorIndicatorView()
+hud.show(in: self.view)
+hud.dismiss(afterDelay: 3.0)
+```
+
+This displays a dark HUD with an error indicator and the title "Error". The HUD is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
+
 #### Showing determinate progress:
 
 ```objc
@@ -79,6 +91,18 @@ HUD.progress = 0.5f;
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
 ```
+
+Swift:
+
+```swift
+let hud = JGProgressHUD(style: .dark)
+hud.indicatorView = JGProgressHUDPieIndicatorView() //Or JGProgressHUDRingIndicatorView
+hud.progress = 0.5
+hud.show(in: self.view)
+hud.dismiss(afterDelay: 3.0)
+```
+
+This displays a dark HUD with an Pie progress / Ring progress indicator with a progress of 0.5. The HUD is presented with a fade animation and is dismissed after 3 seconds with a fade animation.
 
 __Important:__ You should always show `JGProgressHUD` in a `UIViewController` view.
 
