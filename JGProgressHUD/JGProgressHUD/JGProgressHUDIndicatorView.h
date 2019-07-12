@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "JGProgressHUD-Defines.h"
+#import <JGProgressHUD/JGProgressHUD-Defines.h>
 
 /** You may subclass this class to create a custom progress indicator view. */
 @interface JGProgressHUDIndicatorView : UIView

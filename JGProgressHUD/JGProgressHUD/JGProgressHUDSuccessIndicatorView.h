@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import "JGProgressHUDImageIndicatorView.h"
+#import <JGProgressHUD/JGProgressHUDImageIndicatorView.h>
 
 /**
  An image indicator showing a checkmark, representing a failed operation.

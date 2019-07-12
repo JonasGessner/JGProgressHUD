@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import "JGProgressHUDAnimation.h"
+#import <JGProgressHUD/JGProgressHUDAnimation.h>
 
 /**
  A simple fade animation that fades the HUD from alpha @c 0.0 to alpha @c 1.0.

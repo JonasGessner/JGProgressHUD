@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //  
 
-#import "JGProgressHUDAnimation.h"
+#import <JGProgressHUD/JGProgressHUDAnimation.h>
 
 /**
  An animation that fades in the HUD and expands the HUD from scale @c (0, 0) to a customizable scale, and finally to scale @c (1, 1), creating a bouncing effect.
