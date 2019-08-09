@@ -37,16 +37,11 @@
     [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
 
     if (style == JGProgressHUDStyleDark) {
-        self.contentView.tintColor = [UIColor whiteColor];
+        self.tintColor = [UIColor whiteColor];
     }
     else {
-        self.contentView.tintColor = [UIColor blackColor];
+        self.tintColor = [UIColor blackColor];
     }
-}
-
-- (void)tintColorDidChange {
-    [super tintColorDidChange];
-    self.contentView.tintColor = self.tintColor;
 }
 
 @end
