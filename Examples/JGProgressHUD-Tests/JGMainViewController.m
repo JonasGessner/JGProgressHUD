@@ -78,8 +78,6 @@
 }
 
 - (void)showSuccessHUD {
-    self.navigationController.view.tintColor = [UIColor greenColor];
-    
     JGProgressHUD *HUD = self.prototypeHUD;
     
     HUD.textLabel.text = @"Success!";

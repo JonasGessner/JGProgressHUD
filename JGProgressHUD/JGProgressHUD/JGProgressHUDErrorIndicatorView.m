@@ -33,15 +33,4 @@
     self.accessibilityLabel = NSLocalizedString(@"Error",);
 }
 
-- (void)setUpForHUDStyle:(JGProgressHUDStyle)style vibrancyEnabled:(BOOL)vibrancyEnabled {
-    [super setUpForHUDStyle:style vibrancyEnabled:vibrancyEnabled];
-
-    if (style == JGProgressHUDStyleDark) {
-        self.tintColor = [UIColor whiteColor];
-    }
-    else {
-        self.tintColor = [UIColor blackColor];
-    }
-}
-
 @end
