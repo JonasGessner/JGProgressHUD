@@ -80,9 +80,9 @@ HUD.progress = 0.5f;
 [HUD dismissAfterDelay:3.0];
 ```
 
-__Important:__ You should always show `JGProgressHUD` in a `UIViewController` view.
+__For more examples, including in Swift, see <a href="Examples">Examples</a>.__
 
-Download the source code and open the <a href="Examples">Examples</a> project to explore more use cases for JGProgressHUD.
+__Important:__ You should always show `JGProgressHUD` in a `UIViewController` view.
 
 Customization
 -----------
@@ -167,8 +167,8 @@ Each class and method is well documented, making it easy to quickly get a good o
 License
 ---------
 MIT License.<br/>
-© 2014-2018, Jonas Gessner.
+© 2014-2019, Jonas Gessner.
 
 Credits
 ----------
-Created and maintained by Jonas Gessner, © 2014-2018.<br/>
+Created and maintained by Jonas Gessner, © 2014-2019.<br/>
