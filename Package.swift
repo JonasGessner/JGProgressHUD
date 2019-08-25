@@ -9,7 +9,7 @@ let package = Package(
     targets: [
         .target(
             name: "JGProgressHUD",
-            path: "JGProgressHUD"
+            path: "JGProgressHUD/JGProgressHUD"
         )
     ]
 )
