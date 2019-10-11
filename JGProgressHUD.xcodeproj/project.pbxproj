@@ -30,12 +30,6 @@
 		6B0687301B7766E1002C584E /* JGProgressHUD-Defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06872D1B7766E1002C584E /* JGProgressHUD-Defines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B0687311B7766E1002C584E /* JGProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B06872E1B7766E1002C584E /* JGProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B0687331B7766E1002C584E /* JGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B06872F1B7766E1002C584E /* JGProgressHUD.m */; };
-		6B3238141F79AA0E007C0547 /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380E1F79AA02007C0547 /* jg_hud_error.png */; };
-		6B3238151F79AA0E007C0547 /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380F1F79AA02007C0547 /* jg_hud_error@2x.png */; };
-		6B3238161F79AA0E007C0547 /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238101F79AA02007C0547 /* jg_hud_error@3x.png */; };
-		6B3238171F79AA0E007C0547 /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238111F79AA02007C0547 /* jg_hud_success.png */; };
-		6B3238181F79AA0E007C0547 /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */; };
-		6B3238191F79AA0E007C0547 /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */; };
 		6B6E77541F79645E0031D476 /* JGProgressHUDShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */; };
 		6B6E77561F7964690031D476 /* JGProgressHUDShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BABF9B11F7A626E005E783F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BABF9B01F7A626E005E783F /* Foundation.framework */; };
@@ -66,12 +60,6 @@
 		6BABF9CC1F7A62A6005E783F /* JGProgressHUDErrorIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687081B776690002C584E /* JGProgressHUDErrorIndicatorView.m */; };
 		6BABF9CD1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0687131B776690002C584E /* JGProgressHUDSuccessIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BABF9CE1F7A62A6005E783F /* JGProgressHUDSuccessIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0687141B776690002C584E /* JGProgressHUDSuccessIndicatorView.m */; };
-		6BABF9CF1F7A62CA005E783F /* jg_hud_error.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380E1F79AA02007C0547 /* jg_hud_error.png */; };
-		6BABF9D01F7A62CA005E783F /* jg_hud_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B32380F1F79AA02007C0547 /* jg_hud_error@2x.png */; };
-		6BABF9D11F7A62CA005E783F /* jg_hud_error@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238101F79AA02007C0547 /* jg_hud_error@3x.png */; };
-		6BABF9D21F7A62CA005E783F /* jg_hud_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238111F79AA02007C0547 /* jg_hud_success.png */; };
-		6BABF9D31F7A62CA005E783F /* jg_hud_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */; };
-		6BABF9D41F7A62CA005E783F /* jg_hud_success@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */; };
 		6BF7DC871AEFD05B000A0AE0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B6197B2BC700DA4C49 /* UIKit.framework */; };
 		6BF7DC8A1AEFD066000A0AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC01876197B2AA500DA4C49 /* Foundation.framework */; };
 		6BF7DC8B1AEFD072000A0AE0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC018B8197B2BCB00DA4C49 /* QuartzCore.framework */; };
@@ -409,12 +397,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BABF9CF1F7A62CA005E783F /* jg_hud_error.png in Resources */,
-				6BABF9D01F7A62CA005E783F /* jg_hud_error@2x.png in Resources */,
-				6BABF9D11F7A62CA005E783F /* jg_hud_error@3x.png in Resources */,
-				6BABF9D21F7A62CA005E783F /* jg_hud_success.png in Resources */,
-				6BABF9D31F7A62CA005E783F /* jg_hud_success@2x.png in Resources */,
-				6BABF9D41F7A62CA005E783F /* jg_hud_success@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,12 +404,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B3238141F79AA0E007C0547 /* jg_hud_error.png in Resources */,
-				6B3238151F79AA0E007C0547 /* jg_hud_error@2x.png in Resources */,
-				6B3238161F79AA0E007C0547 /* jg_hud_error@3x.png in Resources */,
-				6B3238171F79AA0E007C0547 /* jg_hud_success.png in Resources */,
-				6B3238181F79AA0E007C0547 /* jg_hud_success@2x.png in Resources */,
-				6B3238191F79AA0E007C0547 /* jg_hud_success@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +472,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD";
 				PRODUCT_NAME = JGProgressHUD;
@@ -531,6 +508,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD/JGProgressHUD-tvOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD";
 				PRODUCT_NAME = JGProgressHUD;
@@ -662,6 +640,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JGProgressHUD;
@@ -691,6 +670,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 2.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JGProgressHUD;

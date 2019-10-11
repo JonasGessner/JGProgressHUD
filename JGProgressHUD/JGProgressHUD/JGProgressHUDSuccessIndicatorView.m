@@ -9,18 +9,38 @@
 #import "JGProgressHUDSuccessIndicatorView.h"
 #import "JGProgressHUD.h"
 
+static UIBezierPath *successBezierPath() {
+    static UIBezierPath *path;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(1.5, 18)];
+        [path addLineToPoint:CGPointMake(11, 28)];
+        [path addLineToPoint:CGPointMake(31.5, 5.5)];
+        
+        [path setLineWidth:3];
+        [path setLineJoinStyle:kCGLineJoinRound];
+        [path setLineCapStyle:kCGLineCapRound];
+    });
+
+    return path;
+}
+
 @implementation JGProgressHUDSuccessIndicatorView
 
 - (instancetype)initWithContentView:(UIView *__unused)contentView {
-    NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-    NSURL *resourceBundleURL = [currentBundle URLForResource:@"JGProgressHUD" withExtension:@"bundle"];
-    NSBundle *resourceBundle = currentBundle;
-    if (resourceBundleURL) {
-        resourceBundle = [NSBundle bundleWithURL:resourceBundleURL] ?: currentBundle;
-    }
-
-    NSString *imgPath = [resourceBundle pathForResource:@"jg_hud_success" ofType:@"png"];
-    self = [super initWithImage:[[UIImage imageWithContentsOfFile:imgPath] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    UIBezierPath *path = successBezierPath();
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(33, 33), NO, 0.0);
+    [[UIColor blackColor] setStroke];
+    [path stroke];
+    
+    UIImage *img = [UIGraphicsGetImageFromCurrentImageContext() imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    UIGraphicsEndImageContext();
+    
+    self = [super initWithImage:img];
 
     return self;
 }

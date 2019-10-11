@@ -11,7 +11,18 @@
 @implementation JGProgressHUDIndeterminateIndicatorView
 
 - (instancetype)init {
-    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *activityIndicatorView;
+    
+    if (@available(iOS 13, tvOS 13, *)) {
+        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    }
+    else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+#pragma clang diagnostic pop
+    }
+    
     [activityIndicatorView startAnimating];
     
     self = [super initWithContentView:activityIndicatorView];
