@@ -8,11 +8,16 @@
 
 #import "JGProgressHUDIndeterminateIndicatorView.h"
 
+#ifndef __IPHONE_13_0
+#define __IPHONE_13_0    130000
+#endif
+
 @implementation JGProgressHUDIndeterminateIndicatorView
 
 - (instancetype)init {
     UIActivityIndicatorView *activityIndicatorView;
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_13_0
     if (@available(iOS 13, tvOS 13, *)) {
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
     }
@@ -22,6 +27,9 @@
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 #pragma clang diagnostic pop
     }
+#else
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+#endif
     
     [activityIndicatorView startAnimating];
     
