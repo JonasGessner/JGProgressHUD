@@ -30,6 +30,7 @@
 		6BC018D8197BF28100DA4C49 /* JGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018D7197BF28100DA4C49 /* JGAppDelegate.m */; };
 		6BC018E1197BF28100DA4C49 /* JGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC018E0197BF28100DA4C49 /* JGMainViewController.m */; };
 		6BC018E3197BF28100DA4C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BC018E2197BF28100DA4C49 /* Images.xcassets */; };
+		A97064362355B57B0087FF49 /* JGProgressHUD_TestsUITests_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97064352355B57B0087FF49 /* JGProgressHUD_TestsUITests_Swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6BABF9A21F7A6133005E783F;
 			remoteInfo = "JGProgressHUD-tvOS";
+		};
+		A97064382355B57B0087FF49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC018BC197BF28100DA4C49 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BC018C3197BF28100DA4C49;
+			remoteInfo = "JGProgressHUD-Tests";
+		};
+		A970643D2355B7260087FF49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC018BC197BF28100DA4C49 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B6E775F1F7970570031D476;
+			remoteInfo = "JGProgressHUD-Tests-Swift";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -166,6 +181,9 @@
 		6BC018E9197BF28100DA4C49 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6BC01909197C1D0F00DA4C49 /* JGProgressHUD-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "JGProgressHUD-Tests-Info.plist"; sourceTree = "<group>"; };
 		6BCC80A12351225C00988AA4 /* JGProgressHUD-Tests-Swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JGProgressHUD-Tests-Swift.entitlements"; sourceTree = "<group>"; };
+		A97064332355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "JGProgressHUD-TestsUITests-Swift.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A97064352355B57B0087FF49 /* JGProgressHUD_TestsUITests_Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JGProgressHUD_TestsUITests_Swift.swift; sourceTree = "<group>"; };
+		A97064372355B57B0087FF49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +210,13 @@
 				6BC018CC197BF28100DA4C49 /* UIKit.framework in Frameworks */,
 				6BC018C8197BF28100DA4C49 /* Foundation.framework in Frameworks */,
 				6B9A4F2E1F8D284100234337 /* JGProgressHUD.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A97064302355B57B0087FF49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +263,7 @@
 				6BC018CD197BF28100DA4C49 /* JGProgressHUD-Tests */,
 				6B6E77611F7970570031D476 /* JGProgressHUD-Tests-Swift */,
 				6BABF9DA1F7A67E4005E783F /* JGProgressHUD-Tests-tvOS */,
+				A97064342355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift */,
 				6BC018C6197BF28100DA4C49 /* Frameworks */,
 				6BC018C5197BF28100DA4C49 /* Products */,
 			);
@@ -249,6 +275,7 @@
 				6BC018C4197BF28100DA4C49 /* JGProgressHUD-Tests.app */,
 				6B6E77601F7970570031D476 /* JGProgressHUD-Tests-Swift.app */,
 				6BABF9D91F7A67E3005E783F /* JGProgressHUD-Tests-tvOS.app */,
+				A97064332355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,6 +317,15 @@
 				6BC018D5197BF28100DA4C49 /* JGProgressHUD-Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A97064342355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				A97064352355B57B0087FF49 /* JGProgressHUD_TestsUITests_Swift.swift */,
+				A97064372355B57B0087FF49 /* Info.plist */,
+			);
+			path = "JGProgressHUD-TestsUITests-Swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +392,25 @@
 			productReference = 6BC018C4197BF28100DA4C49 /* JGProgressHUD-Tests.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A97064322355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A970643C2355B57B0087FF49 /* Build configuration list for PBXNativeTarget "JGProgressHUD-TestsUITests-Swift" */;
+			buildPhases = (
+				A970642F2355B57B0087FF49 /* Sources */,
+				A97064302355B57B0087FF49 /* Frameworks */,
+				A97064312355B57B0087FF49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A97064392355B57B0087FF49 /* PBXTargetDependency */,
+				A970643E2355B7260087FF49 /* PBXTargetDependency */,
+			);
+			name = "JGProgressHUD-TestsUITests-Swift";
+			productName = "JGProgressHUD-TestsUITests-Swift";
+			productReference = A97064332355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,7 +418,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = JG;
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Jonas Gessner";
 				TargetAttributes = {
@@ -376,6 +431,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
+					};
+					A97064322355B57B0087FF49 = {
+						CreatedOnToolsVersion = 11.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6B6E775F1F7970570031D476;
 					};
 				};
 			};
@@ -401,6 +461,7 @@
 				6BC018C3197BF28100DA4C49 /* JGProgressHUD-Tests */,
 				6B6E775F1F7970570031D476 /* JGProgressHUD-Tests-Swift */,
 				6BABF9D81F7A67E3005E783F /* JGProgressHUD-Tests-tvOS */,
+				A97064322355B57B0087FF49 /* JGProgressHUD-TestsUITests-Swift */,
 			);
 		};
 /* End PBXProject section */
@@ -451,6 +512,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A97064312355B57B0087FF49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -480,6 +548,14 @@
 				6BC018E1197BF28100DA4C49 /* JGMainViewController.m in Sources */,
 				6BC018D8197BF28100DA4C49 /* JGAppDelegate.m in Sources */,
 				6B8A14DB1D55FD1A006DAB93 /* JGDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A970642F2355B57B0087FF49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A97064362355B57B0087FF49 /* JGProgressHUD_TestsUITests_Swift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +596,16 @@
 			isa = PBXTargetDependency;
 			name = "JGProgressHUD-tvOS";
 			targetProxy = 6BABF9EF1F7A6820005E783F /* PBXContainerItemProxy */;
+		};
+		A97064392355B57B0087FF49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BC018C3197BF28100DA4C49 /* JGProgressHUD-Tests */;
+			targetProxy = A97064382355B57B0087FF49 /* PBXContainerItemProxy */;
+		};
+		A970643E2355B7260087FF49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B6E775F1F7970570031D476 /* JGProgressHUD-Tests-Swift */;
+			targetProxy = A970643D2355B7260087FF49 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -813,6 +899,59 @@
 			};
 			name = Release;
 		};
+		A970643A2355B57B0087FF49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "JGProgressHUD-TestsUITests-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD-Tests-Swift.JGProgressHUD-TestsUITests-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "JGProgressHUD-Tests-Swift";
+			};
+			name = Debug;
+		};
+		A970643B2355B57B0087FF49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "JGProgressHUD-TestsUITests-Swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.j-gessner.JGProgressHUD-Tests-Swift.JGProgressHUD-TestsUITests-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "JGProgressHUD-Tests-Swift";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -848,6 +987,15 @@
 			buildConfigurations = (
 				6BC018FA197BF28100DA4C49 /* Debug */,
 				6BC018FB197BF28100DA4C49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A970643C2355B57B0087FF49 /* Build configuration list for PBXNativeTarget "JGProgressHUD-TestsUITests-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A970643A2355B57B0087FF49 /* Debug */,
+				A970643B2355B57B0087FF49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
