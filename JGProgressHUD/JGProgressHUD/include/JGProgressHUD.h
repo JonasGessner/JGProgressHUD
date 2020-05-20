@@ -202,6 +202,11 @@
 #endif
 
 /**
+ A block to be invoked when the HUD did dismiss.
+ */
+@property (nonatomic, copy, nullable) void (^dismissCompletionBlock)(JGProgressHUD *__nonnull HUD);
+
+/**
  Shows the HUD animated. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  */

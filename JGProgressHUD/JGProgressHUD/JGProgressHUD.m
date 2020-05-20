@@ -514,6 +514,10 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
     if ([self.delegate respondsToSelector:@selector(progressHUD:didDismissFromView:)]) {
         [self.delegate progressHUD:self didDismissFromView:targetView];
     }
+
+    if (_dismissCompletionBlock) {
+        self.dismissCompletionBlock(self);
+    }
 }
 
 - (void)dismiss {
