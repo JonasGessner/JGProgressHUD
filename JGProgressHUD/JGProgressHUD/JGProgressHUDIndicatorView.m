@@ -40,6 +40,7 @@ static void runOnNextRunLoop(void (^block)(void)) {
         self.backgroundColor = [UIColor clearColor];
         
         self.isAccessibilityElement = YES;
+        self.accessibilityIdentifier = @"HUD_indicatorView";
         [self setNeedsAccessibilityUpdate];
         
         if (contentView) {
