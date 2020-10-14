@@ -6,31 +6,17 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#if SWIFT_PACKAGE
-#import "JGProgressHUD-Defines.h"
-#import "JGProgressHUDShadow.h"
-#import "JGProgressHUDAnimation.h"
-#import "JGProgressHUDFadeAnimation.h"
-#import "JGProgressHUDFadeZoomAnimation.h"
-#import "JGProgressHUDIndicatorView.h"
-#import "JGProgressHUDErrorIndicatorView.h"
-#import "JGProgressHUDSuccessIndicatorView.h"
-#import "JGProgressHUDRingIndicatorView.h"
-#import "JGProgressHUDPieIndicatorView.h"
-#import "JGProgressHUDIndeterminateIndicatorView.h"
-#else
-#import <JGProgressHUD/JGProgressHUD-Defines.h>
-#import <JGProgressHUD/JGProgressHUDShadow.h>
-#import <JGProgressHUD/JGProgressHUDAnimation.h>
-#import <JGProgressHUD/JGProgressHUDFadeAnimation.h>
-#import <JGProgressHUD/JGProgressHUDFadeZoomAnimation.h>
-#import <JGProgressHUD/JGProgressHUDIndicatorView.h>
-#import <JGProgressHUD/JGProgressHUDErrorIndicatorView.h>
-#import <JGProgressHUD/JGProgressHUDSuccessIndicatorView.h>
-#import <JGProgressHUD/JGProgressHUDRingIndicatorView.h>
-#import <JGProgressHUD/JGProgressHUDPieIndicatorView.h>
-#import <JGProgressHUD/JGProgressHUDIndeterminateIndicatorView.h>
-#endif
+#import <JGProgressHUD-Defines.h>
+#import <JGProgressHUDShadow.h>
+#import <JGProgressHUDAnimation.h>
+#import <JGProgressHUDFadeAnimation.h>
+#import <JGProgressHUDFadeZoomAnimation.h>
+#import <JGProgressHUDIndicatorView.h>
+#import <JGProgressHUDErrorIndicatorView.h>
+#import <JGProgressHUDSuccessIndicatorView.h>
+#import <JGProgressHUDRingIndicatorView.h>
+#import <JGProgressHUDPieIndicatorView.h>
+#import <JGProgressHUDIndeterminateIndicatorView.h>
 
 @protocol JGProgressHUDDelegate;
 
