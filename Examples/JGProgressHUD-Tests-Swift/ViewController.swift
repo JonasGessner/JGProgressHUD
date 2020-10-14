@@ -72,7 +72,7 @@ final class ViewController: UIViewController {
     }
     
     func showSimpleHUD() {
-        let hud = JGProgressHUD(style: .light)
+        let hud = JGProgressHUD()
         hud.vibrancyEnabled = true
         #if os(tvOS)
             hud.textLabel.text = "Simple example on tvOS in Swift"
@@ -85,7 +85,7 @@ final class ViewController: UIViewController {
     }
     
     func showHUDWithTransform() {
-        let hud = JGProgressHUD(style: .light)
+        let hud = JGProgressHUD()
         hud.vibrancyEnabled = true
         hud.textLabel.text = "Loading"
         hud.layoutMargins = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 10.0, right: 0.0)
@@ -109,7 +109,7 @@ final class ViewController: UIViewController {
     }
     
     func showLoadingHUD() {
-        let hud = JGProgressHUD(style: .light)
+        let hud = JGProgressHUD()
         hud.vibrancyEnabled = true
         if arc4random_uniform(2) == 0 {
             hud.indicatorView = JGProgressHUDPieIndicatorView()

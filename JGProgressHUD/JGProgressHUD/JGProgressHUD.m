@@ -122,11 +122,11 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 #pragma mark - Initializers
 
 - (instancetype)init {
-    return [self initWithStyle:JGProgressHUDStyleExtraLight];
+    return [self initWithAutomaticStyle];
 }
 
 - (instancetype)initWithFrame:(CGRect __unused)frame {
-    return [self initWithStyle:JGProgressHUDStyleExtraLight];
+    return [self initWithAutomaticStyle];
 }
 
 /*
