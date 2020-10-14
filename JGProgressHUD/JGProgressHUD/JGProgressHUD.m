@@ -166,6 +166,8 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
         
         self.cornerRadius = 10.0;
         
+        _dismissActions = [[NSMutableArray alloc] init];
+        
 #if TARGET_OS_IOS
         [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)]];
 #elif TARGET_OS_TV
