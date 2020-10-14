@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jonas Gessner. All rights reserved.
 //
 
-#import "JGProgressHUDIndicatorView.h"
+#import <JGProgressHUD/JGProgressHUDIndicatorView.h>
 
 /**
  An indicator for displaying custom images. Supports animated images.

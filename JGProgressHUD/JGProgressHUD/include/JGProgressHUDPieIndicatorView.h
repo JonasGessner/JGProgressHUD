@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import "JGProgressHUD-Defines.h"
-#import "JGProgressHUDIndicatorView.h"
+#import <JGProgressHUD/JGProgressHUD-Defines.h>
+#import <JGProgressHUD/JGProgressHUDIndicatorView.h>
 
 /**
  A pie shaped determinate progress indicator.
