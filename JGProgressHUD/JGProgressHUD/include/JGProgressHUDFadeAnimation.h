@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+#import "JGProgressHUDAnimation.h"
+#else
 #import <JGProgressHUD/JGProgressHUDAnimation.h>
+#endif
 
 /**
  A simple fade animation that fades the HUD from alpha @c 0.0 to alpha @c 1.0.

@@ -6,8 +6,13 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+#import "JGProgressHUD-Defines.h"
+#import "JGProgressHUDIndicatorView.h"
+#else
 #import <JGProgressHUD/JGProgressHUD-Defines.h>
 #import <JGProgressHUD/JGProgressHUDIndicatorView.h>
+#endif
 
 /**
  A ring shaped determinate progress indicator.

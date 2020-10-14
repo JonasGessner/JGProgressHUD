@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+#import "JGProgressHUDImageIndicatorView.h"
+#else
 #import <JGProgressHUD/JGProgressHUDImageIndicatorView.h>
+#endif
 
 /**
  An image indicator showing a checkmark, representing a failed operation.

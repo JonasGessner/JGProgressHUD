@@ -6,7 +6,11 @@
 //  Copyright (c) 2015 Jonas Gessner. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+#import "JGProgressHUDIndicatorView.h"
+#else
 #import <JGProgressHUD/JGProgressHUDIndicatorView.h>
+#endif
 
 /**
  An indicator for displaying custom images. Supports animated images.
