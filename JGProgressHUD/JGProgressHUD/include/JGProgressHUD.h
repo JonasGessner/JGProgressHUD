@@ -41,10 +41,20 @@
 + (instancetype __nonnull)progressHUDWithStyle:(JGProgressHUDStyle)style;
 
 /**
+ Convenience initializer. The HUD will dynamically change its style based on whether dark mode is enabled or not. When dark mode is on, the style will be JGProgressHUDStyleDark, when dark mode is off the style will be JGProgressHUDStyleExtraLight.
+ */
+- (instancetype __nonnull)initWithAutomaticStyle;
+
+/**
+ Convenience initializer. The HUD will dynamically change its style based on whether dark mode is enabled or not. When dark mode is on, the style will be JGProgressHUDStyleDark, when dark mode is off the style will be JGProgressHUDStyleExtraLight.
+ */
++ (instancetype __nonnull)progressHUDWithAutomaticStyle;
+
+/**
  The appearance style of the HUD.
  @b Default: JGProgressHUDStyleExtraLight.
  */
-@property (nonatomic, assign, readonly) JGProgressHUDStyle style;
+@property (nonatomic, assign) JGProgressHUDStyle style;
 
 /** The view in which the HUD is presented. */
 @property (nonatomic, weak, readonly, nullable) UIView *targetView;

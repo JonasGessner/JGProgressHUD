@@ -377,6 +377,9 @@
 						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 					};
+					6BC018C3197BF28100DA4C49 = {
+						DevelopmentTeam = VASVVWP22W;
+					};
 				};
 			};
 			buildConfigurationList = 6BC018BF197BF28100DA4C49 /* Build configuration list for PBXProject "JGProgressHUD-Tests" */;
@@ -776,7 +779,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "JGProgressHUD-Tests/JGProgressHUD-Tests.entitlements";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VASVVWP22W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD-Tests/JGProgressHUD-Tests-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD-Tests/JGProgressHUD-Tests-Info.plist";
@@ -798,7 +801,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "JGProgressHUD-Tests/JGProgressHUD-Tests.entitlements";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VASVVWP22W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JGProgressHUD-Tests/JGProgressHUD-Tests-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/JGProgressHUD-Tests/JGProgressHUD-Tests-Info.plist";

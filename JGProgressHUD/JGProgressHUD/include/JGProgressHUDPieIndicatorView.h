@@ -15,11 +15,6 @@
 @interface JGProgressHUDPieIndicatorView : JGProgressHUDIndicatorView
 
 /**
- Initializes the indicator view and sets the correct color to match the HUD style.
- */
-- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style __attribute((deprecated(("This initializer is no longer needed. Use the init initializer method."))));
-
-/**
  Tint color of the Pie.
  @attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD's @c indicatorView property.
  

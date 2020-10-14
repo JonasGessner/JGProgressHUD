@@ -15,11 +15,6 @@
 @interface JGProgressHUDIndeterminateIndicatorView : JGProgressHUDIndicatorView
 
 /**
- Initializes the indicator view and sets the correct color to match the HUD style.
- */
-- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)style __attribute((deprecated(("This initializer is no longer needed. Use the init initializer method."))));
-
-/**
  Set the color of the activity indicator view.
  @param color The color to apply to the activity indicator view.
  */

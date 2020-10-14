@@ -11,6 +11,14 @@
 
 @import JGProgressHUD;
 
+@interface JGProgressHUD ()
+
+@property (nonatomic, assign) BOOL thick;
+
+@end
+
+#define HAS_THICK 0
+
 @interface JGMainViewController () <JGProgressHUDDelegate> {
     JGProgressHUDStyle _style;
     JGProgressHUDInteractionType _interaction;
@@ -18,6 +26,8 @@
     BOOL _dim;
     BOOL _vibrancy;
     BOOL _shadow;
+    BOOL _automaticStyle;
+    BOOL _largeSquare;
 }
 
 @end
@@ -27,6 +37,7 @@
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
+        _automaticStyle = YES;
         _interaction = JGProgressHUDInteractionTypeBlockTouchesOnHUDView;
     }
     return self;
@@ -54,7 +65,7 @@
 #pragma mark -
 
 - (JGProgressHUD *)prototypeHUD {
-    JGProgressHUD *HUD = [[JGProgressHUD alloc] initWithStyle:_style];
+    JGProgressHUD *HUD = (_automaticStyle ? [[JGProgressHUD alloc] initWithAutomaticStyle] : [[JGProgressHUD alloc] initWithStyle:_style]);
     HUD.interactionType = _interaction;
     
     if (_zoom) {
@@ -64,6 +75,11 @@
     
     if (_dim) {
         HUD.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    }
+    
+    if (_largeSquare) {
+        HUD.thick = YES;
+        HUD.contentInsets = UIEdgeInsetsMake(40, 40, 40, 40);
     }
     
     HUD.vibrancyEnabled = _vibrancy;
@@ -274,7 +290,13 @@
 }
 
 - (void)setHUDStyle:(UISegmentedControl *)c {
-    _style = c.selectedSegmentIndex;
+    if (c.selectedSegmentIndex == 0) {
+        _automaticStyle = YES;
+    }
+    else {
+        _automaticStyle = NO;
+        _style = c.selectedSegmentIndex - 1;
+    }
 }
 
 - (void)setInteraction:(UISegmentedControl *)c {
@@ -283,6 +305,10 @@
 
 - (void)setZoom:(UISegmentedControl *)c {
     _zoom = c.selectedSegmentIndex;
+}
+
+- (void)setLargeSquare:(UISwitch *)s {
+    _largeSquare = s.on;
 }
 
 - (void)setVibrancy:(UISwitch *)s {
@@ -312,7 +338,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 7;
+        return 7 + HAS_THICK;
     }
     else {
         return 8;
@@ -324,7 +350,6 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     
     if (indexPath.section == 0) {
@@ -333,9 +358,10 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Style";
             
-            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Extra Light", @"Light", @"Dark"]];
-            segment.selectedSegmentIndex = _style;
+            UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"Auto", @"Extra Light", @"Light", @"Dark"]];
+            segment.selectedSegmentIndex = (_automaticStyle ? 0 : _style + 1);
             [segment addTarget:self action:@selector(setHUDStyle:) forControlEvents:UIControlEventValueChanged];
+            segment.apportionsSegmentWidthsByContent = YES;
             
             cell.accessoryView = segment;
             [segment sizeToFit];
@@ -346,11 +372,8 @@
             UISegmentedControl *segment = [[UISegmentedControl alloc] initWithItems:@[@"All", @"On HUD", @"None"]];
             segment.selectedSegmentIndex = _interaction;
             [segment addTarget:self action:@selector(setInteraction:) forControlEvents:UIControlEventValueChanged];
+            segment.apportionsSegmentWidthsByContent = YES;
             [segment sizeToFit];
-            
-            CGRect f = segment.frame;
-            f.size.width -= 30.0f;
-            segment.frame = f;
             
             cell.accessoryView = segment;
         }
@@ -376,8 +399,19 @@
             cell.accessoryView = t;
             cell.textLabel.text = @"Show a keyboard";
         }
+#if HAS_THICK
         else if (indexPath.row == 4) {
-            cell.textLabel.text = @"Use vibrancy effect";
+            cell.textLabel.text = @"Large, Square Appearance";
+            UISwitch *s = [[UISwitch alloc] init];
+            s.tintColor = [UIColor whiteColor];
+            s.on = _largeSquare;
+            
+            [s addTarget:self action:@selector(setLargeSquare:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = s;
+        }
+#endif
+        else if (indexPath.row == 4 + HAS_THICK) {
+            cell.textLabel.text = @"Use Vibrancy Effect";
             UISwitch *s = [[UISwitch alloc] init];
             s.tintColor = [UIColor whiteColor];
             s.on = _vibrancy;
@@ -385,7 +419,7 @@
             [s addTarget:self action:@selector(setVibrancy:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = s;
         }
-        else if (indexPath.row == 5) {
+        else if (indexPath.row == 5 + HAS_THICK) {
             cell.textLabel.text = @"Dim Background";
             UISwitch *s = [[UISwitch alloc] init];
             s.tintColor = [UIColor whiteColor];
@@ -394,7 +428,7 @@
             [s addTarget:self action:@selector(setDim:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = s;
         }
-        else if (indexPath.row == 6) {
+        else if (indexPath.row == 6 + HAS_THICK) {
             cell.textLabel.text = @"Apply Shadow";
             UISwitch *s = [[UISwitch alloc] init];
             s.tintColor = [UIColor whiteColor];
@@ -488,8 +522,6 @@
     [super viewDidLoad];
     
     self.title = @"JGProgressHUD";
-    
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Push VC" style:UIBarButtonItemStylePlain target:self action:@selector(pushDetailVC)];
 }

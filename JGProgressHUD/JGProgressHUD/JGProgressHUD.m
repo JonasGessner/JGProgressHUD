@@ -15,10 +15,20 @@
 #error "JGProgressHUD requires ARC!"
 #endif
 
-static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
+static inline CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     CGFloat scale = [[UIScreen mainScreen] scale];
     
     return (CGRect){{((CGFloat)floor(rect.origin.x*scale))/scale, ((CGFloat)floor(rect.origin.y*scale))/scale}, {((CGFloat)ceil(rect.size.width*scale))/scale, ((CGFloat)ceil(rect.size.height*scale))/scale}};
+}
+
+API_AVAILABLE(ios(12.0))
+static inline JGProgressHUDStyle JGProgressHUDStyleFromUIUserInterfaceStyle(UIUserInterfaceStyle uiStyle) {
+    if (uiStyle == UIUserInterfaceStyleDark) {
+        return JGProgressHUDStyleDark;
+    }
+    else {
+        return JGProgressHUDStyleExtraLight;
+    }
 }
 
 @interface JGProgressHUD () {
@@ -37,7 +47,16 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     CAShapeLayer *__nonnull _shadowMaskLayer;
     
     NSMutableArray<void (^)(void)> *_dismissActions;
+    
+    BOOL _automaticStyle;
 }
+
+// In 'beta'
+/**
+ Setting this to @c YES makes the text and indicator views bigger.
+ @b Default: NO.
+ */
+@property (nonatomic, assign) BOOL thick;
 
 @property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *blurView;
 @property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *vibrancyView;
@@ -129,6 +148,7 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
     if (self) {
         _style = style;
         _voiceOverEnabled = YES;
+        _automaticStyle = NO;
         
         _HUDView = [[UIView alloc] init];
         self.HUDView.backgroundColor = [UIColor clearColor];
@@ -180,6 +200,26 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 
 + (instancetype)progressHUDWithStyle:(JGProgressHUDStyle)style {
     return [(JGProgressHUD *)[self alloc] initWithStyle:style];
+}
+
+- (instancetype)initWithAutomaticStyle {
+    if (@available(iOS 13.0, *)) {
+        UIUserInterfaceStyle currentStyle = [[UITraitCollection currentTraitCollection] userInterfaceStyle];
+        
+        self = [self initWithStyle:JGProgressHUDStyleFromUIUserInterfaceStyle(currentStyle)];
+        
+        if (self != nil) {
+            _automaticStyle = YES;
+        }
+    } else {
+        self = [self initWithStyle:JGProgressHUDStyleExtraLight];
+    }
+    
+    return self;
+}
+
++ (instancetype)progressHUDWithAutomaticStyle {
+    return [[self alloc] initWithAutomaticStyle];
 }
 
 #pragma mark - Layout
@@ -610,7 +650,7 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
     }
 }
 
-static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
+static inline UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIViewAnimationCurve curve) {
     UIViewAnimationOptions testOptions = UIViewAnimationCurveLinear << 16;
     
     if (testOptions != UIViewAnimationOptionCurveLinear) {
@@ -744,6 +784,10 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 #else
         CGFloat fontSize = 17.0;
 #endif
+        if (self.thick) {
+            fontSize *= 1.3;
+        }
+        
         _textLabel.font = [UIFont boldSystemFontOfSize:fontSize];
         _textLabel.numberOfLines = 0;
         [_textLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
@@ -768,6 +812,10 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 #else
         CGFloat fontSize = 15.0;
 #endif
+        if (self.thick) {
+            fontSize *= 1.3;
+        }
+        
         _detailTextLabel.font = [UIFont systemFontOfSize:fontSize];
         _detailTextLabel.numberOfLines = 0;
         [_detailTextLabel addObserver:self forKeyPath:@"attributedText" options:(NSKeyValueObservingOptions)kNilOptions context:NULL];
@@ -790,6 +838,41 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 }
 
 #pragma mark - Setters
+
+- (void)setStyle:(JGProgressHUDStyle)style {
+    if (self.style == style) {
+        return;
+    }
+    
+    _style = style;
+    
+    // Update indicator
+    [self.effectiveIndicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
+    
+    // Update labels
+    self.textLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
+    self.detailTextLabel.textColor = (self.style == JGProgressHUDStyleDark ? [UIColor whiteColor] : [UIColor blackColor]);
+    
+    // Update blur effect
+    UIBlurEffectStyle effect;
+    
+    if (self.style == JGProgressHUDStyleDark) {
+        effect = UIBlurEffectStyleDark;
+    }
+    else if (self.style == JGProgressHUDStyleLight) {
+        effect = UIBlurEffectStyleLight;
+    }
+    else {
+        effect = UIBlurEffectStyleExtraLight;
+    }
+    
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:effect];
+    self.blurView.effect = blurEffect;
+    
+    // Update vibrancy effect
+    UIVibrancyEffect *vibrancyEffect = (self.vibrancyEnabled ? [UIVibrancyEffect effectForBlurEffect:(UIBlurEffect *)self.blurView.effect] : nil);
+    self.vibrancyView.effect = vibrancyEffect;
+}
 
 #if TARGET_OS_TV
 - (void)setWantsFocus:(BOOL)wantsFocus {
@@ -880,6 +963,44 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
     [self layoutHUD];
 }
 
+- (void)setThick:(BOOL)thick {
+    if (self.thick == thick) {
+        return;
+    }
+    
+    _thick = thick;
+    
+    if (self.thick) {
+        self.indicatorView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+    }
+    else {
+        self.indicatorView.transform = CGAffineTransformIdentity;
+    }
+    
+#if TARGET_OS_TV
+    CGFloat fontSize = 20.0;
+#else
+    CGFloat fontSize = 17.0;
+#endif
+    if (self.thick) {
+        fontSize *= 1.3;
+    }
+    
+    _textLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+#if TARGET_OS_TV
+    fontSize = 17.0;
+#else
+    fontSize = 15.0;
+#endif
+    if (self.thick) {
+        fontSize *= 1.3;
+    }
+    
+    _detailTextLabel.font = [UIFont systemFontOfSize:fontSize];
+    
+    [self layoutHUD];
+}
+
 - (void)setVibrancyEnabled:(BOOL)vibrancyEnabled {
     if (vibrancyEnabled == self.vibrancyEnabled) {
         return;
@@ -921,6 +1042,14 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
         
         if (self.indicatorView != nil) {
             [self.effectiveIndicatorView setUpForHUDStyle:self.style vibrancyEnabled:self.vibrancyEnabled];
+            
+            if (self.thick) {
+                self.effectiveIndicatorView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+            }
+            else {
+                self.effectiveIndicatorView.transform = CGAffineTransformIdentity;
+            }
+            
             [self.contentView addSubview:self.effectiveIndicatorView];
         }
     }];
@@ -967,6 +1096,16 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 }
 
 #pragma mark - Overrides
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    
+    if (@available(iOS 12.0, *)) {
+        if (_automaticStyle) {
+            self.style = JGProgressHUDStyleFromUIUserInterfaceStyle(self.traitCollection.userInterfaceStyle);
+        }
+    }
+}
 
 #if TARGET_OS_IOS
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
