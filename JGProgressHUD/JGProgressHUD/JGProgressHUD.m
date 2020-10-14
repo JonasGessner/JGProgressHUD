@@ -35,6 +35,8 @@ static CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     UIView *__nonnull _blurViewContainer;
     UIView *__nonnull _shadowView;
     CAShapeLayer *__nonnull _shadowMaskLayer;
+    
+    NSMutableArray<void (^)(void)> *_dismissActions;
 }
 
 @property (nonatomic, strong, readonly, nonnull) UIVisualEffectView *blurView;
@@ -511,6 +513,11 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
     __typeof(self.targetView) targetView = self.targetView;
     _targetView = nil;
     
+    for (void (^action)(void) in _dismissActions) {
+        action();
+    }
+    [_dismissActions removeAllObjects];
+    
     if ([self.delegate respondsToSelector:@selector(progressHUD:didDismissFromView:)]) {
         [self.delegate progressHUD:self didDismissFromView:targetView];
     }
@@ -562,16 +569,29 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 }
 
 - (void)dismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated {
+    [self dismissAfterDelay:delay animated:animated completion:nil];
+}
+
+- (void)dismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated completion:(void (^_Nullable)(void))dismissCompletion {
     __weak __typeof(self) weakSelf = self;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             if (strongSelf.visible) {
+                if (dismissCompletion != nil) {
+                    [self performAfterDismiss:dismissCompletion];
+                }
                 [strongSelf dismissAnimated:animated];
             }
         }
     });
+}
+
+- (void)performAfterDismiss:(void (^_Nonnull)(void))dismissCompletion {
+    if (self.visible) {
+        [_dismissActions addObject:dismissCompletion];
+    }
 }
 
 #pragma mark - Callbacks
@@ -1041,18 +1061,6 @@ static UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCurve(UIV
 
 + (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)view {
     return [self _allProgressHUDsInViewHierarchy:view].copy;
-}
-
-@end
-
-@implementation JGProgressHUD (Deprecated)
-
-- (void)showInRect:(CGRect __unused)rect inView:(UIView *)view {
-    [self showInView:view];
-}
-
-- (void)showInRect:(CGRect __unused)rect inView:(UIView *)view animated:(BOOL)animated {
-    [self showInView:view animated:animated];
 }
 
 @end

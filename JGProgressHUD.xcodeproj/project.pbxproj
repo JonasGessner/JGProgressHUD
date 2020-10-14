@@ -89,12 +89,6 @@
 		6B06872D1B7766E1002C584E /* JGProgressHUD-Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JGProgressHUD-Defines.h"; path = "JGProgressHUD/include/JGProgressHUD-Defines.h"; sourceTree = "<group>"; };
 		6B06872E1B7766E1002C584E /* JGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGProgressHUD.h; path = JGProgressHUD/include/JGProgressHUD.h; sourceTree = "<group>"; };
 		6B06872F1B7766E1002C584E /* JGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUD.m; path = JGProgressHUD/JGProgressHUD.m; sourceTree = "<group>"; };
-		6B32380E1F79AA02007C0547 /* jg_hud_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_error.png; sourceTree = "<group>"; };
-		6B32380F1F79AA02007C0547 /* jg_hud_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_error@2x.png"; sourceTree = "<group>"; };
-		6B3238101F79AA02007C0547 /* jg_hud_error@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_error@3x.png"; sourceTree = "<group>"; };
-		6B3238111F79AA02007C0547 /* jg_hud_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jg_hud_success.png; sourceTree = "<group>"; };
-		6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@2x.png"; sourceTree = "<group>"; };
-		6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jg_hud_success@3x.png"; sourceTree = "<group>"; };
 		6B334B46197DB7940010087F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		6B6E77521F7961220031D476 /* JGProgressHUDShadow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDShadow.h; path = JGProgressHUD/include/JGProgressHUDShadow.h; sourceTree = "<group>"; };
 		6B6E77531F7961220031D476 /* JGProgressHUDShadow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDShadow.m; path = JGProgressHUD/JGProgressHUDShadow.m; sourceTree = "<group>"; };
@@ -135,20 +129,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6B32380D1F79AA02007C0547 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6B32380E1F79AA02007C0547 /* jg_hud_error.png */,
-				6B32380F1F79AA02007C0547 /* jg_hud_error@2x.png */,
-				6B3238101F79AA02007C0547 /* jg_hud_error@3x.png */,
-				6B3238111F79AA02007C0547 /* jg_hud_success.png */,
-				6B3238121F79AA02007C0547 /* jg_hud_success@2x.png */,
-				6B3238131F79AA02007C0547 /* jg_hud_success@3x.png */,
-			);
-			name = Resources;
-			path = JGProgressHUD/Resources;
-			sourceTree = "<group>";
-		};
 		6B32381D1F7A44FA007C0547 /* Supporting Files (iOS) */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				6BC01878197B2AA500DA4C49 /* JGProgressHUD */,
-				6B32380D1F79AA02007C0547 /* Resources */,
 				6B32381D1F7A44FA007C0547 /* Supporting Files (iOS) */,
 				6BABF9AE1F7A61E1005E783F /* Supporting Files (tvOS) */,
 				6BC01875197B2AA500DA4C49 /* Frameworks */,
@@ -361,7 +340,7 @@
 		6BC0186B197B2AA500DA4C49 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Jonas Gessner";
 				TargetAttributes = {
 					6BABF9A21F7A6133005E783F = {
@@ -545,6 +524,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -597,6 +577,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
