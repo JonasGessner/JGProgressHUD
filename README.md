@@ -1,7 +1,7 @@
 JGProgressHUD
 ---------------
 
-An elegant and simple progress HUD for iOS and tvOS.<br/>
+An elegant and simple progress HUD for iOS and tvOS. **Supports Swift and Objective-C!**<br/>
 <p align="center">
 <img src="Examples/Screenshots/Presentation.png" style='height: 100%; width: 100%; object-fit: contain'/>
 </p>
@@ -24,12 +24,10 @@ __The ultimate progress HUD for iOS and tvOS is here: JGProgressHUD!__
 
 Download the source code and open the <a href="Examples">Examples</a> project to try JGProgressHUD and see all of its features in action!
 
-[![GitHub release](https://img.shields.io/github/release/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/releases)
 [![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
 [![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Carthage compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen)](https://swift.org/package-manager)
-
 
 
 Examples
@@ -46,7 +44,7 @@ Examples
 Objective C:
 
 ```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+JGProgressHUD *HUD = [[JGProgressHUD alloc] init];
 HUD.textLabel.text = @"Loading";
 [HUD showInView:self.view];
 [HUD dismissAfterDelay:3.0];
@@ -55,7 +53,7 @@ HUD.textLabel.text = @"Loading";
 Swift:
 
 ```swift
-let hud = JGProgressHUD(style: .dark)
+let hud = JGProgressHUD()
 hud.textLabel.text = "Loading"
 hud.show(in: self.view)
 hud.dismiss(afterDelay: 3.0)
@@ -66,7 +64,7 @@ This displays a dark HUD with an activity indicator and the title "Loading". The
 #### Showing an error message:
 
 ```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+JGProgressHUD *HUD = [[JGProgressHUD alloc] init];
 HUD.textLabel.text = @"Error";
 HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgressHUDSuccessIndicatorView is also available
 [HUD showInView:self.view];
@@ -76,7 +74,7 @@ HUD.indicatorView = [[JGProgressHUDErrorIndicatorView alloc] init]; //JGProgress
 #### Showing determinate progress:
 
 ```objc
-JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+JGProgressHUD *HUD = [[JGProgressHUD alloc] init];
 HUD.indicatorView = [[JGProgressHUDPieIndicatorView alloc] init]; //Or JGProgressHUDRingIndicatorView
 HUD.progress = 0.5f;
 [HUD showInView:self.view];
@@ -95,6 +93,8 @@ JGProgressHUD can be displayed in 3 styles:
 - __Extra Light__
 - __Light__
 - __Dark__
+
+The style can also be set automatically according to the current `UITraitCollection` (dark mode). Use the initializer `[[JGProgressHUD alloc] init]`/`JGProgressHUD()` to take advantage of the automatic style.
 
 ### Indicator Views:
 By default a HUD will display an indeterminate progress indicator. The indicator view can be completely hidden by setting the `indicatorView` property to `nil`. These indicator views are available by default:
@@ -181,8 +181,8 @@ Each class and method is well documented, making it easy to quickly get a good o
 License
 ---------
 MIT License.<br/>
-© 2014-2019, Jonas Gessner.
+© 2014-2020, Jonas Gessner.
 
 Credits
 ----------
-Created and maintained by Jonas Gessner, © 2014-2019.<br/>
+Created and maintained by Jonas Gessner, © 2014-2020.<br/>
