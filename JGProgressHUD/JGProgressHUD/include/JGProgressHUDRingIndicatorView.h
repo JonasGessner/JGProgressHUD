@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import <JGProgressHUDIndicatorView.h>
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
+#import "JGProgressHUDIndicatorView.h"
+#pragma clang diagnostic pop
 
 /**
  A ring shaped determinate progress indicator.

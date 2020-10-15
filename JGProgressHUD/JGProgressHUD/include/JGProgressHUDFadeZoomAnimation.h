@@ -6,7 +6,10 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //  
 
-#import <JGProgressHUDAnimation.h>
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
+#import "JGProgressHUDAnimation.h"
+#pragma clang diagnostic pop
 
 /**
  An animation that fades in the HUD and expands the HUD from scale @c (0, 0) to a customizable scale, and finally to scale @c (1, 1), creating a bouncing effect.

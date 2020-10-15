@@ -6,17 +6,20 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import <JGProgressHUD-Defines.h>
-#import <JGProgressHUDShadow.h>
-#import <JGProgressHUDAnimation.h>
-#import <JGProgressHUDFadeAnimation.h>
-#import <JGProgressHUDFadeZoomAnimation.h>
-#import <JGProgressHUDIndicatorView.h>
-#import <JGProgressHUDErrorIndicatorView.h>
-#import <JGProgressHUDSuccessIndicatorView.h>
-#import <JGProgressHUDRingIndicatorView.h>
-#import <JGProgressHUDPieIndicatorView.h>
-#import <JGProgressHUDIndeterminateIndicatorView.h>
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wquoted-include-in-framework-header"
+#import "JGProgressHUD-Defines.h"
+#import "JGProgressHUDShadow.h"
+#import "JGProgressHUDAnimation.h"
+#import "JGProgressHUDFadeAnimation.h"
+#import "JGProgressHUDFadeZoomAnimation.h"
+#import "JGProgressHUDIndicatorView.h"
+#import "JGProgressHUDErrorIndicatorView.h"
+#import "JGProgressHUDSuccessIndicatorView.h"
+#import "JGProgressHUDRingIndicatorView.h"
+#import "JGProgressHUDPieIndicatorView.h"
+#import "JGProgressHUDIndeterminateIndicatorView.h"
+#pragma clang diagnostic pop
 
 @protocol JGProgressHUDDelegate;
 
