@@ -226,6 +226,7 @@
 
 /**
  Shows the HUD after a delay. You should preferably show the HUD in a UIViewController's view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
+ You may call @c dismiss to stop the HUD from appearing before the delay has passed.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  @param animated If the HUD should show with an animation.
  @param afterDelay The delay until the HUD will be shown.
