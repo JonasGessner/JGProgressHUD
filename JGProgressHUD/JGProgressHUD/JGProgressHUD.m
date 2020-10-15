@@ -21,7 +21,7 @@ static inline CGRect JGProgressHUD_CGRectIntegral(CGRect rect) {
     return (CGRect){{((CGFloat)floor(rect.origin.x*scale))/scale, ((CGFloat)floor(rect.origin.y*scale))/scale}, {((CGFloat)ceil(rect.size.width*scale))/scale, ((CGFloat)ceil(rect.size.height*scale))/scale}};
 }
 
-API_AVAILABLE(ios(12.0))
+API_AVAILABLE(ios(12.0), tvos(10.0))
 static inline JGProgressHUDStyle JGProgressHUDStyleFromUIUserInterfaceStyle(UIUserInterfaceStyle uiStyle) {
     if (uiStyle == UIUserInterfaceStyleDark) {
         return JGProgressHUDStyleDark;
@@ -204,15 +204,23 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 }
 
 - (instancetype)initWithAutomaticStyle {
-    if (@available(iOS 13.0, *)) {
-        UIUserInterfaceStyle currentStyle = [[UITraitCollection currentTraitCollection] userInterfaceStyle];
+    if (@available(iOS 12.0, tvOS 10.0, *)) {
+        JGProgressHUDStyle initialStyle;
         
-        self = [self initWithStyle:JGProgressHUDStyleFromUIUserInterfaceStyle(currentStyle)];
+        if (@available(iOS 13.0, tvOS 13.0, *)) {
+            initialStyle = JGProgressHUDStyleFromUIUserInterfaceStyle([[UITraitCollection currentTraitCollection] userInterfaceStyle]);
+        }
+        else {
+            initialStyle = JGProgressHUDStyleExtraLight;
+        }
+        
+        self = [self initWithStyle:initialStyle];
         
         if (self != nil) {
             _automaticStyle = YES;
         }
-    } else {
+    }
+    else {
         self = [self initWithStyle:JGProgressHUDStyleExtraLight];
     }
     
@@ -1127,7 +1135,7 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCu
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
     
-    if (@available(iOS 12.0, *)) {
+    if (@available(iOS 12.0, tvOS 10.0, *)) {
         if (_automaticStyle) {
             self.style = JGProgressHUDStyleFromUIUserInterfaceStyle(self.traitCollection.userInterfaceStyle);
         }
