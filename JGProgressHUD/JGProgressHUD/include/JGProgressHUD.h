@@ -229,7 +229,7 @@
  You may call @c dismiss to stop the HUD from appearing before the delay has passed.
  @param view The view to show the HUD in. The frame of the @c view will be used to calculate the position of the HUD.
  @param animated If the HUD should show with an animation.
- @param afterDelay The delay until the HUD will be shown.
+ @param delay The delay until the HUD will be shown.
  */
 - (void)showInView:(UIView *__nonnull)view animated:(BOOL)animated afterDelay:(NSTimeInterval)delay;
 

@@ -549,9 +549,10 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
     }
 
     _displayBlock = dispatch_block_create(0, ^{
-        _displayBlock = NULL;
         if (weakSelf) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
+            strongSelf->_displayBlock = NULL;
+            
             if (!strongSelf.visible) {
                 [strongSelf showInView:view animated:animated];
             }
