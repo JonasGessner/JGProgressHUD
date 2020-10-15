@@ -39,6 +39,7 @@ static inline JGProgressHUDStyle JGProgressHUDStyleFromUIUserInterfaceStyle(UIUs
     BOOL _dismissAfterTransitionFinishedWithAnimation;
     
     CFAbsoluteTime _displayTimestamp;
+    dispatch_block_t __nullable _displayBlock;
     
     BOOL _effectiveIndicatorViewNeedsUpdate;
     
@@ -540,6 +541,26 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 #endif
 }
 
+- (void)showInView:(UIView *__nonnull)view animated:(BOOL)animated afterDelay:(NSTimeInterval)delay {
+    __weak __typeof(self) weakSelf = self;
+
+    if (_displayBlock != NULL) {
+        dispatch_cancel(_displayBlock);
+    }
+
+    _displayBlock = dispatch_block_create(0, ^{
+        _displayBlock = NULL;
+        if (weakSelf) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf.visible) {
+                [strongSelf showInView:view animated:animated];
+            }
+        }
+    });
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), _displayBlock);
+}
+
 #pragma mark - Dismissing
 
 - (void)cleanUpAfterDismissal {
@@ -570,6 +591,11 @@ static CGRect keyboardFrame = (CGRect){{0.0, 0.0}, {0.0, 0.0}};
 }
 
 - (void)dismissAnimated:(BOOL)animated {
+    if (_displayBlock != NULL) {
+        dispatch_cancel(_displayBlock);
+        _displayBlock = NULL;
+    }
+
     if (_transitioning) {
         _dismissAfterTransitionFinished = YES;
         _dismissAfterTransitionFinishedWithAnimation = animated;
