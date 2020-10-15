@@ -16,13 +16,16 @@ __The ultimate progress HUD for iOS and tvOS is here: JGProgressHUD!__
 - Uses `UIVisualEffectView` and `UIMotionEffect` for a native look.
 - Uses AutoLayout to provide a fully dynamic layout.
 - Detects and repositions when keyboard appears/disappears.
+- Dark mode support — automatically changes appearance.
 - Well documented and maintained.
 - Voice Over/`UIAccessibility` support.
 - Backward compatibility to iOS 8.
-- Can be used with Swift and Objective C.
+- Can be used with Swift and Objective-C.
 - And most importantly, it looks good!
 
 Download the source code and open the <a href="Examples">Examples</a> project to try JGProgressHUD and see all of its features in action!
+
+JGProgressHUD can also be used with SwiftUI. See [JGProgressHUD-SwiftUI](https://github.com/JonasGessner/JGProgressHUD-SwiftUI).
 
 [![GitHub license](https://img.shields.io/github/license/JonasGessner/JGProgressHUD.svg)](https://github.com/JonasGessner/JGProgressHUD/blob/master/LICENSE.txt)
 [![CocoaPods](https://img.shields.io/cocoapods/v/JGProgressHUD.svg)](https://cocoapods.org/pods/JGProgressHUD)
@@ -41,7 +44,7 @@ Examples
 
 #### Showing indeterminate progress:
 
-Objective C:
+Objective-C:
 
 ```objc
 JGProgressHUD *HUD = [[JGProgressHUD alloc] init];
@@ -124,12 +127,9 @@ Installation
 
 ### Swift Package Manager:
 
-Add `JGProgressHUD` as a dependency in your `Package.swift` file:
+In Xcode, use the menu File > Swift Packages > Add Package Dependency... and enter the package URL `https://github.com/JonasGessner/JGProgressHUD.git`.
 
-```swift
-.package(url: "https://github.com/JonasGessner/JGProgressHUD", .upToNextMajor(from: "2.0.0"))
-```
-
+This is the recommended way of installing JGProgressHUD.
 
 ### Carthage:
 In your `Cartfile` add:
