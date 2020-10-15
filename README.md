@@ -168,8 +168,8 @@ See the <a href="Examples">Examples</a> project for an example implementation of
 Requirements
 ------------
 
-- Base SDK of iOS/tvOS 11.0 or higher.
-- Deployment target of iOS 8.0, tvOS 9.0 or higher.
+- Base SDK of iOS/tvOS/macCatalyst 13.0 or higher.
+- Deployment target of iOS 8.0, tvOS 9.0, macCatalyst 13.0, or higher.
 
 JGProgressHUD can also be used by projects written in Swift. See <a href="https://github.com/JonasGessner/JGProgressHUD#installation">Installation</a> for details.
 
