@@ -158,17 +158,6 @@
 @property (nonatomic, assign) UIEdgeInsets contentInsets;
 
 /**
- Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
- @b Default: (20, 20, 20, 20).
- */
-@property (nonatomic, assign) UIEdgeInsets marginInsets __attribute((deprecated(("Use layoutMargins instead."))));
-
-/**
- @attention This property is deprecated and does nothing.
- */
-@property (nonatomic, assign) NSTimeInterval layoutChangeAnimationDuration __attribute((deprecated(("Use UIView animation to animate layout changes. This allows setting a custom animation duration, animaiton curve and other options."))));
-
-/**
  @return Whether the HUD is visible on screen.
  */
 @property (nonatomic, assign, readonly, getter = isVisible) BOOL visible;

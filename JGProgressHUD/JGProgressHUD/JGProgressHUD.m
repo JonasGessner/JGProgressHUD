@@ -1098,14 +1098,6 @@ static inline UIViewAnimationOptions UIViewAnimationOptionsFromUIViewAnimationCu
     [self layoutHUD];
 }
 
-- (void)setMarginInsets:(UIEdgeInsets)marginInsets {
-    [self setLayoutMargins:marginInsets];
-}
-
-- (UIEdgeInsets)marginInsets {
-    return [self layoutMargins];
-}
-
 - (void)setContentInsets:(UIEdgeInsets)contentInsets {
     if (UIEdgeInsetsEqualToEdgeInsets(self.contentInsets, contentInsets)) {
         return;
