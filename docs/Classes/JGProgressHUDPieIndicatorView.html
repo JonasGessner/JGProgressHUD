@@ -70,8 +70,6 @@
 		
 		<option value="//api/name/initWithContentView:">- initWithContentView:</option>
 		
-		<option value="//api/name/initWithHUDStyle:">- initWithHUDStyle:</option>
-		
 		<option value="//api/name/setProgress:animated:">- setProgress:animated:</option>
 		
 		<option value="//api/name/setUpForHUDStyle:vibrancyEnabled:">- setUpForHUDStyle:vibrancyEnabled:</option>
@@ -119,160 +117,6 @@
 					
 					<div class="section section-tasks">
 						<a title="Tasks" name="tasks"></a>
-						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/initWithHUDStyle:" title="initWithHUDStyle:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithHUDStyle:">&ndash;&nbsp;initWithHUDStyle:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Initializes the indicator view and sets the correct <a href="#//api/name/color">color</a> to match the HUD style.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)<em>style</em></code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Initializes the indicator view and sets the correct <a href="#//api/name/color">color</a> to match the HUD style.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDPieIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/color" title="color"></a>
-	<h3 class="method-title"><code><a href="#//api/name/color">&nbsp;&nbsp;color</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Tint color of the Pie.
-@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, nonnull) UIColor *color</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Tint color of the Pie.
-@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
-
-<p>@b Default: White for JGProgressHUDStyleDark, otherwise black.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDPieIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/fillColor" title="fillColor"></a>
-	<h3 class="method-title"><code><a href="#//api/name/fillColor">&nbsp;&nbsp;fillColor</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The background fill <a href="#//api/name/color">color</a> inside the pie.
-@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, nonnull) UIColor *fillColor</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The background fill <a href="#//api/name/color">color</a> inside the pie.
-@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
-
-<p>@b Default: Dark gray for JGProgressHUDStyleDark, otherwise light gray.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDPieIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
 						
 
 						
@@ -451,6 +295,114 @@
 </div>
 						</div>
 						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/color" title="color"></a>
+	<h3 class="method-title"><code><a href="#//api/name/color">&nbsp;&nbsp;color</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Tint color of the Pie.
+@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, nonnull) UIColor *color</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Tint color of the Pie.
+@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
+
+<p>@b Default: White for JGProgressHUDStyleDark, otherwise black.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDPieIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fillColor" title="fillColor"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fillColor">&nbsp;&nbsp;fillColor</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The background fill <a href="#//api/name/color">color</a> inside the pie.
+@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, nonnull) UIColor *fillColor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The background fill <a href="#//api/name/color">color</a> inside the pie.
+@attention Custom values need to be set after assigning the indicator view to @c JGProgressHUD&rsquo;s @c indicatorView property.</p>
+
+<p>@b Default: Dark gray for JGProgressHUDStyleDark, otherwise light gray.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDPieIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
 					</div>
 					
 					
@@ -463,7 +415,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						<p class="copyright">Copyright &copy; 2020 Jonas Gessner. All rights reserved. Updated: 2020-10-16</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

@@ -74,8 +74,6 @@
 		
 		<option value="//api/name/initWithContentView:">- initWithContentView:</option>
 		
-		<option value="//api/name/initWithHUDStyle:">- initWithHUDStyle:</option>
-		
 		<option value="//api/name/setProgress:animated:">- setProgress:animated:</option>
 		
 		<option value="//api/name/setUpForHUDStyle:vibrancyEnabled:">- setUpForHUDStyle:vibrancyEnabled:</option>
@@ -130,8 +128,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/initWithHUDStyle:" title="initWithHUDStyle:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithHUDStyle:">&ndash;&nbsp;initWithHUDStyle:</a></code>
+	<a name="//api/name/initWithContentView:" title="initWithContentView:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithContentView:">&ndash;&nbsp;initWithContentView:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -141,12 +139,135 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Initializes the indicator view and sets the correct color to match the HUD style.</p>
+				<p>Designated initializer for this class.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithHUDStyle:(JGProgressHUDStyle)<em>style</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithContentView:(UIView *)<em>contentView</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>contentView</code></th>
+						<td><p>The content view to place on the container view (the container is the JGProgressHUDIndicatorView).</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Designated initializer for this class.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>The new <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> value.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+
+<p>The current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setUpForHUDStyle:vibrancyEnabled:" title="setUpForHUDStyle:vibrancyEnabled:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setUpForHUDStyle:vibrancyEnabled:">&ndash;&nbsp;setUpForHUDStyle:vibrancyEnabled:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setUpForHUDStyle:(JGProgressHUDStyle)<em>style</em> vibrancyEnabled:(BOOL)<em>vibrancyEnabled</em></code></div>
 
 		    
 			
@@ -158,7 +279,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Initializes the indicator view and sets the correct color to match the HUD style.</p>
+				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
 			</div>
 			
 
@@ -169,13 +290,21 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDRingIndicatorView.h</code></p>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
-</div><div class="section-method">
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
 	<a name="//api/name/ringBackgroundColor" title="ringBackgroundColor"></a>
 	<h3 class="method-title"><code><a href="#//api/name/ringBackgroundColor">&nbsp;&nbsp;ringBackgroundColor</a></code>
 </h3>
@@ -374,183 +503,6 @@
 </div>
 						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/initWithContentView:" title="initWithContentView:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/initWithContentView:">&ndash;&nbsp;initWithContentView:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Designated initializer for this class.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype)initWithContentView:(UIView *)<em>contentView</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>contentView</code></th>
-						<td><p>The content view to place on the container view (the container is the JGProgressHUDIndicatorView).</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Designated initializer for this class.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>progress</code></th>
-						<td><p>The new <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> value.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-
-<p>The current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setUpForHUDStyle:vibrancyEnabled:" title="setUpForHUDStyle:vibrancyEnabled:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setUpForHUDStyle:vibrancyEnabled:">&ndash;&nbsp;setUpForHUDStyle:vibrancyEnabled:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)setUpForHUDStyle:(JGProgressHUDStyle)<em>style</em> vibrancyEnabled:(BOOL)<em>vibrancyEnabled</em></code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
-						
 					</div>
 					
 					
@@ -563,7 +515,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						<p class="copyright">Copyright &copy; 2020 Jonas Gessner. All rights reserved. Updated: 2020-10-16</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

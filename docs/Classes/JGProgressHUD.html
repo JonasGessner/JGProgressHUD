@@ -56,21 +56,13 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/)">)</option>
-		
 		<option value="//api/name/HUDView">HUDView</option>
 		
-		<option value="//api/name/animation">animation</option>
-		
 		<option value="//api/name/contentInsets">contentInsets</option>
-		
-		<option value="//api/name/contentView">contentView</option>
 		
 		<option value="//api/name/cornerRadius">cornerRadius</option>
 		
 		<option value="//api/name/delegate">delegate</option>
-		
-		<option value="//api/name/detailTextLabel">detailTextLabel</option>
 		
 		<option value="//api/name/indicatorView">indicatorView</option>
 		
@@ -96,7 +88,7 @@
 		
 		<option value="//api/name/targetView">targetView</option>
 		
-		<option value="//api/name/textLabel">textLabel</option>
+		<option value="//api/name/thick">thick</option>
 		
 		<option value="//api/name/vibrancyEnabled">vibrancyEnabled</option>
 		
@@ -116,6 +108,8 @@
 		
 		<option value="//api/name/allProgressHUDsInViewHierarchy:">+ allProgressHUDsInViewHierarchy:</option>
 		
+		<option value="//api/name/progressHUDWithAutomaticStyle">+ progressHUDWithAutomaticStyle</option>
+		
 		<option value="//api/name/progressHUDWithStyle:">+ progressHUDWithStyle:</option>
 		
 	</optgroup>
@@ -124,25 +118,37 @@
 	
 	<optgroup label="Instance Methods">
 		
+		<option value="//api/name/animation">- animation</option>
+		
+		<option value="//api/name/contentView">- contentView</option>
+		
+		<option value="//api/name/detailTextLabel">- detailTextLabel</option>
+		
 		<option value="//api/name/dismiss">- dismiss</option>
 		
 		<option value="//api/name/dismissAfterDelay:">- dismissAfterDelay:</option>
 		
 		<option value="//api/name/dismissAfterDelay:animated:">- dismissAfterDelay:animated:</option>
 		
+		<option value="//api/name/dismissAfterDelay:animated:completion:">- dismissAfterDelay:animated:completion:</option>
+		
 		<option value="//api/name/dismissAnimated:">- dismissAnimated:</option>
+		
+		<option value="//api/name/initWithAutomaticStyle">- initWithAutomaticStyle</option>
 		
 		<option value="//api/name/initWithStyle:">- initWithStyle:</option>
 		
+		<option value="//api/name/performAfterDismiss:">- performAfterDismiss:</option>
+		
 		<option value="//api/name/setProgress:animated:">- setProgress:animated:</option>
-		
-		<option value="//api/name/showInRect:inView:">- showInRect:inView:</option>
-		
-		<option value="//api/name/showInRect:inView:animated:">- showInRect:inView:animated:</option>
 		
 		<option value="//api/name/showInView:">- showInView:</option>
 		
 		<option value="//api/name/showInView:animated:">- showInView:animated:</option>
+		
+		<option value="//api/name/showInView:animated:afterDelay:">- showInView:animated:afterDelay:</option>
+		
+		<option value="//api/name/textLabel">- textLabel</option>
 		
 	</optgroup>
 	
@@ -211,7 +217,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithStyle:(JGProgressHUDStyle)<em>style</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithStyle:(JGProgressHUDStyle)<em>style</em></code></div>
 
 		    
 			
@@ -269,7 +275,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (instancetype __nonnull)progressHUDWithStyle:(JGProgressHUDStyle)<em>style</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (instancetype)progressHUDWithStyle:(JGProgressHUDStyle)<em>style</em></code></div>
 
 		    
 			
@@ -311,6 +317,899 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/initWithAutomaticStyle" title="initWithAutomaticStyle"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithAutomaticStyle">&ndash;&nbsp;initWithAutomaticStyle</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenience initializer. The HUD will dynamically change its <a href="#//api/name/style">style</a> based on whether dark mode is enabled or not. When dark mode is on, the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleDark, when dark mode is off the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleExtraLight.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithAutomaticStyle</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Convenience initializer. The HUD will dynamically change its <a href="#//api/name/style">style</a> based on whether dark mode is enabled or not. When dark mode is on, the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleDark, when dark mode is off the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleExtraLight.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/progressHUDWithAutomaticStyle" title="progressHUDWithAutomaticStyle"></a>
+	<h3 class="method-title"><code><a href="#//api/name/progressHUDWithAutomaticStyle">+&nbsp;progressHUDWithAutomaticStyle</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenience initializer. The HUD will dynamically change its <a href="#//api/name/style">style</a> based on whether dark mode is enabled or not. When dark mode is on, the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleDark, when dark mode is off the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleExtraLight.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)progressHUDWithAutomaticStyle</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Convenience initializer. The HUD will dynamically change its <a href="#//api/name/style">style</a> based on whether dark mode is enabled or not. When dark mode is on, the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleDark, when dark mode is off the <a href="#//api/name/style">style</a> will be JGProgressHUDStyleExtraLight.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showInView:" title="showInView:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showInView:">&ndash;&nbsp;showInView:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)showInView:(UIView *)<em>view</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>view</code></th>
+						<td><p>The view to show the HUD in. The frame of the @c view will be used to calculate the <a href="#//api/name/position">position</a> of the HUD.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showInView:animated:" title="showInView:animated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showInView:animated:">&ndash;&nbsp;showInView:animated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)showInView:(UIView *)<em>view</em> animated:(BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>view</code></th>
+						<td><p>The view to show the HUD in. The frame of the @c view will be used to calculate the <a href="#//api/name/position">position</a> of the HUD.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>If the HUD should show with an <a href="#//api/name/animation">animation</a>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showInView:animated:afterDelay:" title="showInView:animated:afterDelay:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showInView:animated:afterDelay:">&ndash;&nbsp;showInView:animated:afterDelay:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Shows the HUD after a delay. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
+You may call @c <a href="#//api/name/dismiss">dismiss</a> to stop the HUD from appearing before the delay has passed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)showInView:(UIView *__nonnull)<em>view</em> animated:(BOOL)<em>animated</em> afterDelay:(NSTimeInterval)<em>delay</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>view</code></th>
+						<td><p>The view to show the HUD in. The frame of the @c view will be used to calculate the <a href="#//api/name/position">position</a> of the HUD.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>If the HUD should show with an <a href="#//api/name/animation">animation</a>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>delay</code></th>
+						<td><p>The delay until the HUD will be shown.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Shows the HUD after a delay. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.
+You may call @c <a href="#//api/name/dismiss">dismiss</a> to stop the HUD from appearing before the delay has passed.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dismiss" title="dismiss"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dismiss">&ndash;&nbsp;dismiss</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses the HUD animated. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)dismiss</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Dismisses the HUD animated. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dismissAnimated:" title="dismissAnimated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dismissAnimated:">&ndash;&nbsp;dismissAnimated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses the HUD. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)dismissAnimated:(BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>If the HUD should <a href="#//api/name/dismiss">dismiss</a> with an <a href="#//api/name/animation">animation</a>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Dismisses the HUD. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dismissAfterDelay:" title="dismissAfterDelay:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dismissAfterDelay:">&ndash;&nbsp;dismissAfterDelay:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses the HUD animated after a delay. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)dismissAfterDelay:(NSTimeInterval)<em>delay</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>delay</code></th>
+						<td><p>The delay until the HUD will be dismissed.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Dismisses the HUD animated after a delay. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dismissAfterDelay:animated:" title="dismissAfterDelay:animated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dismissAfterDelay:animated:">&ndash;&nbsp;dismissAfterDelay:animated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses the HUD after a delay. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)dismissAfterDelay:(NSTimeInterval)<em>delay</em> animated:(BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>delay</code></th>
+						<td><p>The delay until the HUD will be dismissed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>If the HUD should <a href="#//api/name/dismiss">dismiss</a> with an <a href="#//api/name/animation">animation</a>.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Dismisses the HUD after a delay. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dismissAfterDelay:animated:completion:" title="dismissAfterDelay:animated:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dismissAfterDelay:animated:completion:">&ndash;&nbsp;dismissAfterDelay:animated:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses the HUD after a delay and runs a block upon completion. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)dismissAfterDelay:(NSTimeInterval)<em>delay</em> animated:(BOOL)<em>animated</em> completion:(void ( ^ _Nullable ) ( void ))<em>dismissCompletion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>delay</code></th>
+						<td><p>The delay until the HUD will be dismissed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>If the HUD should <a href="#//api/name/dismiss">dismiss</a> with an <a href="#//api/name/animation">animation</a>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>dismissCompletion</code></th>
+						<td><p>The block to execute after the HUD was dismissed.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Dismisses the HUD after a delay and runs a block upon completion. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/performAfterDismiss:" title="performAfterDismiss:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/performAfterDismiss:">&ndash;&nbsp;performAfterDismiss:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Schedules the given block to be executed when this HUD disapears. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)performAfterDismiss:(void ( ^ _Nonnull ) ( void ))<em>dismissCompletion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>dismissCompletion</code></th>
+						<td><p>The block to execute after the HUD was dismissed. Multiple calls to this method cause the different blocks to be executed in FIFO order.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Schedules the given block to be executed when this HUD disapears. If the HUD is currently not <a href="#//api/name/visible">visible</a> this method does nothing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/contentView" title="contentView"></a>
+	<h3 class="method-title"><code><a href="#//api/name/contentView">&ndash;&nbsp;contentView</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The content view inside the @c <a href="#//api/name/HUDView">HUDView</a>. If you want to add additional views to the HUD you should add them as subview to the @c contentView.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (UIView *)contentView</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The content view inside the @c <a href="#//api/name/HUDView">HUDView</a>. If you want to add additional views to the HUD you should add them as subview to the @c contentView.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/textLabel" title="textLabel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/textLabel">&ndash;&nbsp;textLabel</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The label used to present text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (UILabel *)textLabel</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The label used to present text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/detailTextLabel" title="detailTextLabel"></a>
+	<h3 class="method-title"><code><a href="#//api/name/detailTextLabel">&ndash;&nbsp;detailTextLabel</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The label used to present detail text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (UILabel *)detailTextLabel</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The label used to present detail text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/animation" title="animation"></a>
+	<h3 class="method-title"><code><a href="#//api/name/animation">&ndash;&nbsp;animation</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The animation used for showing and dismissing the HUD.
+@b Default: <a href="../Classes/JGProgressHUDFadeAnimation.html">JGProgressHUDFadeAnimation</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (JGProgressHUDAnimation *)animation</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The animation used for showing and dismissing the HUD.
+@b Default: <a href="../Classes/JGProgressHUDFadeAnimation.html">JGProgressHUDFadeAnimation</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Adjusts the current <a href="#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>The new <a href="#//api/name/progress">progress</a> value.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Adjusts the current <a href="#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+
+<p>The current <a href="#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
 	<a name="//api/name/style" title="style"></a>
 	<h3 class="method-title"><code><a href="#//api/name/style">&nbsp;&nbsp;style</a></code>
 </h3>
@@ -328,7 +1227,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) JGProgressHUDStyle style</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) JGProgressHUDStyle style</code></div>
 
 		    
 			
@@ -506,144 +1405,6 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/contentView" title="contentView"></a>
-	<h3 class="method-title"><code><a href="#//api/name/contentView">&nbsp;&nbsp;contentView</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The content view inside the @c <a href="#//api/name/HUDView">HUDView</a>. If you want to add additional views to the HUD you should add them as subview to the @c contentView.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly, nonnull) UIView *contentView</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The content view inside the @c <a href="#//api/name/HUDView">HUDView</a>. If you want to add additional views to the HUD you should add them as subview to the @c contentView.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/textLabel" title="textLabel"></a>
-	<h3 class="method-title"><code><a href="#//api/name/textLabel">&nbsp;&nbsp;textLabel</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The label used to present text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly, nonnull) UILabel *textLabel</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The label used to present text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/detailTextLabel" title="detailTextLabel"></a>
-	<h3 class="method-title"><code><a href="#//api/name/detailTextLabel">&nbsp;&nbsp;detailTextLabel</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The label used to present detail text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly, nonnull) UILabel *detailTextLabel</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The label used to present detail text on the HUD. Set the @c text or @c attributedText property of this label to change the displayed text. You may not change the label&rsquo;s @c frame or @c bounds.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
 	<a name="//api/name/indicatorView" title="indicatorView"></a>
 	<h3 class="method-title"><code><a href="#//api/name/indicatorView">&nbsp;&nbsp;indicatorView</a></code>
 </h3>
@@ -771,54 +1532,6 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The position of the HUD inside the hosting view&rsquo;s frame, or inside the specified frame.
 @b Default: JGProgressHUDPositionCenter</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/animation" title="animation"></a>
-	<h3 class="method-title"><code><a href="#//api/name/animation">&nbsp;&nbsp;animation</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The animation used for showing and dismissing the HUD.
-@b Default: <a href="../Classes/JGProgressHUDFadeAnimation.html">JGProgressHUDFadeAnimation</a>.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, nonnull) JGProgressHUDAnimation *animation</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The animation used for showing and dismissing the HUD.
-@b Default: <a href="../Classes/JGProgressHUDFadeAnimation.html">JGProgressHUDFadeAnimation</a>.</p>
 			</div>
 			
 
@@ -1186,54 +1899,6 @@
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/)" title=")"></a>
-	<h3 class="method-title"><code><a href="#//api/name/)">&nbsp;&nbsp;)</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
-@b Default: (20, 20, 20, 20).</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) UIEdgeInsets marginInsets __attribute ( ( deprecated ( ( &quot;Use layoutMargins instead.&quot; )</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Insets the HUD from the frame of the hosting view or from the specified frame to present the HUD from.
-@b Default: (20, 20, 20, 20).</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
 	<a name="//api/name/visible" title="visible"></a>
 	<h3 class="method-title"><code><a href="#//api/name/visible">&nbsp;&nbsp;visible</a></code>
 </h3>
@@ -1311,71 +1976,6 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The progress to display using the @c progressIndicatorView. A change of this property is not animated. Use the @c <a href="#//api/name/setProgress:animated:">setProgress:animated:</a> method for an animated progress change.
 @b Default: 0.0.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Adjusts the current <a href="#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>progress</code></th>
-						<td><p>The new <a href="#//api/name/progress">progress</a> value.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Adjusts the current <a href="#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-
-<p>The current <a href="#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
 			</div>
 			
 
@@ -1580,9 +2180,17 @@
 			
 		</div>
 	</div>
-</div><div class="section-method">
-	<a name="//api/name/showInView:" title="showInView:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/showInView:">&ndash;&nbsp;showInView:</a></code>
+</div>
+						</div>
+						
+
+						<a title="Extension Methods" name="task_Extension Methods"></a>
+						<h2 class="task-title">Extension Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/thick" title="thick"></a>
+	<h3 class="method-title"><code><a href="#//api/name/thick">&nbsp;&nbsp;thick</a></code>
 </h3>
 
 	<div class="method-info">
@@ -1592,133 +2200,13 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
+				<p>Setting this to @c YES makes the text and indicator views bigger.
+@b Default: NO.</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (void)showInView:(UIView *__nonnull)<em>view</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>view</code></th>
-						<td><p>The view to show the HUD in. The frame of the @c view will be used to calculate the <a href="#//api/name/position">position</a> of the HUD.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view. The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/showInView:animated:" title="showInView:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/showInView:animated:">&ndash;&nbsp;showInView:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)showInView:(UIView *__nonnull)<em>view</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>view</code></th>
-						<td><p>The view to show the HUD in. The frame of the @c view will be used to calculate the <a href="#//api/name/position">position</a> of the HUD.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>If the HUD should show with an <a href="#//api/name/animation">animation</a>.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.  The HUD will be repositioned in response to rotation and keyboard show/hide notifications.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/dismiss" title="dismiss"></a>
-	<h3 class="method-title"><code><a href="#//api/name/dismiss">&ndash;&nbsp;dismiss</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Dismisses the HUD animated.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)dismiss</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL thick</code></div>
 
 		    
 			
@@ -1730,7 +2218,8 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Dismisses the HUD animated.</p>
+				<p>Setting this to @c YES makes the text and indicator views bigger.
+@b Default: NO.</p>
 			</div>
 			
 
@@ -1741,186 +2230,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/dismissAnimated:" title="dismissAnimated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/dismissAnimated:">&ndash;&nbsp;dismissAnimated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Dismisses the HUD.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)dismissAnimated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>If the HUD should <a href="#//api/name/dismiss">dismiss</a> with an <a href="#//api/name/animation">animation</a>.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Dismisses the HUD.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/dismissAfterDelay:" title="dismissAfterDelay:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/dismissAfterDelay:">&ndash;&nbsp;dismissAfterDelay:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Dismisses the HUD animated after a delay.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)dismissAfterDelay:(NSTimeInterval)<em>delay</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>delay</code></th>
-						<td><p>The delay until the HUD will be dismissed.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Dismisses the HUD animated after a delay.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/dismissAfterDelay:animated:" title="dismissAfterDelay:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/dismissAfterDelay:animated:">&ndash;&nbsp;dismissAfterDelay:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Dismisses the HUD after a delay.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)dismissAfterDelay:(NSTimeInterval)<em>delay</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>delay</code></th>
-						<td><p>The delay until the HUD will be dismissed.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>If the HUD should <a href="#//api/name/dismiss">dismiss</a> with an <a href="#//api/name/animation">animation</a>.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Dismisses the HUD after a delay.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
+				<p><code class="declared-in-ref">JGProgressHUD.m</code></p>
 			</div>
 			
 			
@@ -1951,7 +2261,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;JGProgressHUD*&gt; *__nonnull)allProgressHUDsInView:(UIView *__nonnull)<em>view</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSArray *)allProgressHUDsInView:(UIView *)<em>view</em></code></div>
 
 		    
 			
@@ -2009,7 +2319,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>+ (NSArray&lt;JGProgressHUD*&gt; *__nonnull)allProgressHUDsInViewHierarchy:(UIView *__nonnull)<em>view</em></code></div>
+			<div class="method-subsection method-declaration"><code>+ (NSArray *)allProgressHUDsInViewHierarchy:(UIView *)<em>view</em></code></div>
 
 		    
 			
@@ -2053,145 +2363,6 @@
 </div>
 						</div>
 						
-
-						<a title="Deprecated Methods" name="task_Deprecated Methods"></a>
-						<h2 class="task-title">Deprecated Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/showInRect:inView:" title="showInRect:inView:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/showInRect:inView:">&ndash;&nbsp;showInRect:inView:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)showInRect:(CGRect)<em>rect</em> inView:(UIView *__nonnull)<em>view</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>rect</code></th>
-						<td><p>The rect allocated in @c view for displaying the HUD.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>view</code></th>
-						<td><p>The view to show the HUD in.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Shows the HUD animated. You should preferably show the HUD in a UIViewController&rsquo;s view.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/showInRect:inView:animated:" title="showInRect:inView:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/showInRect:inView:animated:">&ndash;&nbsp;showInRect:inView:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)showInRect:(CGRect)<em>rect</em> inView:(UIView *__nonnull)<em>view</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>rect</code></th>
-						<td><p>The rect allocated in @c view for displaying the HUD.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>view</code></th>
-						<td><p>The view to show the HUD in.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>If the HUD should show with an <a href="#//api/name/animation">animation</a>.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Shows the HUD. You should preferably show the HUD in a UIViewController&rsquo;s view.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUD.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
-						
 					</div>
 					
 					
@@ -2204,7 +2375,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						<p class="copyright">Copyright &copy; 2020 Jonas Gessner. All rights reserved. Updated: 2020-10-16</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

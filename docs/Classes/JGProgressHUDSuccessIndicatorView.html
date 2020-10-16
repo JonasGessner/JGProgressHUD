@@ -64,8 +64,6 @@
 		
 		<option value="//api/name/initWithContentView:">- initWithContentView:</option>
 		
-		<option value="//api/name/setUpForHUDStyle:vibrancyEnabled:">- setUpForHUDStyle:vibrancyEnabled:</option>
-		
 		<option value="//api/name/updateAccessibility">- updateAccessibility</option>
 		
 	</optgroup>
@@ -114,61 +112,7 @@
 						
 
 						
-						<h2 class="task-title">Other Methods</h2>
-
-						<div class="task-list">
-							<div class="section-method">
-	<a name="//api/name/init" title="init"></a>
-	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Default initializer for this class.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Default initializer for this class.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDSuccessIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div>
-						</div>
 						
-
-						
-						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
@@ -230,6 +174,52 @@
 		</div>
 	</div>
 </div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Default initializer for this class.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Default initializer for this class.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDSuccessIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/updateAccessibility" title="updateAccessibility"></a>
 	<h3 class="method-title"><code><a href="#//api/name/updateAccessibility">&ndash;&nbsp;updateAccessibility</a></code>
 </h3>
@@ -241,7 +231,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
+				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
 			</div>
 			
 		    
@@ -258,53 +248,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setUpForHUDStyle:vibrancyEnabled:" title="setUpForHUDStyle:vibrancyEnabled:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setUpForHUDStyle:vibrancyEnabled:">&ndash;&nbsp;setUpForHUDStyle:vibrancyEnabled:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)setUpForHUDStyle:(JGProgressHUDStyle)<em>style</em> vibrancyEnabled:(BOOL)<em>vibrancyEnabled</em></code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
+				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
 			</div>
 			
 
@@ -336,7 +280,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						<p class="copyright">Copyright &copy; 2020 Jonas Gessner. All rights reserved. Updated: 2020-10-16</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

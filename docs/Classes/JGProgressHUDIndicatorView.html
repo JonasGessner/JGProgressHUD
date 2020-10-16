@@ -126,7 +126,7 @@
 						
 
 						
-						
+						<h2 class="task-title">Other Methods</h2>
 
 						<div class="task-list">
 							<div class="section-method">
@@ -146,7 +146,7 @@
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithContentView:(UIView *__nullable)<em>contentView</em></code></div>
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithContentView:(UIView *)<em>contentView</em></code></div>
 
 		    
 			
@@ -217,163 +217,6 @@
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>Use this method to set up the indicator view to fit the HUD style and vibrancy setting. This method is called by @c <a href="../Classes/JGProgressHUD.html">JGProgressHUD</a> when the indicator view is added to the HUD and when the HUD&rsquo;s @c vibrancyEnabled property changes. This method may be called multiple times with different values. The default implementation does nothing.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/progress" title="progress"></a>
-	<h3 class="method-title"><code><a href="#//api/name/progress">&nbsp;&nbsp;progress</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Ranges from 0.0 to 1.0.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) float progress</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Ranges from 0.0 to 1.0.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(BOOL)<em>animated</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>progress</code></th>
-						<td><p>The new <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> value.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>animated</code></th>
-						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
-
-<p>The current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/contentView" title="contentView"></a>
-	<h3 class="method-title"><code><a href="#//api/name/contentView">&nbsp;&nbsp;contentView</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The content view which displays the <a href="#//api/name/progress">progress</a>.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly, nullable) UIView *contentView</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The content view which displays the <a href="#//api/name/progress">progress</a>.</p>
 			</div>
 			
 
@@ -494,7 +337,7 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
+				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
 			</div>
 			
 		    
@@ -511,7 +354,172 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
+				<p>Override to set custom accessibility properties. This method gets called once when initializing the view and after calling @c <a href="#//api/name/setNeedsAccessibilityUpdate">setNeedsAccessibilityUpdate</a>.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setProgress:animated:" title="setProgress:animated:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setProgress:animated:">&ndash;&nbsp;setProgress:animated:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setProgress:(float)<em>progress</em> animated:(__unused BOOL)<em>animated</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>progress</code></th>
+						<td><p>The new <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> value.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>animated</code></th>
+						<td><p>YES if the change should be animated, NO if the change should happen immediately.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Adjusts the current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> shown by the receiver, optionally animating the change.</p>
+
+<p>The current <a href="../Classes/JGProgressHUDIndicatorView.html#//api/name/progress">progress</a> is represented by a floating-point value between 0.0 and 1.0, inclusive, where 1.0 indicates the completion of the task. The default value is 0.0. Values less than 0.0 and greater than 1.0 are pinned to those limits.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/progress" title="progress"></a>
+	<h3 class="method-title"><code><a href="#//api/name/progress">&nbsp;&nbsp;progress</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Ranges from 0.0 to 1.0.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) float progress</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Ranges from 0.0 to 1.0.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">JGProgressHUDIndicatorView.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/contentView" title="contentView"></a>
+	<h3 class="method-title"><code><a href="#//api/name/contentView">&nbsp;&nbsp;contentView</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The content view which displays the <a href="#//api/name/progress">progress</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly, nullable) UIView *contentView</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The content view which displays the <a href="#//api/name/progress">progress</a>.</p>
 			</div>
 			
 
@@ -543,7 +551,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2018 Jonas Gessner. All rights reserved. Updated: 2018-03-30</p>
+						<p class="copyright">Copyright &copy; 2020 Jonas Gessner. All rights reserved. Updated: 2020-10-16</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
